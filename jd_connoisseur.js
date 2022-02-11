@@ -43,30 +43,6 @@ let allMessage = '';
     $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
     return;
   }
-  let res = await getAuthorShareCode('')
-  for (let i = 0; i < cookiesArr.length; i++) {
-    if (cookiesArr[i]) {
-      cookie = cookiesArr[i];
-      $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
-      $.index = i + 1;
-      $.isLogin = true;
-      $.nickName = '';
-      message = '';
-      await TotalBean();
-      isLoginInfo[$.UserName] = $.isLogin
-      console.log(`\n******开始【京东账号${$.index}】${$.nickName || $.UserName}*********\n`);
-      if (!$.isLogin) {
-        $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
-
-        if ($.isNode()) {
-          await notify.sendNotify(`${$.name}cookie已失效 - ${$.UserName}`, `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`);
-        }
-        continue
-      }
-      await jdConnoisseur()
-    }
-  }
-  $.shareCodes = [...new Set([...$.shareCodes, ...(res || [])])]
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
@@ -389,12 +365,10 @@ function interactive_done(type, projectId, assignmentId, itemId, actionType = ''
 }
 async function sign_interactive_done(type, projectId, assignmentId) {
   let functionId = 'interactive_done'
-  let body = JSON.stringify({"assignmentId":assignmentId,"type":type,"projectId":projectId})
-  let uuid = randomString(40)
-  let sign = await getSign(functionId, body, uuid)
-  let url = `${JD_API_HOST}client.action?functionId=${functionId}&client=apple&clientVersion=10.1.0&uuid=${uuid}&${sign}`
+  let body = {"assignmentId":assignmentId,"type":type,"projectId":projectId}
+  let sign = await getSign(functionId, body)
   return new Promise(resolve => {
-    $.post(taskPostUrl(url, body), (err, resp, data) => {
+    $.post(taskPostUrl(functionId, sign), (err, resp, data) => {
       try {
         if (err) {
           console.log(`${JSON.stringify(err)}`)
@@ -459,12 +433,10 @@ function interactive_accept(type, projectId, assignmentId, itemId) {
 }
 async function qryViewkitCallbackResult(encryptProjectId, encryptAssignmentId, itemId) {
   let functionId = 'qryViewkitCallbackResult'
-  let body = JSON.stringify({"dataSource":"babelInteractive","method":"customDoInteractiveAssignmentForBabel","reqParams":`{\"itemId\":\"${itemId}\",\"encryptProjectId\":\"${encryptProjectId}\",\"encryptAssignmentId\":\"${encryptAssignmentId}\"}`})
-  let uuid = randomString(40)
-  let sign = await getSign(functionId, body, uuid)
-  let url = `${JD_API_HOST}client.action?functionId=${functionId}&client=apple&clientVersion=10.1.0&uuid=${uuid}&${sign}`
+  let body = {"dataSource":"babelInteractive","method":"customDoInteractiveAssignmentForBabel","reqParams":`{\"itemId\":\"${itemId}\",\"encryptProjectId\":\"${encryptProjectId}\",\"encryptAssignmentId\":\"${encryptAssignmentId}\"}`}
+  let sign = await getSign(functionId, body)
   return new Promise(resolve => {
-    $.post(taskPostUrl(url, body), (err, resp, data) => {
+    $.post(taskPostUrl(functionId, sign), (err, resp, data) => {
       try {
         if (err) {
           console.log(`${JSON.stringify(err)}`)
@@ -593,10 +565,10 @@ function taskUrl(functionId, body) {
     }
   }
 }
-function taskPostUrl(url, body) {
+function taskPostUrl(functionId, body) {
   return {
-    url,
-    body: `body=${encodeURIComponent(body)}`,
+    url: `${JD_API_HOST}client.action?functionId=${functionId}`,
+    body,
     headers: {
       "Host": "api.m.jd.com",
       "Content-Type": "application/x-www-form-urlencoded",
@@ -611,14 +583,13 @@ function taskPostUrl(url, body) {
     }
   }
 }
-function getSign(functionid, body, uuid) {
+function getSign(functionId, body) {
   return new Promise(async resolve => {
     let data = {
-      "functionId":functionid,
-      "body":body,
-      "uuid":uuid,
+      functionId,
+      body: JSON.stringify(body),
       "client":"apple",
-      "clientVersion":"10.1.0"
+      "clientVersion":"10.3.0"
     }
     let HostArr = ['jdsign.cf', 'signer.nz.lu']
     let Host = HostArr[Math.floor((Math.random() * HostArr.length))]

@@ -19,7 +19,7 @@ if ($.isNode()) {
 } else {
   cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
 }
-$.appId = 10032;
+$.appId = "92a36";
 !(async () => {
 console.log(`\n兑换红包环境变量：export ddwVirHb='1' 请自行设置兑换金额\n`);	
 console.log(`默认红包余额大于0.2元就参与兑换\n`);	
@@ -88,7 +88,6 @@ async function perl_auto() {
       }
       return flag
     })
-	await wait()
     if (!prizes.length) {
       console.log('无红包满足条件,结束')
       return
@@ -107,6 +106,7 @@ async function perl_auto() {
       })
     }
     // console.debug('prizes:',prizes)
+	await wait()
     for (let i = 0; i < prizes.length; i++) {
       const prize = prizes[i]
       console.log('兑换面额:', prize.strPrizeName || '随机红包')
@@ -236,65 +236,65 @@ Date.prototype.Format = function (fmt) {
 }
 
 async function requestAlgo() {
-  $.fingerprint = await generateFp();
-  const options = {
-    "url": `https://cactus.jd.com/request_algo?g_ty=ajax`,
-    "headers": {
-      'Authority': 'cactus.jd.com',
-      'Pragma': 'no-cache',
-      'Cache-Control': 'no-cache',
-      'Accept': 'application/json',
-      'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1',
-      'Content-Type': 'application/json',
-      'Origin': 'https://st.jingxi.com',
-      'Sec-Fetch-Site': 'cross-site',
-      'Sec-Fetch-Mode': 'cors',
-      'Sec-Fetch-Dest': 'empty',
-      'Referer': 'https://st.jingxi.com/',
-      'Accept-Language': 'zh-CN,zh;q=0.9,zh-TW;q=0.8,en;q=0.7'
-    },
-    'body': JSON.stringify({
-      "version": "1.0",
-      "fp": $.fingerprint,
-      "appId": $.appId.toString(),
-      "timestamp": Date.now(),
-      "platform": "web",
-      "expandParams": ""
-    })
-  }
-  return new Promise(async resolve => {
-    $.post(options, (err, resp, data) => {
-      try {
-        if (err) {
-          console.log(`${JSON.stringify(err)}`)
-          console.log(`request_algo 签名参数API请求失败，请检查网路重试`)
-        } else {
-          if (data) {
-            // console.log(data);
-            data = JSON.parse(data);
-            if (data['status'] === 200) {
-              $.token = data.data.result.tk;
-              let enCryptMethodJDString = data.data.result.algo;
-              if (enCryptMethodJDString) $.enCryptMethodJD = new Function(`return ${enCryptMethodJDString}`)();
-              console.log(`获取签名参数成功！`)
-              console.log(`fp: ${$.fingerprint}`)
-              console.log(`token: ${$.token}`)
-              console.log(`enCryptMethodJD: ${enCryptMethodJDString}`)
-            } else {
-              console.log(`fp: ${$.fingerprint}`)
-              console.log('request_algo 签名参数API请求失败:')
+    $.fingerprint = await generateFp();
+    const options = {
+        "url": `https://cactus.jd.com/request_algo?g_ty=ajax`,
+        "headers": {
+            'Authority': 'cactus.jd.com',
+            'Pragma': 'no-cache',
+            'Cache-Control': 'no-cache',
+            'Accept': 'application/json',
+            'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1',
+            'Content-Type': 'application/json',
+            'Origin': 'https://st.jingxi.com',
+            'Sec-Fetch-Site': 'cross-site',
+            'Sec-Fetch-Mode': 'cors',
+            'Sec-Fetch-Dest': 'empty',
+            'Referer': 'https://st.jingxi.com/',
+            'Accept-Language': 'zh-CN,zh;q=0.9,zh-TW;q=0.8,en;q=0.7'
+        },
+        'body': JSON.stringify({
+            "version": "3.0",
+            "fp": $.fingerprint,
+            "appId": $.appId.toString(),
+            "timestamp": Date.now(),
+            "platform": "web",
+            "expandParams": ""
+        })
+    }
+    return new Promise(async resolve => {
+        $.post(options, (err, resp, data) => {
+            try {
+                if (err) {
+                    console.log(`${JSON.stringify(err)}`)
+                    console.log(`request_algo 签名参数API请求失败，请检查网路重试`)
+                } else {
+                    if (data) {
+                        // console.log(data);
+                        data = JSON.parse(data);
+                        if (data['status'] === 200) {
+                            $.token = data.data.result.tk;
+                            let enCryptMethodJDString = data.data.result.algo;
+                            if (enCryptMethodJDString) $.enCryptMethodJD = new Function(`return ${enCryptMethodJDString}`)();
+                            console.log(`获取签名参数成功！`)
+                            console.log(`fp: ${$.fingerprint}`)
+                            console.log(`token: ${$.token}`)
+                            console.log(`enCryptMethodJD: ${enCryptMethodJDString}`)
+                        } else {
+                            console.log(`fp: ${$.fingerprint}`)
+                            console.log('request_algo 签名参数API请求失败:')
+                        }
+                    } else {
+                        console.log(`京东服务器返回空数据`)
+                    }
+                }
+            } catch (e) {
+                $.logErr(e, resp)
+            } finally {
+                resolve();
             }
-          } else {
-            console.log(`京东服务器返回空数据`)
-          }
-        }
-      } catch (e) {
-        $.logErr(e, resp)
-      } finally {
-        resolve();
-      }
+        })
     })
-  })
 }
 function decrypt(time, stk, type, url) {
   stk = stk || (url ? getUrlData(url, '_stk') : '')
@@ -317,10 +317,11 @@ function decrypt(time, stk, type, url) {
     const hash2 = $.CryptoJS.HmacSHA256(st, hash1.toString()).toString($.CryptoJS.enc.Hex);
     // console.log(`\nst:${st}`)
     // console.log(`h5st:${["".concat(timestamp.toString()), "".concat(fingerprint.toString()), "".concat($.appId.toString()), "".concat(token), "".concat(hash2)].join(";")}\n`)
-    return encodeURIComponent(["".concat(timestamp.toString()), "".concat($.fingerprint.toString()), "".concat($.appId.toString()), "".concat($.token), "".concat(hash2)].join(";"))
-  } else {
-    return '20210318144213808;8277529360925161;10001;tk01w952a1b73a8nU0luMGtBanZTHCgj0KFVwDa4n5pJ95T/5bxO/m54p4MtgVEwKNev1u/BUjrpWAUMZPW0Kz2RWP8v;86054c036fe3bf0991bd9a9da1a8d44dd130c6508602215e50bb1e385326779d'
-  }
+        // return encodeURIComponent(["".concat(timestamp.toString()), "".concat($.fingerprint.toString()), "".concat($.appId.toString()), "".concat($.token), "".concat(hash2)].join(";"))
+        return encodeURIComponent(["".concat(timestamp.toString()), "".concat($.fingerprint.toString()), "".concat($.appId.toString()), "".concat($.token), "".concat(hash2), "".concat("3.0"), "".concat(time)].join(";"))
+    } else {
+        return '20210318144213808;8277529360925161;10001;tk01w952a1b73a8nU0luMGtBanZTHCgj0KFVwDa4n5pJ95T/5bxO/m54p4MtgVEwKNev1u/BUjrpWAUMZPW0Kz2RWP8v;86054c036fe3bf0991bd9a9da1a8d44dd130c6508602215e50bb1e385326779d'
+    }
 }
 
 /**

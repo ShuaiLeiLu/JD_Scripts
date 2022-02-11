@@ -1,10 +1,4 @@
 /*
- * @Author: LXK9301 https://github.com/LXK9301
- * @Date: 2021-8-20
- * @Last Modified by: LXK9301
- * @Last Modified time: 2020-12-26 22:58:02
- */
-/*
 东东工厂，不是京喜工厂
 活动入口：京东APP首页-数码电器-东东工厂
 免费产生的电量(10秒1个电量，500个电量满，5000秒到上限不生产，算起来是84分钟达到上限)
@@ -18,17 +12,17 @@
 ============Quantumultx===============
 [task_local]
 #东东工厂
-10 0,6-23 * * * https://gitee.com/lxk0301/jd_scripts/raw/master/jd_jdfactory.js, tag=东东工厂, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jd_factory.png, enabled=true
+10 0,6-23 * * * https://raw.githubusercontent.com/KingRan/JDJB/main/jd_jdfactory.js, tag=东东工厂, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jd_factory.png, enabled=true
 
 ================Loon==============
 [Script]
-cron "10 0,6-23 * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_jdfactory.js,tag=东东工厂
+cron "10 0,6-23 * * *" script-path=https://raw.githubusercontent.com/KingRan/JDJB/main/jd_jdfactory.js,tag=东东工厂
 
 ===============Surge=================
-东东工厂 = type=cron,cronexp="10 0,6-23 * * *",wake-system=1,timeout=3600,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_jdfactory.js
+东东工厂 = type=cron,cronexp="10 0,6-23 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/KingRan/JDJB/main/jd_jdfactory.js
 
 ============小火箭=========
-东东工厂 = type=cron,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_jdfactory.js, cronexpr="10 0,6-23 * * *", timeout=3600, enable=true
+东东工厂 = type=cron,script-path=https://raw.githubusercontent.com/KingRan/JDJB/main/jd_jdfactory.js, cronexpr="10 0,6-23 * * *", timeout=3600, enable=true
  */
 const $ = new Env('东东工厂');
 
@@ -53,7 +47,6 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
 const inviteCodes = [];
 let myInviteCode;
 $.newShareCode = [];
-let llhelp=true;
 !(async () => {
   if (!cookiesArr[0]) {
     $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', { "open-url": "https://bean.m.jd.com/bean/signIndex.action" });
@@ -80,19 +73,6 @@ let llhelp=true;
       }
       await jdFactory()
     }
-  }
-  if(llhelp){
-	  console.log(`\n开始账号内互助......`);
-	  for (let j = 0; j < cookiesArr.length; j++) {
-		if (cookiesArr[j]) {
-		  cookie = cookiesArr[j];
-		  $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
-		  $.nickName = '';
-		  $.index = j + 1; 
-		  console.log(`【京东账号${$.index}】${$.nickName || $.UserName}:\n`);
-		  await helpFriends();
-		}
-	}
   }
 })()
   .catch((e) => {
