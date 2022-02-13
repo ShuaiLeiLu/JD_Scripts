@@ -19,7 +19,7 @@ cron:30 0,10 8-15 2 *
 30 0,10 8-15 2 * jd_opencard98.js, tag=2.8~2.15 臻宠会员，甜蜜告白, enabled=true
 
 */
-const $ = new Env("2021.12.31-1.9大牌联合 年货盛宴");
+const $ = new Env("2.8~2.15 臻宠会员，甜蜜告白");
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
 //IOS等用户直接用NobyDa的jd cookie
