@@ -77,7 +77,6 @@ async function run() {
     }
     let config = [
 	  {configCode:'7b0c39fc30c94676a1549223eecb03b1',configName:'情人节活动2'},
-      {configCode:'105d40dc86794724b1ace8019fa8e1b2',configName:'情人节活动'},
 
     ]
     for(let i in config){
