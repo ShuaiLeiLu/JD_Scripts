@@ -272,7 +272,7 @@ def get_ck(token,sid_ck,account):
         result = response.json ()
         # print(result)
         access_token = result['token']
-        print(access_token)
+        # print(access_token)
         return access_token
     except Exception as e:
         msg("账号【{0}】获取ck失败，cookie过期".format(account))
@@ -299,7 +299,7 @@ def get_Authorization(access_token,account):
         # print(data)
         response = requests.post (url=url, verify=False, headers=headers,data=data)
         result = response.json ()
-        print(result)
+        # print(result)
         access_token = result['access_token']
         access_token = r"Bearer " + access_token
         # print(access_token)
@@ -468,13 +468,13 @@ def do_task(cookies,taskName,taskId,taskToken,sid,account):
         res = requests.post(url=url1, verify=False, headers=headers,data=data.encode())
         # print(res.status_code)
         if res.status_code == 200:
-            msg("账号【{0}】正在执行任务，请稍等10秒".format(account))
+            msg("正在执行任务，请稍等10秒")
             time.sleep(10)
             response = requests.post(url=url, verify=False, headers=headers,data=data.encode())  #data中有汉字，需要encode为utf-8
             result = response.json()
             print(result)
             score = result['score']
-            msg ("账号【{0}】执行任务【{1}】成功，获取【{2}】能量".format (account, taskName,score))
+            msg ("执行任务【{0}】成功，获取【{1}】能量".format (taskName,score))
     except Exception as e:
         print(e)
 
@@ -503,7 +503,7 @@ def do_task2(cookies,taskName,taskId,taskToken,sid,account):
         result = response.json()
         # print(result)
         score = result['score']
-        msg ("账号【{0}】执行任务【{1}】成功，获取【{2}】能量".format (account, taskName,score))
+        msg ("执行任务【{0}】成功，获取【{1}】能量".format (taskName,score))
     except Exception as e:
         print(e)
 
@@ -534,7 +534,7 @@ def charge(charge_targe_id,cookies,sid,account):
             # print(result)
             user_coins = result['user_coins']   #剩余能量
             coins = result['plant_info']['coins']   #消耗能量
-            msg ("账号【{0}】充能成功，消耗【{1}】能量，剩余能量【{2}】".format (account, coins,user_coins))
+            msg ("充能成功，消耗【{1}】能量，剩余能量【{2}】".format (coins,user_coins))
             time.sleep(2)
 
     except Exception as e:
@@ -550,6 +550,7 @@ def start():
         nowtime = datetime.datetime.now ().strftime ('%Y-%m-%d %H:%M:%S.%f8')
         if cookie != '':
             account = setName (cookie)
+            msg ("★★★★★正在账号{}的任务★★★★★".format (account))
             access_token = get_ck(cookie,sid_ck,account)
             cookie = get_Authorization (access_token, account)
             get_planted_info (cookie, sid,account)
@@ -574,6 +575,7 @@ def start():
             for cookie,charge_targe_id in zip(cookies,charge_targe_ids):
                 try:
                     account = setName (cookie)
+                    msg ("★★★★★正在账号{}的任务★★★★★".format (account))
                     access_token = get_ck (cookie, sid_ck,account)
                     cookie = get_Authorization (access_token, account)
                     get_planted_info (cookie,sid,account)
