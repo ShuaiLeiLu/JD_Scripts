@@ -282,6 +282,8 @@ function getTaskList(ck) {
                         // console.log(data,"活动列表")
                         if(data.content){
                             $.taskList=data.content
+                            $.taskList.sort(function(a,b){
+                                return b.rewardBeans-a.rewardBeans})
                         }
                         else{
                             console.log("未获取到活动列表，请检查活动")
