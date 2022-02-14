@@ -332,11 +332,12 @@ def get_planted_info(cookies,sid,account):
         try:
             name = result['plant'][f'{i+1}']['data']['name']
             planted_id = result['plant'][f'{i+1}']['data']['id']
-            print(f"账号{account}所种植的",f"【{name}】","充能ID为:",planted_id)
+            print(f"【账号{account}】所种植的",f"【{name}】","充能ID为:",planted_id)
             name_list.append(name)
             planted_id_list.append(planted_id)
         except Exception as e:
             pass
+    print('\n\n')
 
 
 #获取早睡打卡
