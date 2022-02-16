@@ -532,10 +532,10 @@ def charge(charge_targe_id,cookies,sid,account):
         for i in range(10):
             response = requests.post(url=url, verify=False, headers=headers,data=data.encode())  #data中有汉字，需要encode为utf-8
             result = response.json()
-            # print(result)
+            print(result)
             user_coins = result['user_coins']   #剩余能量
             coins = result['plant_info']['coins']   #消耗能量
-            msg ("充能成功，消耗【{1}】能量，剩余能量【{2}】".format (coins,user_coins))
+            msg ("充能成功，消耗【{0}】能量，剩余能量【{1}】".format (coins,user_coins))
             time.sleep(2)
 
     except Exception as e:
@@ -590,9 +590,10 @@ def start():
                         taskName, taskId, taskToken_list = get_task2 (cookie,sid, account)
                         for i in taskToken_list:
                             do_task2 (cookie, taskName, taskId, i, sid,account)
-                    charge (charge_targe_id, cookie,sid, account)
+
                 except Exception as e:
                     pass
+                charge (charge_targe_id, cookie, sid, account)
         else:
             printT("请检查变量plant_cookie是否已填写")
 
