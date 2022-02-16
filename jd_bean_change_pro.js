@@ -415,7 +415,7 @@ if(DisableIndex!=-1){
 
 						await notify.sendNotify(`${$.name}`, `${allMessage}`, {
 							url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean`
-						}, '\n\n本通知 By https://github.com/KingRan/JDJB',TempMessage)
+						}, '\n\n本通知 By https://github.com/KingRan/KR',TempMessage)
 					}
 					if ($.isNode() && allMessageMonth) {
 						await notify.sendNotify(`京东月资产变动`, `${allMessageMonth}`, {
@@ -484,7 +484,7 @@ if(DisableIndex!=-1){
 				
 				await notify.sendNotify(`${$.name}`, `${allMessage}`, {
 					url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean`
-				}, '\n\n本通知 By https://github.com/KingRan/JDJB',TempMessage)
+				}, '\n\n本通知 By https://github.com/KingRan/KR',TempMessage)
 			}
 			if ($.isNode() && allMessageMonth) {
 				await notify.sendNotify(`京东月资产变动`, `${allMessageMonth}`, {
@@ -500,7 +500,7 @@ if(DisableIndex!=-1){
 				allMessageGp2=strAllNotify+`\n`+allMessageGp2;
 			await notify.sendNotify(`${$.name}#2`, `${allMessageGp2}`, {
 				url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean`
-			}, '\n\n本通知 By https://github.com/KingRan/JDJB',TempMessage)
+			}, '\n\n本通知 By https://github.com/KingRan/KR',TempMessage)
 			await $.wait(10 * 1000);
 		}
 		if ($.isNode() && allMessageGp3) {
@@ -509,7 +509,7 @@ if(DisableIndex!=-1){
 				allMessageGp3=strAllNotify+`\n`+allMessageGp3;
 			await notify.sendNotify(`${$.name}#3`, `${allMessageGp3}`, {
 				url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean`
-			}, '\n\n本通知 By https://github.com/KingRan/JDJB',TempMessage)
+			}, '\n\n本通知 By https://github.com/KingRan/KR',TempMessage)
 			await $.wait(10 * 1000);
 		}
 		if ($.isNode() && allMessageGp4) {
@@ -518,7 +518,7 @@ if(DisableIndex!=-1){
 				allMessageGp4=strAllNotify+`\n`+allMessageGp4;
 			await notify.sendNotify(`${$.name}#4`, `${allMessageGp4}`, {
 				url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean`
-			}, '\n\n本通知 By https://github.com/KingRan/JDJB',TempMessage)
+			}, '\n\n本通知 By https://github.com/KingRan/KR',TempMessage)
 			await $.wait(10 * 1000);
 		}
 		if ($.isNode() && allMessage) {
@@ -528,7 +528,7 @@ if(DisableIndex!=-1){
 			
 			await notify.sendNotify(`${$.name}`, `${allMessage}`, {
 				url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean`
-			}, '\n\n本通知 By https://github.com/KingRan/JDJB',TempMessage)
+			}, '\n\n本通知 By https://github.com/KingRan/KR',TempMessage)
 			await $.wait(10 * 1000);
 		}
 
@@ -978,7 +978,7 @@ async function showMsg() {
 		if(strAllNotify)
 			ReturnMessage=strAllNotify+`\n`+ReturnMessage;
 		
-		await notify.sendNotifybyWxPucher(strTitle, `${ReturnMessage}`, `${$.UserName}`,'\n\n本通知 By https://github.com/KingRan/JDJB',strsummary);
+		await notify.sendNotifybyWxPucher(strTitle, `${ReturnMessage}`, `${$.UserName}`,'\n\n本通知 By https://github.com/KingRan/KR',strsummary);
 	}
 
 	//$.msg($.name, '', ReturnMessage , {"open-url": "https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean"});
@@ -1134,22 +1134,21 @@ async function Monthbean() {
 
 async function jdCash() {
 	let functionId = "cash_homePage";
-	let body = "%7B%7D";
-	let uuid = randomString(16);
+	let body = {};	  
 	console.log(`正在获取领现金任务签名...`);
 	isSignError = false;
-	let sign = await getSign(functionId, decodeURIComponent(body), uuid)
+	let sign = await getSign(functionId, body);
 		if (isSignError) {
 			console.log(`领现金任务签名获取失败,等待2秒后再次尝试...`)
 			await $.wait(2 * 1000);
 			isSignError = false;
-			sign = await getSign(functionId, decodeURIComponent(body), uuid);
+			sign =await getSign(functionId, body);
 		}
 		if (isSignError) {
 			console.log(`领现金任务签名获取失败,等待2秒后再次尝试...`)
 			await $.wait(2 * 1000);
 			isSignError = false;
-			sign = await getSign(functionId, decodeURIComponent(body), uuid);
+			sign = await getSign(functionId, body);
 		}
 		if (!isSignError) {
 			console.log(`领现金任务签名获取成功...`)
@@ -1158,9 +1157,8 @@ async function jdCash() {
 			$.jdCash = 0;
 			return
 		}
-		let url = `${JD_API_HOST}?functionId=${functionId}&build=167774&client=apple&clientVersion=10.1.0&uuid=${uuid}&${sign}`
 		return new Promise((resolve) => {
-			$.post(apptaskUrl(url, body), async(err, resp, data) => {
+			$.post(apptaskUrl(functionId, sign), async (err, resp, data) => {
 				try {
 					if (err) {
 						console.log(`${JSON.stringify(err)}`)
@@ -1183,57 +1181,56 @@ async function jdCash() {
 			})
 		})
 }
-function apptaskUrl(url, body) {
-	return {
-		url,
-		body: `body=${body}`,
-		headers: {
-			'Cookie': cookie,
-			'Host': 'api.m.jd.com',
-			'Connection': 'keep-alive',
-			'Content-Type': 'application/x-www-form-urlencoded',
-			'Referer': '',
-			'User-Agent': 'JD4iPhone/167774 (iPhone; iOS 14.7.1; Scale/3.00)',
-			'Accept-Language': 'zh-Hans-CN;q=1',
-			'Accept-Encoding': 'gzip, deflate, br',
-		}
-	}
+function apptaskUrl(functionId = "", body = "") {
+  return {
+    url: `${JD_API_HOST}?functionId=${functionId}`,
+    body,
+    headers: {
+      'Cookie': cookie,
+      'Host': 'api.m.jd.com',
+      'Connection': 'keep-alive',
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Referer': '',
+      'User-Agent': 'JD4iPhone/167774 (iPhone; iOS 14.7.1; Scale/3.00)',
+      'Accept-Language': 'zh-Hans-CN;q=1',
+      'Accept-Encoding': 'gzip, deflate, br',
+    }
+  }
 }
-function getSign(functionid, body, uuid) {
-	return new Promise(async resolve => {
-		let data = {
-			"functionId": functionid,
-			"body": body,
-			"uuid": uuid,
-			"client": "apple",
-			"clientVersion": "10.1.0"
-		}
-		let HostArr = ['jdsign.cf', 'signer.nz.lu']
-		let Host = HostArr[Math.floor((Math.random() * HostArr.length))]
-			let options = {
-			url: `https://cdn.nz.lu/ddo`,
-			body: JSON.stringify(data),
-			headers: {
-				Host,
-				"User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"
-			},
-			timeout: 15000
-		}
-		$.post(options, (err, resp, data) => {
-			try {
-				if (err) {
-					console.log(`${JSON.stringify(err)}`);
-					isSignError = true;
-					//console.log(`${$.name} getSign API请求失败，请检查网路重试`)
-				} else {}
-			} catch (e) {
-				$.logErr(e, resp)
-			}
-			finally {
-				resolve(data);
-			}
-		})
-	})
+function getSign(functionId, body) {
+  return new Promise(async resolve => {
+    let data = {
+      functionId,
+      body: JSON.stringify(body),
+      "client":"apple",
+      "clientVersion":"10.3.0"
+    }
+    let HostArr = ['jdsign.cf', 'signer.nz.lu']
+    let Host = HostArr[Math.floor((Math.random() * HostArr.length))]
+    let options = {
+      url: `https://cdn.nz.lu/ddo`,
+      body: JSON.stringify(data),
+      headers: {
+        Host,
+        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"
+      },
+      timeout: 30 * 1000
+    }
+    $.post(options, (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(JSON.stringify(err))
+          console.log(`${$.name} getSign API请求失败，请检查网路重试`)
+        } else {
+
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve(data);
+      }
+    })
+  })
 }
 function TotalBean() {
 	return new Promise(async resolve => {
