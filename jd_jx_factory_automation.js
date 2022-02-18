@@ -7,6 +7,10 @@
 ================Loon==============
 [Script]
 cron "20 7,19 * * *" script-path=jd_jx_factory_automation.js,tag=京喜工厂自动化
+
+变量：京喜工厂自动化生产(填写需要生产的商品名)
+配合京喜工厂商品列表详情使用
+//export COMMODITY_NAME=""
 */
 const {Env} = require('./utils/magic');
 const $ = new Env('M京喜工厂自动化');
