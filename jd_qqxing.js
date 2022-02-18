@@ -3,7 +3,7 @@
 活动入口：QQ星儿童牛奶京东自营旗舰店->品牌会员->星系牧场
 [task_local]
 #星系牧场
-22 4-22/3 * * * * * * jd_qqxing.js
+22 4-22/3 * * * jd_qqxing.js
 */
 const $ = new Env('QQ星系牧场');
 //Node.js用户请在jdCookie.js处填写京东ck;
