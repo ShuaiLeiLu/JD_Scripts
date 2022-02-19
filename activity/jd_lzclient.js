@@ -1,21 +1,15 @@
-if (!["true"].includes(process.env.JD_LZCLIENT)) {
-    console.log("请设置环境变量JD_LZCLIENT为\"true\")来运行本脚本")
-	console.log('本脚本耗时巨长，请做好准备，有无豆子看脸。')
-	console.log('本脚本仅店铺抽奖，无其他作用。')
-    return
-}
 /*
-https://lzkj-isv.isvjcloud.com/lzclient/12345/cjwx/common/entry.html?activityId=xxxx
-
-cron 35 3,17 * * * https://raw.githubusercontent.com/KingRan/JDJB/main/jd_lzclient.js
+作者：小埋
+活动链接：https://lzkj-isv.isvjcloud.com/lzclient/12345/cjwx/common/entry.html?activityId=xxxx
+//自己有就在配置文件中加变量 RUSH_LZCLIENT || "";  //活动ID  以逗号分隔  111,22,33
 */
+
 const $ = new Env('超级无线店铺抽奖');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
 let cookiesArr = [], cookie = '', message = '';
-let activityIdList = [
-    "",
-]
+let activityIdList = []
+
 let lz_cookie = {}
 
 if (process.env.RUSH_LZCLIENT && process.env.RUSH_LZCLIENT != "") {
@@ -37,14 +31,11 @@ if ($.isNode()) {
     cookiesArr = cookiesArr.filter(item => !!item);
 }
 !(async () => {
-	console.log('本脚本耗时巨长，请做好准备，有无豆子看脸。')
-	console.log('本脚本仅店铺抽奖，无其他作用。')
-	console.log('环境变量添加：export JD_LZCLIENT="true"\n当环境变量中存在JD_LZCLIENT并设置为true时才会执行本脚本')
     if (!cookiesArr[0]) {
         $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', { "open-url": "https://bean.m.jd.com/bean/signIndex.action" });
         return;
     }
-     activityIdList = await getActivityIdList('https://gitee.com/KingRan521/JD-Scripts/raw/master/shareCodes/lzclient.json')
+    // activityIdList = await getActivityIdList('game.json')
     for(let a in activityIdList){
         activityId = activityIdList[a];
         console.log("开起第 "+ a +" 个活动，活动id："+activityId)
