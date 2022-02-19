@@ -13,11 +13,11 @@
 过10分钟再执行
 
 
-cron:6 3,16 18-24 2 *
+cron:39 0,11 18-24 2 *
 ============Quantumultx===============
 [task_local]
 #2.18~2.24 婴乐家会员日
-6 3,16 18-24 2 * jd_opencardL78.js, tag=2.18~2.24 婴乐家会员日, enabled=true
+39 0,11 18-24 2 * jd_opencardL78.js, tag=2.18~2.24 婴乐家会员日, enabled=true
 
 */
 
