@@ -21,6 +21,9 @@ cron "10 5,17 * * *" script-path=jd_fruit_friend.js,tag=东东农场好友删减
 =========================小火箭===========================
 东东农场好友删减奖励 = type=cron,script-path=jd_fruit_friend.js, cronexpr="10 5,17 * * *", timeout=3600, enable=true
 
+每号间隔（毫秒），默认0毫秒（0分钟）
+export fruit_sleep=20000
+
 */
 const $ = new Env('东东农场好友删减奖励');
 let cookiesArr = [], cookie = '', isBox = false, notify,allMessage = '';
@@ -88,6 +91,9 @@ let llhelp=true;
       $.retry = 0;
       await jdFruit();
     }
+		if ($.isNode()) {
+		process.env.fruit_sleep ? await $.wait(Number(process.env.fruit_sleep)) : ''
+		}
   }
   if ($.isNode() && allMessage && $.ctrTemp) {
     await notify.sendNotify(`${$.name}`, `${allMessage}`)

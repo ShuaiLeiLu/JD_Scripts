@@ -23,6 +23,9 @@ cron "20 4,16 * * *" script-path=jd_fruit_help.js,tag=东东农场内部互助
 
 export DO_TEN_WATER_AGAIN="" 默认再次浇水
 
+每号间隔（毫秒），默认0毫秒（0分钟）
+export fruit_sleep=20000
+
 */
 const $ = new Env('东东农场内部水滴互助');
 let cookiesArr = [],
@@ -107,6 +110,9 @@ let llhelp=true;
             $.retry = 0;
             await jdFruit();
         }
+		if ($.isNode()) {
+		process.env.fruit_sleep ? await $.wait(Number(process.env.fruit_sleep)) : ''
+		}
     }
     if ($.isNode() && allMessage && $.ctrTemp) {
         await notify.sendNotify(`${$.name}`, `${allMessage}`)
