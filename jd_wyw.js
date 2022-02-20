@@ -1,6 +1,6 @@
 /*
 
-============Quantumultx===============
+
 [task_local]
 #玩一玩成就
 0 8 * * * jd_wyw.js, tag=玩一玩成就, img-url=https://raw.githubusercontent.com/tsukasa007/icon/master/jd_wyw.png, enabled=true
@@ -35,6 +35,7 @@ $.invitePinTaskList = []
 
 message = ""
 !(async () => {
+	console.log('\n【活动入口：京东首页-右滑边玩边赚 】\n\n【每次运行活动ID均不同，只增加成长值目前没任何收益 】');
   $.user_agent = require('./USER_AGENTS').USER_AGENT
   if (!cookiesArr[0]) {
     $.msg($.name, '【提示】请先获取cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/', {
@@ -63,7 +64,8 @@ message = ""
       }
       await getPlayTaskCenter()
       for (const playTaskCenterListElement of $.playTaskCenterList) {
-          $.log(`play ${playTaskCenterListElement.name}  获得成就值: ${playTaskCenterListElement.achieve}`)
+          $.log(`活动ID： ${playTaskCenterListElement.playId}`)
+		  $.log(`您 ${playTaskCenterListElement.name}  获得成就值: ${playTaskCenterListElement.achieve}`)
           await doPlayAction(playTaskCenterListElement.playId)
       }
 

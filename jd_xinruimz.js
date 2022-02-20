@@ -54,6 +54,7 @@ if ($.isNode()) {
             }
             await main();
         }
+		await $.wait(10 * 1000);
     }
     if (message !== "") {
         if ($.isNode()) {
