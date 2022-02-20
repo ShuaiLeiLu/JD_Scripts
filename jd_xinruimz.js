@@ -53,8 +53,8 @@ if ($.isNode()) {
                 continue
             }
             await main();
+			await $.wait(10 * 1000);
         }
-		await $.wait(10 * 1000);
     }
     if (message !== "") {
         if ($.isNode()) {
