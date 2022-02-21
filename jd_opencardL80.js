@@ -6,11 +6,11 @@
 入口：[ 2.21-2.28 大牌联合 宠爱有礼 (https://lzdz1-isv.isvjcloud.com/dingzhi/customized/common/activity?activityId=unionkbblnt20220221dzlhkk&shareUuid=1e1c83189fb34c13afbdd37943241c17)]
 
 
-cron:30 6,18 21-28 2 *
+cron:30 6,18 22-28 2 *
 ============Quantumultx===============
 [task_local]
 #2.21-2.28 大牌联合 宠爱有礼
-30 6,18 21-28 2 * jd_opencardL80.js, tag=2.21-2.28 大牌联合 宠爱有礼, enabled=true
+30 6,18 22-28 2 * jd_opencardL80.js, tag=2.21-2.28 大牌联合 宠爱有礼, enabled=true
 
 */
 const $ = new Env('2.21-2.28 大牌联合 宠爱有礼');
