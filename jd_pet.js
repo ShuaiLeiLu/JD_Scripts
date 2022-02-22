@@ -80,6 +80,7 @@ console.log(`共${cookiesArr.length}个京东账号\n`);
             taskInfoKey = [];
             option = {};
             await jdPet();
+			await $.wait(30 * 1000);
         }
     }
     if ($.isNode() && allMessage && $.ctrTemp) {

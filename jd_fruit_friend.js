@@ -65,6 +65,7 @@ let llhelp=true;
 		  option = {};
 		  $.retry = 0;
 		  await GetCollect();
+		  await $.wait(1500);
 		}
 	  }
   }
@@ -90,6 +91,7 @@ let llhelp=true;
       option = {};
       $.retry = 0;
       await jdFruit();
+	  await $.wait(30 * 1000);
     }
 		if ($.isNode()) {
 		process.env.fruit_sleep ? await $.wait(Number(process.env.fruit_sleep)) : ''
