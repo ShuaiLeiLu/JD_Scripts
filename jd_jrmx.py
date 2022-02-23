@@ -3,6 +3,12 @@
 #依赖安装：进入容器执行：pip3 install PyExecJS
 #想拿券的cookie环境变量JDJR_COOKIE，格式就是普通的cookie格式（pt_key=xxx;pt_pin=xxx）
 #活动每天早上10点开始截止到这个月28号，建议corn 5 0 10 * * *
+
+"""
+cron: 5 0 10 * * *
+new Env('京东金融分享助力');
+"""
+
 import execjs
 import requests
 import json
@@ -92,7 +98,7 @@ def get_remarkinfo():
 
 
 def JDSignValidator(url):
-    with open('JDSignValidator.js', 'r', encoding='utf-8') as f:
+    with open('JDJRSignValidator.js', 'r', encoding='utf-8') as f:
         jstext = f.read()
     ctx = execjs.compile(jstext)
     result = ctx.call('getBody', url)
