@@ -3,7 +3,7 @@
 
 
 """
-cron: 23 9 * * *
+cron: 35 10 * * *
 new Env('京东金融天天试手气');
 """
 
@@ -160,9 +160,6 @@ if __name__ == '__main__':
         cks = re.findall(r'Cookie[0-9]*="(pt_key=.*?;pt_pin=.*?;)"', f.read())
         f.close()
     for ck in cks:
-        ck = ck.strip()
-        if ck[-1] != ';':
-            ck += ';'
         ptpin = re.findall(r"pt_pin=(.*?);", ck)[0]
         try:
             if remarkinfos[ptpin]!='':
@@ -178,6 +175,6 @@ if __name__ == '__main__':
         info=JDSignValidator('https://prodev.m.jd.com/mall/active/498THTs5KGNqK5nEaingGsKEi6Ao/index.html')
         eid=json.loads(geteid(info[1],info[2]).split('_*')[1])['eid']
         fp=info[0]
-        draw('Q029794F612c2E2O1D2a0N161v0Z2i2s9nJ',eid,fp)
+        draw('Q72966994128142102X259KS',eid,fp)
         if sendNotifyflag:
             send('京东白条抽奖通知',username+'抽到'+str(prizeAward)+'的优惠券了，速去京东金融-白条-天天试手气查看')
