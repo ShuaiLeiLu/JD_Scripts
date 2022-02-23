@@ -147,7 +147,7 @@ def draw(activityid,eid,fp):
     except:
         printf('出错啦，出错原因为:'+json.loads(response.text)['failDesc']+'\n\n')
     
-    time.sleep(5)
+    time.sleep(10)
     
 if __name__ == '__main__':
     printf('游戏入口:京东金融-白条-天天试手气\n')
