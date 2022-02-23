@@ -27,12 +27,12 @@ cron "20 0-23/3 * * *" script-path=jd_joypark_joy.js,tag=汪汪乐园养joy
 */
 const $ = new Env('汪汪乐园养joy');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
-
 const notify = $.isNode() ? require('./sendNotify') : '';
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [],
   cookie = '';
 let hotFlag = false;
+let failed_cnt = 0
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
@@ -66,6 +66,8 @@ message = ""
     //   console.log(`\n汪汪乐园养joy 只运行 ${process.env.JOYPARK_JOY_START} 个Cookie\n`);
     //   break
     // }
+	hotFlag = false
+	failed_cnt = 0
     cookie = cookiesArr[i];
     if (cookie) {
       $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
@@ -355,6 +357,13 @@ function doJoyMerge(joyId1, joyId2) {
           // if (data.code == '1006') {
           //   hotFlag = true
           // }
+		if (data.code == '1006') {
+          failed_cnt += 1
+          } 
+          if (failed_cnt == 5){
+            console.log('失败次数多，避免死循环，跳出！')
+            hot_flag = true
+          }
         }
       } catch (e) {
         $.logErr(e, resp)
