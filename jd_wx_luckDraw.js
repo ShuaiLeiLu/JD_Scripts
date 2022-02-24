@@ -1,10 +1,10 @@
 /*
 [task_local]
 幸运抽奖
-10 10 10 10 10 jd_wx_luckDraw.js, tag=幸运抽奖, enabled=true
+10 10 10 10 0 jd_wx_luckDraw.js, tag=幸运抽奖, enabled=true
 ================Loon==============
 [Script]
-cron "10 10 10 10 10" script-path=jd_wx_luckDraw.js,tag=幸运抽奖
+cron "10 10 10 10 0" script-path=jd_wx_luckDraw.js,tag=幸运抽奖
 
 配置文件中变量填写：//export M_WX_LUCK_DRAW_URL=""
 */

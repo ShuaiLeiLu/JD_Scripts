@@ -1,10 +1,10 @@
 /*
 [task_local]
 加购有礼
-10 10 10 10 10 jd_wx_addCart.js, tag=加购有礼, enabled=true
+10 10 10 10 0 jd_wx_addCart.js, tag=加购有礼, enabled=true
 ================Loon==============
 [Script]
-cron "10 10 10 10 10" script-path=jd_wx_addCart.js,tag=加购有礼
+cron "10 10 10 10 0" script-path=jd_wx_addCart.js,tag=加购有礼
 
 配置文件中变量填写：//export M_WX_ADD_CART_URL=""
 */
