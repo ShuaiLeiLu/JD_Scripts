@@ -193,7 +193,7 @@ function pigPetUserBag() {
                   }
                   for (let item of data.resultData.resultData.goods) {
                     if (item.count >= 20) {
-                      let i = parseInt(process.env.PIG_FEED_LIMIT || 50)
+                      let i = parseInt(process.env.PIG_FEED_LIMIT || 20)
                       console.log(`\n每次运行最多喂食${i}次(环境变量PIG_FEED_LIMIT)`)
                       do {
                         console.log(`\n15秒后开始喂食${item.goodsName}，当前数量为${item.count}g`)
