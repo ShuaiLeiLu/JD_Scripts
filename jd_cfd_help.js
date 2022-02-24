@@ -40,6 +40,7 @@ let cookiesArr = [], cookie = '', token = '';
 let UA, UAInfo = {};
 const randomCount = $.isNode() ? 20 : 3;
 $.appId = "92a36";
+let lnrun = 0;
 function oc(fn, defaultVal) {//optioanl chaining
   try {
     return fn()
@@ -89,15 +90,22 @@ if ($.isNode()) {
       $.allTask = []
       $.info = {}
       token = await getJxToken()
-      await cfd();
-      await $.wait(3000);
+      lnrun++;
+	  await cfd();
+	  await $.wait(2000);
+      if (lnrun == 10) {
+              console.log(`\n【访问接口次数达到10次，休息半分钟.....】\n`);
+              await $.wait(30 * 1000);
+              lnrun = 0;
+			}
     }
   }
   let res = await getAuthorShareCode('https://gitee.com/KingRan521/JD-Scripts/raw/master/shareCodes/cfd.json')
   $.strMyShareIds = [...(res || [])]
   await shareCodesFormat()
   for (let i = 0; i < cookiesArr.length; i++) {
-    cookie = cookiesArr[i];
+    lnrun++;
+	cookie = cookiesArr[i];
     $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
     $.canHelp = true
     UA = UAInfo[$.UserName]
@@ -106,7 +114,7 @@ if ($.isNode()) {
       for (let j = 0; j < $.newShareCodes.length && $.canHelp; j++) {
         console.log(`账号${$.UserName} 去助力 ${$.newShareCodes[j]}`)
         $.delcode = false
-        await helpByStage($.newShareCodes[j])
+		await helpByStage($.newShareCodes[j])
         await $.wait(2000)
         if ($.delcode) {
           $.newShareCodes.splice(j, 1)
@@ -117,6 +125,11 @@ if ($.isNode()) {
     } else {
       break
     }
+	if (lnrun == 5) {
+        console.log(`\n【访问接口次数达到5次，休息半分钟.....】\n`);
+        await $.wait(30 * 1000);
+        lnrun = 0;
+	}
   }
   await showMsg();
 })()
@@ -1463,7 +1476,7 @@ function shareCodesFormat() {
     } else {
       $.newShareCodes = [...new Set([...$.shareCodes, ...$.strMyShareIds])];
     }
-    console.log(`您将要助力的好友${JSON.stringify($.newShareCodes)}`)
+    console.log(`\n\n您将要助力的好友${JSON.stringify($.newShareCodes)}`)
     resolve();
   })
 }
