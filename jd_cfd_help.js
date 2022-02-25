@@ -39,7 +39,7 @@ $.shareCodes = [];
 let cookiesArr = [], cookie = '', token = '';
 let UA, UAInfo = {};
 const randomCount = $.isNode() ? 20 : 3;
-$.appId = "92a36";
+$.appId = 10032;
 let lnrun = 0;
 function oc(fn, defaultVal) {//optioanl chaining
   try {
@@ -93,8 +93,8 @@ if ($.isNode()) {
       lnrun++;
 	  await cfd();
 	  await $.wait(2000);
-      if (lnrun == 10) {
-              console.log(`\n【访问接口次数达到10次，休息半分钟.....】\n`);
+      if (lnrun == 5) {
+              console.log(`\n【访问接口次数达到5次，休息半分钟.....】\n`);
               await $.wait(30 * 1000);
               lnrun = 0;
 			}
@@ -1577,7 +1577,7 @@ async function requestAlgo() {
       'Accept-Language': 'zh-CN,zh;q=0.9,zh-TW;q=0.8,en;q=0.7'
     },
     'body': JSON.stringify({
-      "version": "3.1",
+      "version": "1.0",
       "fp": $.fingerprint,
       "appId": $.appId.toString(),
       "timestamp": Date.now(),
