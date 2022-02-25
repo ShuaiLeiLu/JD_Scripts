@@ -144,8 +144,8 @@ let llgetshare = false;
             $.retry = 0;
           lnrun++;
           await jdFruit();
-          if (lnrun == 5) {
-              console.log(`\n【访问接口次数达到5次，休息一分钟.....】\n`);
+          if (lnrun == 3) {
+              console.log(`\n【访问接口次数达到3次，休息一分钟.....】\n`);
               await $.wait(60 * 1000);
               lnrun = 0;
           }
