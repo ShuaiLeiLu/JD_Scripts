@@ -39,7 +39,7 @@ if ($.isNode()) {
         })
         return
     }
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 200; i++) {
         // for(let i = 0; i < $.cookiesArr.length; i++){
         if (cookiesArr[i]) {
             $.cookie = cookiesArr[i];
