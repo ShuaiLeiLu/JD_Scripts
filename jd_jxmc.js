@@ -33,7 +33,7 @@ const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 $.inviteCodeList = [];
 let cookiesArr = [];
 let UA, token, UAInfo = {}
-$.appId = 10028;
+$.appId = "00df8";
 function oc(fn, defaultVal) {//optioanl chaining
   try {
     return fn()
