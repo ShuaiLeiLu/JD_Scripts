@@ -29,7 +29,7 @@
 const $ = new Env('东东电竞经理');
 let cookiesArr = [], cookie = '', isBox = false, notify, newShareCodes, allMessage = '';
 let tasks = [], shareCodes = [], first = true;
-
+let lnrun = 0;
 !(async () => {
   await requireConfig();
   if (!cookiesArr[0]) {
@@ -65,8 +65,13 @@ let tasks = [], shareCodes = [], first = true;
         continue
 
       await $.wait(1000);
-
+	  lnrun++;
       await main();
+	  if (lnrun == 10) {
+        console.log(`\n【访问接口次数达到10次，休息半分钟.....】\n`);
+        await $.wait(30 * 1000);
+        lnrun = 0;
+	  }
     }
   }
   if ($.isNode() && allMessage && $.ctrTemp) {
