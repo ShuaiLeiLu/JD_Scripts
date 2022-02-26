@@ -11,11 +11,11 @@
 请求太频繁会被黑ip
 过10分钟再执行
 
-cron:25 1,13 27-28,1-4 2,3 *
+cron:25 12 27-28,1-4 2,3 *
 ============Quantumultx===============
 [task_local]
 #2.24~3.4 常青藤联合开卡
-25 1,13 27-28,1-4 2,3 * https://raw.githubusercontent.com/KingRan/JDJB/main/jd_opencardL83.js, tag=2.24~3.4 常青藤联合开卡, enabled=true
+25 12 27-28,1-4 2,3 * https://raw.githubusercontent.com/KingRan/JDJB/main/jd_opencardL83.js, tag=2.24~3.4 常青藤联合开卡, enabled=true
 
 */
 const $ = new Env('2.24~3.4 常青藤联合开卡');
@@ -41,6 +41,7 @@ $.outFlag = false
 $.activityEnd = false
 let lz_jdpin_token_cookie =''
 let activityCookie =''
+let authorCodeList = []
 !(async () => {
   if (!cookiesArr[0]) {
     $.msg($.name, '【提示】请先获取cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/', {
@@ -49,7 +50,13 @@ let activityCookie =''
     return;
   }
   $.activityId = "dzb1830e004adfb1f0b05a83bf6ac7"
-  $.shareUuid = "0ca1c88a3437428c9f0c2376af590c7f"
+  authorCodeList = await getAuthorCodeList('https://gitee.com/KingRan521/JD-Scripts/raw/master/shareCodes/opencard83.json')
+    if(authorCodeList === '404: Not Found'){
+        authorCodeList = [
+            '0ca1c88a3437428c9f0c2376af590c7f',
+        ]
+    }
+  $.shareUuid = authorCodeList[Math.floor((Math.random() * authorCodeList.length))]
   console.log(`入口:\nhttps://lzdz1-isv.isvjcloud.com/dingzhi/dz/openCard/activity?activityId=${$.activityId}&shareUuid=${$.shareUuid}`)
   for (let i = 0; i < cookiesArr.length; i++) {
     cookie = cookiesArr[i];
@@ -721,7 +728,29 @@ function getshopactivityId() {
     })
   })
 }
-
+function getAuthorCodeList(url) {
+    return new Promise(resolve => {
+        const options = {
+            url: `${url}?${new Date()}`, "timeout": 10000, headers: {
+            "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"
+            }
+        };
+        $.get(options, async (err, resp, data) => {
+            try {
+                if (err) {
+                    $.log(err)
+                } else {
+                if (data) data = JSON.parse(data)
+                }
+            } catch (e) {
+                $.logErr(e, resp)
+                data = null;
+            } finally {
+                resolve(data);
+            }
+        })
+    })
+}
 function jsonParse(str) {
   if (typeof str == "string") {
     try {
