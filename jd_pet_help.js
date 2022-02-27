@@ -85,7 +85,7 @@ console.log(`共${cookiesArr.length}个京东账号\n`);
 				taskInfoKey = [];
 				option = {};
 				await GetShareCode();
-				await $.wait(4 * 1000);
+				await $.wait(3 * 1000);
 			}
 		}
 		console.log('\n互助码收集完毕，开始执行内部助力...\n');
@@ -117,8 +117,8 @@ console.log(`共${cookiesArr.length}个京东账号\n`);
             option = {};
             lnrun++;
 			await jdPet();
-			if (lnrun == 3) {
-              console.log(`\n【访问接口次数达到3次，休息一分钟.....】\n`);
+			if (lnrun == 5) {
+              console.log(`\n【访问接口次数达到5次，休息一分钟.....】\n`);
               await $.wait(60 * 1000);
               lnrun = 0;
 			}
@@ -185,7 +185,7 @@ async function jdPet() {
 				await slaveHelp(); //助力好友
 				await $.wait(30 * 1000);
 			}
-            await showMsg();
+            //await showMsg();
             
         } else if (initPetTownRes.code === '0') {
             console.log(`初始化萌宠失败:  ${initPetTownRes.message}`);
@@ -456,7 +456,7 @@ function TotalBean() {
 }
 // 请求
 async function request(function_id, body = {}) {
-    await $.wait(10000); //歇口气儿, 不然会报操作频繁
+    await $.wait(5000); //歇口气儿, 不然会报操作频繁
     return new Promise((resolve, reject) => {
         $.post(taskUrl(function_id, body), (err, resp, data) => {
             try {

@@ -149,7 +149,7 @@ async function jdPet() {
             await doTask(); //做日常任务
             await feedPetsAgain(); //再次投食
             await energyCollect(); //收集好感度
-            await showMsg();
+            //await showMsg();
             
         } else if (initPetTownRes.code === '0') {
             console.log(`初始化萌宠失败:  ${initPetTownRes.message}`);
@@ -506,7 +506,7 @@ function TotalBean() {
 }
 // 请求
 async function request(function_id, body = {}) {
-    await $.wait(10 * 1000); //歇口气儿, 不然会报操作频繁
+    await $.wait(5 * 1000); //歇口气儿, 不然会报操作频繁
     return new Promise((resolve, reject) => {
         $.post(taskUrl(function_id, body), (err, resp, data) => {
             try {
