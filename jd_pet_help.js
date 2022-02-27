@@ -85,7 +85,7 @@ console.log(`共${cookiesArr.length}个京东账号\n`);
 				taskInfoKey = [];
 				option = {};
 				await GetShareCode();
-				await $.wait(3 * 1000);
+				await $.wait(4 * 1000);
 			}
 		}
 		console.log('\n互助码收集完毕，开始执行内部助力...\n');
@@ -183,6 +183,7 @@ async function jdPet() {
             $.taskInfo = $.taskInit.result;
 			if (llhelp){
 				await slaveHelp(); //助力好友
+				await $.wait(30 * 1000);
 			}
             await showMsg();
             
@@ -455,7 +456,7 @@ function TotalBean() {
 }
 // 请求
 async function request(function_id, body = {}) {
-    await $.wait(3000); //歇口气儿, 不然会报操作频繁
+    await $.wait(10000); //歇口气儿, 不然会报操作频繁
     return new Promise((resolve, reject) => {
         $.post(taskUrl(function_id, body), (err, resp, data) => {
             try {
