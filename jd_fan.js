@@ -22,7 +22,8 @@ if ($.isNode()) {
         $.getdata("CookieJD2"),
         ...$.toObj($.getdata("CookiesJD") || "[]").map((item) => item.cookie)].filter((item) => !!item);
 }
-const activityList = [
+let activityList = [
+    {'id':'86d434ce5fac43afb06fd6a920cff146','endTime':1647359999000},//2022-02-28---2022-03-15 美的京东自营官方旗舰店
     {'id':'5d38f64903df46709852a4950f87a95f','endTime':1646841598000},//2022-02-21---2022-03-09 九阳易电通拼购专卖店
     {'id':'f7b80baf1e294112a3ccef808258c10c','endTime':1646755200000},//2022-02-22---2022-03-09 倔强的尾巴京东自营旗舰店
 ];
