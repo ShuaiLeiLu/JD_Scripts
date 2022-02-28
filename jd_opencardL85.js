@@ -1,26 +1,26 @@
 /*
 
-情人节活动
+个护女神节
 一次性脚本
 入口：https://prodev.m.jd.com/mall/active/2xkw8NY53wVwSqw3CMtAmanw9y5X/index.html
 ============Quantumultx===============
 [task_local]
-#情人节活动
-35 10 * * * https://raw.githubusercontent.com/KingRan/JDJB/main/jd_opencardL67.js, tag=情人节活动, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
+#个护女神节
+35 10 * * * https://raw.githubusercontent.com/KingRan/JDJB/main/jd_opencardL85.js, tag=个护女神节, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
 
 ================Loon==============
 [Script]
-cron "35 10 * * *" script-path=https://raw.githubusercontent.com/KingRan/JDJB/main/jd_opencardL67.js,tag=情人节活动
+cron "35 10 * * *" script-path=https://raw.githubusercontent.com/KingRan/JDJB/main/jd_opencardL85.js,tag=个护女神节
 
 ===============Surge=================
-情人节活动 = type=cron,cronexp="35 10 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/KingRan/JDJB/main/jd_opencardL67.js
+个护女神节 = type=cron,cronexp="35 10 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/KingRan/JDJB/main/jd_opencardL85.js
 
 ============小火箭=========
-情人节活动 = type=cron,script-path=https://raw.githubusercontent.com/KingRan/JDJB/main/jd_opencardL67.js, cronexpr="35 10 * * *", timeout=3600, enable=true
+个护女神节 = type=cron,script-path=https://raw.githubusercontent.com/KingRan/JDJB/main/jd_opencardL85.js, cronexpr="35 10 * * *", timeout=3600, enable=true
 
 
 */
-const $ = new Env('情人节活动');
+const $ = new Env('个护女神节');
 const Faker=require('./sign_graphics_validate.js') 
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
@@ -76,7 +76,7 @@ async function run() {
       return
     }
     let config = [
-	  {configCode:'7b0c39fc30c94676a1549223eecb03b1',configName:'情人节活动2'},
+	  {configCode:'1c099a15608f48dc905af5befaa623d9',configName:'个护女神节'},
 
     ]
     for(let i in config){
@@ -92,7 +92,7 @@ async function run() {
       }
       if($.hotFlag) continue;
       if($.task.showOrder){
-        console.log(`\n[${item.configName}] ${$.task.showOrder == 2 && '日常任务' || $.task.showOrder == 1 && '开卡' || '未知活动类型'} ${($.taskInfo.rewardStatus == 2) && '全部完成' || ''}`)
+        console.log(`\n[${item.configName}] ${$.task.showOrder == 0 && '日常任务' || $.task.showOrder == 1 && '开卡' || '未知活动类型'} ${($.taskInfo.rewardStatus == 2) && '全部完成' || ''}`)
         if($.taskInfo.rewardStatus == 2) continue;
         $.taskList = $.task.memberList || $.task.taskList || []
         $.oneTask = ''
@@ -105,7 +105,7 @@ async function run() {
             if($.oneTask.result == 0) await join($.oneTask.venderId)
             await $.wait(parseInt(Math.random() * 1000 + 500, 10))
             if($.oneTask.result == 1 || $.oneTask.result == 0) await getReward(`{"configCode":"${item.configCode}","groupType":7,"itemId":${$.oneTask.cardId},"eid":"${$.eid}","fp":"${$.fp}"}`)
-          }else if($.task.showOrder == 2){
+          }else if($.task.showOrder == 0){
             $.cacheNum = 0
             $.doTask = false
             $.outActivity = false
@@ -151,7 +151,7 @@ async function run() {
             console.log('未知活动类型')
           }
         }
-        if($.task.showOrder == 2){
+        if($.task.showOrder == 0){
           if($.doTask){
             $.taskInfo = ''
             let q = 5
