@@ -95,7 +95,7 @@ if ($.isNode()) {
             console.log("不让做任务，休息会！");
             continue;
         }
-        await drawUserTask();
+        //await drawUserTask();
     }
 
 })().catch((e) => { $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '') }).finally(() => { $.done(); })
