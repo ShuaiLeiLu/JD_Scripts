@@ -183,7 +183,7 @@ async function jdPet() {
             $.taskInfo = $.taskInit.result;
 			if (llhelp){
 				await slaveHelp(); //助力好友
-				await $.wait(30 * 1000);
+				await $.wait(10 * 1000);
 			}
             //await showMsg();
             
