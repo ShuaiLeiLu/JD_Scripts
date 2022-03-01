@@ -132,8 +132,11 @@ async function run() {
         if(o.status == 0){
           flag = true
           $.joinVenderId = o.venderId
-          await $.wait(parseInt(Math.random() * 3000 + 3000, 10))
           await joinShop()
+		  if($.joinShopresmessage === '活动太火爆，请稍后再试'){
+			  console.log('重新开卡')
+			  await joinShop()
+		  }
           await $.wait(parseInt(Math.random() * 1000 + 1000, 10))
           await takePostRequest('activityContent');
           await takePostRequest('drawContent');
@@ -718,6 +721,7 @@ function joinShop() {
         if(typeof res == 'object'){
           if(res.success === true){
             console.log(res.message)
+			$.joinShopresmessage = res.message
             if(res.result && res.result.giftInfo){
               for(let i of res.result.giftInfo.giftList){
                 console.log(`入会获得:${i.discountString}${i.prizeName}${i.secondLineDesc}`)
