@@ -175,6 +175,6 @@ if __name__ == '__main__':
         info=JDSignValidator('https://prodev.m.jd.com/mall/active/498THTs5KGNqK5nEaingGsKEi6Ao/index.html')
         eid=json.loads(geteid(info[1],info[2]).split('_*')[1])['eid']
         fp=info[0]
-        draw('Q72966994128142102X259KS',eid,fp)
+        draw('a9O2k2U042U208160626503920Q3',eid,fp)
         if sendNotifyflag:
             send('京东白条抽奖通知',username+'抽到'+str(prizeAward)+'的优惠券了，速去京东金融-白条-天天试手气查看')
