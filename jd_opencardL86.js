@@ -163,7 +163,7 @@ async function run() {
     }
     console.log(`${$.score}值 游戏:${$.point}`)
       $.runFalag = true
-      let count = parseInt($.score/1000)
+      let count = parseInt($.score/100)
       console.log(`抽奖次数为:${count}`)
       for(m=1;count--;m++){
         console.log(`第${m}次抽奖`)
@@ -193,8 +193,8 @@ async function run() {
     await $.wait(parseInt(Math.random() * 1000 + 5000, 10))
     if(flag) await $.wait(parseInt(Math.random() * 1000 + 10000, 10))
     
-    if($.index % 3 == 0) console.log('休息1分钟，别被黑ip了\n可持续发展')
-    if($.index % 3 == 0) await $.wait(parseInt(Math.random() * 5000 + 60000, 10))
+    if($.index % 5 == 0) console.log('休息一下，别被黑ip了\n可持续发展')
+    if($.index % 5 == 0) await $.wait(parseInt(Math.random() * 5000 + 10000, 10))
     
   } catch (e) {
     console.log(e)
