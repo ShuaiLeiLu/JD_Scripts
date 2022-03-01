@@ -10,6 +10,7 @@
 3.jd_zjd.js   （赚京豆）
 4.jd_fan.js  （粉丝互动）
 5.jd_js_sign.js （极速版签到提现）
+6.jd_jx_sign.js （京东-京喜双签）
 
 
 频道：https://t.me/KingRan521
