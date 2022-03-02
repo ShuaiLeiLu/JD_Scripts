@@ -295,8 +295,8 @@ async function takePostRequest(type) {
           taskType = 12
           taskValue = $.toShopValue || 74956 
         }else if(type == 'addSku'){
-          taskType = 2
-          taskValue = $.addSkuValue || 2
+          taskType = 21
+          taskValue = $.addSkuValue || 21
         }else if(type == 'toMainActive'){
           taskType = 12
           taskValue = 3
