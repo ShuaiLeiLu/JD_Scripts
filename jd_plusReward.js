@@ -1,6 +1,6 @@
 /*
 50 8 * * * jd_plusReward.js
-TG https://t.me/okyydsnb
+
 */
 const $ = new Env('逛plus，抽京豆');
 const notify = $.isNode() ? require('./sendNotify') : '';
@@ -18,7 +18,6 @@ if ($.isNode()) {
 } else {
     cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
 }
-console.log("TG https://t.me/okyydsnb")
 !(async () => {
     if (!cookiesArr[0]) {
         $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', { "open-url": "https://bean.m.jd.com/bean/signIndex.action" });
@@ -55,13 +54,19 @@ console.log("TG https://t.me/okyydsnb")
     for(let i of id.assignmentList) {
         if(i.assignmentName !== "积分抽奖赢好礼"){
             console.log(`做${i.assignmentName}任务`)
-            for(let j of i.ext.shoppingActivity){
-                b = await task("doInteractiveAssignment", {"encryptProjectId":`${encryptProjectId}`,"encryptAssignmentId":`${i.encryptAssignmentId}`,"itemId":`${j.advId}`,"sourceCode":"aceaceqingzhan"})
-                console.log(b.msg)
-                if(b.msg == "该用户不符合资质校验条件"){
-                    return
-                }
-            }  
+            if(i.userVerificationInfo) {
+                for(let j of i.ext.shoppingActivity){
+                    b = await task("doInteractiveAssignment", {"encryptProjectId":`${encryptProjectId}`,"encryptAssignmentId":`${i.encryptAssignmentId}`,"itemId":`${j.advId}`,"sourceCode":"aceaceqingzhan"})
+                    console.log(b.msg)
+                    if(b.msg == "该用户不符合资质校验条件"){
+                        return
+                    }
+                } 
+            }else {
+                console.log("账号返回数据为空，请到活动页面查看是否黑号")
+                return
+            }
+ 
             await $.wait(2000)
         }else if(i.assignmentName == "积分抽奖赢好礼"){
             drawId = i.encryptAssignmentId;
@@ -73,7 +78,7 @@ console.log("TG https://t.me/okyydsnb")
         if(c.msg == "兑换积分不足") {
             console.log("兑换积分不足")
             return
-        }else {
+        }else if(c.msg == "success"){
             if(c.rewardsInfo.successRewards){
                 for(let k in c.rewardsInfo.successRewards) {
                     let data = c.rewardsInfo.successRewards[k]
@@ -82,6 +87,9 @@ console.log("TG https://t.me/okyydsnb")
                     }
                 }
             }
+        }else {
+            console.log("账号异常，请到活动页面查看是否黑号")
+            return
         }
         await $.wait(2000)
     }
