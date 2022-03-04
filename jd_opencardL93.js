@@ -130,6 +130,8 @@ async function run() {
 		  if($.joinShopresmessage === '活动太火爆，请稍后再试'){
 			  console.log('重新开卡')
 			  await joinShop()
+			  await $.wait(1000)
+			  await joinShop()
 		  }
           await $.wait(parseInt(Math.random() * 2000 + 2000, 10))
           await takePostRequest('activityContent');
