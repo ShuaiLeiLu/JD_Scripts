@@ -6,11 +6,11 @@
 入口：[ 3.5-3.18 女王驾到 钜惠来袭 ]
 
 
-cron:31 4,13 1-8 3 *
+cron:31 4,13 6-18 3 *
 ============Quantumultx===============
 [task_local]
 #3.5-3.18 女王驾到 钜惠来袭
-51 6,18 1-8 3 * jd_opencardL94.js, tag=3.5-3.18 女王驾到 钜惠来袭, enabled=true
+51 6,18 6-18 3 * jd_opencardL94.js, tag=3.5-3.18 女王驾到 钜惠来袭, enabled=true
 
 */
 const $ = new Env('3.5-3.18 女王驾到 钜惠来袭');
