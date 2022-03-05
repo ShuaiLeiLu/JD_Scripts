@@ -12,7 +12,7 @@ cron:30 1 19,4-18 3 *
 ============Quantumultx===============
 [task_local]
 #3.3~3.18 约惠女王节 嗨购不停
-30 1 19,4-18/3 3 * jd_opencardL92.js, tag=3.3~3.18 约惠女王节 嗨购不停, enabled=true
+30 1 19,4-18 3 * jd_opencardL92.js, tag=3.3~3.18 约惠女王节 嗨购不停, enabled=true
 
 */
 
