@@ -1,5 +1,7 @@
 /*
 50 8 * * * jd_plusReward.js
+
+作者：小小Aaron-lv
 */
 const $ = new Env('逛PLUS抽京豆');
 const notify = $.isNode() ? require('./sendNotify') : '';
