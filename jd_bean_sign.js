@@ -1,5 +1,6 @@
 /*
 Node.JS专用
+const $ = new Env('京东多合一签到');
 cron 0 0 * * *  jd_bean_sign.js
 金融签到有一定使用门槛,需要请仔细阅读下方文字:
 JRBODY抓取网站:ms.jr.jd.com/gw/generic/hy/h5/m/appSign(进入金融APP签到页面手动签到);抓取请求body,格式:"reqData=xxx"
@@ -19,8 +20,7 @@ Finish
 出现任何问题请先删除CookieSet.json(云函数不用操作)
 云函数提示写入失败正常,无任何影响
  */
-const $ = new Env('京东多合一签到');
- console.log('京东多合一签到SCF开始')
+console.log('京东多合一签到SCF开始')
 const sendNotify = require('./sendNotify.js').sendNotify
 const fs = require('fs')
 const jr_file = 'JRBODY.txt'
