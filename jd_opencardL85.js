@@ -20,7 +20,7 @@ cron "35 10 * * *" script-path=https://raw.githubusercontent.com/KingRan/JDJB/ma
 
 
 */
-const $ = new Env('个护女神节');
+const $ = new Env('3.8个护女神节');
 const Faker=require('./sign_graphics_validate.js') 
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
@@ -59,7 +59,7 @@ message = ""
   if(message){
     $.msg($.name, ``, `${message}\n获得到的京豆不一定到账`);
     if ($.isNode()){
-      await notify.sendNotify(`${$.name}`, `${message}\n获得到的京豆不一定到账`);
+      //await notify.sendNotify(`${$.name}`, `${message}\n获得到的京豆不一定到账`);
     }
   }
 })()
@@ -76,9 +76,8 @@ async function run() {
       return
     }
     let config = [
-	  {configCode:'f7e00cba17fb461ab7204f06a688f957',configName:'食品女神价到'},
-	  {configCode:'1c099a15608f48dc905af5befaa623d9',configName:'个护女神节'},
-
+	{configCode:'21d1986169cf49cf8caee4f0616f6d76',configName:'个护女神节'},
+	{configCode:'f7e00cba17fb461ab7204f06a688f957',configName:'食品女神价到'},
     ]
     for(let i in config){
       $.hotFlag = false
