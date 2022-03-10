@@ -43,7 +43,7 @@ let randomCount = $.isNode() ? 20 : 5;
 let num;
 $.newShareCode = [];
 let NowHour = new Date().getHours();
-
+let lnrun = 0;
 !(async () => {  
   await requireConfig();
   if (!cookiesArr[0]) {
@@ -70,8 +70,14 @@ let NowHour = new Date().getHours();
       message = '';
       subTitle = '';
       option = {};
+	  lnrun++;	
       await jdPlantBean();
-      await showMsg();
+	  if(lnrun == 3){
+		  console.log(`\n【访问接口次数达到3次，休息一分钟.....】\n`);
+		  await $.wait(60*1000);
+		  lnrun = 0;
+	  }
+      //await showMsg();
     }
   }
   if ($.isNode() && allMessage) {

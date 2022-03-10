@@ -42,7 +42,7 @@ let awardState = '';//上期活动的京豆是否收取
 let randomCount = $.isNode() ? 20 : 5;
 let num;
 $.newShareCode = [];
-
+let lnrun = 0;
 !(async () => {  
   await requireConfig();
   if (!cookiesArr[0]) {
@@ -71,9 +71,15 @@ $.newShareCode = [];
       subTitle = '';
       option = {};
       await jdPlantBean();
-	  await $.wait(5 * 1000);
+	  await $.wait(2 * 1000);
+	  lnrun++;
 	  await doHelp();
-	  await $.wait(5 * 1000);
+	  if (lnrun == 3) {
+		  console.log(`\n【访问接口次数达到3次，休息半分钟.....】\n`);
+		  await $.wait(30 * 1000);
+		  lnrun = 0;
+	  }
+	  await $.wait(3 * 1000);
     }
   }
   if ($.isNode() && allMessage) {
@@ -134,7 +140,13 @@ async function doHelp() {
       console.log(`\n跳过自己的plantUuid\n`)
       continue
     }
+	lnrun++;
     await helpShare(plantUuid);
+	  if (lnrun == 5) {
+		  console.log(`\n【访问接口次数达到5次，休息半分钟.....】\n`);
+		  await $.wait(30 * 1000);
+		  lnrun = 0;
+	  }
     if ($.helpResult && $.helpResult.code === '0') {
       console.log(`助力好友结果: ${JSON.stringify($.helpResult.data.helpShareRes)}`);
       if ($.helpResult.data.helpShareRes) {
