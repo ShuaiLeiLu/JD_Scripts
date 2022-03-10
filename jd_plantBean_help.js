@@ -43,6 +43,7 @@ let randomCount = $.isNode() ? 20 : 5;
 let num;
 $.newShareCode = [];
 let lnrun = 0;
+let lnruns = 0;
 !(async () => {  
   await requireConfig();
   if (!cookiesArr[0]) {
@@ -140,12 +141,12 @@ async function doHelp() {
       console.log(`\n跳过自己的plantUuid\n`)
       continue
     }
-	lnrun++;
+	lnruns++;
     await helpShare(plantUuid);
-	  if (lnrun == 5) {
+	  if (lnruns == 5) {
 		  console.log(`\n【访问接口次数达到5次，休息半分钟.....】\n`);
 		  await $.wait(30 * 1000);
-		  lnrun = 0;
+		  lnruns = 0;
 	  }
     if ($.helpResult && $.helpResult.code === '0') {
       console.log(`助力好友结果: ${JSON.stringify($.helpResult.data.helpShareRes)}`);
