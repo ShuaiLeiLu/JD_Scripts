@@ -1,8 +1,7 @@
 /*
-TG https://t.me/duckjobs
-
-活动入口:京东汽车 - 右下角 - 领京豆
-纯助力,无内置,ck1不能黑号,不要问为什么分开😂
+活动入口:京东汽车 - 下方 - 一键签到领京豆
+先跑积分,不要问为什么分开😂
+BY：小埋
 
 新人助力10,老用户5
 
@@ -28,7 +27,7 @@ if ($.isNode()) {
     cookiesArr = cookiesArr.filter(item => !!item);
 }
 !(async () => {
-	console.log(`\n活动入口：京东汽车 - 右下角 - 领京豆\n口令进入：24:/！4EuGxE5eNdRkY！，参与头文字J，集能量，换京豆。`);	
+	console.log(`\n活动入口:京东汽车 - 下方 - 一键签到领京豆"+"\n活动口令:28:/￥Y1uPX46XLe￥，参与头文字J，集能量，换京豆。`);	
     if (!cookiesArr[0]) {
         $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', { "open-url": "https://bean.m.jd.com/bean/signIndex.action" });
         return;

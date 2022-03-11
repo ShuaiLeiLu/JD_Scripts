@@ -1,8 +1,8 @@
 /*
-TG https://t.me/duckjobs
 
-活动入口:京东汽车 - 右下角 - 领京豆
+活动入口:京东汽车 - 下方 - 一键签到领京豆
 先跑积分,不要问为什么分开😂
+BY：小埋
 
 10 8 * * * jd_mpdzcar.js
 */
@@ -30,7 +30,7 @@ if ($.isNode()) {
         $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', { "open-url": "https://bean.m.jd.com/bean/signIndex.action" });
         return;
     }
-    console.log("等待初始化任务..."+"\n活动入口:京东汽车 - 右下角 - 领京豆"+"\n活动口令:24:/！4EuGxE5eNdRkY！，参与头文字J，集能量，换京豆。"+"\n请求太快容易繁忙,默认延迟5-10s");
+    console.log("等待初始化任务..."+"\n活动入口:京东汽车 - 下方 - 一键签到领京豆"+"\n活动口令:28:/￥Y1uPX46XLe￥，参与头文字J，集能量，换京豆。"+"\n请求太快容易繁忙,默认延迟5-10s");
     UUID = getUUID('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
     for (let i = 0; i < cookiesArr.length; i++) {
         UA = `jdapp;iPhone;10.1.6;13.5;${UUID};network/wifi;model/iPhone11,6;addressid/4596882376;appBuild/167841;jdSupportDarkMode/0;Mozilla/5.0 (iPhone; CPU iPhone OS 13_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1`;
