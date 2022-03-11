@@ -27,7 +27,7 @@ if ($.isNode()) {
     cookiesArr = cookiesArr.filter(item => !!item);
 }
 !(async () => {
-	console.log(`\n活动入口:京东汽车 - 下方 - 一键签到领京豆"+"\n活动口令:28:/￥Y1uPX46XLe￥，参与头文字J，集能量，换京豆。`);	
+	console.log(`\n活动入口:京东汽车 - 下方 - 一键签到领京豆\n活动口令:28:/￥Y1uPX46XLe￥，参与头文字J，集能量，换京豆。`);	
     if (!cookiesArr[0]) {
         $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', { "open-url": "https://bean.m.jd.com/bean/signIndex.action" });
         return;
