@@ -138,12 +138,22 @@ async function run() {
       $.joinVenderId = 1000410747
       await joinShop()
       if($.errorJoinShop.indexOf('活动太火爆，请稍后再试') > -1){
-        console.log('重新开卡')
+        console.log('第1次 重新开卡')
         await $.wait(parseInt(Math.random() * 2000 + 3000, 10))
         await joinShop()
       }
       if($.errorJoinShop.indexOf('活动太火爆，请稍后再试') > -1){
-        console.log("开卡失败❌")
+        console.log('第2次 重新开卡')
+        await $.wait(parseInt(Math.random() * 2000 + 4000, 10))
+        await joinShop()
+      }
+      if($.errorJoinShop.indexOf('活动太火爆，请稍后再试') > -1){
+        console.log('第3次 重新开卡')
+        await $.wait(parseInt(Math.random() * 2000 + 4000, 10))
+        await joinShop()
+      }
+      if($.errorJoinShop.indexOf('活动太火爆，请稍后再试') > -1){
+        console.log("开卡失败❌ ，重新执行脚本")
       }
       await takePostRequest('activityContent');
     }
