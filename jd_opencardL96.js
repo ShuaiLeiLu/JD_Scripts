@@ -20,7 +20,7 @@ cron:30 2 16-31 3 *
 ============Quantumultx===============
 [task_local]
 #海蓝之谜邀请入会有礼
-30 2 16-31 3 * jd_opencard96.js, tag=海蓝之谜邀请入会有礼, enabled=true
+30 2 16-31 3 * jd_opencardL96.js, tag=海蓝之谜邀请入会有礼, enabled=true
 
 */
 
@@ -53,6 +53,7 @@ let activityCookie =''
     });
     return;
   }
+  $.assistStatus = false
   $.activityId = "2203100041074702"
   authorCodeList = await getAuthorCodeList('https://gitee.com/KingRan521/JD-Scripts/raw/master/shareCodes/opencard96.json')
     if(authorCodeList === '404: Not Found'){
@@ -79,11 +80,28 @@ let activityCookie =''
       if($.outFlag || $.activityEnd) break
     }
   }
+  cookie = cookiesArr[0];
+  if (cookie && $.assistStatus && !$.outFlag && !$.activityEnd) {
+    $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
+    $.index = 1;
+    message = ""
+    $.bean = 0
+    $.hotFlag = false
+    $.nickName = '';
+    console.log(`\n\n******开始【京东账号${$.index}】${$.nickName || $.UserName}*********\n`);
+    await $.wait(parseInt(Math.random() * 2000 + 4000, 10))
+    await getUA()
+    await run();
+  }
+  
   if($.outFlag) {
     let msg = '此ip已被限制，请过10分钟后再执行脚本'
     $.msg($.name, ``, `${msg}`);
     if ($.isNode()) await notify.sendNotify(`${$.name}`, `${msg}`);
   }
+  if(allMessage){
+    $.msg($.name, ``, `${allMessage}`);
+ }
 })()
     .catch((e) => $.logErr(e))
     .finally(() => $.done())
@@ -92,6 +110,7 @@ let activityCookie =''
 async function run() {
   try {
     // $.hasEnd = true
+    $.assistCount = 0
     $.endTime = 0
     lz_jdpin_token_cookie = ''
     $.Token = ''
@@ -154,11 +173,14 @@ async function run() {
       }
       if($.errorJoinShop.indexOf('活动太火爆，请稍后再试') > -1){
         console.log("开卡失败❌ ，重新执行脚本")
+        allMessage += `【账号${$.index}】开卡失败❌ ，重新执行脚本\n`
+      }else{
+        $.assistStatus = true
       }
       await takePostRequest('activityContent');
     }
     console.log($.openStatus === 1 ? "已开卡" : $.openStatus === 0 ? "未开卡" : "未知-"+$.openStatus)
-    console.log($.helpStatus === 2 ? "助力成功" : $.helpStatus === 3 ? "已助力" : $.helpStatus === 4 ? "助力他人" : $.helpStatus === 1 ? "未助力" : $.helpStatus === 5 ? "已开卡 无法助力" : "未知-"+$.helpStatus)
+    console.log($.helpStatus === 2 ? "助力成功" : $.helpStatus === 3 ? "已助力" : $.helpStatus === 4 ? "助力他人" : $.helpStatus === 1 ? "未助力" : $.helpStatus === 0 ? "不能助力自己" : $.helpStatus === 5 ? "已开卡 无法助力" : "未知-"+$.helpStatus)
     console.log(`【账号${$.index}】助力人数：${$.assistCount}`)
     console.log($.actorUuid)
     console.log(`当前助力:${$.shareUuid}`)
@@ -291,11 +313,15 @@ async function dealReturn(type, data) {
           // console.log(data)
           if(res.result && res.result === true){
             $.actorUuid = res.data.customerId || ''
-            $.helpStatus = res.data.helpStatus || ''
-            $.openStatus = res.data.openStatus || ''
+            $.helpStatus = res.data.helpStatus || 0
+            $.openStatus = res.data.openStatus || 0
             $.assistCount = res.data.assistCount || 0
-            if(res.data.sendBeanNum) console.log(`获得${res.data.sendBeanNum}豆`)
+            if(res.data.sendBeanNum){
+              console.log(`获得${res.data.sendBeanNum}豆`)
+              allMessage += `【账号${$.index}】获得${res.data.sendBeanNum}豆\n`
+            }
           }else if(res.errorMessage){
+            if(res.errorMessage.indexOf("结束") > -1) $.activityEnd = true
             console.log(`${type} ${res.errorMessage || ''}`)
           }else{
             console.log(`${type} ${data}`)
