@@ -23,7 +23,7 @@ cron "10 0,9,12 * * *" script-path=jd_zjd.js, tag=赚京豆-瓜分京豆
 赚京豆-瓜分京豆 = type=cron,script-path=jd_zjd.js, cronexpr="10 0,9,12 * * *", timeout=3600, enable=true
  */
 const $ = new Env('赚京豆-瓜分京豆');
-$.appId = 'dde2b';
+$.appId = '8adfb';
 CryptoScripts()
 $.CryptoJS = $.isNode() ? require('crypto-js') : CryptoJS;
 const notify = $.isNode() ? require('./sendNotify') : '';
@@ -626,7 +626,7 @@ async function requestAlgo() {
             'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36 MicroMessenger/7.0.9.501 NetType/WIFI MiniProgramEnv/Windows WindowsWechat',
         },
 
-        'body':`{"version":"3.0","fp":${getRandomIDPro()},"appId":"dde2b","timestamp":${Date.now()},"platform":"applet","expandParams":""}`,
+        'body':`{"version":"3.0","fp":${getRandomIDPro()},"appId":"8adfb","timestamp":${Date.now()},"platform":"applet","expandParams":""}`,
     };
     return new Promise(async _0x53c7f3 => {
       
