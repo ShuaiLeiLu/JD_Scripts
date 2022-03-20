@@ -495,7 +495,7 @@ if __name__ == '__main__':   # Python主函数执行入口
                         else:  # 判断分支
                             eid = return_serch[2]  # 读取 return_serch[2] -> eid
                             logger.info(str(wspin) + "账号禁用")  # 标准日志输出
-                            ql_disable(eid)  # 执行方法[ql_disable] 传递 eid
+                            #ql_disable(eid)  # 执行方法[ql_disable] 传递 eid
                             text = "账号: {0} WsKey疑似失效, 已禁用Cookie".format(wspin)  # 设置推送内容
                         try:  # 异常捕捉
                             send('WsKey转换脚本', text)  # 推送消息
