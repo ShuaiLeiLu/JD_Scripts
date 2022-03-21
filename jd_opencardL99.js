@@ -3,7 +3,7 @@
 3.21-3.27 春日风尚 入会焕新
 开卡脚本,一次性脚本
 
-修改来源：小埋
+来自：小埋
 
 第一个账号助力作者 其他依次助力CK1
 第一个CK失效会退出脚本
@@ -20,7 +20,7 @@ cron:55 3,16 21-27 3 *
 55 3,16 21-27 3 * jd_opencardL99.js, tag=3.21-3.27 春日风尚 入会焕新, enabled=true
 
 */
-const $ = new Env("春日风尚 入会焕新");
+const $ = new Env("3.21-3.27 春日风尚 入会焕新");
 const jdCookieNode = $.isNode() ? require("./jdCookie.js") : "";
 const notify = $.isNode() ? require("./sendNotify") : "";
 let cookiesArr = [], cookie = "", message = "";
