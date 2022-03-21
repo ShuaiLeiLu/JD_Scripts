@@ -267,7 +267,7 @@ async function takePostRequest(type) {
       case 'followShop':
         url = `${domain}/dingzhi/womenWear/union/saveTask`;
         // url = `${domain}/dingzhi/dz/openCard/saveTask`;
-        body = `activityId=${$.activityId}&pin=${encodeURIComponent($.Pin)}`
+        body = `activityId=${$.activityId}&pin=${encodeURIComponent($.Pin)}&actorUuid=${$.actorUuid}&taskType=23&taskValue=1&`
         break;
       case 'sign':
       case 'addCart':
@@ -433,7 +433,7 @@ async function dealReturn(type, data) {
 			$.addSku = res.data.skuAddCart || false
             $.actorUuid = res.data.actorUuid || ''
             $.followShop = res.data.allFollowShop || ''
-            $.signStatus = res.data.signStatus || false
+            $.signStatus = res.data.skuVisitStatus || false
           }else if(res.errorMessage){
             console.log(`${type} ${res.errorMessage || ''}`)
           }else{
