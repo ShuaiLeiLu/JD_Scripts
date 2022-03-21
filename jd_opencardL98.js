@@ -40,6 +40,7 @@ if ($.isNode()) {
   cookiesArr = cookiesArr.filter((item) => !!item);
 }
 !(async () => {
+  console.log("【入口：https://lzdz1-isv.isvjcloud.com/dingzhi/womenWear/union/activity/2205411?activityId=dz6054741f4dfaa17788a046da6c1c】");
   $.getAuthorCodeListerr = false;
   if (!cookiesArr[0]) {
     $.msg($.name, "【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取", "https://bean.m.jd.com/bean/signIndex.action", { "open-url": "https://bean.m.jd.com/bean/signIndex.action" });
