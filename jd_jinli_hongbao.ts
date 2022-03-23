@@ -15,7 +15,6 @@ let min: number[] = [0.02, 0.12, 0.3, 0.6, 0.7, 0.8, 1, 2], log: string = '', lo
 
 !(async () => {
   let cookiesArr: string[] = await requireConfig(false);
-    
   for (let [index, value] of cookiesArr.entries()) {
 	if(index < 7){
     try {
@@ -81,7 +80,7 @@ let min: number[] = [0.02, 0.12, 0.3, 0.6, 0.7, 0.8, 1, 2], log: string = '', lo
   }
 
   for (let [index, value] of cookiesArr.entries()) {
-    if(index < 7){
+	if(index < 7){	
 	try {
       cookie = value
       UserName = decodeURIComponent(cookie.match(/pt_pin=([^;]*)/)![1])
@@ -153,11 +152,12 @@ let min: number[] = [0.02, 0.12, 0.3, 0.6, 0.7, 0.8, 1, 2], log: string = '', lo
         j++
       }
     }
-	}
+
 	catch (e) {
       console.log(e)
     }
     await wait(1000)
+  }
   }
 })()
 
