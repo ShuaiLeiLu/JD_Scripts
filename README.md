@@ -11,6 +11,7 @@
 4.jd_fan.js  （粉丝互动）
 5.jd_js_sign.js （极速版签到提现）
 6.jd_jx_sign.js （京东-京喜双签）
+7.jd_computer.js （电脑配件通用任务）
 
 
 频道：https://t.me/KingRan521
