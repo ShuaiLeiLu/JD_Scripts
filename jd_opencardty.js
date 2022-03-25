@@ -91,6 +91,7 @@ async function run() {
             console.log(`${$.oneTask.cardName} ${0 == $.oneTask.result ? "开卡得" + $.oneTask.rewardQuantity + "京豆" : 1 == $.oneTask.result ? "领取" + $.oneTask.rewardQuantity + "京豆" : 3 == $.oneTask.result ? "其他渠道入会" : "已入会"}`)
             if($.oneTask.result == 0) await statistic(`{"activityType":"module_task","groupType":7,"configCode":"${item.configCode}","itemId":${$.oneTask.cardId}}`)
             if($.oneTask.result == 0) await join($.oneTask.venderId)
+			$.errorJoinShop = '';	
 			if($.errorJoinShop.indexOf('活动太火爆，请稍后再试') > -1){
             console.log('第1次 重新开卡')
             await $.wait(parseInt(Math.random() * 2000 + 3000, 10))
