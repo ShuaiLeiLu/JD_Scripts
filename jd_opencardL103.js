@@ -18,6 +18,7 @@ cron:55 10 25-31 3 *
 
 
 */
+let opencard_toShop = "false"
 const $ = new Env('3.25-3.31 我的新家 超级配');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
@@ -34,7 +35,7 @@ if ($.isNode()) {
 } else {
   cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
 }
-
+opencard_toShop = $.isNode() ? (process.env.opencard_toShop103 ? process.env.opencard_toShop103 : `${opencard_toShop}`) : ($.getdata('opencard_toShop103') ? $.getdata('opencard_toShop103') : `${opencard_toShop}`);
 allMessage = ""
 message = ""
 $.hotFlag = false
@@ -192,7 +193,8 @@ async function run() {
     }
     $.runFalag = true
     $.log("浏览店铺: " + $.toShop)
-    if(!$.toShop && !$.outFlag){
+	if(!$.toShop && !$.outFlag){
+	if(opencard_toShop+"" == "true"){    
       flag = true
       for(let v of $.toShopList || []){
         if($.runFalag == false) break
@@ -202,10 +204,14 @@ async function run() {
           await $.wait(parseInt(Math.random() * 3000 + 3000, 10))
         }
       }
-    }
+    }else{
+        console.log('如需浏览店铺请设置环境变量[opencard_toShop103]为"true"');
+      }
+	}
     $.runFalag = true
     $.log("浏览商品: " + $.visitSku)
     if(!$.visitSku && !$.outFlag){
+	if(opencard_toShop+"" == "true"){    
       flag = true
       for(let v of $.visitSkuList || []){
         if($.runFalag == false) break
@@ -215,7 +221,10 @@ async function run() {
           await $.wait(parseInt(Math.random() * 3000 + 3000, 10))
         }
       }
-    }
+    }else{
+        console.log('如需浏览店铺请设置环境变量[opencard_toShop103]为"true"');
+      }
+	}
     if(flag){
       await takePostRequest('activityContent');
     }
