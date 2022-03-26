@@ -66,7 +66,7 @@ message = '';
       console.log(`\n******开始【京东账号${$.index}】${$.UserName}*********\n`);
       await getUA()
       await run();
-	  if ($.openCardBean === 0 || $.openCardBean < OPENCARD_BEAN) {
+	  if ($.openCardBean < OPENCARD_BEAN) {
       break;
 	  }
     }
