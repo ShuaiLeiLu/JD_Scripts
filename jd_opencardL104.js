@@ -41,7 +41,7 @@ $.activityEnd = false
 let lz_jdpin_token_cookie =''
 let activityCookie =''
 !(async () => {
-  console.log('\n\n【别忘记4.1 晚上8点瓜分】\n【需要新会员才能助力成功】\n')
+  console.log('\n\n【别忘记4.1 晚上8点瓜分】\n【需要新会员才能助力成功】')
   if (!cookiesArr[0]) {
     $.msg($.name, '【提示】请先获取cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/', {
       "open-url": "https://bean.m.jd.com/"
@@ -50,7 +50,7 @@ let activityCookie =''
   }
   $.activityId = "dz721d61fe736531344021e810179d"
   $.shareUuid = "75cd279ce4f64026863bcb7bd613b862"
-  console.log(`入口:\nhttps://lzdz1-isv.isvjcloud.com/dingzhi/yapei/redenvelope/activity/activity?activityId=${$.activityId}&shareUuid=${$.shareUuid}`)
+  console.log(`【入口:\nhttps://lzdz1-isv.isvjcloud.com/dingzhi/yapei/redenvelope/activity/activity?activityId=${$.activityId}&shareUuid=${$.shareUuid}】`)
   let shareUuidArr = ["75cd279ce4f64026863bcb7bd613b862","902724ae33594b80afc7cb0567d080c9","7cadcef2d8d94b88a2803c8c0e5dd34c","ef70077cbb134017b327394e5cd280cf"]
   let s = Math.floor((Math.random()*4))
   let n = 0
@@ -159,6 +159,7 @@ async function run() {
     }else if($.couponStatus == true){
       $.helpCount++;
     }
+	console.log(`初始瓜分红包：${$.score2}份，当前可参与瓜分红包：${$.score}份\n`)
     console.log(`【账号${$.index}】助力人数：${$.assistCount}${$.index != 1 && " 【账号1】助力人数：" + $.helpCount || ""}`)
     if ($.helpCount >= 10 * 3) $.hasEnd = true
     console.log($.actorUuid)
