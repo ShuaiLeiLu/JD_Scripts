@@ -13,6 +13,8 @@
 6.jd_jx_sign.js （京东-京喜双签）
 7.jd_computer.js （电脑配件通用任务）
 
+另外涉及开卡均有部分加密。
+
 
 频道：https://t.me/KingRan521
 
