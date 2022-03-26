@@ -10,9 +10,9 @@
 
 变量：
 ## 入会开卡
-//export VENDER_ID=''
+//export VENDER_ID=""
 ## 最小入会值 （默认10）
-//export OPENCARD_BEAN=''
+//export OPENCARD_BEAN=""
 
 cron:10 10 10 10 *
 ============Quantumultx===============
