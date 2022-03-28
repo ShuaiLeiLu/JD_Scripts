@@ -9,8 +9,8 @@ jd_fxyl_activityId  活动ID 必需
 cron:1 1 1 1 *
 ============Quantumultx===============
 [task_local]
-#CJ组队瓜分京豆
-1 1 1 1 * jd_lzfxyl.js, tag=CJ组队瓜分京豆, enabled=true
+#LZ分享有礼-加密
+1 1 1 1 * jd_lzfxyl.js, tag=LZ分享有礼-加密, enabled=true
 */
 
 let jd_fxyl_activityId="" // 活动ID
