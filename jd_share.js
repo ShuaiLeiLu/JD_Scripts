@@ -14,7 +14,7 @@ cron:1 1 1 1 *
 ============Quantumultx===============
 [task_local]
 #LZ分享有礼
-1 1 1 1 * jd_lzfxyl.js, tag=LZ分享有礼, enabled=true
+1 1 1 1 * jd_share.js, tag=LZ分享有礼, enabled=true
 
 */
 const $ = new Env("LZ分享有礼");
