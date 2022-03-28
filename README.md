@@ -15,6 +15,11 @@
 
 另外涉及开卡均有部分加密。
 
+青龙 config.sh 文件中修改
+
+## ql repo命令拉取脚本时需要拉取的文件后缀，直接写文件后缀名即可
+RepoFileExtensions="js py ts"
+
 
 频道：https://t.me/KingRan521
 
