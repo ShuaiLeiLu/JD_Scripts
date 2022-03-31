@@ -5,14 +5,14 @@
 ==============Quantumult X==============
 [task_local]
 #半点京豆雨
-31 20-23/1 * * * https://raw.githubusercontent.com/KingRan/JDJB/main/jd_live_redrain.js, tag=半点京豆雨, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
+31 20-23/1 * * * https://raw.githubusercontent.com/KingRan/KR/main/jd_live_redrain.js, tag=半点京豆雨, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
 ==============Loon==============
 [Script]
-cron "31 20-23/1 * * *" script-path=https://raw.githubusercontent.com/KingRan/JDJB/main/jd_redrain_half.js,tag=半点京豆雨
+cron "31 20-23/1 * * *" script-path=https://raw.githubusercontent.com/KingRan/KR/main/jd_redrain_half.js,tag=半点京豆雨
 ================Surge===============
-半点京豆雨 = type=cron,cronexp="31 20-23/1 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/KingRan/JDJB/main/jd_redrain_half.js
+半点京豆雨 = type=cron,cronexp="31 20-23/1 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/KingRan/KR/main/jd_redrain_half.js
 ===============小火箭==========
-半点京豆雨 = type=cron,script-path=https://raw.githubusercontent.com/KingRan/JDJB/main/jd_redrain_half.js, cronexpr="31 20-23/1 * * *", timeout=3600, enable=true
+半点京豆雨 = type=cron,script-path=https://raw.githubusercontent.com/KingRan/KR/main/jd_redrain_half.js, cronexpr="31 20-23/1 * * *", timeout=3600, enable=true
 */
 const $ = new Env('半点京豆雨');
 let allMessage = '', id = '';
@@ -44,7 +44,7 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
   let redIds = await getRedRainIds(jd_redrain_half_url);
   if (!redIds) {
     await $.wait(1000)
-    redIds = await getRedRainIds('https://gitee.com/KingRan521/JD-Scripts/raw/master/shareCodes/redrain_half.json')
+    redIds = await getRedRainIds('https://cdn.jsdelivr.net/gh/KingRan/shareCodes@master/redrain_half.json')
   }
   if (!redIds.length) {
     $.log(`\n今日龙王🐲出差，天气晴朗☀️，改日再来～\n`);

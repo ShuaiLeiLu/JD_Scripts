@@ -6,17 +6,17 @@
 ============Quantumultx===============
 [task_local]
 #内容鉴赏官
-15 3,6 * * * https://raw.githubusercontent.com/KingRan/JDJB/main/jd_connoisseur.js, tag=内容鉴赏官, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
+15 3,6 * * * https://raw.githubusercontent.com/KingRan/KR/main/jd_connoisseur.js, tag=内容鉴赏官, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
 
 ================Loon==============
 [Script]
-cron "15 3,6 * * *" script-path=https://raw.githubusercontent.com/KingRan/JDJB/main/jd_connoisseur.js,tag=内容鉴赏官
+cron "15 3,6 * * *" script-path=https://raw.githubusercontent.com/KingRan/KR/main/jd_connoisseur.js,tag=内容鉴赏官
 
 ===============Surge=================
-内容鉴赏官 = type=cron,cronexp="15 3,6 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/KingRan/JDJB/main/jd_connoisseur.js
+内容鉴赏官 = type=cron,cronexp="15 3,6 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/KingRan/KR/main/jd_connoisseur.js
 
 ============小火箭=========
-内容鉴赏官 = type=cron,script-path=https://raw.githubusercontent.com/KingRan/JDJB/main/jd_connoisseur.js, cronexpr="15 3,6 * * *", timeout=3600, enable=true
+内容鉴赏官 = type=cron,script-path=https://raw.githubusercontent.com/KingRan/KR/main/jd_connoisseur.js, cronexpr="15 3,6 * * *", timeout=3600, enable=true
  */
 const $ = new Env('内容鉴赏官');
 const notify = $.isNode() ? require('./sendNotify') : '';
