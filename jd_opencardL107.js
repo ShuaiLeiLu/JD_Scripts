@@ -39,6 +39,7 @@ if ($.isNode()) {
 }
 !(async () => {
   $.getAuthorCodeListerr = false;
+  console.log("【入口：https://lzdz1-isv.isvjcloud.com/dingzhi/baby/pairysactivity?activityId=dzf14101834564a0b1336646135829】");
   if (!cookiesArr[0]) {
     $.msg($.name, "【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取", "https://bean.m.jd.com/bean/signIndex.action", { "open-url": "https://bean.m.jd.com/bean/signIndex.action" });
     return;
