@@ -10,11 +10,11 @@
 请求太频繁会被黑ip
 过10分钟再执行
 
-cron:11 14 3-9 4 *
+cron:11 5,14 3-9 4 *
 ============Quantumultx===============
 [task_local]
 #4.3-4.9 我的新家 超级配
-11 14 3-9 4 * jd_opencardL109.js, tag=4.3-4.9 我的新家 超级配, enabled=true
+11 5,14 3-9 4 * jd_opencardL109.js, tag=4.3-4.9 我的新家 超级配, enabled=true
 
 
 */
