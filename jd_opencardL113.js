@@ -18,7 +18,6 @@ cron:34 23 8-15 4 *
 
 
 */
-let opencard_toShop = "false"
 const $ = new Env('4.8-4.15 多重呵护力，春日欢迎洗');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
@@ -35,7 +34,6 @@ if ($.isNode()) {
 } else {
   cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
 }
-opencard_toShop = $.isNode() ? (process.env.opencard_toShop113 ? process.env.opencard_toShop113 : `${opencard_toShop}`) : ($.getdata('opencard_toShop113') ? $.getdata('opencard_toShop113') : `${opencard_toShop}`);
 allMessage = ""
 message = ""
 $.hotFlag = false
@@ -188,44 +186,6 @@ async function run() {
         flag = true
         await takePostRequest('addSku');
         await $.wait(parseInt(Math.random() * 1000 + 2000, 10))
-      
-    }
-    $.runFalag = true
-    $.log("浏览店铺: " + $.toShop)
-	if(!$.toShop && !$.outFlag){
-	if(opencard_toShop+"" == "true"){    
-      flag = true
-      for(let v of $.toShopList || []){
-        if($.runFalag == false) break
-        if(v.value && v.status === 0){
-          $.toShopValue = v.value
-          await takePostRequest('toShop');
-          await $.wait(parseInt(Math.random() * 3000 + 3000, 10))
-        }
-      }
-    }else{
-        console.log('如需浏览店铺请设置环境变量[opencard_toShop113]为"true"');
-      }
-	}
-    $.runFalag = true
-    $.log("浏览商品: " + $.visitSku)
-    if(!$.visitSku && !$.outFlag){
-	if(opencard_toShop+"" == "true"){    
-      flag = true
-      for(let v of $.visitSkuList || []){
-        if($.runFalag == false) break
-        if(v.value && v.status === 0){
-          $.visitSkuValue = v.value
-          await takePostRequest('visitSku');
-          await $.wait(parseInt(Math.random() * 3000 + 3000, 10))
-        }
-      }
-    }else{
-        console.log('如需浏览店铺请设置环境变量[opencard_toShop113]为"true"');
-      }
-	}
-    if(flag){
-      await takePostRequest('activityContent');
     }
     await $.wait(parseInt(Math.random() * 1000 + 2000, 10))
     await takePostRequest('getDrawRecordHasCoupon');
