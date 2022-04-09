@@ -94,6 +94,7 @@ async function main() {
     if (reward) {
       await getCommodities()
     }
+	await exchanges()
 
   } catch (e) {
     $.logErr(e)
@@ -174,6 +175,29 @@ function getTaskDetail(taskId = '') {
           resolve()
         }
       })
+  })
+}
+
+function exchanges(commodityType, commodityId) {
+  return new Promise(resolve => {
+    const options = taskUrl('jdhealth_doLottery', {"taskId":1})
+    $.post(options, (err, resp, data) => {
+      try {
+        if (safeGet(data)) {
+          data = $.toObj(data)
+          if (data.data.bizCode === 0 || data.data.bizMsg === "success") {
+            $.score = data.data.result.jingBeanNum
+            console.log(`领取${data.data.result.jingBeanNum}京豆成功`)
+          } else {
+            console.log(data.data.bizMsg)
+          }
+        }
+      } catch (e) {
+        console.log(e)
+      } finally {
+        resolve(data)
+      }
+    })
   })
 }
 
