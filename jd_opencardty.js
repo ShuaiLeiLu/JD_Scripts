@@ -1,12 +1,12 @@
 /*
 一次性脚本
-cron:30 10 19-31 3 *
+cron:30 12,16 19-31/3 4 *
 ============Quantumultx===============
 [task_local]
-30 10 19-31 3 * jd_opencardty.js, tag=3月小天才联合活动, enabled=true
+30 12,16 19-31/3 4 * jd_opencardty.js, tag=joy通用活动, enabled=true
 
 */
-const $ = new Env('3月小天才联合活动');
+const $ = new Env('4月蒙牛春日音乐节任务开卡');
 const Faker=require('./sign_graphics_validate.js') 
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
@@ -65,7 +65,7 @@ async function run() {
       return
     }
     let config = [
-	{configCode:'eed9c9f9d81a460fa7d9f3437693b181',configName:'3月小天才联合活动'},
+	{configCode:'94bc380740b947f29dd3e919c96ffb98',configName:'4月蒙牛春日音乐节任务开卡'},
     ]
     for(let i in config){
       $.hotFlag = false
