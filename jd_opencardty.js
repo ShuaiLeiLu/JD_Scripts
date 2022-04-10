@@ -65,6 +65,7 @@ async function run() {
       return
     }
     let config = [
+	{configCode:'25e7af5f65b8471ca3fd948849b95e1e',configName:'4月京东国际联合活动'},
 	{configCode:'94bc380740b947f29dd3e919c96ffb98',configName:'4月蒙牛春日音乐节任务开卡'},
     ]
     for(let i in config){
