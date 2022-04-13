@@ -184,8 +184,8 @@ async function run() {
     }
     console.log(`${$.score2}值`)
       $.runFalag = true
-      console.log(`抽奖次数为:${count}`)
-	  let count = parseInt($.score2/100)
+      let count = parseInt($.score2/100)
+	  console.log(`抽奖次数为:${count}`)
       for(m=1;count--;m++){
         console.log(`第${m}次抽奖`)
         await takePostRequest('抽奖');
