@@ -741,12 +741,8 @@ async function joinShop() {
     let activityId = ``
     if ($.shopactivityId) activityId = `,"activityId":${$.shopactivityId}`
     let body = `{"venderId":"${$.joinVenderId}","shopId":"${$.joinVenderId}","bindByVerifyCodeFlag":1,"registerExtend":{},"writeChildFlag":0${activityId},"channel":406}`
-    let h5st = 'undefined'
-    try {
-      h5st = await h5stSign(body) || 'undefined'
-    } catch (e) {
-      h5st = 'undefined'
-    }
+    let h5st = "20220412164641157%3B197ee697d50ca316f3582488c7fa9d34%3B169f1%3Btk02wd9451deb18n1P31JunSGTfZhmebuivwsEwYWUQF1ZkpdtuSmKOES5DnIMFdyOvKikdguelIiBUnJbeCgoNlcEvv%3B6e090cbde337590b51a514718fee391d46fece6b953ed1084a052f6d76ffbd92%3B3.0%3B1649753201157"
+    //let h5st = await h5stSign(body) || 'undefined'
     const options = {
       url: `https://api.m.jd.com/client.action?appid=jd_shop_member&functionId=bindWithVender&body=${body}&clientVersion=9.2.0&client=H5&uuid=88888&h5st=${h5st}`,
       headers: {
@@ -789,38 +785,40 @@ async function joinShop() {
     })
   })
 }
-async function getshopactivityId() {
-  return new Promise(async resolve => {
-    let body = `{"venderId":"${$.joinVenderId}","channel":406,"payUpShop":true}`
-    let h5st = 'undefined'
-    try {
-      h5st = await h5stSign(body) || 'undefined'
-    } catch (e) {
-      h5st = 'undefined'
-    }
+function getshopactivityId() {
+  return new Promise(resolve => {
     const options = {
-      url: `https://api.m.jd.com/client.action?appid=jd_shop_member&functionId=getShopOpenCardInfo&body=${body}&clientVersion=9.2.0&client=H5&uuid=88888&h5st=${h5st}`,
+      url: `https://api.m.jd.com/client.action?appid=jd_shop_member&functionId=getShopOpenCardInfo&body=%7B%22venderId%22%3A%22${$.joinVenderId}%22%2C%22channel%22%3A401%7D&client=H5&clientVersion=9.2.0&uuid=88888`,
       headers: {
+        'Content-Type': 'text/plain; Charset=UTF-8',
+        'Origin': 'https://api.m.jd.com',
+        'Host': 'api.m.jd.com',
         'accept': '*/*',
-        'accept-encoding': 'gzip, deflate, br',
-        'accept-language': 'zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7',
-        'cookie': cookie,
-        'origin': 'https://shopmember.m.jd.com/',
-        'user-agent': $.UA,
+        'User-Agent': $.UA,
+        'content-type': 'application/x-www-form-urlencoded',
+        'Cookie': cookie
       }
     }
     $.get(options, async (err, resp, data) => {
       try {
-        data = data && data.match(/jsonp_.*?\((.*?)\);/) && data.match(/jsonp_.*?\((.*?)\);/)[1] || data
-        // console.log(data)
         let res = $.toObj(data, data);
-        if (res && typeof res == 'object') {
-          if (res && res.success == true) {
+        if(typeof res == 'object'){
+          if(res.success == true){
             // console.log($.toStr(res.result))
-            console.log(`入会:${res.result.shopMemberCardInfo.venderCardName || ''}`)
+            console.log(`会员卡名称：${res.result.shopMemberCardInfo.venderCardName || ''}`)
             $.shopactivityId = res.result.interestsRuleList && res.result.interestsRuleList[0] && res.result.interestsRuleList[0].interestsInfo && res.result.interestsRuleList[0].interestsInfo.activityId || ''
+            $.openCardStatus = res.result.userInfo.openCardStatus;
+            if (res.result.interestsRuleList && res.result.interestsRuleList.length) {
+              for (let i = 0; i < res.result.interestsRuleList.length; i++) {
+                const item = res.result.interestsRuleList[i];
+                if (item.prizeName && item.prizeName.includes('京豆')) {
+                  $.openCardBean = parseInt(item.discountString);
+                  break;
+                }
+              }
+            }
           }
-        } else {
+        }else{
           console.log(data)
         }
       } catch (e) {
