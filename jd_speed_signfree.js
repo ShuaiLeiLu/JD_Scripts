@@ -103,7 +103,7 @@ function query() {
                                 first_flag = false
                                 console.log("脚本也许随时失效,请注意");
                                 msg.push("脚本也许随时失效,请注意")
-                                if (data.data.risk == true) {
+                                if (data.data.risk == false) {
                                     console.log("风控用户,可能有异常");
                                     msg.push("风控用户,可能有异常")
                                 }
