@@ -56,7 +56,7 @@ let activityCookie =''
   $.shareUuid = "a2447e60dfef4e289b8041122ce3074a"
   console.log(`入口:\nhttps://lzdz1-isv.isvjcloud.com/dingzhi/april/springUnion2/activity?activityId=${$.activityId}&shareUuid=${$.shareUuid}`)
   let shareUuidArr = ["a2447e60dfef4e289b8041122ce3074a","1c174c35de0d424c8a105284076c33dc","eacf08b15b62444b834145823629825d"]
-  let s = Math.floor((Math.random()*10))
+  let s = Math.floor((Math.random()*3))
   let n = 0
   n = Math.floor((Math.random()*shareUuidArr.length))
   $.shareUuid = shareUuidArr[n] ? shareUuidArr[n] : $.shareUuid
