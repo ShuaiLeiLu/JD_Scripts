@@ -19,6 +19,7 @@ cron:35 13 18-24 4 *
 
 */
 let opencard_toShop = "false"
+let opencardKR = "false"
 const $ = new Env('4.18-4.24 发现精彩世界');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
@@ -36,6 +37,7 @@ if ($.isNode()) {
   cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
 }
 opencard_toShop = $.isNode() ? (process.env.opencard_toShop122 ? process.env.opencard_toShop122 : `${opencard_toShop}`) : ($.getdata('opencard_toShop122') ? $.getdata('opencard_toShop122') : `${opencard_toShop}`);
+opencardKR = $.isNode() ? (process.env.opencardKR ? process.env.opencardKR : `${opencardKR}`) : ($.getdata('opencardKR') ? $.getdata('opencardKR') : `${opencardKR}`);
 allMessage = ""
 message = ""
 $.hotFlag = false
@@ -136,7 +138,8 @@ async function run() {
 	await takePostRequest('checkOpenCard');
     console.log($.actorUuid)
     // return
-    if($.allOpenCard == false){
+    if(opencardKR+"" == "true"){
+	if($.allOpenCard == false){
       console.log('开卡任务')
       for(o of $.openList){
         $.openCard = false
@@ -159,9 +162,10 @@ async function run() {
           await takePostRequest('checkOpenCard');
           await $.wait(parseInt(Math.random() * 3000 + 2000, 10))
         }
-      }
+		}
+		}
     }else{
-      console.log('已全部开卡')
+        console.log('如需开卡请设置环境变量[opencardKR]为"true"');
     }
     if($.openCardScore == 1 && !$.outFlag){
       $.startDraw = 1
