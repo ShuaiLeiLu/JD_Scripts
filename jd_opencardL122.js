@@ -452,10 +452,10 @@ async function dealReturn(type, data) {
             if(res.data.addSku && res.data.addSku.settings && res.data.addSku.settings[0]){
               $.addSkuValue = res.data.addSku.settings[0].value || 2
             }
-            //$.toShop = res.data.toShop.allStatus || false
-            //$.toShopList = res.data.toShop.settings || []
-            //$.visitSku = res.data.visitSku.allStatus || false
-            //$.visitSkuList = res.data.visitSku.settings || []
+            $.toShop = res.data.addSku.allStatus || false
+            $.toShopList = res.data.addSku.settings || []
+            $.visitSku = res.data.visitSku.allStatus || false
+            $.visitSkuList = res.data.visitSku.settings || []
           }else if(res.errorMessage){
             console.log(`${type} ${res.errorMessage || ''}`)
           }else{
