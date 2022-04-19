@@ -60,7 +60,7 @@ let nowTime = new Date().getTime() + new Date().getTimezoneOffset()*60*1000 + 8*
   $.shareUuid = "db858093d4eb4e5bab76afa21fd07dd1"
   console.log(`入口:\nhttps://lzdz1-isv.isvjcloud.com/dingzhi/customized/common/activity?activityId=${$.activityId}&shareUuid=${$.shareUuid}`)
   let shareUuidArr = ["db858093d4eb4e5bab76afa21fd07dd1","60ff74f8abd64f72bc502dff8a6fbff8","c1f5d170bee8462c86992c27c05a7def"]
-  let s = Math.floor((Math.random()*10))
+  let s = Math.floor((Math.random()*3))
   let n = 0
   n = Math.floor((Math.random()*shareUuidArr.length))
   $.shareUuid = shareUuidArr[n] ? shareUuidArr[n] : $.shareUuid
