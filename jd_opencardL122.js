@@ -19,7 +19,6 @@ cron:35 13 18-24 4 *
 
 */
 let opencard_toShop = "false"
-let opencardKR = "false"
 const $ = new Env('4.18-4.24 发现精彩世界');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
@@ -37,7 +36,6 @@ if ($.isNode()) {
   cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
 }
 opencard_toShop = $.isNode() ? (process.env.opencard_toShop122 ? process.env.opencard_toShop122 : `${opencard_toShop}`) : ($.getdata('opencard_toShop122') ? $.getdata('opencard_toShop122') : `${opencard_toShop}`);
-opencardKR = $.isNode() ? (process.env.opencardKR ? process.env.opencardKR : `${opencardKR}`) : ($.getdata('opencardKR') ? $.getdata('opencardKR') : `${opencardKR}`);
 allMessage = ""
 message = ""
 $.hotFlag = false
@@ -145,35 +143,38 @@ async function run() {
 	await takePostRequest('checkOpenCard');
     console.log($.actorUuid)
     // return
-    if(opencardKR+"" == "true"){
 	if($.allOpenCard == false){
-      console.log('开卡任务')
-      for(o of $.openList){
-        $.openCard = false
-        if(o.status == 0){
-          flag = true
-          $.joinVenderId = o.value
-          $.errorJoinShop = ''
-          for (let i = 0; i < Array(5).length; i++) {
-            if (i > 0) console.log(`第${i}次 重新开卡`)
-            await joinShop()
-            if ($.errorJoinShop.indexOf('活动太火爆，请稍后再试') == -1) break
-          }
-          if($.errorJoinShop.indexOf('活动太火爆，请稍后再试') > -1){
-            console.log("开卡失败❌ ，重新执行脚本")
-            allMessage += `【账号${$.index}】开卡失败❌ ，重新执行脚本\n`
-            $.joinShopStatus = false
-          }
-          await takePostRequest('activityContent');
-          await takePostRequest('drawContent');
-          await takePostRequest('checkOpenCard');
-          await $.wait(parseInt(Math.random() * 3000 + 2000, 10))
-        }
+	console.log('开卡任务')
+	for(o of $.openList){
+		$.openCard = false
+		if(o.status == 0){
+			flag = true
+			$.shopactivityId = ''
+			$.joinVenderId = o.value
+			await getshopactivityId()
+			for (let i = 0; i < Array(5).length; i++) {
+				if (i > 0) console.log(`第${i}次 重新开卡`)
+				await joinShop()
+				if ($.errorJoinShop.indexOf('活动太火爆，请稍后再试') == -1) {
+					break
+				}
+			}
+			if ($.errorJoinShop.indexOf('活动太火爆，请稍后再试') > -1) {
+				console.log('开卡失败❌ ，重新执行脚本')
+				allMessage += `【账号${$.index}】开卡失败❌ ，重新执行脚本\n`
+			} else {
+				$.joinStatus = true
+			}
+			await takePostRequest('activityContent')
+			await takePostRequest('drawContent')
+			await takePostRequest('checkOpenCard')
+			await $.wait(parseInt(Math.random() * 3000 + 2000, 10))
+			}
+			}
+			await takePostRequest('activityContent')
+		}else{
+			console.log('已全部开卡')
 		}
-		}
-    }else{
-        console.log('如需开卡请设置环境变量[opencardKR]为"true"');
-    }
     if($.openCardScore == 1 && !$.outFlag){
       $.startDraw = 1
       flag = true
