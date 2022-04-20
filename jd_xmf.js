@@ -73,14 +73,16 @@ var logs;
         continue
       }
       await main()
+	  await $.wait(1500)
     }
   }
 })().catch((e) => { $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '') }).finally(() => { $.done(); })
 
 async function main() {
   await getInteractionHomeInfo();
-  await $.wait(500)
+  await $.wait(1500)
   await queryInteractiveInfo($.projectId)
+  await $.wait(1500)
   if ($.taskList) {
     for (const vo of $.taskList) {
       if (vo.ext.extraType !== 'brandMemberList' && vo.ext.extraType !== 'assistTaskDetail') {
@@ -97,21 +99,24 @@ async function main() {
             }
             for (let vi of vo.ext.shoppingActivity ?? []) {
               if (vi.status === 1) {
-                await doInteractiveAssignment($.projectId, vo.encryptAssignmentId, vi.advId, 1)
+                await $.wait(1500)
+				await doInteractiveAssignment($.projectId, vo.encryptAssignmentId, vi.advId, 1)
                 await $.wait(6000)
                 await doInteractiveAssignment($.projectId, vo.encryptAssignmentId, vi.advId, 0)
               }
             }
             for (let vi of vo.ext.browseShop ?? []) {
               if (vi.status === 1) {
-                await doInteractiveAssignment($.projectId, vo.encryptAssignmentId, vi.itemId, 1)
+                await $.wait(1500)
+				await doInteractiveAssignment($.projectId, vo.encryptAssignmentId, vi.itemId, 1)
                 await $.wait(6000)
                 await doInteractiveAssignment($.projectId, vo.encryptAssignmentId, vi.itemId, 0)
               }
             }
             for (let vi of vo.ext.addCart ?? []) {
               if (vi.status === 1) {
-                await doInteractiveAssignment($.projectId, vo.encryptAssignmentId, vi.itemId, 1)
+                await $.wait(1500)
+				await doInteractiveAssignment($.projectId, vo.encryptAssignmentId, vi.itemId, 1)
                 await $.wait(6000)
                 await doInteractiveAssignment($.projectId, vo.encryptAssignmentId, vi.itemId, 0)
               }
@@ -129,7 +134,8 @@ async function main() {
 async function doInteractiveAssignment(projectId, encryptAssignmentId, itemId, actionType) {
   // logs = await getJinliLogs()
   // let random = logs["random"].toString(),log =logs["log"].toString()
-    await getLog();
+    await $.wait(1500)
+	await getLog();
   let body = { "encryptProjectId": projectId, "encryptAssignmentId": encryptAssignmentId, "sourceCode": "acexinpin0823", "itemId": itemId, "actionType": actionType, "completionFlag": "", "ext": {},"extParam":{"businessData":{"random":`${random}`},"signStr":`${log}`,"sceneid":"XMFhPageh5"} }
   return new Promise(resolve => {
     $.post(taskPostUrl("doInteractiveAssignment", body), async (err, resp, data) => {
