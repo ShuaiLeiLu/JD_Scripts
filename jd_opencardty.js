@@ -66,6 +66,7 @@ async function run() {
       return
     }
     let config = [
+	{configCode:'4a2ead2edc9741f9af4ff95b7d0831a2',configName:'科沃斯4.22-4.30机器人联盟'},
 	{configCode:'27a288f28a084279adca5d0d0cb10ab8',configName:'4月桌面好物联合活动开卡'},
 	{configCode:'884b78acfa6940ee8dde34cea8b2a942',configName:'4月小天才联合活动开卡'},
     ]
