@@ -26,7 +26,7 @@ if ($.isNode()) {
 }
 message = ""
 !(async () => {
-  console.log('\n【如遇火爆请重跑一次即可】\n【奖励未到账请再次运行本脚本】')
+  console.log('\n【如遇火爆请重跑一次即可】\n【奖励未到账请再次运行本脚本】\n【日志显示问题，没到账多运行几次脚本】')
   if (!cookiesArr[0]) {
     $.msg($.name, '【提示】请先获取cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/', {
       "open-url": "https://bean.m.jd.com/"
@@ -43,15 +43,15 @@ message = ""
       $.nickName = '';
       console.log(`\n\n******开始【京东账号${$.index}】${$.nickName || $.UserName}*********\n`);
       await run();
-      if($.bean > 0) message += `【京东账号${$.index}】获得${$.bean}京豆\n`
+      //if($.bean > 0) message += `【京东账号${$.index}】获得${$.bean}京豆\n`
     }
   }
-  if(message){
-    $.msg($.name, ``, `${message}\n获得到的京豆不一定到账`);
-    if ($.isNode()){
+  //if(message){
+    //$.msg($.name, ``, `${message}\n获得到的京豆不一定到账`);
+    //if ($.isNode()){
       //await notify.sendNotify(`${$.name}`, `${message}\n获得到的京豆不一定到账`);
-    }
-  }
+    //}
+  //}
 })()
     .catch((e) => $.logErr(e))
     .finally(() => $.done())
