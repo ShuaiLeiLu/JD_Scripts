@@ -26,7 +26,7 @@ if ($.isNode()) {
 }
 message = ""
 !(async () => {
-  console.log('\n【如遇火爆请重跑一次即可】\n【奖励未到账请再次运行本脚本】\n【日志显示问题，没到账多运行几次脚本】')
+  console.log('\n【如遇火爆请重跑一次即可】\n【奖励未到账请再次运行本脚本】\n【日志显示已入会，才代表奖励已经领取】')
   if (!cookiesArr[0]) {
     $.msg($.name, '【提示】请先获取cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/', {
       "open-url": "https://bean.m.jd.com/"
