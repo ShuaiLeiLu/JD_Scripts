@@ -1,5 +1,6 @@
 /**
 特务之明星送好礼
+一次性脚本。请禁用！
 cron 36 1,10 * * * jd_superBrandStar.js
  */
 const $ = new Env('特务之明星送好礼');
