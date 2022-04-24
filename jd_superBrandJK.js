@@ -1,7 +1,9 @@
 /*
  特务集卡
  脚本没有自动开卡，会尝试领取开卡奖励
-cron 23 10,18,20 24 4 * https://raw.githubusercontent.com/star261/jd/main/scripts/jd_productZ4Brand.js
+cron:35 10,18,20 24 4 *
+
+35 10,18,20 24 4 * jd_superBrand.js
 * */
 const $ = new Env('特务');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
