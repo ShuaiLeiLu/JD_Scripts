@@ -177,7 +177,7 @@ if(DisableIndex!=-1){
 }
 	
 //汪汪乐园
-let EnableJoyPark=true;
+let EnableJoyPark=false;
 DisableIndex = strDisableList.findIndex((item) => item === "汪汪乐园");
 if(DisableIndex!=-1){
 	console.log("检测到设定关闭汪汪乐园查询");
