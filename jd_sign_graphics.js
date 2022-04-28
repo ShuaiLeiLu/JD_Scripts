@@ -29,7 +29,7 @@ let successNum = 0
 let errorNum = 0
 let JD_API_HOST = 'https://sendbeans.jd.com'
 const turnTableId = [
-   { "name": "翻牌", "id": 1401, "shopid": 1000283022, "url": "https://sendbeans.jd.com/jump/index/" },
+   { "name": "翻牌", "id": 1082, "shopid": 1000004123, "url": "https://sendbeans.jd.com/jump/index/" },
 ]
 
 !(async () => {
