@@ -1,9 +1,9 @@
 /*
 一次性脚本
-cron:30 12,16 19-31/3 4 *
+cron:30 2,16 30,1-8/2 4 *
 ============Quantumultx===============
 [task_local]
-30 12,16 19-31/3 4 * jd_opencardty.js, tag=joy通用活动, enabled=true
+30 2,16 30,1-8/2 4 * jd_opencardty.js, tag=joy通用活动, enabled=true
 
 */
 const $ = new Env('4月桌面好物和小天才任务开卡');
@@ -66,9 +66,7 @@ async function run() {
       return
     }
     let config = [
-	{configCode:'4a2ead2edc9741f9af4ff95b7d0831a2',configName:'科沃斯4.22-4.30机器人联盟'},
-	{configCode:'27a288f28a084279adca5d0d0cb10ab8',configName:'4月桌面好物联合活动开卡'},
-	{configCode:'884b78acfa6940ee8dde34cea8b2a942',configName:'4月小天才联合活动开卡'},
+	{configCode:'b2598282afe449c49ea70c305d7b137f',configName:'大力智能品牌联合活动任务开卡'},
     ]
     for(let i in config){
       $.hotFlag = false
