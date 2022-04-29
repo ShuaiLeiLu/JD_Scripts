@@ -43,9 +43,9 @@ $.outFlag = false
 $.activityEnd = false
 let lz_jdpin_token_cookie =''
 let activityCookie =''
-//此处修改助力码
-let shareUuidArr = ["vThkfQk2CxFps0RdT0r7tl4tLNYA4seuA67MOIYQxEk3Vl9+AVo4NF+tgyeIc6A6kdK3rLBQpEQH9V4tdrrh0w==","F4eV+FtcEdTNOCLwmRgOEl4tLNYA4seuA67MOIYQxEk3Vl9+AVo4NF+tgyeIc6A6kdK3rLBQpEQH9V4tdrrh0w==","k1Nobb+P0er+C2sysxnx/P2KELO9izRVpwCyqu0eqVZ5aW7RHzlMobrzJ/e9r/uf"]
-let s = Math.floor((Math.random()*3))
+//此处修改助力码，请务必自行删除修改，随便放的多个码子避免被助力太多。务必修改。
+let shareUuidArr = ["vThkfQk2CxFps0RdT0r7tl4tLNYA4seuA67MOIYQxEk3Vl9+AVo4NF+tgyeIc6A6kdK3rLBQpEQH9V4tdrrh0w==","F4eV+FtcEdTNOCLwmRgOEl4tLNYA4seuA67MOIYQxEk3Vl9+AVo4NF+tgyeIc6A6kdK3rLBQpEQH9V4tdrrh0w==","k1Nobb+P0er+C2sysxnx/P2KELO9izRVpwCyqu0eqVZ5aW7RHzlMobrzJ/e9r/uf","KRksmsfoFlrgyw/oGOUnd14tLNYA4seuA67MOIYQxEk3Vl9+AVo4NF+tgyeIc6A6kdK3rLBQpEQH9V4tdrrh0w==","il64pE7v1zdguoOwD5otHV4tLNYA4seuA67MOIYQxEk3Vl9+AVo4NF+tgyeIc6A6kdK3rLBQpEQH9V4tdrrh0w==","jvJh7GpoGhm7fSlpWhSy3MjNhNaYFy2HteErE6izlhTf9nrGY7gBkCdGU4C6z/xD","J/OEL8/ZMTbPczES9JZpjsjNhNaYFy2HteErE6izlhTf9nrGY7gBkCdGU4C6z/xD","8IgOKf+5WyAGyIlOgm/6vtPH3vYuPBb1K242gPzPNvcM1/5bn1kfgJfhWlCD+Ul2NlQTdHnDobG3YNSnH+XTYw=="]
+let s = Math.floor((Math.random()*8))
 let n = 0
 n = Math.floor((Math.random()*shareUuidArr.length))
 let helpnum = shareUuidArr[n] ? shareUuidArr[n] : $.shareUuid
