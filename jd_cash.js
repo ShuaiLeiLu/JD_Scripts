@@ -222,6 +222,7 @@ function index() {
 async function appdoTask(type,taskInfo) {
   let functionId = 'cash_doTask'
   let body = {"type":type,"taskInfo":taskInfo}
+  await $.wait(3000)
   let sign = await getSignfromPanda(functionId, body)  
 
   return new Promise((resolve) => {
