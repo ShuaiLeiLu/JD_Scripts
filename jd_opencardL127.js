@@ -19,7 +19,7 @@
 10 16 29-30,1-7 4,5 *  * jd_opencardL127.js, tag=4.29-5.7 51打卡超级品牌, enabled=true
 */
 let opencard_toShop = "false"
-const $ = new Env("4.29-5.7 51打卡超级品牌");
+const $ = new Env("4.29-5.7 51打卡超级品牌-加密");
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
 
