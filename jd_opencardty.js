@@ -6,7 +6,7 @@ cron:30 2,16 30,1-8/2 4 *
 30 2,16 30,1-8/2 4 * jd_opencardty.js, tag=joy通用活动, enabled=true
 
 */
-const $ = new Env('4月桌面好物和小天才任务开卡');
+const $ = new Env('4.30-5.8 大力智能品牌联合活动任务开卡');
 const Faker=require('./sign_graphics_validate.js') 
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
