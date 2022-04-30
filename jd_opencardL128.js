@@ -321,7 +321,7 @@ async function takePostRequest(type) {
         body = `activityId=${$.activityId}`
         break;
       case '抽奖':
-        url = `${domain}/dingzhi/casio/active/draw`;
+        url = `${domain}/dingzhi/casio/active/start`;
         body = `activityId=${$.activityId}&actorUuid=${$.actorUuid}&pin=${encodeURIComponent($.Pin)}`
         break;
       default:
