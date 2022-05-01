@@ -265,7 +265,7 @@ async function takePostRequest(type) {
       case 'followShop':
         url = `${domain}/dingzhi/casio/active/saveTask`;
         // url = `${domain}/dingzhi/dz/openCard/saveTask`;
-        body = `activityId=${$.activityId}&pin=${encodeURIComponent($.Pin)}&actorUuid=${$.actorUuid}&&taskType=23&taskValue=23`
+        body = `activityId=${$.activityId}&pin=${encodeURIComponent($.Pin)}&actorUuid=${$.actorUuid}&taskType=23&taskValue=23`
         break;
       case 'sign':
       case 'addCart':
