@@ -185,7 +185,7 @@ let helpCodeList = [];
             if (_0x41ea2b[_0x3baf('‫14', '*XDv')](_0x41ea2b[_0x3baf('‫15', '8@lh')], _0x41ea2b[_0x3baf('‮16', 'WcpX')])) {
                 $['logErr'](e, resp);
             } else {
-                _0x41ea2b['PWxmO'](doInfo);
+                //_0x41ea2b['PWxmO'](doInfo);
             }
         }
         $[_0x3baf('‫17', ')k)&')] = _0x41ea2b['swzhF'](_0x534288, 0x1);
@@ -202,7 +202,7 @@ let helpCodeList = [];
         if (_0x41ea2b[_0x3baf('‫29', 'p[zq')](_0x41ea2b['KzwTt'], _0x41ea2b[_0x3baf('‮2a', 'Old7')])) {
             $['logErr'](e, resp);
         } else {
-            _0x41ea2b[_0x3baf('‫2b', 'L@3K')](doInfo);
+            //_0x41ea2b[_0x3baf('‫2b', 'L@3K')](doInfo);
         }
     }
     for (let _0x3effc3 = 0x0; _0x41ea2b['DafNZ'](_0x3effc3, cookiesArr[_0x3baf('‮2c', 'X%jO')]); _0x3effc3++) {
@@ -864,7 +864,7 @@ async function takeGet(_0x25cd3a, _0x2d446e = '') {
                     $[_0x3baf('‮1af', 'vUUq')](_0x5e881a, _0x572b7b);
                 } finally {
                     if (_0x257e1a[_0x3baf('‮1b0', 'S!tG')] === _0x257e1a[_0x3baf('‮1b1', 'X%jO')]) {
-                        _0x5c85d7['ZxHvo'](doInfo);
+                        //_0x5c85d7['ZxHvo'](doInfo);
                     } else {
                         _0x257e1a['yPDmE'](_0x55176f, _0x8ed62e || '');
                     }
@@ -1083,7 +1083,7 @@ async function getToken() {
             } else {
                 try {
                     if (_0x42a5ae['YYrvP'](_0x42a5ae['QWcbh'], _0x42a5ae[_0x3baf('‫227', 'WcpX')])) {
-                        _0x492bda['oDWDE'](doInfo);
+                        //_0x492bda['oDWDE'](doInfo);
                     } else {
                         if (_0x3185f4) {
                             if (_0x42a5ae[_0x3baf('‫228', '6t2D')](_0x42a5ae[_0x3baf('‮229', '%[Gq')], _0x42a5ae[_0x3baf('‫22a', 'kXDG')])) {
