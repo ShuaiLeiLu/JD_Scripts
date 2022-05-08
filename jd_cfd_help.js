@@ -114,6 +114,7 @@ if ($.isNode()) {
       for (let j = 0; j < $.newShareCodes.length && $.canHelp; j++) {
         console.log(`账号${$.UserName} 去助力 ${$.newShareCodes[j]}`)
         $.delcode = false
+		await $.wait(2000)
 		await helpByStage($.newShareCodes[j])
         await $.wait(2000)
         if ($.delcode) {
@@ -141,6 +142,7 @@ async function cfd() {
     let beginInfo = await getUserInfo();
     if (beginInfo.LeadInfo.dwLeadType === 2) {
       console.log(`还未开通活动，尝试初始化`)
+	  await $.wait(2000)
       await noviceTask()
       await $.wait(3000)
       beginInfo = await getUserInfo(false);
