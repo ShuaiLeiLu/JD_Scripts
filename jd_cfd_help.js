@@ -1385,7 +1385,7 @@ function taskUrl(function_path, body = '', dwEnv = 7) {
       "User-Agent": UA,
       "Accept-Language": "zh-CN,zh-Hans;q=0.9",
       "Referer": "https://st.jingxi.com/",
-      "Cookie": `cid=4;${cookie}`
+      "Cookie": cookie + "cid=4"
     }
   }
 }
@@ -1403,7 +1403,7 @@ function taskListUrl(function_path, body = '', bizCode = 'jxbfd') {
       "User-Agent": UA,
       "Accept-Language": "zh-CN,zh-Hans;q=0.9",
       "Referer": "https://st.jingxi.com/",
-      "Cookie": `cid=4;${cookie}`
+      "Cookie": cookie + "cid=4"
     }
   }
 }
