@@ -304,12 +304,15 @@ function getSignfromPanda(functionId, body) {
 				if (data && data.code == 200) {
                     lnrequesttimes = data.request_times;
                     console.log("衰仔，连接熊猫服务成功(*^▽^*)，当前Token使用次数为:" + lnrequesttimes);
-                    if (data.data)
+                    if (data.data){
                         strsign = data.data.sign || '';
-                    if (strsign != '')
+						}
+                    if (strsign != ''){
                         resolve(strsign);
-                    else
+					}
+                    else {
                         console.log("签名获取失败,可能Token使用次数上限或被封.");
+					}
                 } else {
                     console.log("签名获取失败.");
                 }
