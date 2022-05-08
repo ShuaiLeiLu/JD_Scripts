@@ -40,18 +40,9 @@ $.result = [];
 $.shareCodes = [];
 let cookiesArr = [], cookie = '', token = '';
 let UA, UAInfo = {};
+let nowTimes;
 const randomCount = $.isNode() ? 20 : 3;
 $.appId = 10032;
-function oc(fn, defaultVal) {//optioanl chaining
-  try {
-    return fn()
-  } catch (e) {
-    return undefined
-  }
-}
-function nc(val1, val2) {//nullish coalescing
-  return val1 != undefined ? val1 : val2
-}
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
@@ -127,12 +118,14 @@ if ($.isNode()) {
 
 async function cfd() {
   try {
+	nowTimes = new Date(new Date().getTime() + new Date().getTimezoneOffset() * 60 * 1000 + 8 * 60 * 60 * 1000)
     let beginInfo = await getUserInfo();
     if (beginInfo.LeadInfo.dwLeadType === 2) {
       console.log(`还未开通活动，尝试初始化`)
       await noviceTask()
       await $.wait(3000)
       beginInfo = await getUserInfo(false);
+	  await $.wait(3000)
       if (beginInfo.LeadInfo.dwLeadType !== 2) {
         console.log(`初始化成功\n`)
       } else {
@@ -278,6 +271,7 @@ async function cfd() {
 
     await $.wait(3000);
     const endInfo = await getUserInfo(false);
+	await $.wait(3000)
     $.result.push(
         `【京东账号${$.index}】${$.nickName || $.UserName}`,
         `【🥇金币】${endInfo.ddwCoinBalance}`,
@@ -971,6 +965,7 @@ async function getBuildInfo(body, buildList, type = true) {
             console.log(`【${buildNmae}】收集${collectCoinRes.ddwCoin}金币`)
             await $.wait(3000)
             await getUserInfo(false)
+			await $.wait(3000)
             console.log(`升级建筑`)
             console.log(`【${buildNmae}】当前等级：${buildList.dwLvl}`)
             console.log(`【${buildNmae}】升级需要${data.ddwNextLvlCostCoin}金币，保留升级需要的3倍${data.ddwNextLvlCostCoin * 3}金币，当前拥有${$.info.ddwCoinBalance}金币`)
@@ -1126,25 +1121,6 @@ function getAuthorShareCode(url) {
   })
 }
 
-function setMark() {
-  return new Promise(resolve => {
-    $.get(taskUrl("user/SetMark", `strMark=daily_task_win&strValue=1&dwType=1`), (err, resp, data) => {
-      try {
-        if (err) {
-          console.log(`${JSON.stringify(err)}`);
-          console.log(`${$.name} SetMark API请求失败，请检查网路重试`);
-        } else {
-          data = JSON.parse(data.replace(/\n/g, "").match(new RegExp(/jsonpCBK.?\((.*);*\)/))[1]);
-        }
-      } catch (e) {
-        $.logErr(e, resp);
-      } finally{
-        resolve();
-      }
-    })
-  })
-}
-
 // 获取用户信息
 function getUserInfo(showInvite = true) {
   return new Promise(async (resolve) => {
@@ -1155,7 +1131,7 @@ function getUserInfo(showInvite = true) {
           console.log(`${$.name} QueryUserInfo API请求失败，请检查网路重试`)
         } else {
           data = JSON.parse(data.replace(/\n/g, "").match(new RegExp(/jsonpCBK.?\((.*);*\)/))[1]);
-          $.showPp = nc(oc(() => data.AreaAddr.dwIsSHowPp), 0)
+          $.showPp = data?.AreaAddr?.dwIsSHowPp ?? 0
           const {
             buildInfo = {},
             ddwRichBalance,
@@ -1166,8 +1142,7 @@ function getUserInfo(showInvite = true) {
             LeadInfo = {},
             StoryInfo = {},
             Business = {},
-            XbStatus = {},
-            MarkList = {}
+            XbStatus = {}
           } = data;
           if (showInvite) {
             console.log(`获取用户信息：${sErrMsg}\n${$.showLog ? data : ""}`);
@@ -1187,8 +1162,7 @@ function getUserInfo(showInvite = true) {
             dwLandLvl,
             LeadInfo,
             StoryInfo,
-            XbStatus,
-            MarkList
+            XbStatus
           };
           resolve({
             buildInfo,
@@ -1197,8 +1171,7 @@ function getUserInfo(showInvite = true) {
             strMyShareId,
             LeadInfo,
             StoryInfo,
-            XbStatus,
-            MarkList
+            XbStatus
           });
         }
       } catch (e) {
@@ -1302,14 +1275,14 @@ function browserTask(taskType) {
     switch (taskType) {
       case 0://日常任务
         for (let i = 0; i < $.allTask.length; i++) {
-		  const start = $.allTask[i].completedTimes, end = $.allTask[i].targetTimes, bizCode = nc(oc(() => $.allTask[i].bizCode), "jxbfd")
+          const start = $.allTask[i].completedTimes, end = $.allTask[i].targetTimes, bizCode = $.allTask[i]?.bizCode ?? "jxbfd"
           const taskinfo = $.allTask[i];
           console.log(`开始第${i + 1}个【📆日常任务】${taskinfo.taskName}\n`);
           for (let i = start; i < end; i++) {
             //做任务
             console.log(`【📆日常任务】${taskinfo.taskName} 进度：${i + 1}/${end}`)
             await doTask(taskinfo.taskId, null, bizCode);
-            await $.wait(3000);
+            await $.wait(2000);
           }
           //领取奖励
           await awardTask(0, taskinfo, bizCode);
@@ -1324,7 +1297,7 @@ function browserTask(taskType) {
           } else {
             //领奖励
             await awardTask(1, taskinfo);
-            await $.wait(3000);
+            await $.wait(2000);
           }
         }
         break;
@@ -1334,6 +1307,7 @@ function browserTask(taskType) {
     resolve();
   });
 }
+
 
 //做任务
 function doTask(taskId, type = 1, bizCodeXx) {
@@ -1518,7 +1492,7 @@ function taskUrl(function_path, body = '', dwEnv = 7) {
       "User-Agent": UA,
       "Accept-Language": "zh-CN,zh-Hans;q=0.9",
       "Referer": "https://st.jingxi.com/",
-      "Cookie": cookie + "cid=4"
+      "Cookie": `cid=4;${cookie}`
     }
   }
 }
@@ -1536,7 +1510,7 @@ function taskListUrl(function_path, body = '', bizCode = 'jxbfd') {
       "User-Agent": UA,
       "Accept-Language": "zh-CN,zh-Hans;q=0.9",
       "Referer": "https://st.jingxi.com/",
-      "Cookie": cookie + "cid=4"
+      "Cookie": `cid=4;${cookie}`
     }
   }
 }
