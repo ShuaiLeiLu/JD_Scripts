@@ -86,7 +86,7 @@ if ($.isNode()) {
             $.activityShopId = ''
             $.activityUrl = `https://lzkjdz-isv.isvjcloud.com/wxShareActivity/activity/${$.authorNum}?activityId=${$.activityId}&friendUuid=${encodeURIComponent($.authorCode)}&shareuserid4minipg=null&shopid=${$.activityShopId}`
             await share();
-			await $.wait(3000)
+			await $.wait(1000)
             activityShopId = $.venderId;
         }
     }
@@ -125,7 +125,7 @@ if ($.isNode()) {
                 $.authorCode = authorCodeList[i]
                 console.log('去助力: '+$.authorCode)
                 await share();
-				await $.wait(3000)
+				await $.wait(1000)
                 if ($.errorMessage === '活动太火爆，还是去买买买吧') {
                     break
                 }
@@ -146,10 +146,9 @@ if ($.isNode()) {
             $.activityId = activityId
             $.activityShopId = activityShopId
             await getPrize();
-			await $.wait(3000)
+			await $.wait(2000)
         }
     }
-	        await $.wait(2000)
 })()
     .catch((e) => {
         $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
@@ -258,7 +257,7 @@ function taskUrl(function_id, body, isCommon) {
             'User-Agent': `jdapp;iPhone;9.5.4;13.6;${$.UUID};network/wifi;ADID/${$.ADID};model/iPhone10,3;addressid/0;appBuild/167668;jdSupportDarkMode/0;Mozilla/5.0 (iPhone; CPU iPhone OS 13_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1`,
             Connection: 'keep-alive',
             Referer: $.activityUrl,
-            Cookie: cookie
+            Cookie: $.cookie
         },
         body: body
 
@@ -368,6 +367,7 @@ function getFirstLZCK() {
                             }
                         }
                     }
+						$.cookie = cookie
                 }
             } catch (error) {
                 console.log(error)
