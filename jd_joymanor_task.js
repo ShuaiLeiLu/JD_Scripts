@@ -9,17 +9,17 @@
 ============Quantumultx===============
 [task_local]
 #JOY庄园每日任务
-11 1,15* * * jd_joymanor_task.js, tag=JOY庄园每日任务, img-url=https://raw.githubusercontent.com/tsukasa007/icon/master/jd_joymanor_task.png, enabled=true
+11 1,15 * * * jd_joymanor_task.js, tag=JOY庄园每日任务, img-url=https://raw.githubusercontent.com/tsukasa007/icon/master/jd_joymanor_task.png, enabled=true
 
 ================Loon==============
 [Script]
-cron "11 1,15* * *" script-path=jd_joymanor_task.js,tag=JOY庄园每日任务
+cron "11 1,15 * * *" script-path=jd_joymanor_task.js,tag=JOY庄园每日任务
 
 ===============Surge=================
-JOY庄园每日任务 = type=cron,cronexp="11 1,15* * *",wake-system=1,timeout=3600,script-path=jd_joymanor_task.js
+JOY庄园每日任务 = type=cron,cronexp="11 1,15 * * *",wake-system=1,timeout=3600,script-path=jd_joymanor_task.js
 
 ============小火箭=========
-JOY庄园每日任务 = type=cron,script-path=jd_joymanor_task.js, cronexpr="11 1,15* * *", timeout=3600, enable=true
+JOY庄园每日任务 = type=cron,script-path=jd_joymanor_task.js, cronexpr="11 1,15 * * *", timeout=3600, enable=true
 */
 const $ = new Env('JOY庄园每日任务');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
