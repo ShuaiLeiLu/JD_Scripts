@@ -162,15 +162,20 @@ async function run() {
             flag = true
             $.followShopValue = 1
             await takePostRequest('followShop');
-            await $.wait(parseInt(Math.random() * 1000 + 5000, 10))
+            await $.wait(parseInt(Math.random() * 1000 + 3000, 10))
         }
         $.log("加购: " + $.addSku)
         if(!$.addSku && !$.outFlag){
             flag = true
             $.followShopValue = 2
             await takePostRequest('addSku');
-            await $.wait(parseInt(Math.random() * 1000 + 5000, 10))
+            await $.wait(parseInt(Math.random() * 1000 + 3000, 10))
         }
+        $.log("浏览会场")
+        await takePostRequest('浏览会场1');
+        await $.wait(parseInt(Math.random() * 1000 + 2000, 10))
+        await takePostRequest('浏览会场2');
+        await $.wait(parseInt(Math.random() * 1000 + 2000, 10))
         $.runFalag = true
         if(flag){
             await takePostRequest('activityContent');
@@ -245,6 +250,14 @@ async function takePostRequest(type) {
             url = `${domain}/dingzhi/shop/league/saveTask`;
             // url = `${domain}/dingzhi/dz/openCard/saveTask`;
             body = `activityId=${$.activityId}&pin=${encodeURIComponent($.Pin)}&actorUuid=${$.actorUuid}&shareUuid=${$.shareUuid}&taskType=1&taskValue=${$.followShopValue}`
+            break;
+        case '浏览会场1':
+            url = `${domain}/dingzhi/shop/league/saveTask`;
+            body = `activityId=${$.activityId}&pin=${encodeURIComponent($.Pin)}&actorUuid=${$.actorUuid}&shareUuid=${$.shareUuid}&taskType=12&taskValue=2`
+            break;
+        case '浏览会场2':
+            url = `${domain}/dingzhi/shop/league/saveTask`;
+            body = `activityId=${$.activityId}&pin=${encodeURIComponent($.Pin)}&actorUuid=${$.actorUuid}&shareUuid=${$.shareUuid}&taskType=12&taskValue=1`
             break;
         case 'viewVideo':
         case 'visitSku':
@@ -505,6 +518,8 @@ async function dealReturn(type, data) {
                 break;
             case 'accessLogWithAD':
             case 'drawContent':
+            case '浏览会场1':
+            case '浏览会场2':
                 break;
             default:
                 console.log(`${type}-> ${data}`);
