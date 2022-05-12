@@ -1,6 +1,23 @@
 /*
-臻爱陪伴 助力成长
-cron "36 10 12-20 5 *" jd_opencardL139.js
+5.12-5.20 臻爱陪伴 助力成长
+新增开卡脚本，一次性脚本
+
+
+第一个账号助力作者 其他依次助力CK1
+第一个CK失效会退出脚本
+
+
+入口：[ 5.12-5.20 臻爱陪伴 助力成长]
+
+请求太频繁会被黑ip
+过10分钟再执行
+
+cron:40 14 13-20 5 *
+============Quantumultx===============
+[task_local]
+#5.12-5.20 臻爱陪伴 助力成长
+40 14 13-20 5 * jd_opencardL139.js, tag=5.12-5.20 臻爱陪伴 助力成长, enabled=true
+
 */
 const $ = new Env("臻爱陪伴 助力成长");
 const jdCookieNode = $.isNode() ? require("./jdCookie.js") : "";
@@ -135,9 +152,16 @@ async function member() {
                 await task("bookBaby/union/initOpenCard", `pin=${encodeURIComponent($.secretPin)}&activityId=${$.activityId}&shareUuid=${encodeURIComponent($.authorCode)}`);
                 $.log("关注店铺");
                 await task("bookBaby/union/saveTask", `activityId=${$.activityId}&actorUuid=${encodeURIComponent($.actorUuid)}&pin=${encodeURIComponent($.secretPin)}&taskType=23&taskValue=1&shareUuid=${encodeURIComponent($.authorCode)}`);
+
+				
             } else {
                 console.log("已关注店铺");
             }
+			$.log("加购");
+			await task("bookBaby/union/saveTask", `activityId=${$.activityId}&actorUuid=${encodeURIComponent($.actorUuid)}&pin=${encodeURIComponent($.secretPin)}&taskType=21&taskValue=100015756686&&shareUuid=${encodeURIComponent($.authorCode)}`);
+			$.log("抽奖");
+			await $.wait(2000)
+			await task('bookBaby/union/draw', `activityId=${$.activityId}&pin=${encodeURIComponent($.secretPin)}`)
 
             // console.log("去助力 -> " + $.authorCode);
             // await task("linkgame/assist/status", `activityId=${$.activityId}&pin=${encodeURIComponent($.secretPin)}&shareUuid=${$.authorCode}`);
@@ -195,7 +219,6 @@ function task(function_id, body, isCommon = 0, own = 0) {
                                     if (!data.data.hasEnd) {
                                         $.log(`开启【${data.data.activityName}】活动`);
                                         $.log("-------------------");
-										ownCodes = data.data.actorUuid;
                                         if ($.index === 1) {
                                             ownCode = data.data.actorUuid;
                                             console.log(ownCode);
