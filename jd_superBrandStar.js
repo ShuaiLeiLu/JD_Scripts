@@ -199,7 +199,7 @@ function getRequest(url) {
         'Cookie': $.cookie,
         'Connection': `keep-alive`,
         'Accept': `application/json, text/plain, */*`,
-        'Referer': `https://prodev.m.jd.com/mall/active/3XbzM8XrNaiKRVuD9jHZhj9vYG8d/index.html`,
+        'Referer': `https://prodev.m.jd.com/mall/active/31GFSKyRbD3ehsHih2rQKArxfb8c/index.html`,
         'Host': `api.m.jd.com`,
         'User-Agent': UA,
         'Accept-Language': `zh-cn`,
