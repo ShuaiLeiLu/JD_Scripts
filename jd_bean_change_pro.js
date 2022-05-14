@@ -201,7 +201,7 @@ if(DisableIndex!=-1){
 }
 	
 //东东农场
-let EnableJdFruit=false;
+let EnableJdFruit=true;
 DisableIndex = strDisableList.findIndex((item) => item === "东东农场");
 if(DisableIndex!=-1){
 	console.log("检测到设定关闭东东农场查询");
