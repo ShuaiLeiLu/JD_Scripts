@@ -1,12 +1,12 @@
 /*
 一次性脚本
-cron:30 2,16 30,1-8/2 4,5 *
+cron:30 2,16 13-26/2 5 *
 ============Quantumultx===============
 [task_local]
-30 2,16 30,1-8/2 4,5 * jd_opencardty.js, tag=joy通用活动, enabled=true
+30 2,16 13-26/2 5 * jd_opencardty.js, tag=joy通用活动, enabled=true
 
 */
-const $ = new Env('4.30-5.8 大力智能品牌联合活动任务开卡');
+const $ = new Env('5.13-5.26六一儿童节联合活动');
 const Faker=require('./sign_graphics_validate.js') 
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
@@ -66,7 +66,7 @@ async function run() {
       return
     }
     let config = [
-	{configCode:'b2598282afe449c49ea70c305d7b137f',configName:'大力智能品牌联合活动任务开卡'},
+	{configCode:'dfa0073dc6084940bdd744efbc1f3034',configName:'六一儿童节联合活动'},
     ]
     for(let i in config){
       $.hotFlag = false
