@@ -15,11 +15,12 @@ cron:40 0 13-20 5 *
 ============Quantumultx===============
 [task_local]
 #5.13-5.20 瓜分千万京豆 免费抽大奖
-40 0 13-20 5 * jd_opencardL141.js, tag=5.13-5.20 瓜分千万京豆 免费抽大奖, enabled=true
+40 0 13-20 5 * jd_opencardL142.js, tag=5.13-5.20 瓜分千万京豆 免费抽大奖, enabled=true
 
 */
 const $ = new Env('5.13-5.20 瓜分千万京豆 免费抽大奖');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
+const notify = $.isNode() ? require('./sendNotify') : '';
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [],
     cookie = '';
