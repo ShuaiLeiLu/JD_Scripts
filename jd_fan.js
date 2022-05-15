@@ -38,6 +38,7 @@ let activityList = [
 			$.thisActivityUrl=_0x3d2098;
 			$.host='lzkjdz-isv.isvjcloud.com';
 			await main($);
+			await $.wait(3000);
 		}else{
 			console.log('\n活动ID：'+_0x38a02d+',已过期');
 		}
