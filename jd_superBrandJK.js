@@ -1,9 +1,9 @@
 /*
  特务集卡
  脚本没有自动开卡，会尝试领取开卡奖励
-cron:35 10,18,20 9 5 *
+cron:35 10,18,20 16 5 *
 
-35 10,18,20 9 5 * jd_superBrand.js
+35 10,18,20 16 5 * jd_superBrand.js
 * */
 const $ = new Env('特务集卡-加密');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
