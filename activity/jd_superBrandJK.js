@@ -4,12 +4,8 @@
 cron:35 10,18,20 16 5 *
 
 35 10,18,20 16 5 * jd_superBrand.js
-* */
-/*
- 特务集卡
- 脚本没有自动开卡，会尝试领取开卡奖励
-10 10,18,20 * * * https://github.com/6dylan6/jdpro/jd_twjk.js
-* */
+*/
+
 const $ = new Env('特务集卡');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let cookiesArr = [];
