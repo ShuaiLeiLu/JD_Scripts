@@ -31,7 +31,7 @@ const querystring = require('querystring');
 const exec = require('child_process').exec;
 const $ = new Env();
 const timeout = 15000; //超时时间(单位毫秒)
-console.log("加载sendNotify，当前版本: 20220504");
+console.log("加载sendNotify，当前版本: 20220517");
 // =======================================go-cqhttp通知设置区域===========================================
 //gobot_url 填写请求地址http://127.0.0.1/send_private_msg
 //gobot_token 填写在go-cqhttp文件设置的访问密钥
@@ -218,6 +218,7 @@ async function sendNotify(text, desp, params = {}, author = '\n\n本通知 By ht
             }
         }
     }
+	
     try {
         //Reset 变量
         UseGroupNotify = 1;
@@ -261,6 +262,7 @@ async function sendNotify(text, desp, params = {}, author = '\n\n本通知 By ht
         var Use_WxPusher = true;
         var strtext = text;
         var strdesp = desp;
+		var titleIndex =-1;
         if (process.env.NOTIFY_NOCKFALSE) {
             Notify_NoCKFalse = process.env.NOTIFY_NOCKFALSE;
         }
@@ -418,13 +420,14 @@ async function sendNotify(text, desp, params = {}, author = '\n\n本通知 By ht
                     return;
             }
         }
+		
         if (strtext.indexOf("cookie已失效") != -1 || strdesp.indexOf("重新登录获取") != -1 || strtext == "Ninja 运行通知") {
             if (Notify_NoCKFalse == "true" && text != "Ninja 运行通知") {
                 console.log(`检测到NOTIFY_NOCKFALSE变量为true,不发送ck失效通知...`);
                 return;
             }
         }
-
+		
         if (text.indexOf("已可领取") != -1) {
             if (text.indexOf("农场") != -1) {
                 strTitle = "东东农场领取";
@@ -445,6 +448,7 @@ async function sendNotify(text, desp, params = {}, author = '\n\n本通知 By ht
         if (text.indexOf("任务") != -1 && (text.indexOf("新增") != -1 || text.indexOf("删除") != -1)) {
             strTitle = "脚本任务更新";
         }
+		
         if (strTitle) {
             const notifyRemindList = process.env.NOTIFY_NOREMIND ? process.env.NOTIFY_NOREMIND.split('&') : [];
             titleIndex = notifyRemindList.findIndex((item) => item === strTitle);
@@ -457,7 +461,6 @@ async function sendNotify(text, desp, params = {}, author = '\n\n本通知 By ht
         } else {
             strTitle = text;
         }
-
         if (Notify_NoLoginSuccess == "true") {
             if (desp.indexOf("登陆成功") != -1) {
                 console.log(`登陆成功不推送`);
@@ -478,7 +481,7 @@ async function sendNotify(text, desp, params = {}, author = '\n\n本通知 By ht
 		
 		//检查黑名单屏蔽通知
         const notifySkipList = process.env.NOTIFY_SKIP_LIST ? process.env.NOTIFY_SKIP_LIST.split('&') : [];
-        let titleIndex = notifySkipList.findIndex((item) => item === strTitle);
+        titleIndex = notifySkipList.findIndex((item) => item === strTitle);
 
         if (titleIndex !== -1) {
             console.log(`${strTitle} 在推送黑名单中，已跳过推送`);
@@ -1472,11 +1475,15 @@ async function sendNotify(text, desp, params = {}, author = '\n\n本通知 By ht
 								if(envs[i].created)
 									Tempinfo=getQLinfo(cookie, envs[i].created, envs[i].timestamp, envs[i].remarks);
 								else
-									Tempinfo=getQLinfo(cookie, envs[i].createdAt, envs[i].timestamp, envs[i].remarks);
+									if(envs[i].updatedAt)
+										Tempinfo=getQLinfo(cookie, envs[i].createdAt, envs[i].updatedAt, envs[i].remarks);
+									else
+										Tempinfo=getQLinfo(cookie, envs[i].createdAt, envs[i].timestamp, envs[i].remarks);
                                 if (Tempinfo) {
                                     $.Remark += Tempinfo;
                                 }
                             }
+
                             desp = desp.replace(new RegExp(`${$.UserName}|${$.nickName}`, 'gm'), $.Remark);
                             strsummary = strsummary.replace(new RegExp(`${$.UserName}|${$.nickName}`, 'gm'), $.Remark);
                             //额外处理2，nickName不包含星号，但是确实是手机号
@@ -1486,7 +1493,7 @@ async function sendNotify(text, desp, params = {}, author = '\n\n本通知 By ht
                                 //console.log("额外处理2:"+tempname);
                                 text = text.replace(new RegExp(tempname, 'gm'), $.Remark);
                                 desp = desp.replace(new RegExp(tempname, 'gm'), $.Remark);
-								strsummary = strsummary.replace(new RegExp(tempname, 'gm'), $.Remark);
+                                strsummary = strsummary.replace(new RegExp(tempname, 'gm'), $.Remark);
                             }
 
                         } catch (err) {
@@ -1505,7 +1512,7 @@ async function sendNotify(text, desp, params = {}, author = '\n\n本通知 By ht
             }
             console.log("处理完成，开始发送通知...");
             if (strAllNotify) {
-                desp = strAllNotify+"\n" + desp;
+                desp = strAllNotify + "\n" + desp;
             }
         }
     } catch (error) {
@@ -1570,7 +1577,7 @@ async function sendNotify(text, desp, params = {}, author = '\n\n本通知 By ht
             tgBotNotify(text, desp), //telegram 机器人
             ddBotNotify(text, desp), //钉钉机器人
             qywxBotNotify(text, desp), //企业微信机器人
-            qywxamNotify(text, desp,strsummary), //企业微信应用消息推送
+            qywxamNotify(text, desp, strsummary), //企业微信应用消息推送
             iGotNotify(text, desp, params), //iGot
             gobotNotify(text, desp), //go-cqhttp
             gotifyNotify(text, desp), //gotify
@@ -1583,7 +1590,7 @@ function getuuid(strRemark, PtPin) {
     if (strRemark) {
         var Tempindex = strRemark.indexOf("@@");
         if (Tempindex != -1) {
-            console.log(PtPin+": 检测到NVJDC的一对一格式,瑞思拜~!");
+            console.log(PtPin + ": 检测到NVJDC的一对一格式,瑞思拜~!");
             var TempRemarkList = strRemark.split("@@");
             for (let j = 1; j < TempRemarkList.length; j++) {
                 if (TempRemarkList[j]) {
@@ -1647,7 +1654,6 @@ function getQLinfo(strCK, intcreated, strTimestamp, strRemark) {
         }
 
     }
-
     return strReturn
 }
 
@@ -1730,7 +1736,10 @@ async function sendNotifybyWxPucher(text, desp, PtPin, author = '\n\n本通知 B
 							if(tempEnv.created)
 								Tempinfo=getQLinfo(cookie, tempEnv.created, tempEnv.timestamp, tempEnv.remarks);
 							else
-								Tempinfo=getQLinfo(cookie, tempEnv.createdAt, tempEnv.timestamp, tempEnv.remarks);
+								if(tempEnv.updatedAt)
+									Tempinfo=getQLinfo(cookie, tempEnv.createdAt, tempEnv.updatedAt, tempEnv.remarks);
+								else
+									Tempinfo=getQLinfo(cookie, tempEnv.createdAt, tempEnv.timestamp, tempEnv.remarks);
 							
                             if (Tempinfo) {
                                 Tempinfo = $.nickName + Tempinfo;
