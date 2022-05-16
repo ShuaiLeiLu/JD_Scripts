@@ -53,6 +53,7 @@ let activityCookie =''
   $.activityId = "c214ecb8adb84d6fb3135bee724ab39f"
   $.shareUuid = "4f3dd5d1e80b421cbb3ea1fa66938f74"
   console.log(`入口:\nhttps://lzdz1-isv.isvjcloud.com/dingzhi/dz/openCard/activity/activity?activityId=${$.activityId}&shareUuid=${$.shareUuid}`)
+  console.log(`每日前5名邀请才有奖励，自行调整，有水无水自测`)
   let shareUuidArr = ["4f3dd5d1e80b421cbb3ea1fa66938f74","1f5e52e1772947ddb402372353493c6c","3ef6cdd8c42943a4bc20bb87bd0a0764"]
   let s = Math.floor((Math.random()*3))
   let n = 0
