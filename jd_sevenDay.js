@@ -1,6 +1,9 @@
 /*
 说明: 超级无线店铺签到
 不能并发,超级无线黑号不能跑,建议别跑太多号
+
+原作者：小埋
+
 环境变量:
 SEVENDAY_LIST,SEVENDAY_LIST2,SEVENDAY_LIST3
 1 1 1 1 * jd_sevenDay.js
