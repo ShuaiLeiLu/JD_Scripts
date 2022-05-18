@@ -3,7 +3,7 @@
 不能并发,超级无线黑号不能跑,建议别跑太多号
 环境变量:
 SEVENDAY_LIST,SEVENDAY_LIST2,SEVENDAY_LIST3
-16 5,17 * * * jd_sevenDay.js
+1 1 1 1 * jd_sevenDay.js
 */
 const $ = new Env('超级无线店铺签到');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
@@ -11,7 +11,6 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 let cookiesArr = [], cookie = '', message = '';
 // https://lzkj-isv.isvjcloud.com/sign/sevenDay/signActivity?activityId=
 let activityIdList = [
-
 ]
 // https://lzkj-isv.isvjcloud.com/sign/signActivity2?activityId=
 let activityIdList2 = [
@@ -21,15 +20,18 @@ let activityIdList3 = [
 
 ]
 let lz_cookie = {}
-
+let CookieNum = 10;
 if (process.env.SEVENDAY_LIST && process.env.SEVENDAY_LIST != "") {
     activityIdList = process.env.SEVENDAY_LIST.split(',');
 }
 if (process.env.SEVENDAY_LIST2 && process.env.SEVENDAY_LIST2 != "") {
-    activityIdList2 = process.env.SEVENDAY_LIST.split(',');
+    activityIdList2 = process.env.SEVENDAY_LIST2.split(',');
 }
 if (process.env.SEVENDAY_LIST3 && process.env.SEVENDAY_LIST3 != "") {
-    activityIdList3 = process.env.SEVENDAY_LIST.split(',');
+    activityIdList3 = process.env.SEVENDAY_LIST3.split(',');
+}
+if (process.env.COOKIE_NUM && process.env.COOKIE_NUM != 10) {
+    CookieNum = process.env.COOKIE_NUM;
 }
 
 if ($.isNode()) {
@@ -47,11 +49,17 @@ if ($.isNode()) {
     cookiesArr = cookiesArr.filter(item => !!item);
 }
 !(async () => {
+    console.log(`\n请填写签到变量,不同无线签到的变量分别是\n
+SEVENDAY_LIST、SEVENDAY_LIST2、SEVENDAY_LIST3\n
+SEVENDAY_LIST对应链接中的sign/sevenDay/signActivity\n
+SEVENDAY_LIST2对应链接中sign/signActivity2\n
+SEVENDAY_LIST3对应链接中sign/signActivity\n
+默认跑前10账号，变量为：COOKIE_NUM`)
     if (!cookiesArr[0]) {
         $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', { "open-url": "https://bean.m.jd.com/bean/signIndex.action" });
         return;
     }
-    for (let i = 0; i < cookiesArr.length; i++) {
+    for (let i = 0; i < CookieNum; i++) {
         if (cookiesArr[i]) {
             cookie = cookiesArr[i]
             originCookie = cookiesArr[i]
