@@ -11,11 +11,11 @@
 请求太频繁会被黑ip
 过10分钟再执行
 
-cron:32 1 21-28 5 *
+cron:32 1 21-31 5 *
 ============Quantumultx===============
 [task_local]
 #5.20~5.31 大牌优惠趴 五月爱相伴
-11 16 20-28 5 * jd_opencardL152.js, tag=5.20~5.31 大牌优惠趴 五月爱相伴, enabled=true
+11 16 20-31 5 * jd_opencardL152.js, tag=5.20~5.31 大牌优惠趴 五月爱相伴, enabled=true
 
 */
 
@@ -154,6 +154,7 @@ async function run() {
           for (let i = 0; i < Array(5).length; i++) {
             if (i > 0) console.log(`第${i}次 重新开卡`)
             await joinShop()
+			await $.wait(1000)
             if ($.errorJoinShop.indexOf('活动太火爆，请稍后再试') == -1) {
               break
             }
@@ -167,7 +168,7 @@ async function run() {
           await takePostRequest('activityContent');
           await takePostRequest('drawContent');
           await takePostRequest('checkOpenCard');
-          await $.wait(parseInt(Math.random() * 2000 + 1000, 10))
+          await $.wait(parseInt(Math.random() * 2000 + 2000, 10))
         }
       }
     }else{
@@ -226,7 +227,7 @@ async function run() {
     }
     await $.wait(parseInt(Math.random() * 1000 + 5000, 10))
       if($.index % 3 == 0) console.log('休息一下，别被黑ip了\n可持续发展')
-      if($.index % 3 == 0) await $.wait(parseInt(Math.random() * 5000 + 15000, 10))
+      if($.index % 3 == 0) await $.wait(parseInt(Math.random() * 5000 + 30000, 10))
   } catch (e) {
     console.log(e)
   }
