@@ -11,11 +11,11 @@
 请求太频繁会被黑ip
 过10分钟再执行
 
-cron:35 5 16-28 5 *
+cron:35 8 16-28 5 *
 ============Quantumultx===============
 [task_local]
 #5.15-5.28 童装童鞋盛典
-35 5 16-28 5 * jd_opencardL144.js, tag=5.15-5.28 童装童鞋盛典, enabled=true
+35 8 16-28 5 * jd_opencardL144.js, tag=5.15-5.28 童装童鞋盛典, enabled=true
 
 */
 

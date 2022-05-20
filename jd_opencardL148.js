@@ -12,11 +12,11 @@
 请求太频繁会被黑ip
 过10分钟再执行
 
-cron:11 11 17-31,1 5,6 *
+cron:11 14 17-31,1 5,6 *
 ============Quantumultx===============
 [task_local]
 #5.17~6.1 大牌惠聚 年中献礼
-11 11 17-31,1 5,6 * jd_opencardL148.js, tag=5.17~6.1 大牌惠聚 年中献礼, enabled=true
+11 14 17-31,1 5,6 * jd_opencardL148.js, tag=5.17~6.1 大牌惠聚 年中献礼, enabled=true
 
 */
 let guaopencard_addSku = 'true'
