@@ -69,7 +69,7 @@ function taskrecord(id) {
     "followChannelStatus": ""
   }
   return new Promise(resolve => {
-    $.post(taskPostUrl("task/record",body),(err,resp,data)=>{
+    $.post(taskPostUrl("task/dwRecord",body),(err,resp,data)=>{
       try {
         if (err) {
           console.log(`${err}`)
@@ -99,7 +99,7 @@ function taskrecord(id) {
 }
 function taskreceive(id) {
   return new Promise(resolve => {
-    $.get(taskPostUrl(`task/receive?id=${id}`),(err,resp,data)=>{
+    $.get(taskPostUrl(`task/dwReceive?id=${id}`),(err,resp,data)=>{
       try {
         if (err) {
           console.log(`${err}`)
@@ -124,9 +124,11 @@ function taskreceive(id) {
     })
   })
 }
+
 function usersign() {
+  let body ={"t": +new Date(),"encStr":""}
   return new Promise(resolve => {
-    $.get(taskPostUrl("sign"),(err,resp,data)=>{
+    $.post(taskPostUrl("dwSign",body),(err,resp,data)=>{
       try {
         if (err) {
           console.log(`${err}`)
@@ -139,8 +141,8 @@ function usersign() {
             }else{
               console.log("似乎签到完成了\n")
             }
-          }
         }
+		}
       } catch (e) {
         $.logErr(e, resp)
       } finally {
@@ -148,10 +150,13 @@ function usersign() {
       }
     })
   })
+
 }
+
 function tasklist() {
+  let body ={"t": +new Date(),"encStr":""}
   return new Promise(resolve => {
-    $.get(taskPostUrl("task/list"),(err,resp,data)=>{
+    $.post(taskPostUrl("task/dwList",body),(err,resp,data)=>{
       try {
         if (err) {
           console.log(`${err}`)
@@ -160,7 +165,9 @@ function tasklist() {
           data = JSON.parse(data)
           if(data){
             $.tasklist =data.data
-          }
+            }else{
+              console.log(JSON.stringify(data))
+            }
         }
       } catch (e) {
         $.logErr(e, resp)
@@ -169,8 +176,8 @@ function tasklist() {
       }
     })
   })
-}
 
+}
 function taskPostUrl(function_id, body) {
   return {
     url: `https://dwapp.jd.com/user/${function_id}`,
