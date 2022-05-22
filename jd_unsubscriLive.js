@@ -136,7 +136,7 @@ function unsubscribeCartsFun(author) {
                 $.result = true;
                 console.log(`取关主播【${$.userName}】成功\n`)
             } else {
-                console.log(`取关主播【${$.userName}】失败：` + data + `\n`)
+                console.log(`取关主播【${$.userName}】失败\n`)
             }
             resolve(data);
         });
