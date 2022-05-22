@@ -611,7 +611,9 @@ async function dealReturn(type, data) {
           }else if(res.data.status == 104){
             console.log('已经助力其他人')
           }else if(res.data.status == 103){
-            console.log('不是所有店铺新会员，无法助力')
+            console.log('不是所有店铺会员，无法助力')
+          }else if(res.data.status == 101){
+            console.log('不能助力自己')
           }else{
             console.log(data)
           }
