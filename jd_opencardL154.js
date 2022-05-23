@@ -15,7 +15,7 @@ cron:50 15 23-27 5 *
 ============Quantumultx===============
 [task_local]
 #5.20-5.27 婴家乐 会员日
-50 15 23-27 5 * jd_opencardL153.js, tag=5.20-5.27 婴家乐 会员日, enabled=true
+50 15 23-27 5 * jd_opencardL154.js, tag=5.20-5.27 婴家乐 会员日, enabled=true
 
 */
 
