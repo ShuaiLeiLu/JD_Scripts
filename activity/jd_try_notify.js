@@ -108,21 +108,15 @@ function taskurl_xh() {
         "url": "https://api.m.jd.com/client.action",
         'headers': {
             'authority': 'api.m.jd.com',
-            'sec-ch-ua': '" Not;A Brand";v="99", "Google Chrome";v="97", "Chromium";v="97"',
             'accept': 'application/json, text/plain, */*',
             'Content-Type': 'application/x-www-form-urlencoded',
-            'sec-ch-ua-mobile': '?0',
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-            'sec-ch-ua-platform': '"Windows"',
+            'User-Agent': 'jdapp;iPhone;11.0.2;;;M/5.0;appBuild/168095;jdSupportDarkMode/1;ef/1;ep/%7B%22ciphertype%22%3A5%2C%22cipher%22%3A%7B%22ud%22%3A%22DwOmZtK5EWYyD2HuEQPvEWS4DNK2CzPuYzc1YJKzYtS2Czq5ZJO5Yq%3D%3D%22%2C%22sv%22%3A%22CJCkDq%3D%3D%22%2C%22iad%22%3A%22EOCzDuVPEJujDzO1HI00HuVPBJqyENYjCOU3DUU5DUOmCNcn%22%7D%2C%22ts%22%3A1653379697%2C%22hdid%22%3A%22JM9F1ywUPwflvMIpYPok0tt5k9kW4ArJEU3lfLhxBqw%3D%22%2C%22version%22%3A%221.0.3%22%2C%22appname%22%3A%22com.360buy.jdmobile%22%2C%22ridx%22%3A-1%7D;Mozilla/5.0 (iPhone; CPU iPhone OS 13_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1;',
             'origin': 'https://prodev.m.jd.com',
-            'Sec-Fetch-Dest': 'empty',
-            'Sec-Fetch-Mode': 'cors',
-            'Sec-Fetch-Site': 'same-origin',
-            'referer': 'https://prodev.m.jd.com/',
-            'accept-language': 'zh-CN,zh;q=0.9',
+            'referer': 'https://prodev.m.jd.com/mall/active/2Y2YgUu1Xbbv8AfN7TAHhNqfQrAV/index.html',
+            'accept-language': 'gzip, deflate, br',
             "cookie": $.cookie,
         },
-        "body": "appid=newtry&functionId=try_MyTrials&uuid=1618382783803957689511&clientVersion=&client=wh5&osVersion=&area=&networkType=&body=%7B%22page%22%3A1%2C%22selected%22%3A2%2C%22previewTime%22%3A%22%22%7D",
+        "body": "appid=newtry&functionId=try_MyTrials&uuid=6a0f099f27dd8ae9b840631dc75a03b26389e19b&clientVersion=11.0.2&client=wh5&osVersion=13.6&area=4_133_58530_0&networkType=&body=%7B%22geo%22%3A%7B%22lng%22%3A106.47664629809015%2C%22lat%22%3A29.502434194472272%7D%2C%22page%22%3A1%2C%22selected%22%3A2%2C%22previewTime%22%3A%22%22%7D"
     }
 }
 
