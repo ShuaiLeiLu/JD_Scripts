@@ -5,7 +5,7 @@ if (process.env.JD_19E != "true") {
 /*
 
 建议手动先点开一次
-33 0,6-23/3 * * * jd_19E.js
+33 0,6-23/3 * * * jd_19E_help.js
 
 */
 
