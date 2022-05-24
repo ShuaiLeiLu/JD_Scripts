@@ -65,11 +65,9 @@ async function jdsign() {
     console.log(`签到开始........`)
     await getInfo("https://pro.m.jd.com/mall/active/3S28janPLYmtFxypu37AYAGgivfp/index.html");//拍拍二手签到
     await $.wait(2000)
-    await getInfo("https://pro.m.jd.com/mall/active/kPM3Xedz1PBiGQjY4ZYGmeVvrts/index.html");//陪伴
+    await getInfo("https://prodev.m.jd.com/mall/active/3uvPyw1pwHARGgndatCXddLNUxHw/index.html");//陪伴
     await $.wait(2000)
-    await getInfo("https://prodev.m.jd.com/mall/active/2BspupMr6qenk9JUWpbAnepLHjwy/index.html");//女装馆6.30
-    await $.wait(2000)
-    await getInfo("https://prodev.m.jd.com/mall/active/2FzVtkSfUtvU8YoiTeALkJ68PxAs/index.html");//医疗馆 12.31结束	
+    await getInfo("https://prodev.m.jd.com/mall/active/NJ1kd1PJWhwvhtim73VPsD1HwY3/index.html");//女装馆6.30
 //     await $.wait(1000)
 //     await getInfo("https://pro.m.jd.com/mall/active/4RXyb1W4Y986LJW8ToqMK14BdTD/index.html");//鞋靴馆签到
 
