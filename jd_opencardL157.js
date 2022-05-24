@@ -161,7 +161,7 @@ async function run() {
       console.log('已全部开卡')
     }
     
-    console.log(`${$.score}值`)
+/*    console.log(`${$.score}值`)
       $.runFalag = true
       let count = parseInt($.score/100)
       console.log(`抽奖次数为:${count}`)
@@ -176,7 +176,7 @@ async function run() {
         }
         await $.wait(parseInt(Math.random() * 2000 + 2000, 10))
       }
-    
+*/    
     await $.wait(parseInt(Math.random() * 1000 + 2000, 10))
     await takePostRequest('getDrawRecordHasCoupon');
     await takePostRequest('getShareRecord');
