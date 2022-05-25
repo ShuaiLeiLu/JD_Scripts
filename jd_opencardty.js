@@ -6,7 +6,7 @@ cron:30 2,16 21-31 5 *
 30 2,16 21-31 5 * jd_opencardty.js, tag=joy通用活动, enabled=true
 
 */
-const $ = new Env('个护618任务开卡');
+const $ = new Env('健康、个护618任务开卡');
 const Faker=require('./sign_graphics_validate.js') 
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
@@ -66,6 +66,7 @@ async function run() {
       return
     }
     let config = [
+	{configCode:'156b012c098a48e29d3319f0a5ef703e',configName:'健康医药618开卡'},
 	{configCode:'4c3fa93a6aa843b89083adb651a4770b',configName:'个护618任务开卡'},
     ]
     for(let i in config){
