@@ -5,7 +5,7 @@ if (process.env.JD_19E != "true") {
 /*
 
 建议手动先点开一次
-33 0,6-23/3 * * * jd_19E_help.js
+33 0,6-21/5 * * * jd_19E_help.js
 
 */
 
@@ -226,28 +226,28 @@ async function travel() {
     } catch (e) {
         console.log(e)
     }
-    if (helpFlag) {
-        try {
-            $.WxUA = getWxUA()
-            const WxHomeData = await doWxApi("getHomeData", { inviteId: "" })
-            $.WxSecretp = WxHomeData?.homeMainInfo?.secretp || $.secretp
-            console.log("\n去做微信小程序任务\n")
-            await doWxTask()
-        } catch (e) {
-            console.log(e)
-        }
+    // if (helpFlag) {
+        // try {
+           // $.WxUA = getWxUA()
+           // const WxHomeData = await doWxApi("getHomeData", { inviteId: "" })
+           // $.WxSecretp = WxHomeData?.homeMainInfo?.secretp || $.secretp
+           // console.log("\n去做微信小程序任务\n")
+           // await doWxTask()
+        // } catch (e) {
+           // console.log(e)
+       // }
 
-        try {
-            console.log("\n去做金融App任务\n")
-            $.sdkToken = "jdd01" + randomUUID({
-                formatData: "X".repeat(103),
-                charArr: [...Array(36).keys()].map(k => k.toString(36).toUpperCase())
-            }) + "0123456"
-            await doJrAppTask()
-        } catch (e) {
-            console.log(e)
-        }
-    }
+        // try {
+            // console.log("\n去做金融App任务\n")
+            // $.sdkToken = "jdd01" + randomUUID({
+                // formatData: "X".repeat(103),
+                // charArr: [...Array(36).keys()].map(k => k.toString(36).toUpperCase())
+            // }) + "0123456"
+            // await doJrAppTask()
+        // } catch (e) {
+            // console.log(e)
+        // }
+    // }
 
     try {
         //await raise(true)
