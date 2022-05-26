@@ -4,7 +4,7 @@ if (process.env.JD_19E != "true") {
 }
 /*
 建议手动先点开一次
-20 0,8 * * * jd_19E_friend.js
+1 8,15 * * * jd_19E_friends.js
 快速助力、加入队伍、升级，跑一次即可
 */
 
