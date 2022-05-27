@@ -21,16 +21,19 @@ $.sentNum = 0;
 $.notifyMsg = ''
 
 let cookiesArr = [], cookie = '', message;
+
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
   })
   if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => { };
+  if (process.env.PIGPETSHARECODES) { shareId = process.env.PIGPETSHARECODES };
 } else {
   cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
 }
 
 !(async () => {
+	await requireConfig()
     if (!cookiesArr[0]) {
         $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/', {
             "open-url": "https://bean.m.jd.com/"
@@ -40,16 +43,16 @@ if ($.isNode()) {
     // for (let i = 0; i < 200; i++) {
 		  for (let i = 0; i < cookiesArr.length; i++) {
 			if (cookiesArr[i]) {
-			  cookie = cookiesArr[i];
+			  $.cookie = $.cookiesArr[i];
 			  $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
 			  $.index = i + 1;
 			  $.isLogin = true;
 			  $.nickName = '';
-			  message = '';
-			  console.log(`\n******开始【京东账号${$.index}】${$.nickName || $.UserName}*********\n`);
+			  $.canRun = true;
+			  await TotalBean();
+			  console.log(`\n开始【京东账号${$.index}】${$.nickName || $.UserName}\n`);
 			  if (!$.isLogin) {
 				$.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, { "open-url": "https://bean.m.jd.com/bean/signIndex.action" });
-
 				if ($.isNode()) {
 				  await notify.sendNotify(`${$.name}cookie已失效 - ${$.UserName}`, `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`);
 				}
@@ -63,6 +66,7 @@ if ($.isNode()) {
                     if (item.leftTime) {
                         if (new Date().getTime() < item.endTime + 60 * 60 * 24 * 1000 * 2) {
                             let title=item.trialName.length>15?item.trialName.substr(0,30)+'...':item.trialName
+							console.log(`可免费领取-${title}`)
                             $.notifyMsg += `【账号】${$.index}.${$.UserName}  可免费领取-${title}\n入口:京东-我的-更多工具-新品试用\n`;
                         } else {
                             console.log("开始领取两天后不再推")
@@ -71,7 +75,7 @@ if ($.isNode()) {
                 }
             } catch (e) {
             }
-            await $.wait(5000);
+            await $.wait(50 * 1000);
         }
     }
     //console.log($.notifyMsg)
@@ -93,6 +97,12 @@ async function try_list() {
                     console.log('err', err)
                 } else {
                     data = JSON.parse(data);
+					
+					for (const vo of data.data.list) {	 
+					if($.runFalag == false) break
+					  $.trialNames = vo.trialName
+					//console.log(`\n${$.trialNames}`);
+					}
                 }
             } catch (e) {
                 reject(`⚠️ ${arguments.callee.name.toString()} API返回结果解析出错\n${e}\n${JSON.stringify(data)}`)
@@ -105,21 +115,82 @@ async function try_list() {
 
 function taskurl_xh() {
     return {
-        "url": "https://api.m.jd.com/client.action",
-        'headers': {
-            'authority': 'api.m.jd.com',
-            'accept': 'application/json, text/plain, */*',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'User-Agent': 'jdapp;iPhone;11.0.2;;;M/5.0;appBuild/168095;jdSupportDarkMode/1;ef/1;ep/%7B%22ciphertype%22%3A5%2C%22cipher%22%3A%7B%22ud%22%3A%22DwOmZtK5EWYyD2HuEQPvEWS4DNK2CzPuYzc1YJKzYtS2Czq5ZJO5Yq%3D%3D%22%2C%22sv%22%3A%22CJCkDq%3D%3D%22%2C%22iad%22%3A%22EOCzDuVPEJujDzO1HI00HuVPBJqyENYjCOU3DUU5DUOmCNcn%22%7D%2C%22ts%22%3A1653379697%2C%22hdid%22%3A%22JM9F1ywUPwflvMIpYPok0tt5k9kW4ArJEU3lfLhxBqw%3D%22%2C%22version%22%3A%221.0.3%22%2C%22appname%22%3A%22com.360buy.jdmobile%22%2C%22ridx%22%3A-1%7D;Mozilla/5.0 (iPhone; CPU iPhone OS 13_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1;',
-            'origin': 'https://prodev.m.jd.com',
-            'referer': 'https://prodev.m.jd.com/mall/active/2Y2YgUu1Xbbv8AfN7TAHhNqfQrAV/index.html',
-            'accept-language': 'gzip, deflate, br',
-            "cookie": $.cookie,
-        },
-        "body": "appid=newtry&functionId=try_MyTrials&uuid=6a0f099f27dd8ae9b840631dc75a03b26389e19b&clientVersion=11.0.2&client=wh5&osVersion=13.6&area=4_133_58530_0&networkType=&body=%7B%22geo%22%3A%7B%22lng%22%3A106.47664629809015%2C%22lat%22%3A29.502434194472272%7D%2C%22page%22%3A1%2C%22selected%22%3A2%2C%22previewTime%22%3A%22%22%7D"
-    }
+			url: "https://api.m.jd.com/client.action",
+            body: `appid=newtry&functionId=try_MyTrials&clientVersion=10.3.6&client=wh5&body=%7B%22page%22%3A1%2C%22selected%22%3A2%2C%22previewTime%22%3A%22%22%7D`,
+            headers: {
+                'origin': 'https://prodev.m.jd.com',
+				'user-agent': 'jdapp;iPhone;10.1.2;15.0;ff2caa92a8529e4788a34b3d8d4df66d9573f499;network/wifi;model/iPhone13,4;addressid/2074196292;appBuild/167802;jdSupportDarkMode/1;Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1',
+                'referer': 'https://prodev.m.jd.com/',
+                'cookie': `${$.cookie} __jda=1.1.1.1.1.1;`
+            },
+			}
 }
-
+function TotalBean() {
+    return new Promise(async resolve => {
+        const options = {
+            "url": `https://wq.jd.com/user/info/QueryJDUserInfo?sceneval=2`,
+            "headers": {
+                "Accept": "application/json,text/plain, */*",
+                "Content-Type": "application/x-www-form-urlencoded",
+                "Accept-Encoding": "gzip, deflate, br",
+                "Accept-Language": "zh-cn",
+                "Connection": "keep-alive",
+                "Cookie": $.cookie,
+                "Referer": "https://wqs.jd.com/my/jingdou/my.shtml?sceneval=2",
+                "User-Agent": $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.4.4;14.3;network/4g;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1")
+            },
+            "timeout": 10000,
+        }
+        $.post(options, (err, resp, data) => {
+            try {
+                if (err) {
+                    console.log(`${JSON.stringify(err)}`)
+                    console.log(`${$.name} API请求失败，请检查网路重试`)
+                } else {
+                    if (data) {
+                        data = JSON.parse(data);
+                        if (data['retcode'] === 13) {
+                            $.isLogin = false; //cookie过期
+                            return
+                        }
+                        if (data['retcode'] === 0) {
+                            $.nickName = (data['base'] && data['base'].nickname) || $.UserName;
+                        } else {
+                            $.nickName = $.UserName
+                        }
+                    } else {
+                        console.log(`京东服务器返回空数据`)
+                    }
+                }
+            } catch (e) {
+                $.logErr(e, resp)
+            } finally {
+                resolve();
+            }
+        })
+    })
+}
+function requireConfig() {
+    return new Promise(resolve => {
+        console.log('开始获取配置文件\n')
+        $.notify = $.isNode() ? require('./sendNotify') : { sendNotify: async () => { } }
+        //获取 Cookies
+        $.cookiesArr = []
+        if ($.isNode()) {
+            //Node.js用户请在jdCookie.js处填写京东ck;
+            const jdCookieNode = require('./jdCookie.js');
+            Object.keys(jdCookieNode).forEach((item) => {
+                if (jdCookieNode[item]) $.cookiesArr.push(jdCookieNode[item])
+            })
+            if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => { };
+        } else {
+            //IOS等用户直接用NobyDa的jd $.cookie
+            $.cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
+        }
+        console.log(`共${$.cookiesArr.length}个京东账号\n`)
+        resolve()
+    })
+}
 function jsonParse(str) {
     if (typeof str == "string") {
         try {
