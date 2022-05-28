@@ -1,11 +1,14 @@
+/*
+cron "11 20 * * *" jd_19EPZ_help.js, tag:热爱奇旅膨胀内部互助
+ */
+
+
 if (process.env.JD_19E != "true") {
     console.log('\n默认不运行,安全性自行衡量,设置变量export JD_19E="true"来运行\n')
     return
 }
 
 /*
-11 20 * * * jd_19EPZ_help.js
-
 变量：
 export PZ="助力码"
 */
