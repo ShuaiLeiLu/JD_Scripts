@@ -7,7 +7,7 @@
 # 热爱奇旅升级
 1 8,15 * * * node /scripts/jd_19E_friends.js >> /scripts/logs/jd_19E_friends.log 2>&1
 # 热爱奇旅互助版-部分加密
-33 0,6-21/5 * * * node /scripts/jd_19E_help.js >> /scripts/logs/jd_19E_help.log 2>&1
+#33 0,6-21/5 * * * node /scripts/jd_19E_help.js >> /scripts/logs/jd_19E_help.log 2>&1
 # 热爱奇旅膨胀内部互助
 11 20 * * * node /scripts/jd_19EPZ_help.js >> /scripts/logs/jd_19EPZ_help.log 2>&1
 # 健康医疗618抽奖机活动
