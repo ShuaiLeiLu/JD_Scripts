@@ -178,3 +178,5 @@
 45 0 * * * node /scripts/jd_yqyl.js >> /scripts/logs/jd_yqyl.log 2>&1
 # 柠檬赚金币
 20 0 * * * node /scripts/jd_zjb.js >> /scripts/logs/jd_zjb.log 2>&1
+# 组队分豆-飞利浦
+18 9 * * * node /scripts/jd_teamFLPZD.js >> /scripts/logs/jd_teamFLPZD.log 2>&1
