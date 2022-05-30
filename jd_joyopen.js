@@ -1,7 +1,7 @@
 /*
 JOY通用开卡活动
 
-变量：export JD_JOYOPEN="ID"
+变量：export JD_JOYOPEN="ID"  多个ID用 @ 连接
 
 如遇火爆请重跑一次即可
 奖励未到账请再次运行本脚本
