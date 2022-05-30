@@ -127,7 +127,7 @@ def taskGetUrl(functionId, body, cookie):
 
 # 剩余血量
 def xueliang(cookie):
-    body={"linkId":linkId}
+    body={"linkId":linkId,"round":1}
     res=taskGetUrl("happyDigHome", body, cookie)
     if not res:
         return
@@ -155,7 +155,7 @@ def jinge(cookie,i):
 
 # 页面数据
 def happyDigHome(cookie):
-    body={"linkId":linkId}
+    body={"linkId":linkId,"round":1}
     res=taskGetUrl("happyDigHome", body, cookie)
     if not res:
         return
