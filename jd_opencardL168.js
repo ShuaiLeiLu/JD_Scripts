@@ -17,7 +17,7 @@ cron:1 1 1-18 6 *
 ============Quantumultx===============
 [task_local]
 #6.1~6.18 618 陪伴让爱升级
-1 1 1-18 6 * jd_opencardL167.js, tag=6.1~6.18 618 陪伴让爱升级, enabled=true
+1 1 1-18 6 * jd_opencardL168.js, tag=6.1~6.18 618 陪伴让爱升级, enabled=true
 
 */
 
