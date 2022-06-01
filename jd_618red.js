@@ -200,9 +200,9 @@ async function takeRequest(ck, UA, userName, actId, code) {
                     } else {
                         let res = $.toObj(data, data);
                         if (typeof res == 'object') {
-                             //if(res.msg){
-                             //    console.log('结果：'+res.msg)
-                             //}
+                             if(res.msg){
+                                 //console.log('结果：'+res.msg)
+                             }
                             if (res.msg.indexOf('上限') !== -1) {
                                 $.max = true;
                                 console.log('今日已达领取上限，明日再来吧！')
