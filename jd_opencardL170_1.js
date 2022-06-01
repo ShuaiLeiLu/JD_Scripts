@@ -13,11 +13,11 @@
 请求太频繁会被黑ip
 过10分钟再执行
 
-cron:1 2 1-18 6 *
+cron:1 6 1-18 6 *
 ============Quantumultx===============
 [task_local]
 #6.1~6.18 618 大牌有礼 暖心陪伴
-1 2 1-18 6 * jd_opencardL170.js, tag=6.1~6.18 618 大牌有礼 暖心陪伴, enabled=true
+1 6 1-18 6 * jd_opencardL170.js, tag=6.1~6.18 618 大牌有礼 暖心陪伴, enabled=true
 
 */
 
