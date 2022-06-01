@@ -30,6 +30,7 @@ let appId, fingerprint, token, enCryptMethodJD;
         $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', { "open-url": "https://bean.m.jd.com/bean/signIndex.action" });
         return;
     }
+    console.log('请务必填写你的Code！变量：export CODE618="" \n\n请务必填写你的Code！变量：export CODE618=""\n\n个人建议禁用,避免其他问题\n')
     $.CryptoJS = $.isNode() ? require('crypto-js') : CryptoJS;
     appId = '6a98d';
     let fglist = ['6289931560897925', '0403403318679778', '1390288884563462'];
@@ -106,7 +107,7 @@ async function getInfoByUrl($, ck, code) {
     }
     let url1 = info1['data'].match(/(https:\/\/u\.jd\.com\/jda[^']+)/) && info1['data'].match(/(https:\/\/u\.jd\.com\/jda[^']+)/)[1] || '';
     if (!url1) {
-        console.log(`初始化1失败`);
+        console.log(`变量错误，请重新填写`);
         return returnInfo;
     }
     let info2 = await getInfo($, `${ck}${jfCk}${newCookie}`, url1, 2);
@@ -204,6 +205,7 @@ async function takeRequest(ck, UA, userName, actId, code) {
                              //}
                             if (res.msg.indexOf('上限') !== -1) {
                                 $.max = true;
+                                console.log('今日已达领取上限，明日再来吧！')
                             }
                             if ($.shareId && typeof res.data !== 'undefined' && typeof res.data.joinNum !== 'undefined') {
                                 console.log(`当前${res.data.joinSuffix}:${res.data.joinNum}`)
