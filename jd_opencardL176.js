@@ -250,7 +250,7 @@ async function takePostRequest(type) {
         break;
       case 'checkOpenCard':
         url = `${domain}/dingzhi/may/brandUnion/initOpenCard`;
-        body = `activityId=${$.activityId}&pin=${encodeURIComponent($.Pin)}&actorUuid=${$.actorUuid}&shareUuid=${$.shareUuid}`
+        body = `activityId=${$.activityId}&pin=${encodeURIComponent($.Pin)}&shareUuid=${$.shareUuid}`
         break;
       case 'sign':
         url = `${domain}/dingzhi/may/brandUnion/saveTask`;
