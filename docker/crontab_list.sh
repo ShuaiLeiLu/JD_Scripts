@@ -5,13 +5,13 @@
 
 ##############活动##############
 # 热爱奇旅升级
-1 8,15 * * * node /scripts/jd_19E_friends.js >> /scripts/logs/jd_19E_friends.log 2>&1
+#1 8,15 * * * node /scripts/jd_19E_friends.js >> /scripts/logs/jd_19E_friends.log 2>&1
 # 热爱奇旅互助版-部分加密
 #33 0,6-21/5 * * * node /scripts/jd_19E_help.js >> /scripts/logs/jd_19E_help.log 2>&1
 # 热爱奇旅膨胀内部互助
-11 20 * * * node /scripts/jd_19EPZ_help.js >> /scripts/logs/jd_19EPZ_help.log 2>&1
+#11 20 * * * node /scripts/jd_19EPZ_help.js >> /scripts/logs/jd_19EPZ_help.log 2>&1
 # 健康医疗618抽奖机活动
-10 7 * * * node /scripts/jd_618jk.js >> /scripts/logs/jjd_618jk.log 2>&1
+10 7 * * * node /scripts/jd_618jk.js >> /scripts/logs/jd_618jk.log 2>&1
 # 京东资产变动通知
 30 21 * * * node /scripts/jd_bean_change.js >> /scripts/logs/jd_bean_change.log 2>&1
 # 领京豆额外奖励
@@ -53,7 +53,7 @@
 # 东东农场内部互助
 20 4,16 * * * node /scripts/jd_fruit_help.js >> /scripts/logs/jd_fruit_help.log 2>&1
 # 东东农场日常任务
-#5 6-18/6 * * * node /scripts/jd_fruit_task.js >> /scripts/logs/jd_fruit_task.log 2>&1
+5 6-18/6 * * * node /scripts/jd_fruit_task.js >> /scripts/logs/jd_fruit_task.log 2>&1
 # 通用游戏任务
 5 6-18/6 * * * node /scripts/jd_game.js >> /scripts/logs/jd_game.log 2>&1
 # 芥么赚豪礼
