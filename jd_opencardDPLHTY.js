@@ -51,7 +51,7 @@ $.activityEnd = false
 let lz_jdpin_token_cookie =''
 let activityCookie =''
 //此处修改助力码
-let helpnum = '8IgOKf+5WyAGyIlOgm/6vtPH3vYuPBb1K242gPzPNvcM1/5bn1kfgJfhWlCD+Ul2NlQTdHnDobG3YNSnH+XTYw=='
+let helpnum = ''
 let DPLHTY = "";
 DPLHTY = $.isNode() ? (process.env.DPLHTY ? process.env.DPLHTY : `${DPLHTY}`) : ($.getdata('DPLHTY') ? $.getdata('DPLHTY') : `${DPLHTY}`);
 if (!DPLHTY){
