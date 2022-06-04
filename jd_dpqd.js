@@ -10,7 +10,7 @@ cron "15 2,14 * * *" script-path=https://raw.githubusercontent.com/KingRan/KR/ma
 ============Surge=============
 店铺签到 = type=cron,cronexp="15 2,14 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/KingRan/KR/main/jd_shop_sign.js
 ===========小火箭========
-店铺签到 = type=cron,script-path=https://raw.githubusercontent.com/KingRan/KR/main/jd_shop_sign.jss, cronexpr="15 2,14 * * *", timeout=3600, enable=true
+店铺签到 = type=cron,script-path=https://raw.githubusercontent.com/KingRan/KR/main/jd_shop_sign.js, cronexpr="15 2,14 * * *", timeout=3600, enable=true
 */
 const $ = new Env('店铺签到');
 const notify = $.isNode() ? require('./sendNotify') : '';
@@ -25,11 +25,11 @@ let vender = ''
 let num = 0
 let shopname = ''
 const token = [
-    "a3a95b943e124713b518103d6e65baf1",
-    "faa729c5924a40e08cd1e67370f384b3",
-    "57a0b5d8e5e24ccf86c2b354e22b72fa",
-    "8461701ea014f53b62896ead6484928",
-    "dad7aca41ef848ad844458304930225b",
+    "35BA76ED53A953E03F77EE5379C28BE5",
+    "4BE1B58FE1360409A5967CAD1127B5A8",
+    "CE4C976E0F6B9C0C10ECCC68A9E2B885",
+    "3B27B2B9E70249C339D66F27B7E133F0",
+    "C031053EDBD2C047C072C53F80D82577",
     "3458BF494FAEA0AEA7C34E36EB587A33",
     "979F3F329012E8BE0D64DA1B7D6F024B",
     "3B864BF96848A44E170A26D2791E0AE3",
@@ -48,7 +48,12 @@ const token = [
     "809569E3816B2C76210BFF8DB3F2766E",
     "21CEF5FF054814ADC61753FFFF417F03",
     "3B864BF96848A44E170A26D2791E0AE3",
-    "85B78F013645D1EC53D5F3974528654A"
+    "85B78F013645D1EC53D5F3974528654A",
+
+    "2B47F0BF36A4073CC335D39B8DDB9A73",
+    "CD7FDCC27F212B3E78C4D1A60AFAD220",
+    "BB1B5B3D628BD9A9E5D6A22C53CCEAAD",
+    "C2CCC1006D8152514842E25D1FABB6EE"
 ]
 
 if ($.isNode()) {
