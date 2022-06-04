@@ -1,7 +1,7 @@
 /*
 领券中心签到
 
-@感谢 ddo 提供sign算法
+
 @感谢 匿名大佬 提供pin算法
 
 活动入口：领券中心
@@ -23,7 +23,7 @@ cron "15 0 * * *" script-path=https://raw.githubusercontent.com/KingRan/JDJB/mai
 ============小火箭=========
 领券中心签到 = type=cron,script-path=https://raw.githubusercontent.com/KingRan/JDJB/main/jd_ccSign.js, cronexpr="15 0 * * *", timeout=3600, enable=true
  */
-const $ = new Env('领券中心签到');
+const $ = new Env('领券中心签到_Windfgg版');
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
@@ -40,6 +40,12 @@ if ($.isNode()) {
 }
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
 let allMessage = '';
+let jdWindfggToken = '';
+jdWindfggToken = $.isNode() ? (process.env.WindfggToken ? process.env.WindfggToken : `${jdWindfggToken}`) : ($.getdata('WindfggToken') ? $.getdata('WindfggToken') : `${jdWindfggToken}`);
+if (!jdWindfggToken) {
+    console.log('请填写Windfgg获取的Token,变量是WindfggToken');
+	return;
+}
 !(async () => {
   if (!cookiesArr[0]) {
     $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
@@ -147,40 +153,50 @@ async function ccSign(functionId, body) {
     })
   })
 }
-function getSign(functionId, body) {
-  return new Promise(async resolve => {
-    let data = {
-      functionId,
-      body: JSON.stringify(body),
-      "client":"android",
-      "clientVersion":"10.3.2"
-    }
-    let HostArr = ['jdsign.cf', 'signer.nz.lu']
-    let Host = HostArr[Math.floor((Math.random() * HostArr.length))]
-    let options = {
-      url: `https://cdn.nz.lu/ddo`,
-      body: JSON.stringify(data),
-      headers: {
-        Host,
-        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"
-      },
-      timeout: 30 * 1000
-    }
-    $.post(options, (err, resp, data) => {
-      try {
-        if (err) {
-          console.log(`${JSON.stringify(err)}`)
-          console.log(`${$.name} getSign API请求失败，请检查网路重试`)
-        } else {
 
+function getSign(functionId, body) {	
+    var strsign = '';
+	let data = {
+      "fn":functionId,
+      "body": body,
+      "token": jdWindfggToken
+    }
+    return new Promise((resolve) => {
+        let url = {
+            url: "http://api.windfgg.cf/jd/sign",
+            body: JSON.stringify(data),
+		    headers: {
+		        'Accept': '*/*',
+		        "accept-encoding": "gzip, deflate, br",
+		        'Content-Type': 'application/json',
+		    },
+		    timeout: 30000
         }
-      } catch (e) {
-        $.logErr(e, resp)
-      } finally {
-        resolve(data);
-      }
+        $.post(url, async(err, resp, data) => {
+            try {				
+				if (err) {
+					console.log(`衰仔，没有连接上Windfgg服务，兄弟帮不了你啦！o(╥﹏╥)o`)
+				} else {
+					data = JSON.parse(data);				
+				if (data && data.code == 200) {
+                    console.log("衰仔，连接Windfgg服务成功 *^▽^*");
+                    if (data.data){
+                        strsign = data.data || '';
+						}
+                    if (strsign != ''){
+                        resolve(strsign);
+					}
+                } else {
+                    console.log("签名获取失败.");
+                }
+				}
+            }catch (e) {
+                $.logErr(e, resp);
+            }finally {
+				resolve(strsign);
+			}
+        })
     })
-  })
 }
 function getsecretPin(pin) {
   return new Promise(async resolve => {
