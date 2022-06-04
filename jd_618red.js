@@ -30,11 +30,11 @@ let appId, fingerprint, token, enCryptMethodJD;
         $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', { "open-url": "https://bean.m.jd.com/bean/signIndex.action" });
         return;
     }
-		if (!$.CODE618 && cookiesArr.length > 15){
+		if (!$.CODE618 && cookiesArr.length > 20){
 			console.log(`\n衰仔、你的账号数量已经超越大部分人啦！o(╥﹏╥)o\n\n不填写准确的变量实在无法运行！[○･｀Д´･ ○]\n\n变量格式▶▶▶：export CODE618=""\n`)
 			return;
 		}
-		if (cookiesArr.length <= 15){
+		if (cookiesArr.length <= 20){
 			console.log(`\n推荐填写自己的Code！o(╥﹏╥)o\n变量格式▶▶▶：export CODE618=""\n`)
 		} 		
     $.CryptoJS = $.isNode() ? require('crypto-js') : CryptoJS;
