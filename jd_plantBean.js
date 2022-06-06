@@ -177,7 +177,7 @@ async function doCultureBean() {
   await plantBeanIndex();
 	if(llerror)
 		return;
-  if ($.plantBeanIndexResult && $.plantBeanIndexResult.code === '0') {
+  if ($.plantBeanIndexResult && $.plantBeanIndexResult.code === '0' && $.plantBeanIndexResult.data) {
     const plantBeanRound = $.plantBeanIndexResult.data.roundList[num]
     if (plantBeanRound.roundState === '2') {
       //收取营养液
@@ -407,18 +407,23 @@ async function doTask() {
 function showTaskProcess() {
   return new Promise(async resolve => {
     await plantBeanIndex();
-	if(llerror)
+		if(llerror)
 		return;
+	  if ($.plantBeanIndexResult && $.plantBeanIndexResult.code === '0' && $.plantBeanIndexResult.data) {
     $.taskList = $.plantBeanIndexResult.data.taskList;
     if ($.taskList && $.taskList.length > 0) {
       console.log("     任务   进度");
       for (let item of $.taskList) {
         console.log(`[${item["taskName"]}]  ${item["gainedNum"]}/${item["totalNum"]}   ${item["isFinished"]}`);
+        }
       }
+    } else {
+      console.log(`plantBeanIndexResult:${JSON.stringify($.plantBeanIndexResult)}`)
     }
     resolve()
   })
 }
+
 function showMsg() {
   $.log(`\n${message}\n`);
   jdNotify = $.getdata('jdPlantBeanNotify') ? $.getdata('jdPlantBeanNotify') : jdNotify;
@@ -701,7 +706,7 @@ function request(function_id, body = {}) {
   })
 }
 function taskUrl(function_id, body) {
-  body["version"] = "9.2.4.0";
+  body["version"] = "9.2.4.1";
   body["monitor_source"] = "plant_app_plant_index";
   body["monitor_refer"] = "";
   return {
