@@ -22,6 +22,8 @@
 0 0 * * * node /scripts/jd_bean_sign.js >> /scripts/logs/jd_bean_sign.log 2>&1
 # 领现金
 11 1,20 * * * node /scripts/jd_cash.js >> /scripts/logs/jd_cash.log 2>&1
+# 领现金
+11 1,20 * * * node /scripts/jd_cash_windfgg.js >> /scripts/logs/jd_cash_windfgg.log 2>&1
 # 微信签到领现金
 11 1,20 * * * node /scripts/jd_cash_wx.js >> /scripts/logs/jd_cash_wx.log 2>&1
 # 财富岛
@@ -37,11 +39,11 @@
 # 京东集魔方
 2 0,11 * * * node /scripts/jd_desire.js >> /scripts/logs/jd_desire.log 2>&1
 # 店铺签到
-15 2,14 * * * node /scripts/jd_dpqd.js >> /scripts/logs/jd_dpqd.log 2>&1
+15 3,17 * * * node /scripts/jd_dpqd.js >> /scripts/logs/jd_dpqd.log 2>&1
 # 京喜工厂
-10 0,6-23 * * * node /scripts/jd_dreamFactory.js >> /scripts/logs/jd_dreamFactory.log 2>&1
+#10 0,6-23 * * * node /scripts/jd_dreamFactory.js >> /scripts/logs/jd_dreamFactory.log 2>&1
 # 京喜工厂招工互助
-5 6,18 * * * node /scripts/jd_dreamFactory_help.js >> /scripts/logs/jd_dreamFactory_help.log 2>&1
+#5 6,18 * * * node /scripts/jd_dreamFactory_help.js >> /scripts/logs/jd_dreamFactory_help.log 2>&1
 # 京喜工厂开团
 #20 3,6,9 * * * node /scripts/jd_dreamfactory_tuan.js >> /scripts/logs/jd_dreamfactory_tuan.log 2>&1
 # 京豆夺宝
