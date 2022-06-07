@@ -21,7 +21,7 @@ cron:52 0 8-18 6 *
 
 */
 
-const $ = new Env('6.1-6.8 大牌“粽”情献礼')
+const $ = new Env('6.8~6.18 全力以赴 谁是囤货王')
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
 
