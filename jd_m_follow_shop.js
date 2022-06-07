@@ -1,3 +1,7 @@
+/**
+ cron "1 1 1 1 1" jd_m_follow_shop.js
+ */
+
 let mode = __dirname.includes('magic')
 const {Env} = mode ? require('./magic') : require('./utils/magic')
 const $ = new Env('M关注有礼');
