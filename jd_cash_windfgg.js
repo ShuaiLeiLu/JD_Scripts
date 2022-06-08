@@ -1,6 +1,6 @@
 /**
  * 签到领现金_Windfgg，每日2毛～5毛
- * cron "0 0 6 * *" sign_xj.js,tag=签到领现金
+ * cron "11 2 21 * *" jd_cash_windfgg.js,tag=签到领现金
  * 
  * 无助力活动 助力码无用
  * 活动入口：京东APP搜索领现金进入
