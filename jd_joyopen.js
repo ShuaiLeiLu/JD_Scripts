@@ -102,7 +102,7 @@ async function run() {
                         if ($.oneTask.result == 0) {} else if ($.oneTask.result == 1) {
                             console.log(`已入会，待领取奖励（${$.oneTask.rewardQuantity}京豆）`)
                         } else if ($.oneTask.result == 3) {
-                            console.log(`已通过其他渠道入会`)
+                            console.log(`已通过其它渠道入会`)
                         } else {
                             console.log(`任务已完成`)
                         }
