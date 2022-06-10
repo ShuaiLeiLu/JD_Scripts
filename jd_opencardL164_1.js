@@ -70,6 +70,7 @@ let cookies = []
       console.log(`\n\n******开始【京东账号${$.index}】${$.nickName || $.UserName}*********\n`);
       await getUA()
       await run();
+			await $.wait(3000)
       if(i == 0 && !$.actorUuid) break
       if($.outFlag || $.activityEnd) break
     }
@@ -154,6 +155,7 @@ async function run() {
           for (let i = 0; i < Array(5).length; i++) {
             if (i > 0) console.log(`第${i}次 重新开卡`)
             await joinShop()
+						await $.wait(500)
             if ($.errorJoinShop.indexOf('活动太火爆，请稍后再试') == -1) break
           }
           if($.errorJoinShop.indexOf('活动太火爆，请稍后再试') > -1){
@@ -164,15 +166,11 @@ async function run() {
           await takePostRequest('activityContent');
           await takePostRequest('drawContent');
           await takePostRequest('checkOpenCard');
-          await $.wait(parseInt(Math.random() * 2000 + 2000, 10))
+          await $.wait(1000)
         }
       }
     }else{
       console.log('已全部开卡')
-      if($.index >= 12) {
-        await $.wait(parseInt(Math.random() * 2000 + 3000, 10))
-        return
-      }
     }
 
     $.log("关注: " + $.followShop)
@@ -189,7 +187,7 @@ async function run() {
     if(!$.followSku && !$.outFlag){
         flag = true
         await takePostRequest('addSku');
-        await $.wait(parseInt(Math.random() * 2000 + 5000, 10))
+        await $.wait(parseInt(Math.random() * 2000 + 1000, 10))
 
     }
     if(flag){
@@ -210,9 +208,9 @@ async function run() {
         }
       }
 
-    await $.wait(parseInt(Math.random() * 1000 + 2000, 10))
-    await takePostRequest('getDrawRecordHasCoupon');
-    await takePostRequest('getShareRecord');
+    await $.wait(parseInt(Math.random() * 1000 + 1000, 10))
+    //await takePostRequest('getDrawRecordHasCoupon');
+    //await takePostRequest('getShareRecord');
     if($.outFlag){
       console.log('此ip已被限制，请过10分钟后再执行脚本\n')
       return
@@ -224,7 +222,7 @@ async function run() {
       console.log(`后面的号都会助力:${$.shareUuid}`)
     }
       if($.index % 3 == 0) console.log('休息一下，别被黑ip了\n可持续发展')
-      if($.index % 3 == 0) await $.wait(parseInt(Math.random() * 5000 + 20000, 10))
+      if($.index % 3 == 0) await $.wait(parseInt(Math.random() * 5000 + 10000, 10))
   } catch (e) {
     console.log(e)
   }
