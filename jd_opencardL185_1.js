@@ -11,11 +11,11 @@
 请求太频繁会被黑ip
 过10分钟再执行
 
-cron:57 0 10-20 6 *
+cron:31 18 10-20 6 *
 ============Quantumultx===============
 [task_local]
 #6.10~6.20 心尖好物 618拔草时刻
-57 0 10-20 6 * jd_opencardL185.js, tag=6.10~6.20 心尖好物 618拔草时刻, enabled=true
+31 18 10-20 6 * jd_opencardL185.js, tag=6.10~6.20 心尖好物 618拔草时刻, enabled=true
 
 */
 
