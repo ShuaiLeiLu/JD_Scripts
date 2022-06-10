@@ -9,7 +9,7 @@
 入口：[ 6.10~6.20 为热爱选择 一起618 ]
 
 请求太频繁会被黑ip
-过10分钟再执行
+请更换IP后再执行脚本
 
 cron:40 15 10-20 6 *
 ============Quantumultx===============
@@ -79,7 +79,7 @@ let activityCookie =''
     }
   }
   if($.outFlag) {
-    let msg = '此ip已被限制，请过10分钟后再执行脚本'
+    let msg = '此ip已被限制，请更换IP后再执行脚本'
     $.msg($.name, ``, `${msg}`);
     if ($.isNode()) await notify.sendNotify(`${$.name}`, `${msg}`);
   }
@@ -114,7 +114,7 @@ async function run() {
       return
     }
     if($.outFlag){
-      console.log('此ip已被限制，请过10分钟后再执行脚本\n')
+      console.log('此ip已被限制，请更换IP后再执行脚本\n')
       return
     }
     await takePostRequest('getSimpleActInfoVo');
@@ -222,7 +222,7 @@ async function run() {
     //await takePostRequest('getDrawRecordHasCoupon');
     //await takePostRequest('getShareRecord');
     if($.outFlag){
-      console.log('此ip已被限制，请过10分钟后再执行脚本\n')
+      console.log('此ip已被限制，请更换IP后再执行脚本\n')
       return
     }
     console.log($.actorUuid)
@@ -353,7 +353,7 @@ async function takePostRequest(type) {
           if (err) {
             if(resp && typeof resp.statusCode != 'undefined'){
               if(resp.statusCode == 493){
-                console.log('此ip已被限制，请过10分钟后再执行脚本\n')
+                console.log('此ip已被限制，请更换IP后再执行脚本\n')
                 $.outFlag = true
               }
             }
@@ -678,7 +678,7 @@ function getCk() {
         if (err) {
           if(resp && typeof resp.statusCode != 'undefined'){
             if(resp.statusCode == 493){
-              console.log('此ip已被限制，请过10分钟后再执行脚本\n')
+              console.log('此ip已被限制，请更换IP后再执行脚本\n')
               $.outFlag = true
             }
           }
