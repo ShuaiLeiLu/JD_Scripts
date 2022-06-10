@@ -35,6 +35,8 @@ if ($.isNode()) {
 } else {
   cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
 }
+let opencard_draw = "0"
+opencard_draw = $.isNode() ? (process.env.opencard_draw ? process.env.opencard_draw : opencard_draw) : ($.getdata('opencard_draw') ? $.getdata('opencard_draw') : opencard_draw);
 allMessage = ""
 message = ""
 $.hotFlag = false
@@ -197,20 +199,24 @@ async function run() {
       await takePostRequest('activityContent');
     }
     console.log(`${$.score}值`)
+    if(opencard_draw+"" !== "0"){
       $.runFalag = true
       let count = parseInt($.score/100)
+      opencard_draw = parseInt(opencard_draw, 10)
+      if(count > opencard_draw) count = opencard_draw
       console.log(`抽奖次数为:${count}`)
       for(m=1;count--;m++){
         console.log(`第${m}次抽奖`)
         await takePostRequest('抽奖');
         if($.runFalag == false) break
         if(Number(count) <= 0) break
-        if(m >= 2){
+        if(m >= 10){
           console.log("抽奖太多次，多余的次数请再执行脚本")
           break
         }
         await $.wait(parseInt(Math.random() * 2000 + 2000, 10))
       }
+    }else console.log('如需抽奖请设置环境变量[opencard_draw]为"3" 3为次数');
     
     await $.wait(parseInt(Math.random() * 1000 + 2000, 10))
     //await takePostRequest('getDrawRecordHasCoupon');
@@ -225,7 +231,7 @@ async function run() {
       $.shareUuid = $.actorUuid
       console.log(`后面的号都会助力:${$.shareUuid}`)
     }
-    await $.wait(parseInt(Math.random() * 1000 + 5000, 10))
+    await $.wait(parseInt(Math.random() * 1000 + 1000, 10))
       if($.index % 3 == 0) console.log('休息一下，别被黑ip了\n可持续发展')
       if($.index % 3 == 0) await $.wait(parseInt(Math.random() * 5000 + 20000, 10))
   } catch (e) {
