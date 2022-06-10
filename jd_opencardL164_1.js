@@ -56,7 +56,7 @@ let cookies = []
   let shareUuidArr = ["f572bf2025074b68b495742c73fa3a9a","b8c3af811ec24326b88601174402ba56","8567fc8031e94d5da8759a3806180946"]
   let s = Math.floor((Math.random()*3))
   let n = 0
-  if(s >= 1 && s<= 7) n = Math.floor((Math.random()*shareUuidArr.length))
+  n = Math.floor((Math.random()*shareUuidArr.length))
   $.shareUuid = shareUuidArr[n] ? shareUuidArr[n] : $.shareUuid
   for (let i = 0; i < cookiesArr.length; i++) {
     cookie = cookiesArr[i];
