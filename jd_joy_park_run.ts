@@ -8,10 +8,12 @@ new Env('极速版汪汪赛跑');
 
 **/
 
+
 import {get, post, o2s, requireConfig, wait} from './function/TS_USER_AGENTS'
 import {H5ST} from "./function/h5st"
 import {existsSync, readFileSync} from "fs";
 import {getDate} from "date-fns";
+
 
 let cookie: string = '', res: any = '', UserName: string = '', fp_448de: string = '' || process.env.FP_448DE, fp_b6ac3: string = '' || process.env.FP_B6AC3
 let assets: number = 0, captainId: string = '', h5stTool: H5ST = null
@@ -26,7 +28,7 @@ let assets: number = 0, captainId: string = '', h5stTool: H5ST = null
     UserName = decodeURIComponent(cookie.match(/pt_pin=([^;]*)/)![1])
     console.log(`\n开始【京东账号${index + 1}】${UserName}\n`)
 
-  
+
 
     assets = parseFloat(process.env.JD_JOY_PARK_RUN_ASSETS || '0.04')
     let rewardAmount: number = 0
