@@ -134,7 +134,10 @@ function openCardActivity(activityId, activityUrl, pin, num) {
       if ($.userId) {
         await $.wait(1000);
         if ($.Token) await getPin();
-        console.log("pin:" + $.Pin);
+				if(!$.Pin){
+				console.log('获取[Pin]失败！')
+				return
+				}
         await accessLog();
         if (prefix !== "cjhydz") {
           await $.wait(1000);
