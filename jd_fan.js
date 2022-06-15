@@ -24,6 +24,7 @@ if ($.isNode()) {
 }
 let activityList = [
     {'id':'20f3bf50733f4b9bbd333b3705d14272','endTime':1656626274000},//
+		{'id':'016de52c3bd94dd1892fd503a8dfa1e5','endTime':1656626274000},//
 		
 ];
 !(async()=>{
