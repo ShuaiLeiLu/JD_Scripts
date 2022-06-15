@@ -54,7 +54,7 @@ function openCardActivity(activityId, activityUrl, pin, num) {
 
     if(pin) {
       const idx = cookiesArr.findIndex((v) => v.includes(pin));
-      const currentCookie = cookiesArr.splice(1, idx);
+      const currentCookie = cookiesArr.splice(0, idx);
       cookiesArr = [...currentCookie, ...cookiesArr.slice(0, num)];
     }
 
