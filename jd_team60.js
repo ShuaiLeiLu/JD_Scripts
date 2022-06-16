@@ -59,7 +59,8 @@ function openCardActivity(activityId, activityUrl, pin, num) {
     }
 
     !(async () => {
-	console.log("\n【如果显示：奖品与您擦肩而过了哟，可能是 此活动黑了！ 】\n【如果显示：Response code 493 ，可能是 变量不正确！ 】\n【还是显示：Response code 493 ，那么 此容器IP黑了！ 】\n");
+			console.log("\n【如果显示：奖品与您擦肩而过了哟，可能是 此活动黑了！ 】\n【如果显示：Response code 493 ，可能是 变量不正确！ 】\n【还是显示：Response code 493 ，那么 此容器IP黑了！ 】\n");
+			console.log("【当前活动入口】\nhttps://cjhydz-isv.isvjcloud.com/microDz/invite/activity/wx/view/index/8882761?activityId=" + activityId );
       if (!activityId) {
         $.msg($.name, "", "活动id不存在");
         $.done();
@@ -134,7 +135,10 @@ function openCardActivity(activityId, activityUrl, pin, num) {
       if ($.userId) {
         await $.wait(1000);
         if ($.Token) await getPin();
-        console.log("pin:" + $.Pin);
+				if(!$.Pin){
+				console.log('获取[Pin]失败！')
+				return
+				}
         await accessLog();
         if (prefix !== "cjhydz") {
           await $.wait(1000);
