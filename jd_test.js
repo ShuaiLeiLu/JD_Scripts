@@ -1,6 +1,7 @@
 /*
 
-1 1 * * * jd_test.js
+jd_test.js
+
 */
 const $ = new Env('test');
 
