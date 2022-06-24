@@ -17,7 +17,7 @@
 # 领现金
 11 1,20 * * * node /scripts/jd_cash.js >> /scripts/logs/jd_cash.log 2>&1
 # 领现金
-11 2,21 * * * node /scripts/jd_cash_windfgg.js >> /scripts/logs/jd_cash_windfgg.log 2>&1
+11 2,21 * * * node /scripts/jd_cash_windfg.js >> /scripts/logs/jd_cash_windfg.log 2>&1
 # 微信签到领现金
 11 1,20 * * * node /scripts/jd_cash_wx.js >> /scripts/logs/jd_cash_wx.log 2>&1
 # 财富岛
