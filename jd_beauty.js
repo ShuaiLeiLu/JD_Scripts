@@ -1,13 +1,12 @@
 /*
 美丽研究院
 修复+尽量优化为同步执行,减少并发,说不定就减小黑号概率了呢?
-https://raw.githubusercontent.com/aTenb/jdOpenSharePicker/master/jd_beautyStudy.js
 更新时间:2021-12-03
 活动入口：京东app首页-美妆馆-底部中间按钮
-20 7,12,19 * * * jd_beauty.js, tag=美丽研究院, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
+20 7,12,19 * * * jd_beauty.js, tag=美丽研究院, enabled=true
  */
 const $ = new Env('美丽研究院');
-const notify = $.isNode() ? require('./sendNotify') : '';
+const notify = $.isNode() ? require('./adaptation/sendNotify') : '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const WebSocket = require('ws');
 const UA = process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)

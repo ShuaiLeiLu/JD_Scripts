@@ -4,8 +4,8 @@ cron "0 0 * * *" jd_CheckCkSeq.js, tag:CK顺序调试工具by-ccwav
 const $ = new Env("CK顺序调试工具");
 const {
     getEnvs
-} = require('./ql');
-const notify = $.isNode() ? require('./sendNotify') : '';
+} = require('./adaptation/ql');
+const notify = $.isNode() ? require('./adaptation/sendNotify') : '';
 const jdCookieNode = $.isNode() ? require("./jdCookie.js") : "";
 let cookiesArr = [];
 if ($.isNode()) {

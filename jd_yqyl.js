@@ -17,7 +17,7 @@ cron "45 0 * * *" script-path=https://raw.githubusercontent.com/KingRan/JDJB/mai
 邀请有礼 = type=cron,script-path=https://raw.githubusercontent.com/KingRan/JDJB/main/jd_yqyl.js, cronexpr="45 0 * * *", timeout=3600, enable=true
  */
 const $ = new Env('邀请有礼');
-const notify = $.isNode() ? require('./sendNotify') : '';
+const notify = $.isNode() ? require('./adaptation/sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 

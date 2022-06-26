@@ -556,7 +556,7 @@ async function sendNotify(text, desp) {
 
 function requireConfig() {
   return new Promise(resolve => {
-    notify = $.isNode() ? require('./sendNotify') : '';
+    notify = $.isNode() ? require('./adaptation/sendNotify') : '';
     //Node.js用户请在jdCookie.js处填写京东ck;
     const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
     const activityIdArrNode = $.isNode() ? process.env.PKC_TXGZYL.split('@') : [];

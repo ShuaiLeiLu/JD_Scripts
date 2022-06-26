@@ -10,7 +10,7 @@ SEVENDAY_LIST,SEVENDAY_LIST2,SEVENDAY_LIST3
 */
 const $ = new Env('超级无线店铺签到');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
-const notify = $.isNode() ? require('./sendNotify') : '';
+const notify = $.isNode() ? require('./adaptation/sendNotify') : '';
 let cookiesArr = [], cookie = '', message = '';
 // https://lzkj-isv.isvjcloud.com/sign/sevenDay/signActivity?activityId=
 let activityIdList = [

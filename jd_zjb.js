@@ -11,7 +11,7 @@ export InviterPin="9vOskAagcMJ4EOWXPQSS9A%3D%3D" ##你的邀请码
 20 0 * * * jd_zjb.js, tag=柠檬赚金币, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
 */
 const $ = new Env('极速版赚金币邀请');
-const notify = $.isNode() ? require('./sendNotify') : '';
+const notify = $.isNode() ? require('./adaptation/sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 

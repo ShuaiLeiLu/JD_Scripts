@@ -25,7 +25,7 @@ JoyJd任务脚本 = type=cron,script-path=https://raw.githubusercontent.com/King
 */
 const $ = new Env('JoyJd任务脚本');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
-const notify = $.isNode() ? require('./sendNotify') : '';
+const notify = $.isNode() ? require('./adaptation/sendNotify') : '';
 let cookiesArr = [];
 let activityIDList = '';     
 let endTimeList = '';

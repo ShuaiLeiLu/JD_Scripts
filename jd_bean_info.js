@@ -2,13 +2,12 @@
  * 详细版京东京豆统计
  
  * 默认不发送通知。
- 
 [task_local]
 #京豆详情统计
-20 22 * * * jd_bean_info.js, tag=京豆详情统计, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
+20 22 * * * jd_bean_info.js, tag=京豆详情统计,  enabled=true
  * */
 const $ = new Env('京豆详情统计');
-const notify = $.isNode() ? require('./sendNotify') : '';
+const notify = $.isNode() ? require('./adaptation/sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let allMessage = '';

@@ -26,7 +26,7 @@ const $ = new Env('东东乐园');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 
 const randomCount = $.isNode() ? 20 : 5;
-const notify = $.isNode() ? require('./sendNotify') : '';
+const notify = $.isNode() ? require('./adaptation/sendNotify') : '';
 let merge = {}
 let codeList = []
 //IOS等用户直接用NobyDa的jd cookie

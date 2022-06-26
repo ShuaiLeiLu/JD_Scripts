@@ -1,18 +1,16 @@
 /*
 微信签到领现金
-by:小手冰凉 tg:@chianPLA
-交流群：https://t.me/jdPLA2
 脚本更新时间：2022-4-2
 脚本兼容: Node.js
 新手写脚本，难免有bug，能用且用。
 ===========================
 [task_local]
 #微信签到领现金
-16 0,5 * * * jd_cash_wx.js, tag=微信签到领现金, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
+16 0,5 * * * jd_cash_wx.js, tag=微信签到领现金,  enabled=true
  */
 
 const $ = new Env('微信签到领现金');
-const notify = $.isNode() ? require('./sendNotify') : '';
+const notify = $.isNode() ? require('./adaptation/sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 //IOS等用户直接用NobyDa的jd cookie

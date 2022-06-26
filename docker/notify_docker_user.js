@@ -1,4 +1,4 @@
-const notify = require('../sendNotify');
+const notify = require('../adaptation/sendNotify');
 const fs = require('fs');
 const notifyPath = '/scripts/logs/notify.txt';
 async function image_update_notify() {

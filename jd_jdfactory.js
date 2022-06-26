@@ -26,7 +26,7 @@ cron "10 0,6-23 * * *" script-path=https://raw.githubusercontent.com/KingRan/KR/
  */
 const $ = new Env('东东工厂');
 
-const notify = $.isNode() ? require('./sendNotify') : '';
+const notify = $.isNode() ? require('./adaptation/sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let jdNotify = true;//是否关闭通知，false打开通知推送，true关闭通知推送

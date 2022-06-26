@@ -29,7 +29,7 @@ cron "20 1,8 * * *" script-path=https://raw.githubusercontent.com/Aaron-lv/sync/
 });
 const $ = new Env('京喜签到');
 const JD_API_HOST = "https://m.jingxi.com/";
-const notify = $.isNode() ? require('./sendNotify') : '';
+const notify = $.isNode() ? require('./adaptation/sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 //IOS等用户直接用NobyDa的jd cookie
