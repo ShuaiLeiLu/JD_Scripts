@@ -6,8 +6,10 @@
 
 ### 需要接受Wxpusher 通知的朋友可以扫二维码关注 
 
-通过邮箱或者issues留下自己的手机号和wxpusher的uuid
+通过TG或者issues留下自己的手机号和wxpusher的uuid
 
-任何问题可以邮箱联系：9626471@qq.com
+任何问题可以TG群私聊解决
+
+https://t.me/+hHXs_RBjJkYxOGNl
 
 <img src="./utils/showqrcode.png" alt="二维码">
