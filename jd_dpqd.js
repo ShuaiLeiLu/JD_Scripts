@@ -2,10 +2,6 @@
 /*
 cron 45 0 0,23 * * * jd_dpqd.js
 店铺签到，店铺Token默认从本地环境变量DPQDTK中获取，若本地无则从远端获取。
-
-Fix by HarbourJ
-TG: https://t.me/HarbourToulu
-
 环境变量:
 DPQDTK: token1&token2
 仓库不再提供token
@@ -50,7 +46,7 @@ if (process.env.DPQDTK) {
 if (!token.length) {
     console.log('无本地店铺签到token, 尝试获取远端店铺签到token')
     token = [
-   
+
     ]
 }
 console.log(token)
