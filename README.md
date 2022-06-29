@@ -5,11 +5,12 @@
 需要代挂的可以自行打开页面登录，代挂的请关闭小额免密登录,以免产生经济纠纷
 
 ### 需要接收Wxpusher 通知的朋友可以扫二维码关注 
-
-通过TG或者issues留下自己的手机号和wxpusher的uuid
-
-任何问题可以TG群私聊解决
-
-https://t.me/+hHXs_RBjJkYxOGNl
-
 <img src="./utils/showqrcode.png" alt="二维码">
+可通过TG、QQ群或者issues留下自己的手机号和wxpusher的uuid
+
+##TG
+https://t.me/+hHXs_RBjJkYxOGNl
+##QQ
+<img src="./utils/qq.png" alt="二维码">
+
+
