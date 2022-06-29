@@ -14,6 +14,6 @@ https://t.me/+hHXs_RBjJkYxOGNl
 
 ## QQ
 
-<img src="./utils/qq.png" alt="二维码">
+<img src="./utils/QQ.png" alt="二维码">
 
 
