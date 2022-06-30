@@ -15,7 +15,7 @@ cron:49 0 1-8 7 *
 ============Quantumultx===============
 [task_local]
 #7.1~7.8 爱我中华 礼赞盛世
-49 0 1-8 7 * jd_opencardL189.js, tag=7.1~7.8 爱我中华 礼赞盛世, enabled=true
+49 6,13 1-8 7 * jd_opencardL189.js, tag=7.1~7.8 爱我中华 礼赞盛世, enabled=true
 
 */
 
