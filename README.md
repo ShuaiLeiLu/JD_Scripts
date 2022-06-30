@@ -4,8 +4,9 @@
 
 需要代挂的可以自行打开页面登录，代挂的请关闭小额免密登录,以免产生经济纠纷
 
-## 需要接收Wxpusher 通知的朋友可以扫二维码关注 
+# 需要接收Wxpusher 通知的朋友可以扫二维码关注并留下uuid，不然无法收到资产变动信息
 <img src="./utils/showqrcode.png" alt="二维码">
+
 可通过TG、QQ群或者issues留下自己的手机号和wxpusher的uuid
 
 ## TG
