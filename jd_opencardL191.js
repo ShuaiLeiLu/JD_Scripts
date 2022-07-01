@@ -19,7 +19,7 @@
 
 [task_local]
 #7.1-7.31 雅诗兰黛奢雅邀请入会有礼
-11 3 1-5,6-31/5 7 * jd_opencardL191.js, tag=7.1-7.31 雅诗兰黛奢雅邀请入会有礼, enabled=true
+11 20 1-5,6-31/5 7 * jd_opencardL191.js, tag=7.1-7.31 雅诗兰黛奢雅邀请入会有礼, enabled=true
 
 */
 const $ = new Env('7.1-7.31 雅诗兰黛奢雅邀请入会有礼');
