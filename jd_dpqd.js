@@ -1,17 +1,47 @@
 /*
-店铺签到，各类店铺签到，有新的店铺直接添加token即可
-============Quantumultx===============
-[task_local]
-#店铺签到
-15 2,14 * * * https://raw.githubusercontent.com/KingRan/KR/main/jd_shop_sign.js, tag=店铺签到, enabled=true
-===========Loon============
-[Script]
-cron "15 2,14 * * *" script-path=https://raw.githubusercontent.com/KingRan/KR/main/jd_shop_sign.js,tag=店铺签到
-============Surge=============
-店铺签到 = type=cron,cronexp="15 2,14 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/KingRan/KR/main/jd_shop_sign.js
-===========小火箭========
-店铺签到 = type=cron,script-path=https://raw.githubusercontent.com/KingRan/KR/main/jd_shop_sign.jss, cronexpr="15 2,14 * * *", timeout=3600, enable=true
+cron 45 0 0,23 * * * jd_dpqd.js
+店铺签到，店铺Token默认从本地环境变量DPQDTK中获取，若本地无则从远端获取。
+
+Fix by HarbourJ
+TG: https://t.me/HarbourToulu
+
+环境变量:
+DPQDTK: token1&token2
+仓库不再提供token
 */
+
+let token = []
+if (process.env.DPQDTK) {
+  if (process.env.DPQDTK.includes('\n')) {
+    token = [...process.env.DPQDTK.split('\n'),...token]
+  } else {
+    token = [...process.env.DPQDTK.split('&'),...token]
+  }
+}
+
+if (!token.length) {
+  console.log('无本地店铺签到token, 尝试获取远端店铺签到token')
+  token = [
+    '21DD8CB1932672A89E288C6B0BD141C4',
+    'FCA20BDEA1AE7A2AE5BA6EA88C873906',
+    'F54A829D3B33517141E94237B7A315B7',
+    'CCECEF831D5C33FC1BD8B7A2AE6BEAC8',
+    '069C121295427F0A7D8FA85B499F72B3',
+    'D15533B3721128F2C45001D7D5255FE9',
+    'DC2D503AEC0235CB3F574DE47192325A',
+    '69DC80A178F64FC67584EB2B1D7F4C71',
+    'C387DE3A3F4381FB3E451F0C40069FE6',
+    '921478C146E5C60F2444E3978AC8E94F',
+    'F573A078062F9F18BFCC39080864D7F5',
+    '662E62C629FB6B20CED938E41A0DC026',
+    '1DD46671387EAC6FDC14B753E01D5E30',
+    'A92269DC92DDD73CC5EB38B3BACF51E3',
+    '59F9E55AEA2F330E8025A166CE25F3D3',
+    '3172BE4C9A9288AEB2A581A486205443',
+    '3C616227CE2F4083EDBB3CA39D320EC6',
+  ]
+}
+console.log(token)
 const $ = new Env('店铺签到');
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
@@ -24,20 +54,6 @@ let activityId=''
 let vender=''
 let num=0
 let shopname=''
-const token = [
-  "1A67A289BED867F4B3D23F751D929FE0",
-  "1565B6639C0F5315D41C7D07129EBB9C",
-  "3949F55A02AA8A345409AFD9821C861F",
-  "C387DE3A3F4381FB3E451F0C40069FE6",
-  "069C121295427F0A7D8FA85B499F72B3",
-  "A92269DC92DDD73CC5EB38B3BACF51E3",
-  "FCA20BDEA1AE7A2AE5BA6EA88C873906",
-  "0A58D51DE70A2C933EED3196280D484F",
-  "1DD46671387EAC6FDC14B753E01D5E30",
-  "662E62C629FB6B20CED938E41A0DC026",
-  "F573A078062F9F18BFCC39080864D7F5",
-  "921478C146E5C60F2444E3978AC8E94F"
-]
 
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
