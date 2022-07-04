@@ -2,12 +2,17 @@
 
 <a href="http://nark.tyzm.vip/">自建京东签到小站</a>
 
-需要代挂的可以自行打开页面登录，代挂的请关闭小额免密登录,以免产生经济纠纷
+需要代挂的可以自行打开页面登录
 
-# 需要接收Wxpusher 通知的朋友可以扫二维码关注并留下uuid，不然无法收到资产变动信息
-<img src="./utils/showqrcode.png" alt="二维码">
+注意：代挂的请关闭小额免密登录,以免产生经济纠纷
 
-可通过TG、QQ群或者issues留下自己的手机号和wxpusher的uuid
+## Wxpusher 
+<img src="./utils/change.png" width="100" alt="二维码">
+
+需要接受Wxpusher通知的可以将扫码二维码以后返回的uuid，通过QQ群和TG反馈给群主，不然无法获取资产变动通知
+
+<img src="./utils/showqrcode.png" width="100" alt="二维码">
+
 
 ## TG
 
@@ -15,6 +20,6 @@ https://t.me/+hHXs_RBjJkYxOGNl
 
 ## QQ
 
-<img src="./utils/QQ.png" alt="二维码">
+<img src="./utils/QQ.png" width="100" alt="二维码">
 
 
