@@ -125,15 +125,23 @@ let ShowRemarkType = "1";
 let Notify_NoCKFalse = "false";
 let Notify_NoLoginSuccess = "false";
 let UseGroupNotify = 1;
-
+const {
+    getEnvs,
+    DisableCk,
+    getEnvByPtPin
+} = require('./ql');
 const fs = require('fs');
 
 let strCKFile = '../config/account.json';
 let strUidFile = '../config/account.json';
+
+
 let Fileexists = fs.existsSync(strCKFile);
 let TempCK = [];
+
+console.log("检测到account文件");
+
 if (Fileexists) {
-    console.log("检测到别名缓存文件，载入...");
     TempCK = fs.readFileSync(strCKFile, 'utf-8');
     if (TempCK) {
         TempCK = TempCK.toString();
@@ -145,7 +153,7 @@ let UidFileexists = fs.existsSync(strUidFile);
 let TempCKUid = []; //ckJson的数据
 
 if (UidFileexists) {
-    console.log("检测到一对一Uid文件，载入...");
+
     TempCKUid = fs.readFileSync(strUidFile, 'utf-8');
     if (TempCKUid) {
         TempCKUid = TempCKUid.toString();
@@ -276,7 +284,7 @@ async function sendNotify(text, desp, params = {}, author = '\n\n本通知 By cc
                 var llHaderror = false;
 
                 if (strPtPin) {
-                    var temptest = ''
+                    var temptest = "";
                     if (temptest) {
                         if (temptest.status == 0) {
                             isLogin = true;
@@ -1374,7 +1382,7 @@ async function sendNotify(text, desp, params = {}, author = '\n\n本通知 By cc
         if (ShowRemarkType != "1" && titleIndex3 == -1) {
             console.log("sendNotify正在处理账号Remark.....");
             //开始读取青龙变量列表
-            const envs = "";
+            const envs = '';
             if (envs && envs[0]) {
                 var strTempdesp = [];
                 var strAllNotify = "";
