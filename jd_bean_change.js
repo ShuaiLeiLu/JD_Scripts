@@ -85,7 +85,7 @@ if ($.isNode()) {
 		WP_APP_TOKEN_ONE = process.env.WP_APP_TOKEN_ONE;
 	}
 	/* if(process.env.BEANCHANGE_ExJxBeans=="true"){
-		if (time >= 17){ 
+		if (time >= 17){
 			console.log(`检测到设定了临期京豆转换喜豆...`);
 			doExJxBeans = process.env.BEANCHANGE_ExJxBeans;
 		} else{
@@ -247,7 +247,7 @@ if(DisableIndex!=-1){
 }
 
 //金融养猪
-let EnablePigPet=true;
+let EnablePigPet=false;
 DisableIndex=strDisableList.findIndex((item) => item === "金融养猪");
 if(DisableIndex!=-1){
 	console.log("检测到设定关闭金融养猪查询");
@@ -291,7 +291,6 @@ if(DisableIndex!=-1){
 	EnableJoyRun=false
 }
 
-//E卡查询
 let EnableCheckEcard=true;
 DisableIndex=strDisableList.findIndex((item) => item === "E卡查询");
 if(DisableIndex!=-1){
@@ -404,7 +403,7 @@ if(DisableIndex!=-1){
 				jdCash(), //领现金
 				GetJxBeaninfo(), //喜豆查询
 				GetPigPetInfo(), //金融养猪
-				GetJoyRuninginfo(), //汪汪赛跑 
+				GetJoyRuninginfo(), //汪汪赛跑
 				CheckEcard() //E卡查询
 			])
 
@@ -419,7 +418,7 @@ if(DisableIndex!=-1){
 
 						await notify.sendNotify(`${$.name}`, `${allMessage}`, {
 							url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean`
-						}, '\n\n本通知 By ccwav Mod',TempMessage)
+						}, '\n\n本通知 By https://github.com/KingRan/KR',TempMessage)
 					}
 					if ($.isNode() && allMessageMonth) {
 						await notify.sendNotify(`京东月资产变动`, `${allMessageMonth}`, {
@@ -488,7 +487,7 @@ if(DisableIndex!=-1){
 
 				await notify.sendNotify(`${$.name}`, `${allMessage}`, {
 					url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean`
-				}, '\n\n本通知 By ccwav Mod',TempMessage)
+				}, '\n\n本通知 By https://github.com/KingRan/KR',TempMessage)
 			}
 			if ($.isNode() && allMessageMonth) {
 				await notify.sendNotify(`京东月资产变动`, `${allMessageMonth}`, {
@@ -504,7 +503,7 @@ if(DisableIndex!=-1){
 				allMessageGp2=strAllNotify+`\n`+allMessageGp2;
 			await notify.sendNotify(`${$.name}#2`, `${allMessageGp2}`, {
 				url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean`
-			}, '\n\n本通知 By ccwav Mod',TempMessage)
+			}, '\n\n本通知 By https://github.com/KingRan/KR',TempMessage)
 			await $.wait(10 * 1000);
 		}
 		if ($.isNode() && allMessageGp3) {
@@ -513,7 +512,7 @@ if(DisableIndex!=-1){
 				allMessageGp3=strAllNotify+`\n`+allMessageGp3;
 			await notify.sendNotify(`${$.name}#3`, `${allMessageGp3}`, {
 				url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean`
-			}, '\n\n本通知 By ccwav Mod',TempMessage)
+			}, '\n\n本通知 By https://github.com/KingRan/KR',TempMessage)
 			await $.wait(10 * 1000);
 		}
 		if ($.isNode() && allMessageGp4) {
@@ -522,7 +521,7 @@ if(DisableIndex!=-1){
 				allMessageGp4=strAllNotify+`\n`+allMessageGp4;
 			await notify.sendNotify(`${$.name}#4`, `${allMessageGp4}`, {
 				url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean`
-			}, '\n\n本通知 By ccwav Mod',TempMessage)
+			}, '\n\n本通知 By https://github.com/KingRan/KR',TempMessage)
 			await $.wait(10 * 1000);
 		}
 		if ($.isNode() && allMessage) {
@@ -532,7 +531,7 @@ if(DisableIndex!=-1){
 
 			await notify.sendNotify(`${$.name}`, `${allMessage}`, {
 				url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean`
-			}, '\n\n本通知 By ccwav Mod',TempMessage)
+			}, '\n\n本通知 By https://github.com/KingRan/KR',TempMessage)
 			await $.wait(10 * 1000);
 		}
 
@@ -721,16 +720,20 @@ async function showMsg() {
 	}
 
 	if (EnableJxBeans) {
-		ReturnMessage += `【今日喜豆】收${$.todayinJxBean}豆`;
-		if ($.todayOutJxBean != 0) {
-			ReturnMessage += `,支${$.todayOutJxBean}豆`;
+		if ($.todayinJxBean || $.todayOutJxBean) {
+			ReturnMessage += `【今日喜豆】收${$.todayinJxBean}豆`;
+			if ($.todayOutJxBean != 0) {
+				ReturnMessage += `,支${$.todayOutJxBean}豆`;
+			}
+			ReturnMessage += `\n`;
 		}
-		ReturnMessage += `\n`;
-		ReturnMessage += `【昨日喜豆】收${$.inJxBean}豆`;
-		if ($.OutJxBean != 0) {
-			ReturnMessage += `,支${$.OutJxBean}豆`;
+		if ($.inJxBean || $.OutJxBean) {
+			ReturnMessage += `【昨日喜豆】收${$.inJxBean}豆`;
+			if ($.OutJxBean != 0) {
+				ReturnMessage += `,支${$.OutJxBean}豆`;
+			}
+			ReturnMessage += `\n`;
 		}
-		ReturnMessage += `\n`;
 		ReturnMessage += `【当前喜豆】${$.xibeanCount}喜豆(≈${($.xibeanCount/ 100).toFixed(2)}元)\n`;
 		strsummary += `【当前喜豆】${$.xibeanCount}豆(≈${($.xibeanCount/ 100).toFixed(2)}元)\n`;
 	}
@@ -1019,7 +1022,7 @@ async function showMsg() {
 		if(strAllNotify)
 			ReturnMessage=strAllNotify+`\n`+ReturnMessage;
 
-		await notify.sendNotifybyWxPucher(strTitle, `${ReturnMessage}`, `${$.UserName}`,'\n\n本通知 By ccwav Mod',strsummary);
+		await notify.sendNotifybyWxPucher(strTitle, `${ReturnMessage}`, `${$.UserName}`,'\n\n本通知 By https://github.com/KingRan/KR',strsummary);
 	}
 
 	//$.msg($.name, '', ReturnMessage , {"open-url": "https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean"});
@@ -1196,7 +1199,7 @@ async function jdCash() {
 	if (!EnableCash)
 		return;
 	let functionId = "cash_homePage";
-	/* let body = {};	  
+	/* let body = {};
 	console.log(`正在获取领现金任务签名...`);
 	isSignError = false;
 	let sign = await getSign(functionId, body);
@@ -1695,7 +1698,7 @@ function getCoupon() {
 			url: `https://wq.jd.com/activeapi/queryjdcouponlistwithfinance?state=1&wxadd=1&filterswitch=1&_=${Date.now()}&sceneval=2&g_login_type=1&callback=jsonpCBKB&g_ty=ls`,
 			headers: {
 				'authority': 'wq.jd.com',
-				"User-Agent": $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.4.4;14.3;network/4g;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1"),
+				"User-Agent": "jdapp;iPhone;10.1.2;15.0;network/wifi;Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1",
 				'accept': '*/*',
 				'referer': 'https://wqs.jd.com/',
 				'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8',
