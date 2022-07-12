@@ -6,7 +6,7 @@
  * 上一作者说了每天最多300个商店，总上限为500个，jd_unsubscribe.js我已更新为批量取关版
  * 请提前取关至少250个商店确保京东试用脚本正常运行
  * @Address: https://github.com/X1a0He/jd_scripts_fixed/blob/main/jd_try_xh.js
-cron "4 1-22/8 * * *" jd_try.js, tag:京东试用
+cron "44 1-22/8 * * *" jd_try.js, tag:京东试用
 
  */
 const $ = new Env('京东试用')
