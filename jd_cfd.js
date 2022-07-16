@@ -32,7 +32,7 @@ cron "1 0-23/2 * * *" script-path=https://raw.githubusercontent.com/KingRan/KR/m
 });
 const $ = new Env("京喜财富岛");
 const JD_API_HOST = "https://m.jingxi.com/";
-const notify = $.isNode() ? require('./adaptation/sendNotify') : '';
+const notify = $.isNode() ? require('./sendNotify') : '';
 const jdCookieNode = $.isNode() ? require("./jdCookie.js") : "";
 $.showLog = $.getdata("cfd_showLog") ? $.getdata("cfd_showLog") === "true" : false;
 $.notifyTime = $.getdata("cfd_notifyTime");

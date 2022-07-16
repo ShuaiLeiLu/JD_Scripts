@@ -6,7 +6,7 @@ cron:35 10,18,20 * * *
 35 10,18,20 * * * jd_superBrand.js
 * */
 const $ = new Env('特务Z-II');
-const notify = $.isNode() ? require('./adaptation/sendNotify') : '';
+const notify = $.isNode() ? require('./sendNotify') : '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let cookiesArr = [];
 let UA = ``;

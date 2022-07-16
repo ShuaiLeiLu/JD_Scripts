@@ -10,7 +10,7 @@
  */
 
 const $ = new Env('微信签到领现金');
-const notify = $.isNode() ? require('./adaptation/sendNotify') : '';
+const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 //IOS等用户直接用NobyDa的jd cookie

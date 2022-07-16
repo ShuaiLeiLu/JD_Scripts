@@ -11,7 +11,7 @@ export packetId="" ##你要参加砍价的邀请码
 
 
 const $ = new Env('砍价免费拿');
-const notify = $.isNode() ? require('./adaptation/sendNotify') : '';
+const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 

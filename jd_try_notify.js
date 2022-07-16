@@ -3,7 +3,7 @@ cron "22 15 * * *" jd_try_notify.js
  */
 const $ = new Env('京东试用待领取通知')
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
-const notify = $.isNode() ? require('./adaptation/sendNotify') : '';
+const notify = $.isNode() ? require('./sendNotify') : '';
 let trialActivityIdList = []
 let trialActivityTitleList = []
 let notifyMsg = ''
@@ -172,7 +172,7 @@ function TotalBean() {
 function requireConfig() {
     return new Promise(resolve => {
         console.log('开始获取配置文件\n')
-        $.notify = $.isNode() ? require('./adaptation/sendNotify') : { sendNotify: async () => { } }
+        $.notify = $.isNode() ? require('./sendNotify') : { sendNotify: async () => { } }
         //获取 Cookies
         $.cookiesArr = []
         if ($.isNode()) {

@@ -23,7 +23,7 @@ cron "5 0,23 * * *" script-path=jd_club_lottery.js,tag=摇京豆
 */
 
 const $ = new Env('摇京豆');
-const notify = $.isNode() ? require('./adaptation/sendNotify') : '';
+const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 

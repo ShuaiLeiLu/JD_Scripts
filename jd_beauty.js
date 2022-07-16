@@ -6,7 +6,7 @@
 20 7,12,19 * * * jd_beauty.js, tag=美丽研究院, enabled=true
  */
 const $ = new Env('美丽研究院');
-const notify = $.isNode() ? require('./adaptation/sendNotify') : '';
+const notify = $.isNode() ? require('./sendNotify') : '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const WebSocket = require('ws');
 const UA = process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)

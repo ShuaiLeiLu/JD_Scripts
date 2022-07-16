@@ -21,7 +21,7 @@ cron "3 0-23/2 * * *" script-path=jd_moneyTree.js,tag=京东摇钱树
 */
 
 const $ = new Env('京东摇钱树');
-const notify = $.isNode() ? require('./adaptation/sendNotify') : '';
+const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 

@@ -28,7 +28,7 @@ const $ = new Env('闪购盲盒');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let appId = '1EFRXxg', homeDataFunPrefix = 'interact_template', collectScoreFunPrefix = 'harmony', message = '';
 let lotteryResultFunPrefix = homeDataFunPrefix, browseTime = 6;
-const notify = $.isNode() ? require('./adaptation/sendNotify') : '';
+const notify = $.isNode() ? require('./sendNotify') : '';
 let myInviteCode;
 let shareCodes = [];
 let llcanhelp = true;

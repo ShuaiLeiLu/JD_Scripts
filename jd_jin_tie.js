@@ -5,7 +5,7 @@
  活动入口：京东APP首页-领金贴，[活动地址](https://active.jd.com/forever/cashback/index/)
  */
 const $ = new Env('领金贴');
-const notify = $.isNode() ? require('./adaptation/sendNotify') : '';
+const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 //IOS等用户直接用NobyDa的jd cookie

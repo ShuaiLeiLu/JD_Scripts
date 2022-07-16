@@ -10,7 +10,7 @@ export tytpacketId=""
 入口-极速版-推推赚大钱  5元无门槛卷 大概需要50人助力
 */
 const $ = new Env('推推赚大钱-快速');
-const notify = $.isNode() ? require('./adaptation/sendNotify') : '';
+const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const ua = `jdltapp;iPhone;3.1.0;${Math.ceil(Math.random()*4+10)}.${Math.ceil(Math.random()*4)};${randomString(40)}`

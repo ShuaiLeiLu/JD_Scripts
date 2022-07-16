@@ -3,7 +3,7 @@ cron "10 10 * * *" script-path=jx_products_detail.js,tag=京喜工厂商品列�
 **/
 const $ = new Env('京喜工厂商品列表详情');
 const JD_API_HOST = 'https://m.jingxi.com/';
-const notify = $.isNode() ? require('./adaptation/sendNotify') : '';
+const notify = $.isNode() ? require('./sendNotify') : '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 $.cookieArr = [];
 $.currentCookie = '';

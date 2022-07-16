@@ -8,7 +8,7 @@
 const $ = new Env('清空购物车');
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
-const notify = $.isNode() ? require('./adaptation/sendNotify') : '';
+const notify = $.isNode() ? require('./sendNotify') : '';
 let cookiesArr = [], cookie = '', postBody = '', venderCart, error = false;
 let args_xh = {
     /*

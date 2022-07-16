@@ -8,7 +8,7 @@ export computer_activityIdList="17"
 const $ = new Env('电脑配件通用ID任务');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 
-const notify = $.isNode() ? require('./adaptation/sendNotify') : '';
+const notify = $.isNode() ? require('./sendNotify') : '';
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [],
     cookie = '';

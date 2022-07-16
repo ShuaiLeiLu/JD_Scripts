@@ -17,7 +17,7 @@ cron:2 1 * * *
 const $ = new Env('joyjd通用开卡');
 const Faker = require('./sign_graphics_validate.js')
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
-const notify = $.isNode() ? require('./adaptation/sendNotify') : '';
+const notify = $.isNode() ? require('./sendNotify') : '';
 let joyopen = '';
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [],

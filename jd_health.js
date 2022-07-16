@@ -21,7 +21,7 @@ cron "13 1,6,22 * * *" script-path=https://raw.githubusercontent.com/KingRan/KR/
  */
 const $ = new Env("东东健康社区");
 const jdCookieNode = $.isNode() ? require("./jdCookie.js") : "";
-const notify = $.isNode() ? require('./adaptation/sendNotify') : "";
+const notify = $.isNode() ? require('./sendNotify') : "";
 let cookiesArr = [], cookie = "", allMessage = "", message;
 let reward = process.env.JD_HEALTH_REWARD_NAME ? process.env.JD_HEALTH_REWARD_NAME : ''
 const randomCount = $.isNode() ? 20 : 5;

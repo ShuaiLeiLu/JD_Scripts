@@ -19,7 +19,7 @@ cron:1 1 1 1 *
 */
 const $ = new Env("LZ分享有礼");
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
-const notify = $.isNode() ? require('./adaptation/sendNotify') : '';
+const notify = $.isNode() ? require('./sendNotify') : '';
 let cookiesArr = [], cookie = '', message = '';
 let authorCodeList = [];
 let ownCookieNum = 3;

@@ -22,7 +22,7 @@ cron "10 1,19 * * *" script-path=jd_jdzz.js,tag=京东赚赚
 京东赚赚 = type=cron,script-path=jd_jdzz.js, cronexpr="10 1,19 * * *", timeout=3600, enable=true
  */
 const $ = new Env('京东赚赚修复版');
-const notify = $.isNode() ? require('./adaptation/sendNotify') : '';
+const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 //IOS等用户直接用NobyDa的jd cookie

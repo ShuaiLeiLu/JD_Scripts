@@ -25,7 +25,7 @@ cron "50 4,17 * * *" script-path=https://raw.githubusercontent.com/KingRan/JDJB/
 东东工厂 = type=cron,script-path=https://raw.githubusercontent.com/KingRan/JDJB/main/jd_jdfactory_help.js, cronexpr="50 4,17 * * *", timeout=3600, enable=true
  */
 const $ = new Env('东东工厂内部互助');
-const notify = $.isNode() ? require('./adaptation/sendNotify') : '';
+const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let jdNotify = true;//是否关闭通知，false打开通知推送，true关闭通知推送

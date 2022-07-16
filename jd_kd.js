@@ -23,7 +23,7 @@ cron "10 0 * * *" script-path=jd_kd.js, tag=京东快递签到
  */
 const $ = new Env('京东快递签到');
 
-const notify = $.isNode() ? require('./adaptation/sendNotify') : '';
+const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let jdNotify = true;//是否关闭通知，false打开通知推送，true关闭通知推送
