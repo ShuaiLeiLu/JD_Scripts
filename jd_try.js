@@ -1,5 +1,5 @@
 /*
- * 2022-05-27 修复优化版  By https://github.com/6dylan6/jdpro/
+ * 2022-05-27 修复优化版  By https://github.com/11111129/jdpro/
  * 如需运行请自行添加环境变量：JD_TRY，值填 true 即可运行
  * X1a0He留
  * 脚本是否耗时只看args_xh.maxLength的大小
@@ -212,7 +212,7 @@ let args_xh = {
                 }
                 $.isLimit = false;
                 // 获取tabList的，不知道有哪些的把这里的注释解开跑一遍就行了
-                 //await try_tabList();
+                //await try_tabList();
                 // return;
                 $.isForbidden = false
                 $.wrong = false
@@ -597,7 +597,7 @@ function taskurl_xh(appid, functionId, body = JSON.stringify({})) {
         },
     }
 
-  }
+}
 
 async function showMsg() {
     let message = ``;
@@ -683,17 +683,17 @@ function jsonParse(str) {
         }
     }
 }
- const generateRandomInteger = (min, max = 0) => {
-   if (min > max) {
-     let temp = min;
-     min = max;
-     max = temp;
-   }
-   var Range = max - min;
-   var Rand = Math.random();
-   return min + Math.round(Rand * Range);
- };
- 
+const generateRandomInteger = (min, max = 0) => {
+    if (min > max) {
+        let temp = min;
+        min = max;
+        max = temp;
+    }
+    var Range = max - min;
+    var Rand = Math.random();
+    return min + Math.round(Rand * Range);
+};
+
 function Env(name, opts) {
     class Http {
         constructor(env) {
@@ -878,7 +878,7 @@ function Env(name, opts) {
             if (!Array.isArray(path)) path = path.toString().match(/[^.[\]]+/g) || []
             path.slice(0, -1).reduce((a, c, i) => (Object(a[c]) === a[c] ? a[c] : (a[c] = Math.abs(path[i + 1]) >> 0 === +path[i + 1] ? [] : {})), obj)[
                 path[path.length - 1]
-            ] = value
+                ] = value
             return obj
         }
 

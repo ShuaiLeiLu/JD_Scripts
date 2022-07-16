@@ -31,10 +31,10 @@ if ($.isNode()) {
         $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', { "open-url": "https://bean.m.jd.com/bean/signIndex.action" });
         return;
     }
-	if (!lottery) {
-	console.log("\n衰仔你好，衰仔你好！！！\n你不填写变量 JD_Lottery，\n是不是玩我呢！\n我很生气，拒接执行o(╥﹏╥)o");
-	return;
-	}  
+    if (!lottery) {
+        console.log("\n衰仔你好，衰仔你好！！！\n你不填写变量 JD_Lottery，\n是不是玩我呢！\n我很生气，拒接执行o(╥﹏╥)o");
+        return;
+    }
     for (let i = 0; i < cookiesArr.length; i++) {
         if (cookiesArr[i]) {
             cookie = cookiesArr[i];
@@ -52,15 +52,15 @@ if ($.isNode()) {
                 }
                 continue
             }
-			for (let j = 0; j < lottery.length; j++) {
-			$.configCode = lottery[j]
-			console.log(`活动ID: ${$.configCode}`);
-            await getUA()
-			await jdmodule();
-            //await showMsg();
+            for (let j = 0; j < lottery.length; j++) {
+                $.configCode = lottery[j]
+                console.log(`活动ID: ${$.configCode}`);
+                await getUA()
+                await jdmodule();
+                //await showMsg();
+            }
         }
     }
-	}
 })()
     .catch((e) => {
         $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
@@ -347,14 +347,14 @@ function jsonParse(str) {
     }
 }
 async function getUA(){
-  $.UA = `jdapp;iPhone;10.1.4;13.1.2;${randomString(40)};network/wifi;model/iPhone8,1;addressid/2308460611;appBuild/167814;jdSupportDarkMode/0;Mozilla/5.0 (iPhone; CPU iPhone OS 13_1_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1`
+    $.UA = `jdapp;iPhone;10.1.4;13.1.2;${randomString(40)};network/wifi;model/iPhone8,1;addressid/2308460611;appBuild/167814;jdSupportDarkMode/0;Mozilla/5.0 (iPhone; CPU iPhone OS 13_1_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1`
 }
 function randomString(e) {
-  e = e || 32;
-  let t = "abcdef0123456789", a = t.length, n = "";
-  for (i = 0; i < e; i++)
-    n += t.charAt(Math.floor(Math.random() * a));
-  return n
+    e = e || 32;
+    let t = "abcdef0123456789", a = t.length, n = "";
+    for (i = 0; i < e; i++)
+        n += t.charAt(Math.floor(Math.random() * a));
+    return n
 }
 function randomWord(randomFlag, min, max) {
     var str = "",
