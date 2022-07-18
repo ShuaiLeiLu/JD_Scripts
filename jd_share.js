@@ -58,7 +58,7 @@ if ($.isNode()) {
         return;
     }
     isGetAuthorCodeList = true;
-	console.log(`【入口:\nhttps://lzkjdz-isv.isvjcloud.com/wxShareActivity/activity/activity?activityId=${activityId}`)
+	console.log(`【入口:\nhttps://lzkjdz-isv.isvjcloud.com/wxShareActivity/activity/activity?activityId=${activityId}】`)
     for (let i = 0; i < ownCookieNum; i++) {
         if (cookiesArr[i]) {
             cookie = cookiesArr[i]
