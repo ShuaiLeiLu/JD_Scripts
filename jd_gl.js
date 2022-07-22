@@ -6,11 +6,11 @@
 第一个账号助力作者 其他依次助力CK1
 注意：第一个CK黑号会全部助力所填写的助力码
 
-cron:29 1,18 22-25 7 *
+cron:29 1,8 22-25 7 *
 ============Quantumultx===============
 [task_local]
 #7.22-7.25 格力巅峰24小时
-29 1,18 22-25 7 * jd_opencardL201.js, tag=7.22-7.25 格力巅峰24小时, enabled=true
+29 1,8 22-25 7 * jd_opencardL201.js, tag=7.22-7.25 格力巅峰24小时, enabled=true
 */
 let opencard_toShop = "false"
 const $ = new Env("7.22-7.25 格力巅峰24小时");
