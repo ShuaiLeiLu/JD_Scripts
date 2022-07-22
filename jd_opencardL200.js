@@ -9,11 +9,11 @@
 
 开一张卡5 关注5 加购5
 
-cron:31 4,15 20-30,1-4 7,8
+cron:31 4,15 20-31,1-4 7,8 *
 ============Quantumultx===============
 [task_local]
 #7.20-8.4 七夕喜鹊叫，好运身边绕
-31 4,15 20-30,1-4 7,8 jd_opencardL200.js, tag=7.20-8.4 七夕喜鹊叫，好运身边绕, enabled=true
+31 4,15 20-31,1-4 7,8 * jd_opencardL200.js, tag=7.20-8.4 七夕喜鹊叫，好运身边绕, enabled=true
 */
 let opencard_toShop = "false"
 const $ = new Env("7.20-8.4 七夕喜鹊叫，好运身边绕");
