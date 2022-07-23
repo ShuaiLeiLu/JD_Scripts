@@ -113,7 +113,7 @@ async function marry() {
                 await task('dz/openCard/activityContent', `activityId=${$.activityId}&pin=${encodeURIComponent($.secretPin)}&pinImg=&nick=${encodeURIComponent($.pin)}&cjyxPin=&cjhyPin=&shareUuid=${encodeURIComponent($.authorCode)}`)
             }
             await task('dz/openCard/checkOpenCard', `activityId=${$.activityId}&actorUuid=${$.actorUuid}&shareUuid=${$.authorCode}&pin=${encodeURIComponent($.secretPin)}`)
-						console.log("助力码 -> "+$.actorUuid)
+						//console.log("助力码 -> "+$.actorUuid)
             $.log("->关注店铺")
             if ($.shopTask) {
                 if (!$.shopTask.allStatus) {
