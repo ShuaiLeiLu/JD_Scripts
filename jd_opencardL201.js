@@ -200,7 +200,7 @@ function task(function_id, body, isCommon = 0, own = 0) {
                                     $.openCardStatus = data.data;
                                     break;
                                 case 'dz/openCard/saveTask':
-                                    console.log(data.data.addBeanNum)
+                                    console.log(`==>获得【${data.data.addBeanNum}】京豆\n`)
                                     break;
                                 case 'dz/openCard/saveTask':
                                     if (data.data) {
