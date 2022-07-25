@@ -11,11 +11,11 @@
 请求太频繁会被黑ip
 请更换IP后再执行脚本
 
-cron:30 10,12 25-31 7 *
+cron:45 10,12 25-31 7 *
 ============Quantumultx===============
 [task_local]
 #7.25-7.31 盛夏派对 为爱而惠
-30 10,12 25-31 7 * jd_opencardL197.js, tag=7.25-7.31 盛夏派对 为爱而惠, enabled=true
+45 10,12 25-31 7 * jd_opencardL197.js, tag=7.25-7.31 盛夏派对 为爱而惠, enabled=true
 
 */
 const $ = new Env("7.25-7.31 盛夏派对 为爱而惠");
