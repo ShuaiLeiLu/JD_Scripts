@@ -164,7 +164,9 @@ async function member() {
       // await task('linkgame/sendAllCoupon', `activityId=${$.activityId}&pin=${encodeURIComponent($.secretPin)}`);
       // await getFirstLZCK()
       // await getToken();
-      // console.log('抽奖 -> ')
+			console.log('抽奖 -> ')
+			await $.wait(2000)
+			await task('joinCommon/startDraw', `activityId=${$.activityId}&uuid=${$.actorUuid}&pin=${encodeURIComponent($.secretPin)}`);
       // await $.wait(2000)
       // await task('linkgame/draw', `activityId=${$.activityId}&actorUuid=${$.actorUuid}&pin=${encodeURIComponent($.secretPin)}`);
       // console.log('100 -> ')
