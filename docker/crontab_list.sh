@@ -4,8 +4,6 @@
 30 * * * * sh +x /scripts/docker/auto_help.sh collect >> /scripts/logs/auto_help_collect.log 2>&1
 
 ##############活动##############
-# 健康医疗618抽奖机活动
-10 7 * * * node /scripts/jd_618jk.js >> /scripts/logs/jd_618jk.log 2>&1
 # 京东资产变动通知
 30 21 * * * node /scripts/jd_bean_change.js >> /scripts/logs/jd_bean_change.log 2>&1
 # 领京豆额外奖励
@@ -142,8 +140,6 @@
 35 10,18,20 * * * node /scripts/jd_superBrand.js >> /scripts/logs/jd_superBrand.log 2>&1
 # 特务
 2 10,18,20 * * * node /scripts/jd_superBrandJK.js >> /scripts/logs/jd_superBrandJK.log 2>&1
-# 组队分豆-蒙牛
-18 21 * * * node /scripts/jd_mengniu.js >> /scripts/logs/jd_mengniu.log 2>&1
 # 京东试用
 4 1-22/8 * * * node /scripts/jd_try.js >> /scripts/logs/jd_try.log 2>&1
 # 京东试用待领取通知
@@ -176,5 +172,3 @@
 45 0 * * * node /scripts/jd_yqyl.js >> /scripts/logs/jd_yqyl.log 2>&1
 # 柠檬赚金币
 20 0 * * * node /scripts/jd_zjb.js >> /scripts/logs/jd_zjb.log 2>&1
-# 组队分豆-飞利浦
-18 9 * * * node /scripts/jd_teamFLPZD.js >> /scripts/logs/jd_teamFLPZD.log 2>&1
