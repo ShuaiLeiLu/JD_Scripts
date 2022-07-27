@@ -7,7 +7,7 @@
 //export jd_wdz_pin="pin值"  (不填写，默认首位账号以 jd_wdz_mixnu 为准)
 
 2.指定从账号几跑到账号几变量：(jd_wdz_mixnu代表开始，jd_wdz_maxnum代表结束)
-//export jd_wdz_mixnum="0"
+//export jd_wdz_mixnum="0" 0代表青龙排位为1的账号
 //export jd_wdz_maxnum="90"
 
 PS：jd_wdz_maxnum必须大于jd_wdz_mixnum  才能生效  不填写默认运行0-90账号
