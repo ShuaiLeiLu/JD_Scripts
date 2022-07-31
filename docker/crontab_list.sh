@@ -30,7 +30,7 @@
 # 清空购物车
 53 22 * * * node /scripts/jd_cleancart.js >> /scripts/logs/jd_cleancart.log 2>&1
 # 摇京豆
-5 0,23 * * * node /scripts/jd_club_lottery.js >> /scripts/logs/jd_club_lottery.log 2>&1
+11 0,18 * * * node /scripts/jd_club_lottery.js >> /scripts/logs/jd_club_lottery.log 2>&1
 # 京东快递-每日抽奖
 30 9 * 7 * node /scripts/jd_daily_lottery.js >> /scripts/logs/jd_daily_lottery.log 2>&1
 # 东东乐园
