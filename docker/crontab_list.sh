@@ -77,20 +77,14 @@
 30 0 * * * node /scripts/jd_joy_park_run.ts >> /scripts/logs/jd_joy_park_run.log 2>&1
 # 汪汪乐园每日任务
 0 1,7,20 * * * node /scripts/jd_joy_park_task.js >> /scripts/logs/jd_joy_park_task.log 2>&1
-# JoyJd任务脚本
-5 2,18 * * * node /scripts/jd_joyjd_open.js >> /scripts/logs/jd_joyjd_open.log 2>&1
 # JOY庄园每日任务
 11 1,15 * * * node /scripts/jd_joymanor_task.js >> /scripts/logs/jd_joymanor_task.log 2>&1
-# joyjd通用开卡
-2 1 * * * node /scripts/jd_joyopen.js >> /scripts/logs/jd_joyopen.log 2>&1
 # 金融双签-加密
 10 19 * * * node /scripts/jd_jrsign.js >> /scripts/logs/jd_jrsign.log 2>&1
 # 极速版签到提现-加密
 30 0,15 * * * node /scripts/jd_js_sign.js >> /scripts/logs/jd_js_sign.log 2>&1
 # 京喜双签-加密
 23 11,20 * * * node /scripts/jd_jx_sign.js >> /scripts/logs/jd_jx_sign.log 2>&1
-# 京喜工厂商品列表详情
-10 10 * * * node /scripts/jd_jxgckc.js >> /scripts/logs/jd_jxgckc.log 2>&1
 # 京喜牧场
 20 0-23/2 * * * node /scripts/jd_jxmc.js >> /scripts/logs/jd_jxmc.log 2>&1
 # 惊喜牧场内部互助
@@ -99,16 +93,10 @@
 0 0 * * * node /scripts/jd_kanjia.js >> /scripts/logs/jd_kanjia.log 2>&1
 # 京东快递签到
 10 0 * * * node /scripts/jd_kd.js >> /scripts/logs/jd_kd.log 2>&1
-# joy抽奖机通用
-0 0,10 * * * node /scripts/jd_lottery.js >> /scripts/logs/jd_lottery.log 2>&1
-# 盲盒任务抽京豆
-#Unkown node /scripts/jd_mhtask.js >> /scripts/logs/jd_mhtask.log 2>&1
 # 京东摇钱树
 3 0-23/11 * * * node /scripts/jd_moneyTree.js >> /scripts/logs/jd_moneyTree.log 2>&1
 # 生鲜早起打卡
 15 6,7 * * * node /scripts/jd_morningSc.js >> /scripts/logs/jd_morningSc.log 2>&1
-# 检查并停用免密支付
-35 21 * * * node /scripts/jd_pay_contract.js >> /scripts/logs/jd_pay_contract.log 2>&1
 # 东东萌宠
 15 6-18/6 * * * node /scripts/jd_pet.js >> /scripts/logs/jd_pet.log 2>&1
 # 东东萌宠内部互助
