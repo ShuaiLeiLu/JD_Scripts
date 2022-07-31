@@ -12,11 +12,11 @@
 请求太频繁会被黑ip
 过10分钟再执行
 
-cron:15 1 1-8 8 *
+cron:15 1 2-8 8 *
 ============Quantumultx===============
 [task_local]
 #4.13-4.20 京东粉丝联盟福利社 入会赢专享好礼
-15 1 1-8 8 * jd_opencardL210.js, tag=8.1-8.8 京东粉丝联盟福利社 入会赢专享好礼, enabled=true
+15 1 2-8 8 * jd_opencardL210.js, tag=8.1-8.8 京东粉丝联盟福利社 入会赢专享好礼, enabled=true
 
 */
 
