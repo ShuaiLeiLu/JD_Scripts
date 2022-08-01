@@ -85,12 +85,12 @@ if ($.isNode()) {
           }
      }
 })()
-     .catch((e) => {
-          $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
-     })
-     .finally(() => {
-          $.done();
-     })
+    .catch((e) => {
+         $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
+    })
+    .finally(() => {
+         $.done();
+    })
 function info() {
      return new Promise((resolve) => {
 
@@ -244,9 +244,9 @@ function help(packetId) {
                               }
                          }
                          else
-                              if (data.msg.indexOf("完成") != -1) {
-                                   status = 1
-                              }
+                         if (data.msg.indexOf("完成") != -1) {
+                              status = 1
+                         }
                          if (data.success == false) {
                               if (data.msg.indexOf("完成") != -1) {
                                    $.ok = true
