@@ -5,7 +5,7 @@
 #签到领现金
 无需指定定时，每天运行一次即可
  */
-const $ = new Env('签到领现金');
+const $ = new Env('签到领现金-加密');
 const notify = $.isNode() ? require('./sendNotify') : '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 
