@@ -33,11 +33,17 @@ pin3@&@不清空👉该pin不清空
 如果有不清空的一定要加上"*@&@不清空"
 防止没指定的账号购物车全清空
 
+cron:8 8 8 8 *
+============Quantumultx===============
+[task_local]
+#清空购物车-Sign版
+8 8 8 8 * jd_cleancart_nolan.js, tag=清空购物车-Sign版, enabled=true
+
 */
 let jdSignUrl = 'https://api.nolanstore.top/sign'
 let cleancartRun = 'false'
 let cleancartProducts = '*@&@'
-const $ = new Env('清空购物车');
+const $ = new Env('清空购物车-Sign版');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
 //IOS等用户直接用NobyDa的jd cookie
