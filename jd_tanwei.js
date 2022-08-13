@@ -2,10 +2,10 @@
 /*
 探味奇遇记
 活动入口：美食馆-右侧悬浮
-活动时间：5月17-6月16
+活动时间：7月17-8月16
 宝箱陆续开放
 来自：6dylan6/jdpro
-31 0,13 26-31,1-16 5,6 * jd_tanwei.js
+31 0,13 26-31,1-16 7,8 * jd_tanwei.js
  */
 
 const $ = new Env('探味奇遇记');
@@ -14,7 +14,7 @@ const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let jdNotify = true;
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message = '';
-let encryptProjectId = '3NhNqgKD5WYkmLLsudX1Z2vVS5pP';
+let encryptProjectId = 'YnxEZcUsgLzE5dukqb7vrmjPnaN';
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
@@ -36,7 +36,7 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
       $.index = i + 1;
       $.isLogin = true;
       $.nickName = '';
-      await TotalBean();
+      //await TotalBean();
       console.log(`\n******开始【京东账号${$.index}】${$.nickName || $.UserName}*********\n`);
       if (!$.isLogin) {
         $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, { "open-url": "https://bean.m.jd.com/bean/signIndex.action" });
