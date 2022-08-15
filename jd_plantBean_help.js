@@ -10,17 +10,17 @@
 
 =====================================Quantumult X=================================
 [task_local]
-40 4,17 * * * https://raw.githubusercontent.com/KingRan/JDJB/main/jd_plantBean_help.js, tag=种豆得豆, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jdzd.png, enabled=true
+40 4,17 * * * https://raw.githubusercontent.com/444444/JDJB/main/jd_plantBean_help.js, tag=种豆得豆, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jdzd.png, enabled=true
 
 =====================================Loon================================
 [Script]
-cron "40 4,17 * * *" script-path=https://raw.githubusercontent.com/KingRan/JDJB/main/jd_plantBean_help.js,tag=京东种豆得豆
+cron "40 4,17 * * *" script-path=https://raw.githubusercontent.com/444444/JDJB/main/jd_plantBean_help.js,tag=京东种豆得豆
 
 ======================================Surge==========================
-京东种豆得豆 = type=cron,cronexp="40 4,17 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/KingRan/JDJB/main/jd_plantBean_help.js
+京东种豆得豆 = type=cron,cronexp="40 4,17 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/444444/JDJB/main/jd_plantBean_help.js
 
 ====================================小火箭=============================
-京东种豆得豆 = type=cron,script-path=https://raw.githubusercontent.com/KingRan/JDJB/main/jd_plantBean_help.js, cronexpr="40 4,17 * * *", timeout=3600, enable=true
+京东种豆得豆 = type=cron,script-path=https://raw.githubusercontent.com/444444/JDJB/main/jd_plantBean_help.js, cronexpr="40 4,17 * * *", timeout=3600, enable=true
 
 */
 const $ = new Env('种豆得豆内部互助');
@@ -129,7 +129,6 @@ async function jdPlantBean() {
         //$.msg($.name, '', `${errMsg}`)
     }
 }
-
 //助力好友
 async function doHelp() {
 
@@ -173,7 +172,6 @@ async function doHelp() {
         }
     }
 }
-
 function showMsg() {
     $.log(`\n${message}\n`);
     jdNotify = $.getdata('jdPlantBeanNotify') ? $.getdata('jdPlantBeanNotify') : jdNotify;
@@ -181,7 +179,6 @@ function showMsg() {
         $.msg($.name, subTitle, message);
     }
 }
-
 // ================================================此处是API=================================
 //每轮种豆活动获取结束后,自动收取京豆
 async function getReward() {
@@ -190,7 +187,6 @@ async function getReward() {
     }
     $.getReward = await request('receivedBean', body);
 }
-
 //收取营养液
 async function cultureBean(currentRoundId, nutrientsType) {
     let functionId = arguments.callee.name.toString();
@@ -200,7 +196,6 @@ async function cultureBean(currentRoundId, nutrientsType) {
     }
     $.cultureBeanRes = await request(functionId, body);
 }
-
 //偷营养液大于等于3瓶的好友
 //①查询好友列表
 async function stealFriendList() {
@@ -221,7 +216,6 @@ async function collectUserNutr(paradiseUuid) {
     }
     $.stealFriendRes = await request(functionId, body);
 }
-
 async function receiveNutrients() {
     $.receiveNutrientsRes = await request('receiveNutrients', {
         "roundId": currentRoundId,
@@ -229,33 +223,27 @@ async function receiveNutrients() {
     })
     // console.log(`定时领取营养液结果:${JSON.stringify($.receiveNutrientsRes)}`)
 }
-
 async function plantEggDoLottery() {
     $.plantEggDoLotteryResult = await requestGet('plantEggDoLottery');
 }
-
 //查询天天扭蛋的机会
 async function egg() {
     $.plantEggLotteryRes = await requestGet('plantEggLotteryIndex');
 }
-
 async function productTaskList() {
     let functionId = arguments.callee.name.toString();
     $.productTaskList = await requestGet(functionId, {"monitor_refer": "plant_productTaskList"});
 }
-
 async function plantChannelTaskList() {
     let functionId = arguments.callee.name.toString();
     $.plantChannelTaskList = await requestGet(functionId);
     // console.log('$.plantChannelTaskList', $.plantChannelTaskList)
 }
-
 async function shopTaskList() {
     let functionId = arguments.callee.name.toString();
     $.shopTaskListRes = await requestGet(functionId, {"monitor_refer": "plant_receiveNutrients"});
     // console.log('$.shopTaskListRes', $.shopTaskListRes)
 }
-
 async function receiveNutrientsTask(awardType) {
     const functionId = arguments.callee.name.toString();
     const body = {
@@ -264,7 +252,6 @@ async function receiveNutrientsTask(awardType) {
     }
     $.receiveNutrientsTaskRes = await requestGet(functionId, body);
 }
-
 async function plantShareSupportList() {
     $.shareSupportList = await requestGet('plantShareSupportList', {"roundId": ""});
     if ($.shareSupportList && $.shareSupportList.code === '0') {
@@ -284,7 +271,6 @@ async function plantShareSupportList() {
         console.log(`异常情况：${JSON.stringify($.shareSupportList)}`)
     }
 }
-
 //助力好友的api
 async function helpShare(plantUuid) {
     console.log(`\n开始助力好友: ${plantUuid}`);
@@ -297,7 +283,6 @@ async function helpShare(plantUuid) {
     $.helpResult = await request(`plantBeanIndex`, body);
     //console.log(`助力结果的code:${$.helpResult && $.helpResult.code}`);
 }
-
 async function plantBeanIndex() {
     llerror = false;
     $.plantBeanIndexResult = await request('plantBeanIndex'); //plantBeanIndexBody
@@ -333,7 +318,6 @@ async function plantBeanIndex() {
         return
     }
 }
-
 function requestGet(function_id, body = {}) {
     if (!body.version) {
         body["version"] = "9.2.4.1";
@@ -372,7 +356,6 @@ function requestGet(function_id, body = {}) {
         })
     })
 }
-
 function TotalBean() {
     return new Promise(async resolve => {
         const options = {
@@ -418,7 +401,6 @@ function TotalBean() {
         })
     })
 }
-
 function requireConfig() {
     return new Promise(resolve => {
         //console.log('开始获取种豆得豆配置文件\n')
@@ -455,7 +437,6 @@ function requireConfig() {
         resolve()
     })
 }
-
 function request(function_id, body = {}) {
     return new Promise(async resolve => {
         await $.wait(2000);
@@ -476,7 +457,6 @@ function request(function_id, body = {}) {
         })
     })
 }
-
 function taskUrl(function_id, body) {
     body["version"] = "9.2.4.1";
     body["monitor_source"] = "plant_app_plant_index";
@@ -499,14 +479,12 @@ function taskUrl(function_id, body) {
         timeout: 20000,
     }
 }
-
 function getParam(url, name) {
     const reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i")
     const r = url.match(reg)
     if (r != null) return unescape(r[2]);
     return null;
 }
-
 function jsonParse(str) {
     if (typeof str == "string") {
         try {
@@ -518,7 +496,6 @@ function jsonParse(str) {
         }
     }
 }
-
 // prettier-ignore
 function Env(t, e) {
     "undefined" != typeof process && JSON.stringify(process.env).indexOf("GITHUB") > -1 && process.exit(0);
