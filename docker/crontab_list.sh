@@ -84,8 +84,12 @@
 3 0-23/2 * * * node /scripts/jd_moneyTree.js >> /scripts/logs/jd_moneyTree.log 2>&1
 # 东东萌宠
 15 6-18/6 * * * node /scripts/jd_pet.js >> /scripts/logs/jd_pet.log 2>&1
+# 东东萌宠
+15 6-18/6 * * * node /scripts/jd_pet_help.js >> /scripts/logs/jd_pet_help.log 2>&1
 # 种豆得豆
 1 7-21/2 * * * node /scripts/jd_plantBean.js >> /scripts/logs/jd_plantBean.log 2>&1
+# 种豆得豆
+1 7-21/2 * * * node /scripts/jd_plantBean_help.js >> /scripts/logs/jd_plantBean_help.log 2>&1
 # 京东保价
 40 19 * * * node /scripts/jd_price.js >> /scripts/logs/jd_price.log 2>&1
 # 闪购盲盒
