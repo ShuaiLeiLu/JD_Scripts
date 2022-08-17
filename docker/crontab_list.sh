@@ -35,7 +35,7 @@
 # 京豆夺宝
 40,45 23 * * * node /scripts/jd_duobao.js >> /scripts/logs/jd_duobao.log 2>&1
 ## 发财挖宝
-#40 6,17 * * * node /scripts/jd_fcwb.js >> /scripts/logs/jd_fcwb.log 2>&1
+40 6,17 * * * node /scripts/jd_fcwb.js >> /scripts/logs/jd_fcwb.log 2>&1
 # 发财挖宝付费
 40 1,17 * * * node /scripts/jd_fcwb_token.js >> /scripts/logs/jd_fcwb_token.log 2>&1
 # 发财挖宝Nark免费
