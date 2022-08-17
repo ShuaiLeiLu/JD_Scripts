@@ -15,7 +15,7 @@ cron:53 0,17 19-26 8 *
 ============Quantumultx===============
 [task_local]
 #8.18~8.26 解锁好物 宠粉时刻
-53 0,17 19-26 8 * jd_opencardL219.js, tag=8.18~8.26 解锁好物 宠粉时刻, enabled=true
+45 1,17 18-26 8 * jd_opencardL219.js, tag=8.18~8.26 解锁好物 宠粉时刻, enabled=true
 
 */
 
