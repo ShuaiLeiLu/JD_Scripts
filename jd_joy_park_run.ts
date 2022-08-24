@@ -1,19 +1,16 @@
 /**
-汪汪乐园-跑步+组队
-默认翻倍到0.01红包结束,修改请设置变量
-export JD_JOY_PARK_RUN_ASSETS="0.04"
-cron:30 0 * * * *
-30 0 * * * * jd_joy_park_run.ts
-new Env('极速版汪汪赛跑');
+ 汪汪乐园-跑步+组队
+ 默认翻倍到0.01红包结束,修改请设置变量
+ export JD_JOY_PARK_RUN_ASSETS="0.04"
+ cron:30 0 * * * *
+ 30 0 * * * * jd_joy_park_run.ts
+ new Env('极速版汪汪赛跑');jd_joy_park_run
 
-**/
+ **/
 
-
-import {get, post, o2s, requireConfig, wait} from './function/TS_USER_AGENTS'
+import {get, o2s, post, requireConfig, wait} from './function/TS_USER_AGENTS'
 import {H5ST} from "./function/h5st"
-import {existsSync, readFileSync} from "fs";
 import {getDate} from "date-fns";
-
 
 let cookie: string = '', res: any = '', UserName: string = '', fp_448de: string = '' || process.env.FP_448DE, fp_b6ac3: string = '' || process.env.FP_B6AC3
 let assets: number = 0, captainId: string = '', h5stTool: H5ST = null
@@ -89,23 +86,23 @@ let assets: number = 0, captainId: string = '', h5stTool: H5ST = null
       await h5stTool.__genAlgo()
       res = await runningPageHome()
       console.log('🧧总金额', res.data.runningHomeInfo.prizeValue, '元')
-      
+
       let energy: number = res.data.runningHomeInfo.energy
-      console.log('💊 X', res.data.runningHomeInfo.energy, '个能量棒') 
+      console.log('💊 X', res.data.runningHomeInfo.energy, '个能量棒')
       await wait(2000)
       if (res.data.runningHomeInfo.nextRunningTime){
-      console.log('⏳体力恢复中，还有', secondsToMinutes(res.data.runningHomeInfo.nextRunningTime / 1000))
+        console.log('⏳体力恢复中，还有', secondsToMinutes(res.data.runningHomeInfo.nextRunningTime / 1000))
         if (res.data.runningHomeInfo.nextRunningTime / 1000 < 300) {
           await wait(res.data.runningHomeInfo.nextRunningTime)
           res = await runningPageHome()
           console.log('体力恢复完成，开始跑步....')
           await wait(1000)
         } else {
-            console.log('⏳等体力恢复在跑吧！');
-            continue;
-               }
+          console.log('⏳等体力恢复在跑吧！');
+          continue;
+        }
       } else {
-          console.log('体力已恢复，开始跑步....')
+        console.log('体力已恢复，开始跑步....')
       }
 
       await startRunning(res, assets)
