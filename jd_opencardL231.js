@@ -5,11 +5,11 @@
 第一个账号助力作者 其他依次助力CK1
 注意：第一个CK黑号会全部助力所填写的助力码
 
-cron:31 14 26-31,1-10 8,9
+cron:31 14 26-31,1-10 8,9 *
 ============Quantumultx===============
 [task_local]
 #8.26-9.10 中秋赏月 天涯共此食
-31 14 26-31,1-10 8,9 jd_opencardL231.js, tag=8.26-9.10 中秋赏月 天涯共此食, enabled=true
+31 14 26-31,1-10 8,9 * jd_opencardL231.js, tag=8.26-9.10 中秋赏月 天涯共此食, enabled=true
 */
 let opencard_toShop = "false"
 const $ = new Env("8.26-9.10 中秋赏月 天涯共此食");
