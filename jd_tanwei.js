@@ -5,7 +5,7 @@
 活动时间：8月20之前
 宝箱陆续开放
 来自：6dylan6/jdpro
-31 0,13 13-20 8 * jd_tanwei.js
+31 0,13 * * * jd_tanwei.js
  */
 
 const $ = new Env('探味奇遇记');
