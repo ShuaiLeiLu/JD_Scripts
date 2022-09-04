@@ -5,6 +5,10 @@ CJ知识超人通用活动
 
 请求太频繁会被黑ip
 
+需要安装依赖  ds
+支持缓存token   需要在容器安装依赖：
+npm install -g ds  （或者直接在青龙面板-依赖管理-添加依赖-类型 nodejs -名称：ds  安装即可使用）
+
 变量：
 //export jd_cjwxKnowledgeActivity_activityId="活动ID"
 //export jd_cjwxKnowledgeActivity_num //运行账号数量，默认运行前7
