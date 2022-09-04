@@ -218,6 +218,7 @@ async function turntableFarm() {
         continue
       }
       await lotteryMasterHelp(code);
+		if ($.lotteryMasterHelpRes.helpResult) {
       if ($.lotteryMasterHelpRes.helpResult.code === '0') {
         console.log(`天天抽奖-助力${$.lotteryMasterHelpRes.helpResult.masterUserInfo.nickName}成功\n`)
       } else if ($.lotteryMasterHelpRes.helpResult.code === '11') {
@@ -227,6 +228,7 @@ async function turntableFarm() {
         break;
       }
     }
+		}
     console.log(`天天抽奖次数共-${remainLotteryTimes}次`)
     //抽奖
     if (remainLotteryTimes > 0) {
