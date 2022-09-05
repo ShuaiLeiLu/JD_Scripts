@@ -5,11 +5,11 @@
 第一个账号助力作者 其他依次助力CK1
 注意：第一个CK黑号会全部助力所填写的助力码
 
-cron:1 1 1 1 *
+cron:29 23 5-30 9 *
 ============Quantumultx===============
 [task_local]
 #9.1-9.30 京东健康一键开卡
-1 1 1 1 * jd_opencardL239.js, tag=9.1-9.30 京东健康一键开卡, enabled=true
+29 23 5-30 9 * jd_opencardL239_1.js, tag=9.1-9.30 京东健康一键开卡, enabled=true
 */
 let opencard_toShop = "false"
 const $ = new Env("9.1-9.30 京东健康一键开卡");
