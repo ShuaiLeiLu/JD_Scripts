@@ -4,7 +4,7 @@
  export JD_JOY_PARK_RUN_ASSETS="0.04"
  cron:30 0 * * * *
  30 0 * * * * jd_joy_park_run.ts
- new Env('极速版汪汪赛跑');jd_joy_park_run
+ new Env('极速版汪汪赛跑');
 
  **/
 
