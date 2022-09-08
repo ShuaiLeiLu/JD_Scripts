@@ -24,7 +24,7 @@ cron "15 6-18/6 * * *" script-path=jd_pet.js,tag=东东萌宠
 东东萌宠 = type=cron,script-path=jd_pet.js, cronexpr="15 6-18/6 * * *", timeout=3600, enable=true
 
  */
-const $ = new Env('东东萌宠');
+const $ = new Env('东东萌宠一对一推送');
 let cookiesArr = [], cookie = '', jdPetShareArr = [], isBox = false, allMessage = '';
 let message = '', subTitle = '', option = {};
 let jdNotify = false; //是否关闭通知，false打开通知推送，true关闭通知推送
@@ -47,6 +47,17 @@ if ($.isNode()) {
 } else {
     cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
 }
+
+let WP_APP_TOKEN_ONE = "";
+if ($.isNode()) {
+    if (process.env.WP_APP_TOKEN_ONE) {
+        WP_APP_TOKEN_ONE = process.env.WP_APP_TOKEN_ONE;
+    }
+}
+if (WP_APP_TOKEN_ONE)
+    console.log(`检测到已配置Wxpusher的Token，启用一对一推送...`);
+else
+    console.log(`检测到未配置Wxpusher的Token，禁用一对一推送...`);
 
 console.log(`共${cookiesArr.length}个京东账号\n`);
 
@@ -74,6 +85,10 @@ console.log(`共${cookiesArr.length}个京东账号\n`);
                 if ($.isNode()) {
                     await notify.sendNotify(`${$.name}cookie已失效 - ${$.UserName}`, `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`);
                 }
+
+                if ($.isNode() && WP_APP_TOKEN_ONE) {
+                    await notify.sendNotifybyWxPucher($.name, `【提醒⏰】${$.petInfo.goodsInfo.goodsName}cookie已失效`, `${$.UserName}`);
+                }
                 continue;
             }
             message = '';
@@ -100,6 +115,7 @@ console.log(`共${cookiesArr.length}个京东账号\n`);
     .finally(() => {
         $.done();
     })
+
 async function jdPet() {
     try {
         //查询jd宠物信息
@@ -117,6 +133,12 @@ async function jdPet() {
                 });
                 if ($.isNode())
                     await notify.sendNotify(`${$.name} - ${$.index} - ${$.nickName || $.UserName}`, `【提示】京东账号${$.index}${$.nickName || $.UserName}\n暂未选购新的商品`);
+
+
+                if ($.isNode() && WP_APP_TOKEN_ONE) {
+                    await notify.sendNotifybyWxPucher($.name, `【提醒⏰】${$.petInfo.goodsInfo.goodsName}暂未选购新的商品.`, `${$.UserName}`);
+                }
+
                 return
             }
             goodsUrl = $.petInfo.goodsInfo && $.petInfo.goodsInfo.goodsUrl;
@@ -134,6 +156,9 @@ async function jdPet() {
                 $.msg($.name, ``, `【京东账号${$.index}】${$.nickName || $.UserName}\n【提醒⏰】已领取红包,但未继续领养新的物品\n请去京东APP或微信小程序查看\n点击弹窗即达`, option);
                 if ($.isNode()) {
                     await notify.sendNotify(`${$.name} - 账号${$.index} - ${$.nickName || $.UserName}奖品已可领取`, `京东账号${$.index} ${$.nickName || $.UserName}\n已领取红包,但未继续领养新的物品`);
+                }
+                if ($.isNode() && WP_APP_TOKEN_ONE) {
+                    await notify.sendNotifybyWxPucher($.name, `【提醒⏰】${$.petInfo.goodsInfo.goodsName}已可领取\n【领取步骤】京东->我的->东东萌宠兑换京东红包,可以用于京东app的任意商品.`, `${$.UserName}`);
                 }
                 return
             }
@@ -406,6 +431,7 @@ async function browseShopsInitFun() {
     } while (resultCode == 0 && code == 0 && times < 5)
     console.log('浏览店铺任务结束');
 }
+
 // 首次投食 任务
 function firstFeedInitFun() {
     console.log('首次投食任务合并到10次喂食任务中\n');
@@ -448,6 +474,7 @@ async function feedReachInitFun() {
     } while (needFeedTimes > 0 && tryTimes > 0)
     console.log('投食任务结束...\n');
 }
+
 async function showMsg() {
     if ($.isNode() && process.env.PET_NOTIFY_CONTROL) {
         $.ctrTemp = `${process.env.PET_NOTIFY_CONTROL}` === 'false';
@@ -467,6 +494,7 @@ async function showMsg() {
         $.log(`\n${message}\n`);
     }
 }
+
 function TotalBean() {
     return new Promise(async resolve => {
         const options = {
@@ -503,13 +531,13 @@ function TotalBean() {
                 }
             } catch (e) {
                 $.logErr(e)
-            }
-            finally {
+            } finally {
                 resolve();
             }
         })
     })
 }
+
 // 请求
 async function request(function_id, body = {}) {
     await $.wait(5 * 1000); //歇口气儿, 不然会报操作频繁
@@ -525,13 +553,13 @@ async function request(function_id, body = {}) {
                 }
             } catch (e) {
                 $.logErr(e, resp);
-            }
-            finally {
+            } finally {
                 resolve(data)
             }
         })
     })
 }
+
 // function taskUrl(function_id, body = {}) {
 //   return {
 //     url: `${JD_API_HOST}?functionId=${function_id}&appid=wh5&loginWQBiz=pet-town&body=${escape(JSON.stringify(body))}`,
@@ -555,6 +583,7 @@ function taskUrl(function_id, body = {}) {
         }
     };
 }
+
 function jsonParse(str) {
     if (typeof str == "string") {
         try {
@@ -566,13 +595,16 @@ function jsonParse(str) {
         }
     }
 }
+
 // prettier-ignore
 function Env(t, e) {
     "undefined" != typeof process && JSON.stringify(process.env).indexOf("GITHUB") > -1 && process.exit(0);
+
     class s {
         constructor(t) {
             this.env = t
         }
+
         send(t, e = "GET") {
             t = "string" == typeof t ? {
                     url: t
@@ -586,13 +618,16 @@ function Env(t, e) {
                     })
                 })
         }
+
         get(t) {
             return this.send.call(this.env, t)
         }
+
         post(t) {
             return this.send.call(this.env, t, "POST")
         }
     }
+
     return new class {
         constructor(t, e) {
             this.name = t,
@@ -607,18 +642,23 @@ function Env(t, e) {
                 Object.assign(this, e),
                 this.log("", `🔔${this.name}, 开始!`)
         }
+
         isNode() {
             return "undefined" != typeof module && !!module.exports
         }
+
         isQuanX() {
             return "undefined" != typeof $task
         }
+
         isSurge() {
             return "undefined" != typeof $httpClient && "undefined" == typeof $loon
         }
+
         isLoon() {
             return "undefined" != typeof $loon
         }
+
         toObj(t, e = null) {
             try {
                 return JSON.parse(t)
@@ -626,6 +666,7 @@ function Env(t, e) {
                 return e
             }
         }
+
         toStr(t, e = null) {
             try {
                 return JSON.stringify(t)
@@ -633,6 +674,7 @@ function Env(t, e) {
                 return e
             }
         }
+
         getjson(t, e) {
             let s = e;
             const i = this.getdata(t);
@@ -643,6 +685,7 @@ function Env(t, e) {
                 }
             return s
         }
+
         setjson(t, e) {
             try {
                 return this.setdata(JSON.stringify(t), e)
@@ -650,6 +693,7 @@ function Env(t, e) {
                 return !1
             }
         }
+
         getScript(t) {
             return new Promise(e => {
                 this.get({
@@ -657,6 +701,7 @@ function Env(t, e) {
                 }, (t, s, i) => e(i))
             })
         }
+
         runScript(t, e) {
             return new Promise(s => {
                 let i = this.getdata("@chavy_boxjs_userCfgs.httpapi");
@@ -680,6 +725,7 @@ function Env(t, e) {
                 this.post(n, (t, e, i) => s(i))
             }).catch(t => this.logErr(t))
         }
+
         loaddata() {
             if (!this.isNode())
                 return {};
@@ -702,6 +748,7 @@ function Env(t, e) {
                 }
             }
         }
+
         writedata() {
             if (this.isNode()) {
                 this.fs = this.fs ? this.fs : require("fs"),
@@ -714,6 +761,7 @@ function Env(t, e) {
                 s ? this.fs.writeFileSync(t, r) : i ? this.fs.writeFileSync(e, r) : this.fs.writeFileSync(t, r)
             }
         }
+
         lodash_get(t, e, s) {
             const i = e.replace(/\[(\d+)\]/g, ".$1").split(".");
             let r = t;
@@ -722,9 +770,11 @@ function Env(t, e) {
                     return s;
             return r
         }
+
         lodash_set(t, e, s) {
             return Object(t) !== t ? t : (Array.isArray(e) || (e = e.toString().match(/[^.[\]]+/g) || []), e.slice(0, -1).reduce((t, s, i) => Object(t[s]) === t[s] ? t[s] : t[s] = Math.abs(e[i + 1]) >> 0 == +e[i + 1] ? [] : {}, t)[e[e.length - 1]] = s, t)
         }
+
         getdata(t) {
             let e = this.getval(t);
             if (/^@/.test(t)) {
@@ -740,6 +790,7 @@ function Env(t, e) {
             }
             return e
         }
+
         setdata(t, e) {
             let s = !1;
             if (/^@/.test(e)) {
@@ -759,6 +810,7 @@ function Env(t, e) {
                 s = this.setval(t, e);
             return s
         }
+
         getval(t) {
             return this.isSurge() || this.isLoon() ? $persistentStore.read(t) : this.isQuanX() ? $prefs.valueForKey(t) : this.isNode() ? (this.data = this.loaddata(), this.data[t]) : this.data && this.data[t] || null
         }
@@ -883,6 +935,7 @@ function Env(t, e) {
                 })
             }
         }
+
         time(t, e = null) {
             const s = e ? new Date(e) : new Date;
             let i = {
@@ -899,6 +952,7 @@ function Env(t, e) {
                 new RegExp("(" + e + ")").test(t) && (t = t.replace(RegExp.$1, 1 == RegExp.$1.length ? i[e] : ("00" + i[e]).substr(("" + i[e]).length)));
             return t
         }
+
         msg(e = t, s = "", i = "", r) {
             const o = t => {
                 if (!t)
@@ -945,10 +999,12 @@ function Env(t, e) {
                     this.logs = this.logs.concat(t)
             }
         }
+
         log(...t) {
             t.length > 0 && (this.logs = [...this.logs, ...t]),
                 console.log(t.join(this.logSeparator))
         }
+
         logErr(t, e) {
             const s = !this.isSurge() && !this.isQuanX() && !this.isLoon();
             s ? this.log("", `❗️${this.name}, 错误!`, t.stack) : this.log("", `❗️${this.name}, 错误!`, t)
