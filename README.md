@@ -16,4 +16,6 @@ https://t.me/+hHXs_RBjJkYxOGNl
 
 <img src="./utils/QQ.png" width="100" alt="二维码">
 
+### 访问量
 
+![](http://profile-counter.glitch.me/passerby-b/count.svg)
