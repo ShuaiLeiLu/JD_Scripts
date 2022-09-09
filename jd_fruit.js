@@ -50,7 +50,7 @@ let randomCount = $.isNode() ? 20 : 5;
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
 const urlSchema = `openjd://virtual?params=%7B%20%22category%22:%20%22jump%22,%20%22des%22:%20%22m%22,%20%22url%22:%20%22https://h5.m.jd.com/babelDiy/Zeus/3KSjXqQabiTuD1cJ28QskrpWoBKT/index.html%22%20%7D`;
 let lnrun = 0;
-
+let NowHour = new Date().getHours();
 let WP_APP_TOKEN_ONE = "";
 if ($.isNode()) {
     if (process.env.WP_APP_TOKEN_ONE) {
