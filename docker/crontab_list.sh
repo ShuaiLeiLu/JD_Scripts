@@ -45,11 +45,13 @@
 ## 发财挖宝
 #40 6,17 * * * node /scripts/jd_fcwb.py >> /scripts/logs/jd_fcwb.log 2>&1
 # 发财挖宝Nark免费
-40 1,17 * * * node /scripts/jd_fcwb_mfhelp.js >> /scripts/logs/jd_fcwb_mfhelp.log 2>&1
+#40 1,17 * * * node /scripts/jd_fcwb_mfhelp.js >> /scripts/logs/jd_fcwb_mfhelp.log 2>&1
 # 东东农场日常任务
 5 6-18/6 * * * node /scripts/jd_fruit.js >> /scripts/logs/jd_fruit.log 2>&1
 # 东东农场好友删减奖励
 10 2 * * * node /scripts/jd_fruit_friend.js >> /scripts/logs/jd_fruit_friend.log 2>&1
+# 东东农场好友删减奖励
+10 2 * * * node /scripts/jd_fruit_help.js >> /scripts/logs/jd_fruit_help.log 2>&1
 # 通用游戏任务
 5 6-18/6 * * * node /scripts/jd_game.js >> /scripts/logs/jd_game.log 2>&1
 # 金榜创造营
