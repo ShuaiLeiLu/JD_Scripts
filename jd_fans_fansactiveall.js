@@ -4,7 +4,7 @@ cron:49 17,18 * * *
 ============Quantumultx===============
 [task_local]
 #粉丝福利红包一次性
-49 17,18 * * * jd_fanshb.js, tag=粉丝福利红包一次性, enabled=true
+19 15,18 * * * jd_fanshb.js, tag=粉丝福利红包一次性, enabled=true
  */
 
 const $ = new Env('粉丝福利红包一次性');
