@@ -154,5 +154,4 @@
 20 0 * * * node /scripts/jd_zjb.js >> /scripts/logs/jd_zjb.log 2>&1
 # 赚喜豆-TS版
 15,30,45 0 * * * node /scripts/jd_zjd.ts >> /scripts/logs/jd_zjb.log 2>&1
-# 平行时空
-10 6,20 * * * node /scripts/jd_pxsk.js >> /scripts/logs/jd_pxsk.log 2>&1
+
