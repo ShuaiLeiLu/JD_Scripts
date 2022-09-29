@@ -3,11 +3,7 @@
 活动结束时间未知
 活动入口：京东APP首页-京东直播
 
-cron:7 11 * * *
-============Quantumultx===============
-[task_local]
-#京东直播
-7 11 * * * jd_live.js, tag=京东直播, enabled=true
+定时随机，建议跑2次~黑号插肩
 
  */
 
@@ -54,7 +50,7 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
       }
       uuid = randomString(40)
       await jdHealth()
-      await $.wait(8000)
+      await $.wait(parseInt(Math.random() * 3000 + 3000, 10))
     }
   }
 })()
@@ -68,8 +64,8 @@ async function jdHealth() {
   $.bean = 0
   await getTaskList()
   await sign()
-  message += `领奖完成，共计获得 ${$.bean} 京豆\n`
-  await showMsg();
+  // message += `领奖完成，共计获得 ${$.bean} 京豆\n`
+  // await showMsg();
 }
 
 function getTs() {
