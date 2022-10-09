@@ -32,15 +32,9 @@ except ImportError:
 systype = "x86"
 sysver = platform.uname()
 if os.environ.get("Koi_Thread"):
-    if "aarch64" in sysver:
-        from Koi_threads_arm import main
-    else:
-        from Koi_threads_amd import main
+    from MR_util.Koi_threads import main
 else:
-    if "aarch64" in sysver:
-        from jinli_util_arm64 import main
-    else:
-        from jinli_util_amd64 import main
+    from MR_util.Koi_util import main
 
 if "LOG_DEBUG" in os.environ:  # 判断调试模式变量
     logging.basicConfig(level=logging.DEBUG, format='%(message)s')  # 设置日志为 Debug等级输出
