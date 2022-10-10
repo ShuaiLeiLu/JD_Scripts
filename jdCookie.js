@@ -98,5 +98,5 @@ let envName = process.env.ShareCodeEnvName
 if (nameChinese && nameConfig && envName) {
   SetShareCodesEnv(nameChinese, nameConfig, envName)
 } else {
-    console.debug(`KingRan 频道通知：https://t.me/KingRan521\n`)
+    console.debug(`有问题交流群讨论\n`)
 }
