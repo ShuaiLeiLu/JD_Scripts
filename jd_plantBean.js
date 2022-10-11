@@ -10,17 +10,17 @@
 
 =====================================Quantumult X=================================
 [task_local]
-1 7-21/2 * * * https://raw.githubusercontent.com/444444/JDJB/main/jd_plantBean.js, tag=种豆得豆, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jdzd.png, enabled=true
+1 7-21/2 * * * https://raw.githubusercontent.com/KingRan/JDJB/main/jd_plantBean.js, tag=种豆得豆, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jdzd.png, enabled=true
 
 =====================================Loon================================
 [Script]
-cron "1 7-21/2 * * *" script-path=https://raw.githubusercontent.com/444444/JDJB/main/jd_plantBean.js,tag=京东种豆得豆
+cron "1 7-21/2 * * *" script-path=https://raw.githubusercontent.com/KingRan/JDJB/main/jd_plantBean.js,tag=京东种豆得豆
 
 ======================================Surge==========================
-京东种豆得豆 = type=cron,cronexp="1 7-21/2 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/444444/JDJB/main/jd_plantBean.js
+京东种豆得豆 = type=cron,cronexp="1 7-21/2 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/KingRan/JDJB/main/jd_plantBean.js
 
 ====================================小火箭=============================
-京东种豆得豆 = type=cron,script-path=https://raw.githubusercontent.com/444444/JDJB/main/jd_plantBean.js, cronexpr="1 7-21/2 * * *", timeout=3600, enable=true
+京东种豆得豆 = type=cron,script-path=https://raw.githubusercontent.com/KingRan/JDJB/main/jd_plantBean.js, cronexpr="1 7-21/2 * * *", timeout=3600, enable=true
 
 */
 const $ = new Env('种豆得豆');
@@ -44,10 +44,10 @@ let num;
 $.newShareCode = [];
 let NowHour = new Date().getHours();
 let lnrun = 0;
-!(async () => {
+!(async () => {  
   await requireConfig();
   if (!cookiesArr[0]) {
-    $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
+    $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', { "open-url": "https://bean.m.jd.com/bean/signIndex.action" });
     return;
   }
   for (let i = 0; i < cookiesArr.length; i++) {
@@ -70,13 +70,13 @@ let lnrun = 0;
       message = '';
       subTitle = '';
       option = {};
-      lnrun++;
+	  lnrun++;	
       await jdPlantBean();
-      if (lnrun == 3) {
-        console.log(`\n【访问接口次数达到3次，休息一分钟.....】\n`);
-        await $.wait(60 * 1000);
-        lnrun = 0;
-      }
+	  if(lnrun == 3){
+		  console.log(`\n【访问接口次数达到3次，休息一分钟.....】\n`);
+		  await $.wait(60*1000);
+		  lnrun = 0;
+	  }
       //await showMsg();
     }
   }
@@ -98,13 +98,13 @@ async function jdPlantBean() {
       return
     }
     if ($.plantBeanIndexResult && $.plantBeanIndexResult.code === '0' && $.plantBeanIndexResult.data) {
-      for (let i = 0; i < $.plantBeanIndexResult.data.roundList.length; i++) {
-        if ($.plantBeanIndexResult.data.roundList[i].roundState === "2") {
-          num = i
-          break
-        }
+    for (let i = 0; i < $.plantBeanIndexResult.data.roundList.length; i++) {
+      if ($.plantBeanIndexResult.data.roundList[i].roundState === "2") {
+        num = i
+        break
       }
-      // console.log(plantBeanIndexResult.data.taskList);
+    }
+    // console.log(plantBeanIndexResult.data.taskList);
       const shareUrl = $.plantBeanIndexResult.data.jwordShareInfo.shareUrl
       $.myPlantUuid = getParam(shareUrl, 'plantUuid')
       console.log(`\n【京东账号${$.index}（${$.UserName}）的${$.name}好友互助码】${$.myPlantUuid}\n`);
@@ -118,21 +118,21 @@ async function jdPlantBean() {
       message += `【上期时间】${roundList[num - 1].dateDesc.replace('上期 ', '')}\n`;
       message += `【上期成长值】${roundList[num - 1].growth}\n`;
       await $.wait(1000);
-      await receiveNutrients();//定时领取营养液
-      await $.wait(2000);
+	  await receiveNutrients();//定时领取营养液
+	  await $.wait(2000);
       await doTask();//做日常任务
-      await $.wait(5000);
+	  await $.wait(5000);
       // await doEgg();
       await stealFriendWater();
-      await $.wait(2000);
+	  await $.wait(2000);
       await doCultureBean();
-      await $.wait(1000);
+	  await $.wait(1000);
       await doGetReward();
-      await $.wait(1000);
+	  await $.wait(1000);
       await showTaskProcess();
-      await $.wait(1000);
+	  await $.wait(1000);
       await plantShareSupportList();
-      await $.wait(1000);
+	  await $.wait(1000);
     } else {
       console.log(`种豆得豆-初始失败:  ${JSON.stringify($.plantBeanIndexResult)}`);
     }
@@ -221,7 +221,7 @@ async function stealFriendWater() {
             }
           }
         }
-        await $.wait(1000)
+				await $.wait(1000)
       }
     }
   } else {
@@ -253,170 +253,178 @@ async function doTask() {
         console.log(`${item.taskName} 任务已完成\n`);
         continue;
       } else {
-        switch (item.taskType) {
-          case 92:
-            await farmtask();
-            continue;
-          case 57:
-            await jxdoublesign1('https://m.jingxi.com/jxbfd/user/DoubleSignDeal?g_ty=h5&g_tk=&appCode=msd1188198&__t=1657108409440&dwEnv=7&strDeviceId=a3b4e844090b28d5c38e7529af8115172079be4d&strZone=jxbfd&bizCode=jxbfd&source=jxbfd&_cfd_t=1657108409190&_stk=__t%2C_cfd_t%2CbizCode%2CdwEnv%2Csource%2CstrDeviceId%2CstrZone&_ste=1&h5st=20220706195330228%3B1980457211661562%3B10032%3Btk02w78551ad830nuMcGB4Qsv9QxapLP7gZdOCYE5PVV%2Bna%2Bb4KU21drJq64oP82965Vdc1tGqVU%2Flp7ydcZ5XgH0Feh%3B241b6f1d21bf8e41f380a5dd29a7bac2a6f1f65a0c7ef1b1f751eaea4c40dd9c%3B3.0%3B1657108410228&sceneval=2');
-            await $.wait(2000);
-            await jxdoublesign1('https://wq.jd.com/jxjdsignin/SignedInfo?channel=jx_zdddsq&_t=1658021925021&h5st=20220717093845024%3B5548444396555217%3B0f6ed%3Btk02w9b851b9c18nin7CZjR7vNSlwRexAOGWbYAbl85d9DiQJ1SufW8ZQEQ%2FSygreq626CVRO2gT8DwUUTLBXGyK6wam%3B7eb86560860f8f60ad3b679c34f89aacf891b5a85580efd0a30c355537bfec54%3B3.0%3B1658021925024&_stk=_t%2Cchannel&_=1658021925027&sceneval=2&g_login_type=1&g_ty=ajax&appCode=msc588d6d5');
-            await $.wait(2000);
-            await jxdoublesign1('https://wq.jd.com/jxjdsignin/IssueReward?channel=jx_zdddsq&_t=1658021926276&h5st=20220717093846279%3B5548444396555217%3B0f6ed%3Btk02w9b851b9c18nin7CZjR7vNSlwRexAOGWbYAbl85d9DiQJ1SufW8ZQEQ%2FSygreq626CVRO2gT8DwUUTLBXGyK6wam%3Be2d7b6810b3bd1b9d9692d354ecbb582e69afc64df19bd8d6c14632b1a65660c%3B3.0%3B1658021926279&_stk=_t%2Cchannel&sceneval=2&g_login_type=1&g_ty=ajax&appCode=msc588d6d5');
-            await $.wait(2000);
-            continue;
-          case 3:
-            console.log(`开始做 ${item.taskName}任务`);
-            let unFinishedShopNum = item.totalNum - item.gainedNum;
-            if (unFinishedShopNum === 0) {
-              continue
-            }
-            await shopTaskList();
-            const {data} = $.shopTaskListRes;
-            let goodShopListARR = [], moreShopListARR = [], shopList = [];
-            const {goodShopList, moreShopList} = data;
-            if (goodShopList) {
-              for (let i of goodShopList) {
-                if (i.taskState === '2') {
-                  goodShopListARR.push(i);
-                }
+              switch(item.taskType){
+                case 92:
+                         await farmtask();
+                         continue;
+                case 57:
+                         await jxdoublesign1('https://m.jingxi.com/jxbfd/user/DoubleSignDeal?g_ty=h5&g_tk=&appCode=msd1188198&__t=1657108409440&dwEnv=7&strDeviceId=a3b4e844090b28d5c38e7529af8115172079be4d&strZone=jxbfd&bizCode=jxbfd&source=jxbfd&_cfd_t=1657108409190&_stk=__t%2C_cfd_t%2CbizCode%2CdwEnv%2Csource%2CstrDeviceId%2CstrZone&_ste=1&h5st=20220706195330228%3B1980457211661562%3B10032%3Btk02w78551ad830nuMcGB4Qsv9QxapLP7gZdOCYE5PVV%2Bna%2Bb4KU21drJq64oP82965Vdc1tGqVU%2Flp7ydcZ5XgH0Feh%3B241b6f1d21bf8e41f380a5dd29a7bac2a6f1f65a0c7ef1b1f751eaea4c40dd9c%3B3.0%3B1657108410228&sceneval=2');
+                         await $.wait(2000);
+                         await jxdoublesign1('https://wq.jd.com/jxjdsignin/SignedInfo?channel=jx_zdddsq&_t=1658021925021&h5st=20220717093845024%3B5548444396555217%3B0f6ed%3Btk02w9b851b9c18nin7CZjR7vNSlwRexAOGWbYAbl85d9DiQJ1SufW8ZQEQ%2FSygreq626CVRO2gT8DwUUTLBXGyK6wam%3B7eb86560860f8f60ad3b679c34f89aacf891b5a85580efd0a30c355537bfec54%3B3.0%3B1658021925024&_stk=_t%2Cchannel&_=1658021925027&sceneval=2&g_login_type=1&g_ty=ajax&appCode=msc588d6d5');
+                         await $.wait(1000);
+                         await jxdoublesign1('https://wq.jd.com/jxjdsignin/IssueReward?channel=jx_zdddsq&_t=1658021926276&h5st=20220717093846279%3B5548444396555217%3B0f6ed%3Btk02w9b851b9c18nin7CZjR7vNSlwRexAOGWbYAbl85d9DiQJ1SufW8ZQEQ%2FSygreq626CVRO2gT8DwUUTLBXGyK6wam%3Be2d7b6810b3bd1b9d9692d354ecbb582e69afc64df19bd8d6c14632b1a65660c%3B3.0%3B1658021926279&_stk=_t%2Cchannel&sceneval=2&g_login_type=1&g_ty=ajax&appCode=msc588d6d5');
+                         await $.wait(1000);
+                         continue;
+                case 96:
+                         await tjdoublesign('https://wq.jd.com/tjjdsignin/SignedInfo?channel=jx_zdddsq&_t=1665408290789&h5st=20221010212450810%3B6918147264530298%3B0f6ed%3Btk02wc5421cb218nIrUUKibebHSO9xcuoGghWvuYMwC0SFXJaDjbIH5j0m1wTODJ7fc1RtfXsa5cpPVqYaFcfWpgnN63%3Badb2b487bdc5153c21cdb5904f6341286fda615ab4ebcf9a3e88e2d6b82ae05e%3B3.1%3B1665408290810%3B62f4d401ae05799f14989d31956d3c5f0a269d1342e4ecb6ab00268fc69555cdc3295f00e681fd72cd76a48b9fb3faf3579d80b37c85b023e9e8ba94d8d2b852b9cbef42726bbe41ffd8c74540f4a1ced584468ba9e46bfbef62144b678f5532e02456edc95e6131cb12c2dd5fa5c6c0496017f4d3b47ccd5533601d6637bade7c708817b3649de05cdc0f31e890c46e&_stk=_t%2Cchannel&_=1665408290814&sceneval=2&g_login_type=1&g_ty=ajax&appCode=msc588d6d5');
+                         await $.wait(2000);
+                         await tjdoublesign('https://wq.jd.com/tjjdsignin/IssueReward?channel=jx_zdddsq&_t=1665408290397&h5st=20221010212450410%3B6918147264530298%3B0f6ed%3Btk02wc5421cb218nIrUUKibebHSO9xcuoGghWvuYMwC0SFXJaDjbIH5j0m1wTODJ7fc1RtfXsa5cpPVqYaFcfWpgnN63%3Bbe06e2e3ebb5fde9e89c2126456346c7c8b75462d1d0e60c41f9e46c11838a6e%3B3.1%3B1665408290410%3B62f4d401ae05799f14989d31956d3c5f0a269d1342e4ecb6ab00268fc69555cdc3295f00e681fd72cd76a48b9fb3faf3579d80b37c85b023e9e8ba94d8d2b852b9cbef42726bbe41ffd8c74540f4a1ced584468ba9e46bfbef62144b678f5532e02456edc95e6131cb12c2dd5fa5c6c0496017f4d3b47ccd5533601d6637bade7c708817b3649de05cdc0f31e890c46e&_stk=_t%2Cchannel&sceneval=2&g_login_type=1&g_ty=ajax&appCode=msc588d6d5');
+                         await $.wait(1000);
+                         await tjdoublesign('https://wq.jd.com/tjjdsignin/SignedInfo?channel=jx_zdddsq&_t=1665408290789&h5st=20221010212450810%3B6918147264530298%3B0f6ed%3Btk02wc5421cb218nIrUUKibebHSO9xcuoGghWvuYMwC0SFXJaDjbIH5j0m1wTODJ7fc1RtfXsa5cpPVqYaFcfWpgnN63%3Badb2b487bdc5153c21cdb5904f6341286fda615ab4ebcf9a3e88e2d6b82ae05e%3B3.1%3B1665408290810%3B62f4d401ae05799f14989d31956d3c5f0a269d1342e4ecb6ab00268fc69555cdc3295f00e681fd72cd76a48b9fb3faf3579d80b37c85b023e9e8ba94d8d2b852b9cbef42726bbe41ffd8c74540f4a1ced584468ba9e46bfbef62144b678f5532e02456edc95e6131cb12c2dd5fa5c6c0496017f4d3b47ccd5533601d6637bade7c708817b3649de05cdc0f31e890c46e&_stk=_t%2Cchannel&_=1665408290814&sceneval=2&g_login_type=1&g_ty=ajax&appCode=msc588d6d5');
+                         await $.wait(1000);
+                         continue;    
+                case 3:
+                         console.log(`开始做 ${item.taskName}任务`);
+                         let unFinishedShopNum = item.totalNum - item.gainedNum;
+                         if (unFinishedShopNum === 0) {
+                           continue
+                         }
+                         await shopTaskList();
+                         const { data } = $.shopTaskListRes;
+                         let goodShopListARR = [],moreShopListARR = [], shopList = [];
+                         const { goodShopList, moreShopList } = data;
+                         if (goodShopList) {
+                             for (let i of goodShopList) {
+                                 if (i.taskState === '2') {
+                                     goodShopListARR.push(i);
+                                 }
+                             }
+                         }
+                          if (moreShopList) {
+                              for (let j of moreShopList) {
+                                  if (j.taskState === '2') {
+                                      moreShopListARR.push(j);
+                                  }
+                              }
+                          }
+                     
+                         shopList = goodShopListARR.concat(moreShopListARR);
+                         for (let shop of shopList) {
+                           const { shopId, shopTaskId } = shop;
+                           const body = {
+                             "monitor_refer": "plant_shopNutrientsTask",
+                             "shopId": shopId,
+                             "shopTaskId": shopTaskId
+                           }
+                           const shopRes = await requestGet('shopNutrientsTask', body);
+                           console.log(`shopRes结果:${JSON.stringify(shopRes)}`);
+                           if (shopRes && shopRes.code === '0') {
+                             if (shopRes.data && shopRes.data.nutrState && shopRes.data.nutrState === '1') {
+                               unFinishedShopNum --;
+                             }
+                           }
+                           if (unFinishedShopNum <= 0) {
+                             console.log(`${item.taskName}任务已做完\n`)
+                             break;
+                           }
+                         }
+                         continue;
+                case 5:
+                         //挑选商品
+                         console.log(`开始做 ${item.taskName}任务`);
+                         let unFinishedProductNum = item.totalNum - item.gainedNum;
+                         if (unFinishedProductNum === 0) {
+                           continue
+                         }
+                         await productTaskList();
+                         // console.log('productTaskList', $.productTaskList);
+                         //const { data1 } = $.productTaskList;
+                         let productListARR = [], productList = [];
+                         const { productInfoList } = $.productTaskList.data;
+                         for (let i = 0; i < productInfoList.length; i++) {
+                           for (let j = 0; j < productInfoList[i].length; j++){
+                             productListARR.push(productInfoList[i][j]);
+                           }
+                         }
+                         for (let i of productListARR) {
+                           if (i.taskState === '2') {
+                             productList.push(i);
+                           }
+                         }
+                         for (let product of productList) {
+                           const { skuId, productTaskId } = product;
+                           const body = {
+                             "monitor_refer": "plant_productNutrientsTask",
+                             "productTaskId": productTaskId,
+                             "skuId": skuId
+                           }
+                           const productRes = await requestGet('productNutrientsTask', body);
+                           if (productRes && productRes.code === '0') {
+                             // console.log('nutrState', productRes)
+                             //这里添加多重判断,有时候会出现活动太火爆的问题,导致nutrState没有
+                             if (productRes.data && productRes.data.nutrState && productRes.data.nutrState === '1') {
+                               unFinishedProductNum --;
+                             }
+                           }
+                           if (unFinishedProductNum <= 0) {
+                             console.log(`${item.taskName}任务已做完\n`)
+                             break;
+                           }
+                         }
+                         continue;
+                case 10:
+                         //关注频道
+                         console.log(`开始做 ${item.taskName}任务`);
+                         let unFinishedChannelNum = item.totalNum - item.gainedNum;
+                         if (unFinishedChannelNum === 0) {
+                           continue
+                         }
+                         await plantChannelTaskList();
+                         //const { data2 } = $.plantChannelTaskList;
+                         // console.log('goodShopList', data.goodShopList);
+                         // console.log('moreShopList', data.moreShopList);
+                         let goodChannelListARR = [], normalChannelListARR = [], channelList = [];
+                         const { goodChannelList, normalChannelList } = $.plantChannelTaskList.data;
+                         for (let i of goodChannelList) {
+                           if (i.taskState === '2') {
+                             goodChannelListARR.push(i);
+                           }
+                         }
+                         for (let j of normalChannelList) {
+                           if (j.taskState === '2') {
+                             normalChannelListARR.push(j);
+                           }
+                         }
+                         channelList = goodChannelListARR.concat(normalChannelListARR);
+                         for (let channelItem of channelList) {
+                           const { channelId, channelTaskId } = channelItem;
+                           const body = {
+                             "channelId": channelId,
+                             "channelTaskId": channelTaskId
+                           }
+                           const channelRes = await requestGet('plantChannelNutrientsTask', body);
+                           console.log(`channelRes结果:${JSON.stringify(channelRes)}`);
+                           if (channelRes && channelRes.code === '0') {
+                             if (channelRes.data && channelRes.data.nutrState && channelRes.data.nutrState === '1') {
+                               unFinishedChannelNum --;
+                             }
+                           }
+                           if (unFinishedChannelNum <= 0) {
+                             console.log(`${item.taskName}任务已做完\n`)
+                             break;
+                           }
+                         }
+                         continue;
+              default:
+                         console.log(`\n开始做 ${item.taskName}任务`);
+                         // $.receiveNutrientsTaskRes = await receiveNutrientsTask(item.taskType);
+                         await receiveNutrientsTask(item.taskType);
+                         console.log(`做 ${item.taskName}任务结果:${JSON.stringify($.receiveNutrientsTaskRes)}\n`);
+                 continue;
               }
-            }
-            if (moreShopList) {
-              for (let j of moreShopList) {
-                if (j.taskState === '2') {
-                  moreShopListARR.push(j);
-                }
-              }
-            }
-
-            shopList = goodShopListARR.concat(moreShopListARR);
-            for (let shop of shopList) {
-              const {shopId, shopTaskId} = shop;
-              const body = {
-                "monitor_refer": "plant_shopNutrientsTask",
-                "shopId": shopId,
-                "shopTaskId": shopTaskId
-              }
-              const shopRes = await requestGet('shopNutrientsTask', body);
-              console.log(`shopRes结果:${JSON.stringify(shopRes)}`);
-              if (shopRes && shopRes.code === '0') {
-                if (shopRes.data && shopRes.data.nutrState && shopRes.data.nutrState === '1') {
-                  unFinishedShopNum--;
-                }
-              }
-              if (unFinishedShopNum <= 0) {
-                console.log(`${item.taskName}任务已做完\n`)
-                break;
-              }
-            }
-            continue;
-          case 5:
-            //挑选商品
-            console.log(`开始做 ${item.taskName}任务`);
-            let unFinishedProductNum = item.totalNum - item.gainedNum;
-            if (unFinishedProductNum === 0) {
-              continue
-            }
-            await productTaskList();
-            // console.log('productTaskList', $.productTaskList);
-            //const { data1 } = $.productTaskList;
-            let productListARR = [], productList = [];
-            const {productInfoList} = $.productTaskList.data;
-            for (let i = 0; i < productInfoList.length; i++) {
-              for (let j = 0; j < productInfoList[i].length; j++) {
-                productListARR.push(productInfoList[i][j]);
-              }
-            }
-            for (let i of productListARR) {
-              if (i.taskState === '2') {
-                productList.push(i);
-              }
-            }
-            for (let product of productList) {
-              const {skuId, productTaskId} = product;
-              const body = {
-                "monitor_refer": "plant_productNutrientsTask",
-                "productTaskId": productTaskId,
-                "skuId": skuId
-              }
-              const productRes = await requestGet('productNutrientsTask', body);
-              if (productRes && productRes.code === '0') {
-                // console.log('nutrState', productRes)
-                //这里添加多重判断,有时候会出现活动太火爆的问题,导致nutrState没有
-                if (productRes.data && productRes.data.nutrState && productRes.data.nutrState === '1') {
-                  unFinishedProductNum--;
-                }
-              }
-              if (unFinishedProductNum <= 0) {
-                console.log(`${item.taskName}任务已做完\n`)
-                break;
-              }
-            }
-            continue;
-          case 10:
-            //关注频道
-            console.log(`开始做 ${item.taskName}任务`);
-            let unFinishedChannelNum = item.totalNum - item.gainedNum;
-            if (unFinishedChannelNum === 0) {
-              continue
-            }
-            await plantChannelTaskList();
-            //const { data2 } = $.plantChannelTaskList;
-            // console.log('goodShopList', data.goodShopList);
-            // console.log('moreShopList', data.moreShopList);
-            let goodChannelListARR = [], normalChannelListARR = [], channelList = [];
-            const {goodChannelList, normalChannelList} = $.plantChannelTaskList.data;
-            for (let i of goodChannelList) {
-              if (i.taskState === '2') {
-                goodChannelListARR.push(i);
-              }
-            }
-            for (let j of normalChannelList) {
-              if (j.taskState === '2') {
-                normalChannelListARR.push(j);
-              }
-            }
-            channelList = goodChannelListARR.concat(normalChannelListARR);
-            for (let channelItem of channelList) {
-              const {channelId, channelTaskId} = channelItem;
-              const body = {
-                "channelId": channelId,
-                "channelTaskId": channelTaskId
-              }
-              const channelRes = await requestGet('plantChannelNutrientsTask', body);
-              console.log(`channelRes结果:${JSON.stringify(channelRes)}`);
-              if (channelRes && channelRes.code === '0') {
-                if (channelRes.data && channelRes.data.nutrState && channelRes.data.nutrState === '1') {
-                  unFinishedChannelNum--;
-                }
-              }
-              if (unFinishedChannelNum <= 0) {
-                console.log(`${item.taskName}任务已做完\n`)
-                break;
-              }
-            }
-            continue;
-          default:
-            console.log(`\n开始做 ${item.taskName}任务`);
-            // $.receiveNutrientsTaskRes = await receiveNutrientsTask(item.taskType);
-            await receiveNutrientsTask(item.taskType);
-            console.log(`做 ${item.taskName}任务结果:${JSON.stringify($.receiveNutrientsTaskRes)}\n`);
-            continue;
-        }
-      }
+       }
     }
   }
 }
 function showTaskProcess() {
   return new Promise(async resolve => {
     await plantBeanIndex();
-    if ($.plantBeanIndexResult && $.plantBeanIndexResult.code === '0' && $.plantBeanIndexResult.data) {
-      $.taskList = $.plantBeanIndexResult.data.taskList;
-      if ($.taskList && $.taskList.length > 0) {
-        console.log("     任务   进度");
-        for (let item of $.taskList) {
-          console.log(`[${item["taskName"]}]  ${item["gainedNum"]}/${item["totalNum"]}   ${item["isFinished"]}`);
+	  if ($.plantBeanIndexResult && $.plantBeanIndexResult.code === '0' && $.plantBeanIndexResult.data) {
+    $.taskList = $.plantBeanIndexResult.data.taskList;
+    if ($.taskList && $.taskList.length > 0) {
+      console.log("     任务   进度");
+      for (let item of $.taskList) {
+        console.log(`[${item["taskName"]}]  ${item["gainedNum"]}/${item["totalNum"]}   ${item["isFinished"]}`);
         }
       }
     } else {
@@ -447,20 +455,18 @@ async function farmtask(){
   await $.wait(500);
   await dofarm('initForFarm');
   await $.wait(500);
-}
-
-async function receivefruit() {
+} 
+async function receivefruit(){
   const body = {
     "monitor_refer": "plant_receiveNutrientsTask",
     "monitor_source": "plant_app_plant_index",
     "awardType": "92",
     "version": "9.2.4.1"
-  }
-  await request('receiveNutrientsTask', body)
 }
-
-async function dofarm(function_id) {
-  let body = {
+await request('receiveNutrientsTask',body)
+}
+async function dofarm(function_id){
+  let body ={
     "version": 17,
     "channel": 1,
     "babelChannel": "45"
@@ -488,7 +494,7 @@ async function dofarm(function_id) {
         if (err) {
           console.log('\n API查询请求失败 ‼️‼️')
           $.logErr(err);
-        }
+        } 
       } catch (e) {
         $.logErr(e, resp);
       } finally {
@@ -532,6 +538,36 @@ function jxdoublesign1(url){
   })
 }
 //每轮种豆活动获取结束后,自动收取京豆
+function tjdoublesign(url){
+  let opt = {
+    url,
+    headers: {
+      'Accept':'application/json',
+      'Referer': 'https://wqs.jd.com/',
+      'User-Agent': 'jdapp;iPhone;9.4.4;14.3;network/4g;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1',
+      'Cookie': cookie
+    }
+  }
+  return new Promise(async resolve => {
+    $.get(opt, (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`tjdoublesign 请求失败，请检查网路重试`)
+        } else {
+          if (data) {
+            //data = JSON.parse(data);
+            //console.log(data)
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve(data);
+      }
+    })
+  })
+}
 async function getReward() {
   const body = {
     "roundId": lastRoundId
@@ -779,7 +815,7 @@ function taskUrl(function_id, body) {
   body["version"] = "9.2.4.1";
   body["monitor_source"] = "plant_app_plant_index";
   if (!body["monitor_refer"]){
-    body["monitor_refer"] = "";
+  body["monitor_refer"] = "";
   }
   return {
     url: JD_API_HOST,
