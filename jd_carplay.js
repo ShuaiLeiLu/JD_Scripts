@@ -1,23 +1,1056 @@
 /*
-头文字J
-
-任务，助力，游戏
-
+头文字J 每月限兑换一次
+活动快捷入口： 11:/参与头文字J，集能量兑换京豆，【Jιιngヵ栋】 ￥Z9yfjBqzLWt￥
+日常任务，助力，游戏
 第一个账号助力作者 其他依次助力CK1
-注意：第一个CK黑号会全部助力所填写的助力码
-
-变量：CAR_COOKIE_NUM 跑多少账号
-
-cron:30 4,16 * * *
-============Quantumultx===============
-[task_local]
-#头文字J
-30 4,16 * * * jd_carplay.js, tag=头文字J, enabled=true
+默认不做加购任务，如需要设置变量erport car_addsku='true'
+只跑前5个CK
+55 8,18 * * * jd_mpdz_car.js
 */
-const $ = new Env("头文字J");
 
-var __encode ='jsjiami.com',_a={}, _0xb483=["\x5F\x64\x65\x63\x6F\x64\x65","\x68\x74\x74\x70\x3A\x2F\x2F\x77\x77\x77\x2E\x73\x6F\x6A\x73\x6F\x6E\x2E\x63\x6F\x6D\x2F\x6A\x61\x76\x61\x73\x63\x72\x69\x70\x74\x6F\x62\x66\x75\x73\x63\x61\x74\x6F\x72\x2E\x68\x74\x6D\x6C"];(function(_0xd642x1){_0xd642x1[_0xb483[0]]= _0xb483[1]})(_a);var __Oxe833e=["\x69\x73\x4E\x6F\x64\x65","\x2E\x2F\x6A\x64\x43\x6F\x6F\x6B\x69\x65\x2E\x6A\x73","","\x2E\x2F\x73\x65\x6E\x64\x4E\x6F\x74\x69\x66\x79","\x63\x72\x79\x70\x74\x6F\x2D\x6A\x73","\x70\x75\x73\x68","\x66\x6F\x72\x45\x61\x63\x68","\x6B\x65\x79\x73","\x4A\x44\x5F\x44\x45\x42\x55\x47","\x65\x6E\x76","\x66\x61\x6C\x73\x65","\x6C\x6F\x67","\x66\x69\x6C\x74\x65\x72","\x43\x6F\x6F\x6B\x69\x65\x4A\x44","\x67\x65\x74\x64\x61\x74\x61","\x43\x6F\x6F\x6B\x69\x65\x4A\x44\x32","\x63\x6F\x6F\x6B\x69\x65","\x6D\x61\x70","\x43\x6F\x6F\x6B\x69\x65\x73\x4A\x44","\x5B\x5D","\x68\x6F\x74\x46\x6C\x61\x67","\x6F\x75\x74\x46\x6C\x61\x67","\x61\x63\x74\x69\x76\x69\x74\x79\x45\x6E\x64","\x43\x41\x52\x5F\x43\x4F\x4F\x4B\x49\x45\x5F\x4E\x55\x4D","\x76\x54\x68\x6B\x66\x51\x6B\x32\x43\x78\x46\x70\x73\x30\x52\x64\x54\x30\x72\x37\x74\x6C\x34\x74\x4C\x4E\x59\x41\x34\x73\x65\x75\x41\x36\x37\x4D\x4F\x49\x59\x51\x78\x45\x6B\x33\x56\x6C\x39\x2B\x41\x56\x6F\x34\x4E\x46\x2B\x74\x67\x79\x65\x49\x63\x36\x41\x36\x6B\x64\x4B\x33\x72\x4C\x42\x51\x70\x45\x51\x48\x39\x56\x34\x74\x64\x72\x72\x68\x30\x77\x3D\x3D","\x6B\x31\x4E\x6F\x62\x62\x2B\x50\x30\x65\x72\x2B\x43\x32\x73\x79\x73\x78\x6E\x78\x2F\x50\x32\x4B\x45\x4C\x4F\x39\x69\x7A\x52\x56\x70\x77\x43\x79\x71\x75\x30\x65\x71\x56\x5A\x35\x61\x57\x37\x52\x48\x7A\x6C\x4D\x6F\x62\x72\x7A\x4A\x2F\x65\x39\x72\x2F\x75\x66","\x46\x34\x65\x56\x2B\x46\x74\x63\x45\x64\x54\x4E\x4F\x43\x4C\x77\x6D\x52\x67\x4F\x45\x6C\x34\x74\x4C\x4E\x59\x41\x34\x73\x65\x75\x41\x36\x37\x4D\x4F\x49\x59\x51\x78\x45\x6B\x33\x56\x6C\x39\x2B\x41\x56\x6F\x34\x4E\x46\x2B\x74\x67\x79\x65\x49\x63\x36\x41\x36\x6B\x64\x4B\x33\x72\x4C\x42\x51\x70\x45\x51\x48\x39\x56\x34\x74\x64\x72\x72\x68\x30\x77\x3D\x3D","\x69\x6C\x36\x34\x70\x45\x37\x76\x31\x7A\x64\x67\x75\x6F\x4F\x77\x44\x35\x6F\x74\x48\x56\x34\x74\x4C\x4E\x59\x41\x34\x73\x65\x75\x41\x36\x37\x4D\x4F\x49\x59\x51\x78\x45\x6B\x33\x56\x6C\x39\x2B\x41\x56\x6F\x34\x4E\x46\x2B\x74\x67\x79\x65\x49\x63\x36\x41\x36\x6B\x64\x4B\x33\x72\x4C\x42\x51\x70\x45\x51\x48\x39\x56\x34\x74\x64\x72\x72\x68\x30\x77\x3D\x3D","\x4B\x52\x6B\x73\x6D\x73\x66\x6F\x46\x6C\x72\x67\x79\x77\x2F\x6F\x47\x4F\x55\x6E\x64\x31\x34\x74\x4C\x4E\x59\x41\x34\x73\x65\x75\x41\x36\x37\x4D\x4F\x49\x59\x51\x78\x45\x6B\x33\x56\x6C\x39\x2B\x41\x56\x6F\x34\x4E\x46\x2B\x74\x67\x79\x65\x49\x63\x36\x41\x36\x6B\x64\x4B\x33\x72\x4C\x42\x51\x70\x45\x51\x48\x39\x56\x34\x74\x64\x72\x72\x68\x30\x77\x3D\x3D","\x6A\x76\x4A\x68\x37\x47\x70\x6F\x47\x68\x6D\x37\x66\x53\x6C\x70\x57\x68\x53\x79\x33\x4D\x6A\x4E\x68\x4E\x61\x59\x46\x79\x32\x48\x74\x65\x45\x72\x45\x36\x69\x7A\x6C\x68\x54\x66\x39\x6E\x72\x47\x59\x37\x67\x42\x6B\x43\x64\x47\x55\x34\x43\x36\x7A\x2F\x78\x44","\x4A\x2F\x4F\x45\x4C\x38\x2F\x5A\x4D\x54\x62\x50\x63\x7A\x45\x53\x39\x4A\x5A\x70\x6A\x73\x6A\x4E\x68\x4E\x61\x59\x46\x79\x32\x48\x74\x65\x45\x72\x45\x36\x69\x7A\x6C\x68\x54\x66\x39\x6E\x72\x47\x59\x37\x67\x42\x6B\x43\x64\x47\x55\x34\x43\x36\x7A\x2F\x78\x44","\x72\x61\x6E\x64\x6F\x6D","\x66\x6C\x6F\x6F\x72","\x6C\x65\x6E\x67\x74\x68","\x73\x68\x61\x72\x65\x55\x75\x69\x64","\x64\x6F\x6E\x65","\x66\x69\x6E\x61\x6C\x6C\x79","\x6C\x6F\x67\x45\x72\x72","\x63\x61\x74\x63\x68","\x0A\u8BF7\u81EA\u884C\u786E\u8BA4\u8D26\u53F7\u4E00\u662F\u5426\u9ED1\u53F7\uFF0C\u9ED1\u53F7\u4F1A\u5168\u90E8\u52A9\u529B\u5F53\u524D\u52A9\u529B","\x0A\u5F53\u524D\u52A9\u529B\uFF1A","\x0A\u5F53\u524D\u6D3B\u52A8\u53E3\u4EE4\uFF1A\x20\x31\x36\x3A\x2F\x28\x42\x33\x74\x55\x33\x33\x4F\x44\x35\x54\x69\x29\x20\uFF0C\u3010\u9BE8\u3024\x44\u03C3\u03B4\u03B4\x6E\x67\u3011\u53C2\u4E0E\u5934\u6587\u5B57\x4A\uFF0C\u96C6\u80FD\u91CF\u5151\u6362\u4EAC\u8C46","\x6E\x61\x6D\x65","\u3010\u63D0\u793A\u3011\u8BF7\u5148\u83B7\u53D6\x63\x6F\x6F\x6B\x69\x65\x0A\u76F4\u63A5\u4F7F\u7528\x4E\x6F\x62\x79\x44\x61\u7684\u4EAC\u4E1C\u7B7E\u5230\u83B7\u53D6","\x68\x74\x74\x70\x73\x3A\x2F\x2F\x62\x65\x61\x6E\x2E\x6D\x2E\x6A\x64\x2E\x63\x6F\x6D\x2F","\x6D\x73\x67","\x61\x70\x70\x6B\x65\x79","\x32\x31\x36\x39\x39\x30\x34\x35","\x75\x73\x65\x72\x49\x64","\x31\x30\x32\x39\x39\x31\x37\x31","\x61\x63\x74\x49\x64","\x31\x37\x36\x30\x30\x30\x37","\x4D\x69\x78\x4E\x69\x63\x6B\x73","\x69\x6E\x76\x69\x74\x65\x4E\x69\x63\x6B","\x55\x73\x65\x72\x4E\x61\x6D\x65","\x6D\x61\x74\x63\x68","\x69\x6E\x64\x65\x78","\x62\x65\x61\x6E","\x6E\x69\x63\x6B\x4E\x61\x6D\x65","\x0A\x2A\x2A\x2A\x2A\x2A\x2A\u5F00\u59CB\u3010\u4EAC\u4E1C\u8D26\u53F7","\u3011","\x2A\x2A\x2A\x2A\x2A\x2A\x2A\x2A\x2A\x0A","\x55\x41","\u6B64\x69\x70\u5DF2\u88AB\u9650\u5236\uFF0C\u8BF7\u8FC7\x31\x30\u5206\u949F\u540E\u518D\u6267\u884C\u811A\u672C","\x73\x65\x6E\x64\x4E\x6F\x74\x69\x66\x79","\x68\x61\x73\x45\x6E\x64","\x65\x6E\x64\x54\x69\x6D\x65","\x54\x6F\x6B\x65\x6E","\x50\x69\x6E","\x4D\x69\x78\x4E\x69\x63\x6B","\u6B64\x69\x70\u5DF2\u88AB\u9650\u5236\uFF0C\u8BF7\u8FC7\x31\x30\u5206\u949F\u540E\u518D\u6267\u884C\u811A\u672C\x0A","\u83B7\u53D6\x5B\x74\x6F\x6B\x65\x6E\x5D\u5931\u8D25\uFF01","\x61\x63\x74\x69\x76\x69\x74\x79\x5F\x6C\x6F\x61\x64","\u83B7\u53D6\x63\x6F\x6F\x6B\x69\x65\u5931\u8D25","\x74\x6F\x42\x69\x6E\x64","\u7ED1\u5B9A","\x77\x61\x69\x74","\x73\x68\x6F\x70\x4C\x69\x73\x74","\x0A\u3010\u8870\u4ED4\uFF0C\u5F00\u59CB\u5237\u4EFB\u52A1\u4E2D\x2E\x2E\x2E\x2E\x2E\u3011\x0A","\x6D\x69\x73\x73\x69\x6F\x6E\x54\x79\x70\x65","\x74\x79\x70\x65","\x69\x73\x43\x6F\x6D\x70\x6C\x65\x74\x65","\x62\x69\x6E\x67\x43\x61\x72","\x6F\x70\x65\x6E\x43\x61\x72\x64","\x73\x68\x61\x72\x65\x41\x63\x74","\x76\x69\x65\x77\x43\x6F\x6D\x6D\x6F\x64\x69\x74\x79","\x72\x65\x6E\x77\x75\x6C\x69\x73\x74","\x67\x65\x74\x43\x75\x73\x53\x68\x6F\x70","\x63\x6F\x6C\x6C\x65\x63\x74\x53\x68\x6F\x70","\u5173\u6CE8","\x63\x61\x72\x70\x6C\x61\x79\x5F\x61\x64\x64\x73\x6B\x75","\x74\x72\x75\x65","\x67\x65\x74\x43\x75\x73\x53\x68\x6F\x70\x50\x72\x6F\x64\x75\x63\x74","\x61\x64\x64\x43\x61\x72\x74","\u52A0\u8D2D","\u9ED8\u8BA4\u4E0D\u52A0\u8D2D\x2C\u8BF7\u8BBE\u7F6E\u53D8\u91CF\x65\x78\x70\x6F\x72\x74\x20\x63\x61\x72\x70\x6C\x61\x79\x5F\x61\x64\x64\x73\x6B\x75\x3D\x27\x74\x72\x75\x65\x27\u505A\u52A0\u8D2D\u4EFB\u52A1","\x0A\u3010\u8870\u4ED4\uFF0C\u5F00\u59CB\u9009\u62E9\u5408\u9002\u8F66\u8F86\u4E2D\x2E\x2E\x2E\x2E\x2E\u3011\x0A","\x67\x65\x74\x43\x61\x72\x49\x6E\x66\x6F","\x69\x73\x55\x6E\x6C\x6F\x63\x6B","\x63\x61\x72\x4E\x61\x6D\x65","\x63\x61\x72\x69\x64","\x69\x64","\u5F53\u524D\u9009\u62E9\u8F66\u8F86\uFF1A","\x0A\u3010\u8870\u4ED4\uFF0C\u5F00\u59CB\u5237\u6E38\u620F\u4E2D\x2E\x2E\x2E\x2E\x2E\u3011\x0A","\x72\x65\x6D\x61\x69\x6E\x43\x68\x61\x6E\x63\x65","\x70\x6C\x61\x79\x47\x61\x6D\x65","\x73\x65\x6E\x64\x47\x61\x6D\x65\x41\x77\x61\x72\x64","\u52A9\u529B","\u76EE\u524D\u5206\u503C\uFF1A","\x74\x6F\x74\x61\x6C\x50\x6F\x69\x6E\x74","\x6D\x69\x73\x73\x69\x6F\x6E\x49\x6E\x76\x69\x74\x65\x4C\x69\x73\x74","\u5F53\u524D\u52A9\u529B\x3A","\u540E\u9762\u7684\u53F7\u90FD\u4F1A\u52A9\u529B\x3A","\x68\x74\x74\x70\x73\x3A\x2F\x2F\x6D\x70\x64\x7A\x2D\x63\x61\x72\x2D\x64\x7A\x2E\x69\x73\x76\x6A\x63\x6C\x6F\x75\x64\x2E\x63\x6F\x6D","\x50\x4F\x53\x54","\x68\x74\x74\x70\x73\x3A\x2F\x2F\x61\x70\x69\x2E\x6D\x2E\x6A\x64\x2E\x63\x6F\x6D\x2F\x63\x6C\x69\x65\x6E\x74\x2E\x61\x63\x74\x69\x6F\x6E\x3F\x66\x75\x6E\x63\x74\x69\x6F\x6E\x49\x64\x3D\x69\x73\x76\x4F\x62\x66\x75\x73\x63\x61\x74\x6F\x72","\x62\x6F\x64\x79\x3D\x25\x37\x42\x25\x32\x32\x75\x72\x6C\x25\x32\x32\x25\x33\x41\x25\x32\x32\x68\x74\x74\x70\x73\x25\x33\x41\x25\x35\x43\x2F\x25\x35\x43\x2F\x6D\x70\x64\x7A\x2D\x63\x61\x72\x2D\x64\x7A\x2E\x69\x73\x76\x6A\x63\x6C\x6F\x75\x64\x2E\x63\x6F\x6D\x25\x35\x43\x2F\x6A\x64\x62\x65\x76\x65\x72\x61\x67\x65\x25\x35\x43\x2F\x70\x61\x67\x65\x73\x25\x35\x43\x2F\x70\x61\x6F\x6B\x75\x25\x35\x43\x2F\x70\x61\x6F\x6B\x75\x3F\x62\x69\x7A\x45\x78\x74\x53\x74\x72\x69\x6E\x67\x25\x33\x44\x63\x32\x68\x68\x63\x6D\x56\x4F\x61\x57\x4E\x72\x4F\x6D\x73\x78\x54\x6D\x39\x69\x59\x69\x55\x79\x51\x6C\x41\x77\x5A\x58\x49\x6C\x4D\x6B\x4A\x44\x4D\x6E\x4E\x35\x63\x33\x68\x75\x65\x43\x55\x79\x52\x6C\x41\x79\x53\x30\x56\x4D\x54\x7A\x6C\x70\x65\x6C\x4A\x57\x63\x48\x64\x44\x65\x58\x46\x31\x4D\x47\x56\x78\x56\x6C\x6F\x31\x59\x56\x63\x33\x55\x6B\x68\x36\x62\x45\x31\x76\x59\x6E\x4A\x36\x53\x69\x55\x79\x52\x6D\x55\x35\x63\x69\x55\x79\x52\x6E\x56\x6D\x4A\x6D\x68\x6C\x59\x57\x52\x51\x61\x57\x4E\x56\x63\x6D\x77\x36\x61\x48\x52\x30\x63\x43\x55\x7A\x51\x53\x55\x79\x52\x69\x55\x79\x52\x6E\x4E\x30\x62\x33\x4A\x68\x5A\x32\x55\x75\x4D\x7A\x59\x77\x59\x6E\x56\x35\x61\x57\x31\x6E\x4C\x6D\x4E\x76\x62\x53\x55\x79\x52\x6D\x6B\x75\x61\x57\x31\x68\x5A\x32\x56\x56\x63\x47\x78\x76\x59\x57\x51\x6C\x4D\x6B\x59\x33\x4D\x54\x4D\x33\x4D\x7A\x55\x7A\x4E\x44\x4D\x34\x4D\x7A\x63\x7A\x4F\x54\x4D\x78\x4D\x7A\x4D\x7A\x4D\x7A\x4D\x78\x4D\x7A\x59\x7A\x4E\x44\x4D\x30\x4D\x7A\x6B\x7A\x4D\x6A\x4D\x78\x4D\x7A\x59\x7A\x4E\x54\x4D\x35\x4D\x7A\x41\x7A\x4E\x54\x4D\x7A\x58\x32\x31\x70\x5A\x43\x35\x71\x63\x47\x63\x6D\x62\x6D\x6C\x6A\x61\x30\x35\x68\x62\x57\x55\x36\x4A\x55\x55\x32\x4A\x55\x46\x45\x4A\x55\x45\x79\x4A\x55\x55\x30\x4A\x55\x4A\x42\x4A\x54\x68\x46\x4A\x55\x55\x30\x4A\x55\x49\x35\x4A\x54\x68\x43\x4A\x55\x55\x31\x4A\x55\x4A\x47\x4A\x54\x67\x7A\x25\x32\x36\x73\x69\x64\x25\x33\x44\x39\x30\x62\x61\x31\x37\x30\x32\x30\x61\x66\x63\x35\x33\x34\x66\x35\x62\x34\x35\x64\x65\x63\x30\x32\x34\x37\x61\x39\x32\x61\x77\x25\x32\x36\x75\x6E\x5F\x61\x72\x65\x61\x25\x33\x44\x34\x5F\x31\x33\x33\x5F\x35\x38\x35\x33\x30\x5F\x30\x25\x32\x32\x25\x32\x43\x25\x32\x32\x69\x64\x25\x32\x32\x25\x33\x41\x25\x32\x32\x25\x32\x32\x25\x37\x44\x26\x62\x75\x69\x6C\x64\x3D\x31\x36\x38\x31\x30\x36\x26\x63\x6C\x69\x65\x6E\x74\x3D\x61\x70\x70\x6C\x65\x26\x63\x6C\x69\x65\x6E\x74\x56\x65\x72\x73\x69\x6F\x6E\x3D\x31\x31\x2E\x30\x2E\x34\x26\x64\x5F\x62\x72\x61\x6E\x64\x3D\x61\x70\x70\x6C\x65\x26\x64\x5F\x6D\x6F\x64\x65\x6C\x3D\x69\x50\x68\x6F\x6E\x65\x39\x25\x32\x43\x32\x26\x65\x66\x3D\x31\x26\x65\x69\x64\x3D\x51\x4D\x56\x53\x4B\x45\x57\x54\x37\x37\x56\x41\x57\x4B\x34\x48\x47\x43\x42\x44\x56\x59\x55\x55\x32\x34\x50\x4C\x34\x35\x58\x56\x55\x4B\x5A\x4C\x51\x56\x59\x44\x33\x45\x56\x49\x51\x55\x35\x4E\x47\x4C\x35\x4A\x5A\x51\x43\x47\x35\x55\x42\x4F\x46\x4B\x45\x42\x35\x4E\x57\x53\x54\x4F\x55\x4D\x4A\x58\x5A\x36\x55\x42\x48\x49\x33\x58\x5A\x37\x49\x35\x54\x36\x47\x56\x4E\x56\x4F\x47\x4B\x48\x55\x4D\x36\x58\x44\x32\x37\x4A\x52\x57\x55\x41\x59\x4C\x4B\x4C\x55\x52\x49\x41\x26\x65\x70\x3D\x25\x37\x42\x25\x32\x32\x63\x69\x70\x68\x65\x72\x74\x79\x70\x65\x25\x32\x32\x25\x33\x41\x35\x25\x32\x43\x25\x32\x32\x63\x69\x70\x68\x65\x72\x25\x32\x32\x25\x33\x41\x25\x37\x42\x25\x32\x32\x73\x63\x72\x65\x65\x6E\x25\x32\x32\x25\x33\x41\x25\x32\x32\x43\x4A\x53\x30\x43\x73\x65\x79\x43\x74\x4B\x34\x25\x32\x32\x25\x32\x43\x25\x32\x32\x61\x72\x65\x61\x25\x32\x32\x25\x33\x41\x25\x32\x32\x44\x50\x38\x6E\x43\x7A\x44\x70\x44\x4A\x71\x31\x43\x7A\x4C\x70\x43\x4B\x25\x33\x44\x25\x33\x44\x25\x32\x32\x25\x32\x43\x25\x32\x32\x77\x69\x66\x69\x42\x73\x73\x69\x64\x25\x32\x32\x25\x33\x41\x25\x32\x32\x43\x4E\x5A\x74\x45\x4A\x4B\x6E\x43\x4E\x43\x35\x45\x51\x48\x73\x43\x7A\x75\x79\x5A\x74\x47\x31\x59\x7A\x75\x79\x5A\x51\x47\x31\x43\x57\x56\x75\x44\x4E\x43\x31\x59\x7A\x43\x25\x33\x44\x25\x32\x32\x25\x32\x43\x25\x32\x32\x6F\x73\x56\x65\x72\x73\x69\x6F\x6E\x25\x32\x32\x25\x33\x41\x25\x32\x32\x43\x4A\x43\x6B\x44\x71\x25\x33\x44\x25\x33\x44\x25\x32\x32\x25\x32\x43\x25\x32\x32\x75\x75\x69\x64\x25\x32\x32\x25\x33\x41\x25\x32\x32\x61\x51\x66\x31\x5A\x52\x64\x78\x62\x32\x72\x34\x6F\x76\x5A\x31\x45\x4A\x5A\x68\x63\x78\x59\x6C\x56\x4E\x5A\x53\x5A\x7A\x30\x39\x25\x32\x32\x25\x32\x43\x25\x32\x32\x61\x64\x69\x64\x25\x32\x32\x25\x33\x41\x25\x32\x32\x45\x4F\x43\x7A\x44\x75\x56\x50\x45\x4A\x75\x6A\x44\x7A\x4F\x31\x48\x49\x30\x30\x48\x75\x56\x50\x42\x4A\x71\x79\x45\x4E\x59\x6A\x43\x4F\x55\x33\x44\x55\x55\x35\x44\x55\x4F\x6D\x43\x4E\x63\x6E\x25\x32\x32\x25\x32\x43\x25\x32\x32\x6F\x70\x65\x6E\x75\x64\x69\x64\x25\x32\x32\x25\x33\x41\x25\x32\x32\x44\x77\x4F\x6D\x5A\x74\x4B\x35\x45\x57\x59\x79\x44\x32\x48\x75\x45\x51\x50\x76\x45\x57\x53\x34\x44\x4E\x4B\x32\x43\x7A\x50\x75\x59\x7A\x63\x31\x59\x4A\x4B\x7A\x59\x74\x53\x32\x43\x7A\x71\x35\x5A\x4A\x4F\x35\x59\x71\x25\x33\x44\x25\x33\x44\x25\x32\x32\x25\x37\x44\x25\x32\x43\x25\x32\x32\x74\x73\x25\x32\x32\x25\x33\x41\x31\x36\x35\x35\x36\x35\x34\x32\x32\x38\x25\x32\x43\x25\x32\x32\x68\x64\x69\x64\x25\x32\x32\x25\x33\x41\x25\x32\x32\x4A\x4D\x39\x46\x31\x79\x77\x55\x50\x77\x66\x6C\x76\x4D\x49\x70\x59\x50\x6F\x6B\x30\x74\x74\x35\x6B\x39\x6B\x57\x34\x41\x72\x4A\x45\x55\x33\x6C\x66\x4C\x68\x78\x42\x71\x77\x25\x33\x44\x25\x32\x32\x25\x32\x43\x25\x32\x32\x76\x65\x72\x73\x69\x6F\x6E\x25\x32\x32\x25\x33\x41\x25\x32\x32\x31\x2E\x30\x2E\x33\x25\x32\x32\x25\x32\x43\x25\x32\x32\x61\x70\x70\x6E\x61\x6D\x65\x25\x32\x32\x25\x33\x41\x25\x32\x32\x63\x6F\x6D\x2E\x33\x36\x30\x62\x75\x79\x2E\x6A\x64\x6D\x6F\x62\x69\x6C\x65\x25\x32\x32\x25\x32\x43\x25\x32\x32\x72\x69\x64\x78\x25\x32\x32\x25\x33\x41\x2D\x31\x25\x37\x44\x26\x65\x78\x74\x3D\x25\x37\x42\x25\x32\x32\x70\x72\x73\x74\x61\x74\x65\x25\x32\x32\x25\x33\x41\x25\x32\x32\x30\x25\x32\x32\x25\x32\x43\x25\x32\x32\x70\x76\x63\x53\x74\x75\x25\x32\x32\x25\x33\x41\x25\x32\x32\x31\x25\x32\x32\x25\x37\x44\x26\x69\x73\x42\x61\x63\x6B\x67\x72\x6F\x75\x6E\x64\x3D\x4E\x26\x6A\x6F\x79\x63\x69\x6F\x75\x73\x3D\x31\x32\x36\x26\x6C\x61\x6E\x67\x3D\x7A\x68\x5F\x43\x4E\x26\x6E\x65\x74\x77\x6F\x72\x6B\x54\x79\x70\x65\x3D\x77\x69\x66\x69\x26\x6E\x65\x74\x77\x6F\x72\x6B\x6C\x69\x62\x74\x79\x70\x65\x3D\x4A\x44\x4E\x65\x74\x77\x6F\x72\x6B\x42\x61\x73\x65\x41\x46\x26\x70\x61\x72\x74\x6E\x65\x72\x3D\x61\x70\x70\x6C\x65\x26\x72\x66\x73\x3D\x30\x30\x30\x30\x26\x73\x63\x6F\x70\x65\x3D\x30\x31\x26\x73\x69\x67\x6E\x3D\x33\x31\x63\x61\x37\x31\x36\x32\x62\x30\x65\x30\x32\x33\x34\x31\x64\x31\x37\x62\x30\x31\x31\x30\x64\x38\x65\x62\x63\x61\x64\x33\x26\x73\x74\x3D\x31\x36\x35\x35\x37\x32\x37\x38\x38\x35\x38\x39\x38\x26\x73\x76\x3D\x31\x31\x32\x26\x75\x65\x6D\x70\x73\x3D\x30\x2D\x30\x26\x75\x74\x73\x3D\x30\x66\x33\x31\x54\x56\x52\x6A\x42\x53\x73\x71\x6E\x64\x75\x34\x2F\x6A\x67\x55\x50\x7A\x36\x75\x79\x6D\x79\x35\x30\x4D\x51\x4A\x77\x62\x68\x65\x64\x68\x5A\x36\x72\x63\x43\x6B\x57\x5A\x59\x54\x4C\x78\x4F\x6F\x6C\x6A\x67\x44\x42\x57\x34\x75\x47\x76\x4F\x31\x35\x56\x41\x62\x30\x71\x6D\x68\x69\x7A\x36\x32\x65\x7A\x47\x68\x2F\x58\x6B\x6E\x43\x66\x4D\x6D\x69\x4D\x6A\x66\x25\x32\x42\x25\x32\x42\x57\x46\x49\x49\x6C\x6E\x55\x49\x50\x53\x75\x34\x55\x48\x69\x4C\x69\x37\x32\x67\x56\x36\x43\x6F\x42\x54\x74\x52\x4C\x4D\x31\x48\x77\x6D\x33\x30\x4E\x31\x70\x33\x61\x25\x32\x42\x72\x49\x45\x6D\x55\x46\x6E\x70\x4F\x64\x62\x52\x47\x6F\x6D\x67\x42\x70\x6E\x76\x73\x2F\x52\x56\x6B\x6E\x6F\x38\x4E\x30\x43\x6A\x78\x37\x43\x6E\x31\x75\x32\x57\x52\x66\x77\x70\x32\x2F\x4E\x36\x4E\x42\x39\x6E\x30\x4B\x50\x74\x36\x44\x55\x61\x77\x32\x61\x74\x55\x79\x55\x51\x62\x44\x6A\x71\x7A\x33\x37\x47\x50\x51\x25\x33\x44\x25\x33\x44","\x69\x73\x76\x4F\x62\x66\x75\x73\x63\x61\x74\x6F\x72","\x2F\x64\x6D\x2F\x66\x72\x6F\x6E\x74\x2F\x6A\x64\x43\x61\x72\x64\x52\x75\x6E\x6E\x69\x6E\x67\x2F\x61\x63\x74\x69\x76\x69\x74\x79\x2F\x6C\x6F\x61\x64\x3F\x6F\x70\x65\x6E\x5F\x69\x64\x3D\x26\x6D\x69\x78\x5F\x6E\x69\x63\x6B\x3D","\x26\x70\x75\x73\x68\x5F\x77\x61\x79\x3D\x31\x26\x75\x73\x65\x72\x5F\x69\x64\x3D","\x6A\x6F\x69\x6E\x56\x65\x6E\x64\x65\x72\x49\x64","\x2F\x6A\x64\x43\x61\x72\x64\x52\x75\x6E\x6E\x69\x6E\x67\x2F\x61\x63\x74\x69\x76\x69\x74\x79\x2F\x6C\x6F\x61\x64","\x2F\x64\x6D\x2F\x66\x72\x6F\x6E\x74\x2F\x6A\x64\x43\x61\x72\x64\x52\x75\x6E\x6E\x69\x6E\x67\x2F\x6D\x69\x73\x73\x69\x6F\x6E\x2F\x63\x6F\x6D\x70\x6C\x65\x74\x65\x53\x74\x61\x74\x65\x3F\x6F\x70\x65\x6E\x5F\x69\x64\x3D\x26\x6D\x69\x78\x5F\x6E\x69\x63\x6B\x3D","\x2F\x6A\x64\x43\x61\x72\x64\x52\x75\x6E\x6E\x69\x6E\x67\x2F\x6D\x69\x73\x73\x69\x6F\x6E\x2F\x63\x6F\x6D\x70\x6C\x65\x74\x65\x53\x74\x61\x74\x65","\x2F\x64\x6D\x2F\x66\x72\x6F\x6E\x74\x2F\x6A\x64\x43\x61\x72\x64\x52\x75\x6E\x6E\x69\x6E\x67\x2F\x6D\x69\x73\x73\x69\x6F\x6E\x2F\x63\x6F\x6D\x70\x6C\x65\x74\x65\x4D\x69\x73\x73\x69\x6F\x6E\x3F\x6F\x70\x65\x6E\x5F\x69\x64\x3D\x26\x6D\x69\x78\x5F\x6E\x69\x63\x6B\x3D","\x2F\x6A\x64\x43\x61\x72\x64\x52\x75\x6E\x6E\x69\x6E\x67\x2F\x6D\x69\x73\x73\x69\x6F\x6E\x2F\x63\x6F\x6D\x70\x6C\x65\x74\x65\x4D\x69\x73\x73\x69\x6F\x6E","\x75\x73\x65\x72\x49\x64\x73","\x67\x6F\x6F\x64\x73\x4E\x75\x6D\x49\x64","\x2F\x64\x6D\x2F\x66\x72\x6F\x6E\x74\x2F\x6A\x64\x43\x61\x72\x64\x52\x75\x6E\x6E\x69\x6E\x67\x2F\x63\x75\x73\x53\x68\x6F\x70\x2F\x67\x65\x74\x43\x75\x73\x53\x68\x6F\x70\x3F\x6F\x70\x65\x6E\x5F\x69\x64\x3D\x26\x6D\x69\x78\x5F\x6E\x69\x63\x6B\x3D","\x2F\x6A\x64\x43\x61\x72\x64\x52\x75\x6E\x6E\x69\x6E\x67\x2F\x63\x75\x73\x53\x68\x6F\x70\x2F\x67\x65\x74\x43\x75\x73\x53\x68\x6F\x70","\x2F\x64\x6D\x2F\x66\x72\x6F\x6E\x74\x2F\x6A\x64\x43\x61\x72\x64\x52\x75\x6E\x6E\x69\x6E\x67\x2F\x63\x75\x73\x53\x68\x6F\x70\x2F\x67\x65\x74\x43\x75\x73\x53\x68\x6F\x70\x50\x72\x6F\x64\x75\x63\x74\x3F\x6F\x70\x65\x6E\x5F\x69\x64\x3D\x26\x6D\x69\x78\x5F\x6E\x69\x63\x6B\x3D","\x2F\x64\x6D\x2F\x66\x72\x6F\x6E\x74\x2F\x6A\x64\x43\x61\x72\x64\x52\x75\x6E\x6E\x69\x6E\x67\x2F\x63\x61\x72\x49\x6E\x66\x6F\x2F\x67\x65\x74\x43\x61\x72\x49\x6E\x66\x6F\x3F\x6F\x70\x65\x6E\x5F\x69\x64\x3D\x26\x6D\x69\x78\x5F\x6E\x69\x63\x6B\x3D","\x2F\x64\x6D\x2F\x66\x72\x6F\x6E\x74\x2F\x6A\x64\x43\x61\x72\x64\x52\x75\x6E\x6E\x69\x6E\x67\x2F\x67\x61\x6D\x65\x2F\x70\x6C\x61\x79\x47\x61\x6D\x65\x3F\x6F\x70\x65\x6E\x5F\x69\x64\x3D\x26\x6D\x69\x78\x5F\x6E\x69\x63\x6B\x3D","\x2F\x6A\x64\x43\x61\x72\x64\x52\x75\x6E\x6E\x69\x6E\x67\x2F\x67\x61\x6D\x65\x2F\x70\x6C\x61\x79\x47\x61\x6D\x65","\x2F\x64\x6D\x2F\x66\x72\x6F\x6E\x74\x2F\x6A\x64\x43\x61\x72\x64\x52\x75\x6E\x6E\x69\x6E\x67\x2F\x67\x61\x6D\x65\x2F\x73\x65\x6E\x64\x47\x61\x6D\x65\x41\x77\x61\x72\x64\x3F\x6F\x70\x65\x6E\x5F\x69\x64\x3D\x26\x6D\x69\x78\x5F\x6E\x69\x63\x6B\x3D","\x70\x6F\x69\x6E\x74","\x67\x61\x6D\x65\x4C\x6F\x67\x49\x64","\x2F\x6A\x64\x43\x61\x72\x64\x52\x75\x6E\x6E\x69\x6E\x67\x2F\x67\x61\x6D\x65\x2F\x73\x65\x6E\x64\x47\x61\x6D\x65\x41\x77\x61\x72\x64","\x2F\x64\x6D\x2F\x66\x72\x6F\x6E\x74\x2F\x6A\x64\x43\x61\x72\x64\x52\x75\x6E\x6E\x69\x6E\x67\x2F\x63\x75\x73\x74\x6F\x6D\x65\x72\x2F\x69\x6E\x76\x69\x74\x65\x4C\x69\x73\x74\x3F\x6F\x70\x65\x6E\x5F\x69\x64\x3D\x26\x6D\x69\x78\x5F\x6E\x69\x63\x6B\x3D","\x2F\x6A\x64\x43\x61\x72\x64\x52\x75\x6E\x6E\x69\x6E\x67\x2F\x63\x75\x73\x74\x6F\x6D\x65\x72\x2F\x69\x6E\x76\x69\x74\x65\x4C\x69\x73\x74","\u9519\u8BEF","\x73\x74\x61\x74\x75\x73\x43\x6F\x64\x65","\x74\x6F\x53\x74\x72","\x20\x41\x50\x49\u8BF7\u6C42\u5931\u8D25\uFF0C\u8BF7\u68C0\u67E5\u7F51\u8DEF\u91CD\u8BD5","\x70\x6F\x73\x74","\x61\x63\x63\x65\x73\x73\x4C\x6F\x67\x57\x69\x74\x68\x41\x44","\x64\x72\x61\x77\x43\x6F\x6E\x74\x65\x6E\x74","\x70\x61\x72\x73\x65","\x20\u6267\u884C\u4EFB\u52A1\u5F02\u5E38","\x72\x75\x6E\x46\x61\x6C\x61\x67","\x6F\x62\x6A\x65\x63\x74","\x65\x72\x72\x63\x6F\x64\x65","\x74\x6F\x6B\x65\x6E","\x75\x6E\x64\x65\x66\x69\x6E\x65\x64","\x6D\x65\x73\x73\x61\x67\x65","\x20","\x73\x75\x63\x63\x65\x73\x73","\x64\x61\x74\x61","\x73\x74\x61\x74\x75\x73","\x63\x75\x73\x53\x68\x6F\x70","\x6E\x75\x6D\x49\x64","\x63\x75\x73\x53\x68\x6F\x70\x50\x72\x6F\x64\x75\x63\x74","\u6E38\u620F\x49\x44\uFF1A\x20","\u592A\u68D2\u4E86\uFF0C\u8870\u4ED4\uFF0C\u6E38\u620F\u5B8C\u6210\uFF0C\u5F53\u524D\u5206\u503C\uFF1A","\x6D\x69\x73\x73\x69\x6F\x6E","\x73\x65\x74\x4D\x69\x78\x4E\x69\x63\x6B","\x66\x6F\x6C\x6C\x6F\x77\x53\x68\x6F\x70","\x6D\x79\x41\x77\x61\x72\x64","\x69\x73\x4F\x70\x65\x6E\x43\x61\x72\x64","\x72\x65\x6D\x61\x72\x6B","\x3A","\x63\x75\x73\x41\x63\x74\x69\x76\x69\x74\x79","\x62\x75\x79\x65\x72\x4E\x69\x63\x6B","\x6D\x69\x73\x73\x69\x6F\x6E\x43\x75\x73\x74\x6F\x6D\x65\x72","\x68\x61\x73\x43\x6F\x6C\x6C\x65\x63\x74\x53\x68\x6F\x70","\x6F\x70\x65\x6E\x4C\x69\x73\x74","\x63\x75\x73\x53\x68\x6F\x70\x4C\x69\x73\x74","\u9080\u8BF7\u4EBA\u6570\x28","\x74\x6F\x74\x61\x6C","\x29","\u6D3B\u52A8\u672A\u5F00\u59CB","\x69\x6E\x64\x65\x78\x4F\x66","\x65\x72\x72\x6F\x72\x4D\x65\x73\x73\x61\x67\x65","\u706B\u7206","\x73\x70\x65\x63\x69\x61\x6C\x53\x69\x67\x6E","\x61\x70\x70\x6C\x69\x63\x61\x74\x69\x6F\x6E\x2F\x6A\x73\x6F\x6E","\x67\x7A\x69\x70\x2C\x20\x64\x65\x66\x6C\x61\x74\x65\x2C\x20\x62\x72","\x7A\x68\x2D\x63\x6E","\x6B\x65\x65\x70\x2D\x61\x6C\x69\x76\x65","\x61\x70\x70\x6C\x69\x63\x61\x74\x69\x6F\x6E\x2F\x78\x2D\x77\x77\x77\x2D\x66\x6F\x72\x6D\x2D\x75\x72\x6C\x65\x6E\x63\x6F\x64\x65\x64","\x58\x4D\x4C\x48\x74\x74\x70\x52\x65\x71\x75\x65\x73\x74","\x4F\x72\x69\x67\x69\x6E","\x68\x6F\x73\x74","\x6D\x70\x64\x7A\x2D\x63\x61\x72\x2D\x64\x7A\x2E\x69\x73\x76\x6A\x63\x6C\x6F\x75\x64\x2E\x63\x6F\x6D","\x43\x6F\x6E\x74\x65\x6E\x74\x2D\x54\x79\x70\x65","\x61\x70\x70\x6C\x69\x63\x61\x74\x69\x6F\x6E\x2F\x6A\x73\x6F\x6E\x3B\x63\x68\x61\x72\x73\x65\x74\x3D\x75\x74\x66\x2D\x38","\x43\x6F\x6F\x6B\x69\x65","\x61\x70\x69\x2E\x6D\x2E\x6A\x64\x2E\x63\x6F\x6D","\x2A\x2F\x2A","\x4A\x44\x34\x69\x50\x68\x6F\x6E\x65\x2F\x31\x36\x37\x36\x35\x30\x20\x28\x69\x50\x68\x6F\x6E\x65\x3B\x20\x69\x4F\x53\x20\x31\x33\x2E\x37\x3B\x20\x53\x63\x61\x6C\x65\x2F\x33\x2E\x30\x30\x29","\x7A\x68\x2D\x48\x61\x6E\x73\x2D\x43\x4E\x3B\x71\x3D\x31","\x63\x6F\x64\x65","\x30","\u4EAC\u4E1C\u8FD4\u56DE\u4E86\u7A7A\u6570\u636E","\x73\x74\x72\x69\x6E\x67\x69\x66\x79","\x68\x74\x74\x70\x73\x3A\x2F\x2F\x61\x70\x69\x2E\x6E\x6F\x6C\x61\x6E\x73\x74\x6F\x72\x65\x2E\x74\x6F\x70\x2F\x73\x69\x67\x6E","\x20\x67\x65\x74\x53\x69\x67\x6E\x20\x41\x50\x49\u8BF7\u6C42\u5931\u8D25\uFF0C\u8BF7\u68C0\u67E5\u7F51\u8DEF\u91CD\u8BD5","\x62\x6F\x64\x79","\u83B7\u53D6\u670D\u52A1\u5931\u8D25\x7E\x7E","\x32\x2E\x30","\x73\x69\x67\x6E","\x74\x69\x6D\x65\x53\x74\x61\x6D\x70","\x61\x64\x6D\x4A\x73\x6F\x6E","\x70\x61\x72\x61\x6D\x73","\x38\x35\x36\x32\x33\x33\x31\x32\x30\x34\x34\x32\x35\x38\x34\x36\x34\x33\x32\x35\x32\x32\x37\x36\x36\x36\x38\x38\x33\x35\x34\x36","\x27","\x67","\x7E","\x25\x32\x37","\x72\x65\x70\x6C\x61\x63\x65","\x25\x37\x45","\x61\x70\x70\x4B\x65\x79","\x74\x69\x6D\x65\x73\x74\x61\x6D\x70","\x74\x6F\x4C\x6F\x77\x65\x72\x43\x61\x73\x65","\x73\x75\x62\x73\x74\x72\x69\x6E\x67","\x6E\x6F\x77","\x5F\x6D\x61\x70","\x42\x61\x73\x65\x36\x34","\x65\x6E\x63","\x4B\x4C\x4D\x4E\x4F\x50\x51\x52\x53\x54\x41\x42\x43\x44\x45\x46\x47\x48\x49\x4A\x55\x56\x57\x58\x59\x5A\x61\x62\x63\x64\x6F\x70\x71\x72\x73\x74\x75\x76\x77\x78\x65\x66\x67\x68\x69\x6A\x6B\x6C\x6D\x6E\x79\x7A\x30\x31\x32\x33\x34\x35\x36\x37\x38\x39\x2B\x2F","\x55\x74\x66\x38","\x4A\x4D\x39\x46\x31\x79\x77\x55\x50\x77\x66\x6C\x76\x4D\x49\x70\x59\x50\x6F\x6B\x30\x74\x74\x35\x6B\x39\x6B\x57\x34\x41\x72\x4A\x45\x55\x33\x6C\x66\x4C\x68\x78\x42\x71\x77\x3D","\x67\x65\x74\x54\x69\x6D\x65","\x45\x47\x3D\x3D","\x43\x74\x71\x3D","\x31\x2E\x32\x2E\x30","\x63\x6F\x6D\x2E\x6A\x69\x6E\x67\x64\x6F\x6E\x67\x2E\x61\x70\x70\x2E\x6D\x61\x6C\x6C","\x6A\x64\x61\x70\x70\x3B\x61\x6E\x64\x72\x6F\x69\x64\x3B\x31\x31\x2E\x30\x2E\x32\x3B\x3B\x3B\x61\x70\x70\x42\x75\x69\x6C\x64\x2F\x39\x37\x35\x36\x35\x3B\x65\x66\x2F\x31\x3B\x65\x70\x2F","\x3B\x6A\x64\x53\x75\x70\x70\x6F\x72\x74\x44\x61\x72\x6B\x4D\x6F\x64\x65\x2F\x30\x3B\x4D\x6F\x7A\x69\x6C\x6C\x61\x2F\x35\x2E\x30\x20\x28\x4C\x69\x6E\x75\x78\x3B\x20\x41\x6E\x64\x72\x6F\x69\x64\x20\x39\x3B\x20\x4E\x6F\x74\x65\x39\x20\x42\x75\x69\x6C\x64\x2F\x50\x4B\x51\x31\x2E\x31\x38\x31\x32\x30\x33\x2E\x30\x30\x32\x3B\x20\x77\x76\x29\x20\x41\x70\x70\x6C\x65\x57\x65\x62\x4B\x69\x74\x2F\x35\x33\x37\x2E\x33\x36\x20\x28\x4B\x48\x54\x4D\x4C\x2C\x20\x6C\x69\x6B\x65\x20\x47\x65\x63\x6B\x6F\x29\x20\x56\x65\x72\x73\x69\x6F\x6E\x2F\x34\x2E\x30\x20\x43\x68\x72\x6F\x6D\x65\x2F\x38\x39\x2E\x30\x2E\x34\x33\x38\x39\x2E\x37\x32\x20\x4D\x51\x51\x42\x72\x6F\x77\x73\x65\x72\x2F\x36\x2E\x32\x20\x54\x42\x53\x2F\x30\x34\x36\x30\x31\x30\x20\x4D\x6F\x62\x69\x6C\x65\x20\x53\x61\x66\x61\x72\x69\x2F\x35\x33\x37\x2E\x33\x36","\x73\x74\x72\x69\x6E\x67","\u8BF7\u52FF\u968F\u610F\u5728\x42\x6F\x78\x4A\x73\u8F93\u5165\u6846\u4FEE\u6539\u5185\u5BB9\x0A\u5EFA\u8BAE\u901A\u8FC7\u811A\u672C\u53BB\u83B7\u53D6\x63\x6F\x6F\x6B\x69\x65","\u5220\u9664","\u7248\u672C\u53F7\uFF0C\x6A\x73\u4F1A\u5B9A","\u671F\u5F39\u7A97\uFF0C","\u8FD8\u8BF7\u652F\u6301\u6211\u4EEC\u7684\u5DE5\u4F5C","\x6A\x73\x6A\x69\x61","\x6D\x69\x2E\x63\x6F\x6D"];const jdCookieNode=$[__Oxe833e[0x0]]()?require(__Oxe833e[0x1]):__Oxe833e[0x2];const notify=$[__Oxe833e[0x0]]()?require(__Oxe833e[0x3]):__Oxe833e[0x2];CryptoJS= $[__Oxe833e[0x0]]()?require(__Oxe833e[0x4]):CryptoJS;let cookiesArr=[],cookie=__Oxe833e[0x2];if($[__Oxe833e[0x0]]()){Object[__Oxe833e[0x7]](jdCookieNode)[__Oxe833e[0x6]]((_0x1f9ax5)=>{cookiesArr[__Oxe833e[0x5]](jdCookieNode[_0x1f9ax5])});if(process[__Oxe833e[0x9]][__Oxe833e[0x8]]&& process[__Oxe833e[0x9]][__Oxe833e[0x8]]=== __Oxe833e[0xa]){console[__Oxe833e[0xb]]= ()=>{}}}else {cookiesArr= [$[__Oxe833e[0xe]](__Oxe833e[0xd]),$[__Oxe833e[0xe]](__Oxe833e[0xf]),...jsonParse($[__Oxe833e[0xe]](__Oxe833e[0x12])|| __Oxe833e[0x13])[__Oxe833e[0x11]]((_0x1f9ax5)=>{return _0x1f9ax5[__Oxe833e[0x10]]})][__Oxe833e[0xc]]((_0x1f9ax5)=>{return !!_0x1f9ax5})};allMessage= __Oxe833e[0x2];message= __Oxe833e[0x2];$[__Oxe833e[0x14]]= false;$[__Oxe833e[0x15]]= false;$[__Oxe833e[0x16]]= false;let lz_jdpin_token_cookie=__Oxe833e[0x2];let activityCookie=__Oxe833e[0x2];let helpCookieNum=5;if(process[__Oxe833e[0x9]][__Oxe833e[0x17]]&& process[__Oxe833e[0x9]][__Oxe833e[0x17]]!= 5){helpCookieNum= process[__Oxe833e[0x9]][__Oxe833e[0x17]]};let shareUuidArr=[__Oxe833e[0x18],__Oxe833e[0x19],__Oxe833e[0x1a],__Oxe833e[0x1b],__Oxe833e[0x1c],__Oxe833e[0x1d],__Oxe833e[0x1e]];let s=Math[__Oxe833e[0x20]]((Math[__Oxe833e[0x1f]]()* 3));let n=0;n= Math[__Oxe833e[0x20]]((Math[__Oxe833e[0x1f]]()* shareUuidArr[__Oxe833e[0x21]]));let helpnum=shareUuidArr[n]?shareUuidArr[n]:$[__Oxe833e[0x22]];!(async ()=>{console[__Oxe833e[0xb]](__Oxe833e[0x27]);console[__Oxe833e[0xb]](__Oxe833e[0x28]+ helpnum);console[__Oxe833e[0xb]](__Oxe833e[0x29]);if(!cookiesArr[0x0]){$[__Oxe833e[0x2d]]($[__Oxe833e[0x2a]],__Oxe833e[0x2b],__Oxe833e[0x2c],{"\x6F\x70\x65\x6E\x2D\x75\x72\x6C":__Oxe833e[0x2c]});return};$[__Oxe833e[0x2e]]= __Oxe833e[0x2f];$[__Oxe833e[0x30]]= __Oxe833e[0x31];$[__Oxe833e[0x32]]= __Oxe833e[0x33];$[__Oxe833e[0x34]]= __Oxe833e[0x2];$[__Oxe833e[0x35]]= helpnum;for(let _0x1f9axe=0;_0x1f9axe< helpCookieNum;_0x1f9axe++){cookie= cookiesArr[_0x1f9axe];if(cookie){$[__Oxe833e[0x36]]= decodeURIComponent(cookie[__Oxe833e[0x37]](/pt_pin=([^; ]+)(?=;?)/)&& cookie[__Oxe833e[0x37]](/pt_pin=([^; ]+)(?=;?)/)[0x1]);$[__Oxe833e[0x38]]= _0x1f9axe+ 1;message= __Oxe833e[0x2];$[__Oxe833e[0x39]]= 0;$[__Oxe833e[0x14]]= false;$[__Oxe833e[0x3a]]= __Oxe833e[0x2];console[__Oxe833e[0xb]](__Oxe833e[0x3b]+ $[__Oxe833e[0x38]]+ __Oxe833e[0x3c]+ ($[__Oxe833e[0x3a]]|| $[__Oxe833e[0x36]])+ __Oxe833e[0x3d]);$[__Oxe833e[0x3e]]=  await getUa(); await run();if($[__Oxe833e[0x15]]|| $[__Oxe833e[0x16]]){break}}};if($[__Oxe833e[0x15]]){let _0x1f9axf=__Oxe833e[0x3f];$[__Oxe833e[0x2d]]($[__Oxe833e[0x2a]],`${__Oxe833e[0x2]}`,`${__Oxe833e[0x2]}${_0x1f9axf}${__Oxe833e[0x2]}`);if($[__Oxe833e[0x0]]()){ await notify[__Oxe833e[0x40]](`${__Oxe833e[0x2]}${$[__Oxe833e[0x2a]]}${__Oxe833e[0x2]}`,`${__Oxe833e[0x2]}${_0x1f9axf}${__Oxe833e[0x2]}`)}}})()[__Oxe833e[0x26]]((_0x1f9axd)=>{return $[__Oxe833e[0x25]](_0x1f9axd)})[__Oxe833e[0x24]](()=>{return $[__Oxe833e[0x23]]()});async function run(){try{$[__Oxe833e[0x41]]= true;$[__Oxe833e[0x42]]= 0;lz_jdpin_token_cookie= __Oxe833e[0x2];$[__Oxe833e[0x43]]= __Oxe833e[0x2];$[__Oxe833e[0x44]]= __Oxe833e[0x2];$[__Oxe833e[0x45]]= __Oxe833e[0x2];let _0x1f9ax11=false;if($[__Oxe833e[0x16]]){return};if($[__Oxe833e[0x15]]){console[__Oxe833e[0xb]](__Oxe833e[0x46]);return}; await getToken();if($[__Oxe833e[0x43]]== __Oxe833e[0x2]){console[__Oxe833e[0xb]](__Oxe833e[0x47]);return}; await takePostRequest(__Oxe833e[0x48]);if($[__Oxe833e[0x14]]){return};if($[__Oxe833e[0x45]]== __Oxe833e[0x2]){console[__Oxe833e[0xb]](`${__Oxe833e[0x49]}`);return};$[__Oxe833e[0x4a]]= 0; await takePostRequest(__Oxe833e[0x4b]); await $[__Oxe833e[0x4c]](500); await takePostRequest(__Oxe833e[0x4d]);console[__Oxe833e[0xb]](__Oxe833e[0x4e]);for(let _0x1f9axe=0;_0x1f9axe< renwulists[__Oxe833e[0x21]];_0x1f9axe++){$[__Oxe833e[0x4f]]= renwulists[_0x1f9axe][__Oxe833e[0x50]];if(!renwulists[_0x1f9axe][__Oxe833e[0x51]]){switch($[__Oxe833e[0x4f]]){case __Oxe833e[0x52]:;case __Oxe833e[0x53]:;case __Oxe833e[0x54]:break;case __Oxe833e[0x55]:for(let _0x1f9axe=0;_0x1f9axe< 3;_0x1f9axe++){$[__Oxe833e[0x4f]]= __Oxe833e[0x55]; await takePostRequest(__Oxe833e[0x56]); await $[__Oxe833e[0x4c]](parseInt(Math[__Oxe833e[0x1f]]()* 1000+ 1000,10))};break;case __Oxe833e[0x58]:for(let _0x1f9axe=0;_0x1f9axe< 3;_0x1f9axe++){ await takePostRequest(__Oxe833e[0x57]);$[__Oxe833e[0x4f]]= __Oxe833e[0x58]; await takePostRequest(__Oxe833e[0x59]); await $[__Oxe833e[0x4c]](parseInt(Math[__Oxe833e[0x1f]]()* 1000+ 1000,10))};break;case __Oxe833e[0x5d]:if(process[__Oxe833e[0x9]][__Oxe833e[0x5a]]&& process[__Oxe833e[0x9]][__Oxe833e[0x5a]]=== __Oxe833e[0x5b]){for(let _0x1f9axe=0;_0x1f9axe< 3;_0x1f9axe++){ await takePostRequest(__Oxe833e[0x5c]);$[__Oxe833e[0x4f]]= __Oxe833e[0x5d]; await takePostRequest(__Oxe833e[0x5e]); await $[__Oxe833e[0x4c]](parseInt(Math[__Oxe833e[0x1f]]()* 1000+ 1000,10))}}else {console[__Oxe833e[0xb]](`${__Oxe833e[0x5f]}`)};break;default: await takePostRequest(__Oxe833e[0x56]); await $[__Oxe833e[0x4c]](1000)}}};console[__Oxe833e[0xb]](__Oxe833e[0x60]); await takePostRequest(__Oxe833e[0x61]);for(let _0x1f9axe=carlist[__Oxe833e[0x21]]- 1;_0x1f9axe>= 0;_0x1f9axe--){if(carlist[_0x1f9axe][__Oxe833e[0x62]]== true){$[__Oxe833e[0x63]]= carlist[_0x1f9axe][__Oxe833e[0x63]];$[__Oxe833e[0x64]]= carlist[_0x1f9axe][__Oxe833e[0x65]];break}};console[__Oxe833e[0xb]](`${__Oxe833e[0x66]}${$[__Oxe833e[0x63]]}${__Oxe833e[0x2]}`);console[__Oxe833e[0xb]](__Oxe833e[0x67]);for(let _0x1f9axe=0;_0x1f9axe< $[__Oxe833e[0x68]];_0x1f9axe++){ await takePostRequest(__Oxe833e[0x69]); await $[__Oxe833e[0x4c]](parseInt(Math[__Oxe833e[0x1f]]()* 2000+ 5000,10)); await takePostRequest(__Oxe833e[0x6a]); await $[__Oxe833e[0x4c]](parseInt(Math[__Oxe833e[0x1f]]()* 2000+ 1000,10))}; await takePostRequest(__Oxe833e[0x6b]); await $[__Oxe833e[0x4c]](500); await takePostRequest(__Oxe833e[0x48]);console[__Oxe833e[0xb]](`${__Oxe833e[0x6c]}${$[__Oxe833e[0x6d]]}${__Oxe833e[0x2]}`); await takePostRequest(__Oxe833e[0x6e]);console[__Oxe833e[0xb]]($.MixNick);console[__Oxe833e[0xb]](`${__Oxe833e[0x6f]}${$[__Oxe833e[0x35]]}${__Oxe833e[0x2]}`);if($[__Oxe833e[0x38]]== 1){$[__Oxe833e[0x35]]= $[__Oxe833e[0x45]];console[__Oxe833e[0xb]](`${__Oxe833e[0x70]}${$[__Oxe833e[0x35]]}${__Oxe833e[0x2]}`)}; await $[__Oxe833e[0x4c]](parseInt(Math[__Oxe833e[0x1f]]()* 1000+ 2000,10))}catch(e){console[__Oxe833e[0xb]](e)}}async function takePostRequest(_0x1f9ax13){if($[__Oxe833e[0x15]]){return};let _0x1f9ax14=__Oxe833e[0x71];let _0x1f9ax15=`${__Oxe833e[0x2]}`;let _0x1f9ax16=__Oxe833e[0x72];let _0x1f9ax17=__Oxe833e[0x2];switch(_0x1f9ax13){case __Oxe833e[0x75]:url= `${__Oxe833e[0x73]}`;_0x1f9ax15= `${__Oxe833e[0x74]}`;break;case __Oxe833e[0x48]:url= `${__Oxe833e[0x2]}${_0x1f9ax14}${__Oxe833e[0x76]}${$[__Oxe833e[0x45]]|| $[__Oxe833e[0x34]]|| __Oxe833e[0x2]}${__Oxe833e[0x77]}${$[__Oxe833e[0x30]]}${__Oxe833e[0x2]}`;_0x1f9ax17= {"\x6A\x64\x54\x6F\x6B\x65\x6E":$[__Oxe833e[0x43]],"\x69\x6E\x76\x69\x74\x65\x4E\x69\x63\x6B":($[__Oxe833e[0x35]]|| __Oxe833e[0x2])};if($[__Oxe833e[0x78]]){_0x1f9ax17= {..._0x1f9ax17,"\x73\x68\x6F\x70\x49\x64":`${__Oxe833e[0x2]}${$[__Oxe833e[0x78]]}${__Oxe833e[0x2]}`}};_0x1f9ax15= taskPostUrl(__Oxe833e[0x79],_0x1f9ax17);break;case __Oxe833e[0x4d]:url= `${__Oxe833e[0x2]}${_0x1f9ax14}${__Oxe833e[0x7a]}${$[__Oxe833e[0x45]]|| $[__Oxe833e[0x34]]|| __Oxe833e[0x2]}${__Oxe833e[0x2]}`;_0x1f9ax17= {};_0x1f9ax15= taskPostUrl(__Oxe833e[0x7b],_0x1f9ax17);break;case __Oxe833e[0x4b]:url= `${__Oxe833e[0x2]}${_0x1f9ax14}${__Oxe833e[0x7c]}${$[__Oxe833e[0x45]]|| $[__Oxe833e[0x34]]|| __Oxe833e[0x2]}${__Oxe833e[0x2]}`;_0x1f9ax17= {"\x6D\x69\x73\x73\x69\x6F\x6E\x54\x79\x70\x65":__Oxe833e[0x54],"\x69\x6E\x76\x69\x74\x65\x72\x4E\x69\x63\x6B":($[__Oxe833e[0x35]]|| __Oxe833e[0x2])};_0x1f9ax15= taskPostUrl(__Oxe833e[0x7b],_0x1f9ax17);break;case __Oxe833e[0x6b]:url= `${__Oxe833e[0x2]}${_0x1f9ax14}${__Oxe833e[0x7c]}${$[__Oxe833e[0x45]]|| $[__Oxe833e[0x34]]|| __Oxe833e[0x2]}${__Oxe833e[0x2]}`;_0x1f9ax17= {"\x6D\x69\x73\x73\x69\x6F\x6E\x54\x79\x70\x65":__Oxe833e[0x54],"\x69\x6E\x76\x69\x74\x65\x72\x4E\x69\x63\x6B":($[__Oxe833e[0x35]]|| __Oxe833e[0x2]),"\x75\x73\x65\x72\x49\x64":10299171};_0x1f9ax15= taskPostUrl(__Oxe833e[0x7d],_0x1f9ax17);break;case __Oxe833e[0x59]:url= `${__Oxe833e[0x2]}${_0x1f9ax14}${__Oxe833e[0x7c]}${$[__Oxe833e[0x45]]|| $[__Oxe833e[0x34]]|| __Oxe833e[0x2]}${__Oxe833e[0x2]}`;_0x1f9ax17= {"\x6D\x69\x73\x73\x69\x6F\x6E\x54\x79\x70\x65":$[__Oxe833e[0x4f]],"\x75\x73\x65\x72\x49\x64":10299171,"\x73\x68\x6F\x70\x49\x64":$[__Oxe833e[0x7e]],"\x62\x75\x79\x65\x72\x4E\x69\x63\x6B":($[__Oxe833e[0x35]]|| __Oxe833e[0x2])};_0x1f9ax15= taskPostUrl(__Oxe833e[0x7d],_0x1f9ax17);break;case __Oxe833e[0x5e]:url= `${__Oxe833e[0x2]}${_0x1f9ax14}${__Oxe833e[0x7c]}${$[__Oxe833e[0x45]]|| $[__Oxe833e[0x34]]|| __Oxe833e[0x2]}${__Oxe833e[0x2]}`;_0x1f9ax17= {"\x6D\x69\x73\x73\x69\x6F\x6E\x54\x79\x70\x65":$[__Oxe833e[0x4f]],"\x75\x73\x65\x72\x49\x64":10299171,"\x67\x6F\x6F\x64\x73\x4E\x75\x6D\x49\x64":$[__Oxe833e[0x7f]],"\x62\x75\x79\x65\x72\x4E\x69\x63\x6B":($[__Oxe833e[0x35]]|| __Oxe833e[0x2])};_0x1f9ax15= taskPostUrl(__Oxe833e[0x7d],_0x1f9ax17);break;case __Oxe833e[0x57]:url= `${__Oxe833e[0x2]}${_0x1f9ax14}${__Oxe833e[0x80]}${$[__Oxe833e[0x45]]|| $[__Oxe833e[0x34]]|| __Oxe833e[0x2]}${__Oxe833e[0x2]}`;_0x1f9ax17= {};_0x1f9ax15= taskPostUrl(__Oxe833e[0x81],_0x1f9ax17);break;case __Oxe833e[0x5c]:url= `${__Oxe833e[0x2]}${_0x1f9ax14}${__Oxe833e[0x82]}${$[__Oxe833e[0x45]]|| $[__Oxe833e[0x34]]|| __Oxe833e[0x2]}${__Oxe833e[0x2]}`;_0x1f9ax17= {};_0x1f9ax15= taskPostUrl(__Oxe833e[0x81],_0x1f9ax17);break;case __Oxe833e[0x61]:url= `${__Oxe833e[0x2]}${_0x1f9ax14}${__Oxe833e[0x83]}${$[__Oxe833e[0x45]]|| $[__Oxe833e[0x34]]|| __Oxe833e[0x2]}${__Oxe833e[0x2]}`;_0x1f9ax17= {};_0x1f9ax15= taskPostUrl(__Oxe833e[0x81],_0x1f9ax17);break;case __Oxe833e[0x56]:url= `${__Oxe833e[0x2]}${_0x1f9ax14}${__Oxe833e[0x7c]}${$[__Oxe833e[0x45]]|| $[__Oxe833e[0x34]]|| __Oxe833e[0x2]}${__Oxe833e[0x2]}`;_0x1f9ax17= {"\x61\x63\x74\x49\x64":$[__Oxe833e[0x32]],"\x6D\x69\x73\x73\x69\x6F\x6E\x54\x79\x70\x65":$[__Oxe833e[0x4f]]};_0x1f9ax15= taskPostUrl(__Oxe833e[0x7d],_0x1f9ax17);break;case __Oxe833e[0x69]:url= `${__Oxe833e[0x2]}${_0x1f9ax14}${__Oxe833e[0x84]}${$[__Oxe833e[0x45]]|| $[__Oxe833e[0x34]]|| __Oxe833e[0x2]}${__Oxe833e[0x2]}`;_0x1f9ax17= {"\x61\x63\x74\x49\x64":$[__Oxe833e[0x32]],"\x63\x61\x72\x49\x64":$[__Oxe833e[0x64]],"\x63\x61\x72\x4E\x61\x6D\x65":$[__Oxe833e[0x63]],"\x75\x73\x65\x72\x49\x64":10299171,"\x62\x75\x79\x65\x72\x4E\x69\x63\x6B":($[__Oxe833e[0x35]]|| __Oxe833e[0x2])};_0x1f9ax15= taskPostUrl(__Oxe833e[0x85],_0x1f9ax17);break;case __Oxe833e[0x6a]:url= `${__Oxe833e[0x2]}${_0x1f9ax14}${__Oxe833e[0x86]}${$[__Oxe833e[0x45]]|| $[__Oxe833e[0x34]]|| __Oxe833e[0x2]}${__Oxe833e[0x2]}`;$[__Oxe833e[0x87]]= random(400,600);_0x1f9ax17= {"\x61\x63\x74\x49\x64":$[__Oxe833e[0x32]],"\x70\x6F\x69\x6E\x74":$[__Oxe833e[0x87]],"\x67\x61\x6D\x65\x4C\x6F\x67\x49\x64":$[__Oxe833e[0x88]],"\x75\x73\x65\x72\x49\x64":10299171,"\x62\x75\x79\x65\x72\x4E\x69\x63\x6B":($[__Oxe833e[0x35]]|| __Oxe833e[0x2])};_0x1f9ax15= taskPostUrl(__Oxe833e[0x89],_0x1f9ax17);break;case __Oxe833e[0x6e]:url= `${__Oxe833e[0x2]}${_0x1f9ax14}${__Oxe833e[0x8a]}${$[__Oxe833e[0x45]]|| $[__Oxe833e[0x34]]|| __Oxe833e[0x2]}${__Oxe833e[0x2]}`;_0x1f9ax17= {"\x61\x63\x74\x49\x64":$[__Oxe833e[0x32]],"\x75\x73\x65\x72\x49\x64":10299171,"\x6D\x69\x73\x73\x69\x6F\x6E\x54\x79\x70\x65":__Oxe833e[0x54],"\x69\x6E\x76\x69\x74\x65\x4E\x75\x6D":1,"\x62\x75\x79\x65\x72\x4E\x69\x63\x6B":($[__Oxe833e[0x45]]|| __Oxe833e[0x2])};_0x1f9ax15= taskPostUrl(__Oxe833e[0x8b],_0x1f9ax17);break;default:console[__Oxe833e[0xb]](`${__Oxe833e[0x8c]}${_0x1f9ax13}${__Oxe833e[0x2]}`)};let _0x1f9ax18=getPostRequest(url,_0x1f9ax15,_0x1f9ax16);return  new Promise(async (_0x1f9ax19)=>{$[__Oxe833e[0x90]](_0x1f9ax18,(_0x1f9ax1a,_0x1f9ax1b,_0x1f9ax1c)=>{try{if(_0x1f9ax1a){if(_0x1f9ax1b&& _0x1f9ax1b[__Oxe833e[0x8d]]&& _0x1f9ax1b[__Oxe833e[0x8d]]== 493){console[__Oxe833e[0xb]](__Oxe833e[0x46]);$[__Oxe833e[0x15]]= true};console[__Oxe833e[0xb]](`${__Oxe833e[0x2]}${$[__Oxe833e[0x8e]](_0x1f9ax1a,_0x1f9ax1a)}${__Oxe833e[0x2]}`);console[__Oxe833e[0xb]](`${__Oxe833e[0x2]}${_0x1f9ax13}${__Oxe833e[0x8f]}`)}else {dealReturn(_0x1f9ax13,_0x1f9ax1c)}}catch(e){console[__Oxe833e[0xb]](e,_0x1f9ax1b)}finally{_0x1f9ax19()}})})}async function dealReturn(_0x1f9ax13,_0x1f9ax1c){let _0x1f9ax1e=__Oxe833e[0x2];try{if(_0x1f9ax13!= __Oxe833e[0x91]|| _0x1f9ax13!= __Oxe833e[0x92]){if(_0x1f9ax1c){_0x1f9ax1e= JSON[__Oxe833e[0x93]](_0x1f9ax1c)}}}catch(e){console[__Oxe833e[0xb]](`${__Oxe833e[0x2]}${_0x1f9ax13}${__Oxe833e[0x94]}`);console[__Oxe833e[0xb]](_0x1f9ax1c);$[__Oxe833e[0x95]]= false};try{let _0x1f9ax1f=__Oxe833e[0x2];switch(_0x1f9ax13){case __Oxe833e[0x75]:if( typeof _0x1f9ax1e== __Oxe833e[0x96]){if(_0x1f9ax1e[__Oxe833e[0x97]]== 0){if( typeof _0x1f9ax1e[__Oxe833e[0x98]]!= __Oxe833e[0x99]){$[__Oxe833e[0x43]]= _0x1f9ax1e[__Oxe833e[0x98]]}}else {if(_0x1f9ax1e[__Oxe833e[0x9a]]){console[__Oxe833e[0xb]](`${__Oxe833e[0x2]}${_0x1f9ax13}${__Oxe833e[0x9b]}${_0x1f9ax1e[__Oxe833e[0x9a]]|| __Oxe833e[0x2]}${__Oxe833e[0x2]}`)}else {console[__Oxe833e[0xb]](_0x1f9ax1c)}}}else {console[__Oxe833e[0xb]](_0x1f9ax1c)};break;case __Oxe833e[0x57]:if( typeof _0x1f9ax1e== __Oxe833e[0x96]){if(_0x1f9ax1e[__Oxe833e[0x9c]]&& _0x1f9ax1e[__Oxe833e[0x9c]]=== true&& _0x1f9ax1e[__Oxe833e[0x9d]]){if(_0x1f9ax1e[__Oxe833e[0x9d]][__Oxe833e[0x9e]]&& _0x1f9ax1e[__Oxe833e[0x9d]][__Oxe833e[0x9e]]== 200){$[__Oxe833e[0x7e]]= _0x1f9ax1e[__Oxe833e[0x9d]][__Oxe833e[0x9d]][__Oxe833e[0x9f]][__Oxe833e[0x30]]}}else {if(_0x1f9ax1e[__Oxe833e[0x9a]]){console[__Oxe833e[0xb]](`${__Oxe833e[0x2]}${_0x1f9ax13}${__Oxe833e[0x9b]}${_0x1f9ax1e[__Oxe833e[0x9a]]|| __Oxe833e[0x2]}${__Oxe833e[0x2]}`)}else {console[__Oxe833e[0xb]](_0x1f9ax1c)}}}else {console[__Oxe833e[0xb]](_0x1f9ax1c)};break;case __Oxe833e[0x5c]:if( typeof _0x1f9ax1e== __Oxe833e[0x96]){if(_0x1f9ax1e[__Oxe833e[0x9c]]&& _0x1f9ax1e[__Oxe833e[0x9c]]=== true&& _0x1f9ax1e[__Oxe833e[0x9d]]){if(_0x1f9ax1e[__Oxe833e[0x9d]][__Oxe833e[0x9e]]&& _0x1f9ax1e[__Oxe833e[0x9d]][__Oxe833e[0x9e]]== 200){$[__Oxe833e[0x7f]]= _0x1f9ax1e[__Oxe833e[0x9d]][__Oxe833e[0x9d]][__Oxe833e[0xa1]][__Oxe833e[0xa0]]}}else {if(_0x1f9ax1e[__Oxe833e[0x9a]]){console[__Oxe833e[0xb]](`${__Oxe833e[0x2]}${_0x1f9ax13}${__Oxe833e[0x9b]}${_0x1f9ax1e[__Oxe833e[0x9a]]|| __Oxe833e[0x2]}${__Oxe833e[0x2]}`)}else {console[__Oxe833e[0xb]](_0x1f9ax1c)}}}else {console[__Oxe833e[0xb]](_0x1f9ax1c)};break;case __Oxe833e[0x4d]:if( typeof _0x1f9ax1e== __Oxe833e[0x96]){if(_0x1f9ax1e[__Oxe833e[0x9c]]&& _0x1f9ax1e[__Oxe833e[0x9c]]=== true&& _0x1f9ax1e[__Oxe833e[0x9d]]){if(_0x1f9ax1e[__Oxe833e[0x9d]][__Oxe833e[0x9e]]&& _0x1f9ax1e[__Oxe833e[0x9d]][__Oxe833e[0x9e]]== 200){renwulists= _0x1f9ax1e[__Oxe833e[0x9d]][__Oxe833e[0x9d]]|| []}}else {if(_0x1f9ax1e[__Oxe833e[0x9a]]){console[__Oxe833e[0xb]](`${__Oxe833e[0x2]}${_0x1f9ax13}${__Oxe833e[0x9b]}${_0x1f9ax1e[__Oxe833e[0x9a]]|| __Oxe833e[0x2]}${__Oxe833e[0x2]}`)}else {console[__Oxe833e[0xb]](_0x1f9ax1c)}}}else {console[__Oxe833e[0xb]](_0x1f9ax1c)};break;case __Oxe833e[0x61]:if( typeof _0x1f9ax1e== __Oxe833e[0x96]){if(_0x1f9ax1e[__Oxe833e[0x9c]]&& _0x1f9ax1e[__Oxe833e[0x9c]]=== true&& _0x1f9ax1e[__Oxe833e[0x9d]]){if(_0x1f9ax1e[__Oxe833e[0x9d]][__Oxe833e[0x9e]]&& _0x1f9ax1e[__Oxe833e[0x9d]][__Oxe833e[0x9e]]== 200){carlist= _0x1f9ax1e[__Oxe833e[0x9d]][__Oxe833e[0x9d]]|| []}}else {if(_0x1f9ax1e[__Oxe833e[0x9a]]){console[__Oxe833e[0xb]](`${__Oxe833e[0x2]}${_0x1f9ax13}${__Oxe833e[0x9b]}${_0x1f9ax1e[__Oxe833e[0x9a]]|| __Oxe833e[0x2]}${__Oxe833e[0x2]}`)}else {console[__Oxe833e[0xb]](_0x1f9ax1c)}}}else {console[__Oxe833e[0xb]](_0x1f9ax1c)};break;case __Oxe833e[0x69]:if( typeof _0x1f9ax1e== __Oxe833e[0x96]){if(_0x1f9ax1e[__Oxe833e[0x9c]]&& _0x1f9ax1e[__Oxe833e[0x9c]]=== true&& _0x1f9ax1e[__Oxe833e[0x9d]]){if(_0x1f9ax1e[__Oxe833e[0x9d]][__Oxe833e[0x9e]]&& _0x1f9ax1e[__Oxe833e[0x9d]][__Oxe833e[0x9e]]== 200){$[__Oxe833e[0x88]]= _0x1f9ax1e[__Oxe833e[0x9d]][__Oxe833e[0x9d]][__Oxe833e[0x88]];console[__Oxe833e[0xb]](`${__Oxe833e[0xa2]}${$[__Oxe833e[0x88]]}${__Oxe833e[0x2]}`)}}else {if(_0x1f9ax1e[__Oxe833e[0x9a]]){console[__Oxe833e[0xb]](`${__Oxe833e[0x2]}${_0x1f9ax13}${__Oxe833e[0x9b]}${_0x1f9ax1e[__Oxe833e[0x9a]]|| __Oxe833e[0x2]}${__Oxe833e[0x2]}`)}else {console[__Oxe833e[0xb]](_0x1f9ax1c)}}}else {console[__Oxe833e[0xb]](_0x1f9ax1c)};break;case __Oxe833e[0x6a]:if( typeof _0x1f9ax1e== __Oxe833e[0x96]){if(_0x1f9ax1e[__Oxe833e[0x9c]]&& _0x1f9ax1e[__Oxe833e[0x9d]]){console[__Oxe833e[0xb]](`${__Oxe833e[0xa3]}${_0x1f9ax1e[__Oxe833e[0x9d]][__Oxe833e[0x9d]][__Oxe833e[0x6d]]}${__Oxe833e[0x2]}`)}else {if(_0x1f9ax1e[__Oxe833e[0x9a]]){console[__Oxe833e[0xb]](`${__Oxe833e[0x2]}${_0x1f9ax13}${__Oxe833e[0x9b]}${_0x1f9ax1e[__Oxe833e[0x9a]]|| __Oxe833e[0x2]}${__Oxe833e[0x2]}`)}else {console[__Oxe833e[0xb]](_0x1f9ax1c)}}}else {console[__Oxe833e[0xb]](_0x1f9ax1c)};break;case __Oxe833e[0x91]:;case __Oxe833e[0x92]:break;case __Oxe833e[0x48]:;case __Oxe833e[0xa4]:;case __Oxe833e[0xa5]:;case __Oxe833e[0xa6]:;case __Oxe833e[0x56]:;case __Oxe833e[0x5d]:;case __Oxe833e[0xa7]:;case __Oxe833e[0x6e]:;case __Oxe833e[0x59]:;case __Oxe833e[0x5e]:;case __Oxe833e[0x4b]:;case __Oxe833e[0x6b]:;case __Oxe833e[0xb8]:_0x1f9ax1f= __Oxe833e[0x2];if(_0x1f9ax13== __Oxe833e[0xa6]){_0x1f9ax1f= __Oxe833e[0x59]};if(_0x1f9ax13== __Oxe833e[0x5d]){_0x1f9ax1f= __Oxe833e[0x5e]};if( typeof _0x1f9ax1e== __Oxe833e[0x96]){if(_0x1f9ax1e[__Oxe833e[0x9c]]&& _0x1f9ax1e[__Oxe833e[0x9c]]=== true&& _0x1f9ax1e[__Oxe833e[0x9d]]){if(_0x1f9ax1e[__Oxe833e[0x9d]][__Oxe833e[0x9e]]&& _0x1f9ax1e[__Oxe833e[0x9d]][__Oxe833e[0x9e]]== 200){_0x1f9ax1e= _0x1f9ax1e[__Oxe833e[0x9d]];if(_0x1f9ax13!= __Oxe833e[0xa5]&& (_0x1f9ax1e[__Oxe833e[0x2d]]|| _0x1f9ax1e[__Oxe833e[0x9d]][__Oxe833e[0xa8]]|| _0x1f9ax1e[__Oxe833e[0x9d]][__Oxe833e[0xa9]])){console[__Oxe833e[0xb]](`${__Oxe833e[0x2]}${_0x1f9ax1f&& _0x1f9ax1f+ __Oxe833e[0xaa]|| __Oxe833e[0x2]}${__Oxe833e[0x2]}${_0x1f9ax1e[__Oxe833e[0x2d]]|| _0x1f9ax1e[__Oxe833e[0x9d]][__Oxe833e[0xa8]]|| _0x1f9ax1e[__Oxe833e[0x9d]][__Oxe833e[0xa9]]|| __Oxe833e[0x2]}${__Oxe833e[0x2]}`)};if(_0x1f9ax13== __Oxe833e[0x48]){if(_0x1f9ax1e[__Oxe833e[0x9d]]){$[__Oxe833e[0x42]]= _0x1f9ax1e[__Oxe833e[0x9d]][__Oxe833e[0xab]][__Oxe833e[0x42]]|| 0;$[__Oxe833e[0x45]]= _0x1f9ax1e[__Oxe833e[0x9d]][__Oxe833e[0xad]][__Oxe833e[0xac]]|| __Oxe833e[0x2];$[__Oxe833e[0xae]]= _0x1f9ax1e[__Oxe833e[0x9d]][__Oxe833e[0xad]][__Oxe833e[0xae]]|| 0;$[__Oxe833e[0x6d]]= _0x1f9ax1e[__Oxe833e[0x9d]][__Oxe833e[0xad]][__Oxe833e[0x6d]]|| 0;$[__Oxe833e[0x68]]= _0x1f9ax1e[__Oxe833e[0x9d]][__Oxe833e[0xad]][__Oxe833e[0x68]]|| 0}}else {if(_0x1f9ax13== __Oxe833e[0x4d]){$[__Oxe833e[0xaf]]= _0x1f9ax1e[__Oxe833e[0x9d]][__Oxe833e[0xb0]]|| [];renwulists= _0x1f9ax1e[__Oxe833e[0x9d]][__Oxe833e[0x9d]]|| []}else {if(_0x1f9ax13== __Oxe833e[0x6e]){console[__Oxe833e[0xb]](`${__Oxe833e[0xb1]}${_0x1f9ax1e[__Oxe833e[0x9d]][__Oxe833e[0xb2]]}${__Oxe833e[0xb3]}`)}}}}else {if(_0x1f9ax1e[__Oxe833e[0x9d]][__Oxe833e[0x2d]]){if(_0x1f9ax1e[__Oxe833e[0xb6]][__Oxe833e[0xb5]](__Oxe833e[0xb4])>  -1){$[__Oxe833e[0x16]]= true};console[__Oxe833e[0xb]](`${__Oxe833e[0x2]}${_0x1f9ax1e[__Oxe833e[0x9d]][__Oxe833e[0x2d]]|| __Oxe833e[0x2]}${__Oxe833e[0x2]}`)}else {if(_0x1f9ax1e[__Oxe833e[0xb6]]){if(_0x1f9ax1e[__Oxe833e[0xb6]][__Oxe833e[0xb5]](__Oxe833e[0xb7])>  -1){};console[__Oxe833e[0xb]](`${__Oxe833e[0x2]}${_0x1f9ax1e[__Oxe833e[0xb6]]|| __Oxe833e[0x2]}${__Oxe833e[0x2]}`)}else {console[__Oxe833e[0xb]](`${__Oxe833e[0x2]}${_0x1f9ax1c}${__Oxe833e[0x2]}`)}}}}else {if(_0x1f9ax1e[__Oxe833e[0xb6]]){console[__Oxe833e[0xb]](`${__Oxe833e[0x2]}${_0x1f9ax1e[__Oxe833e[0xb6]]|| __Oxe833e[0x2]}${__Oxe833e[0x2]}`)}else {console[__Oxe833e[0xb]](`${__Oxe833e[0x2]}${_0x1f9ax1c}${__Oxe833e[0x2]}`)}}}else {console[__Oxe833e[0xb]](`${__Oxe833e[0x2]}${_0x1f9ax1c}${__Oxe833e[0x2]}`)};break;default:console[__Oxe833e[0xb]](`${__Oxe833e[0x2]}${_0x1f9ax1c}${__Oxe833e[0x2]}`)};if( typeof _0x1f9ax1e== __Oxe833e[0x96]){if(_0x1f9ax1e[__Oxe833e[0xb6]]){if(_0x1f9ax1e[__Oxe833e[0xb6]][__Oxe833e[0xb5]](__Oxe833e[0xb7])>  -1){}}}}catch(e){}}function getPostRequest(_0x1f9ax21,_0x1f9ax15,_0x1f9ax16= __Oxe833e[0x72]){let _0x1f9ax22={"\x41\x63\x63\x65\x70\x74":__Oxe833e[0xb9],"\x41\x63\x63\x65\x70\x74\x2D\x45\x6E\x63\x6F\x64\x69\x6E\x67":__Oxe833e[0xba],"\x41\x63\x63\x65\x70\x74\x2D\x4C\x61\x6E\x67\x75\x61\x67\x65":__Oxe833e[0xbb],"\x43\x6F\x6E\x6E\x65\x63\x74\x69\x6F\x6E":__Oxe833e[0xbc],"\x43\x6F\x6E\x74\x65\x6E\x74\x2D\x54\x79\x70\x65":__Oxe833e[0xbd],"\x43\x6F\x6F\x6B\x69\x65":cookie,"\x55\x73\x65\x72\x2D\x41\x67\x65\x6E\x74":$[__Oxe833e[0x3e]],"\x58\x2D\x52\x65\x71\x75\x65\x73\x74\x65\x64\x2D\x57\x69\x74\x68":__Oxe833e[0xbe]};if(_0x1f9ax21[__Oxe833e[0xb5]](__Oxe833e[0x71])>  -1){_0x1f9ax22[__Oxe833e[0xbf]]= __Oxe833e[0x71];_0x1f9ax22[__Oxe833e[0xc0]]= __Oxe833e[0xc1];_0x1f9ax22[__Oxe833e[0xc2]]= __Oxe833e[0xc3];delete _0x1f9ax22[__Oxe833e[0xc4]]};return {url:_0x1f9ax21,method:_0x1f9ax16,headers:_0x1f9ax22,body:_0x1f9ax15,timeout:60000}}async function getToken(){let _0x1f9ax24= await getSign(__Oxe833e[0x75],{'\x69\x64':__Oxe833e[0x2],'\x75\x72\x6C':__Oxe833e[0x71]});let _0x1f9ax25={url:`${__Oxe833e[0x73]}`,headers:{Host:__Oxe833e[0xc5],'\x43\x6F\x6E\x74\x65\x6E\x74\x2D\x54\x79\x70\x65':__Oxe833e[0xbd],Accept:__Oxe833e[0xc6],Connection:__Oxe833e[0xbc],Cookie:cookie,'\x55\x73\x65\x72\x2D\x41\x67\x65\x6E\x74':__Oxe833e[0xc7],'\x41\x63\x63\x65\x70\x74\x2D\x4C\x61\x6E\x67\x75\x61\x67\x65':__Oxe833e[0xc8],'\x41\x63\x63\x65\x70\x74\x2D\x45\x6E\x63\x6F\x64\x69\x6E\x67':__Oxe833e[0xba]},body:`${__Oxe833e[0x2]}${Signz}${__Oxe833e[0x2]}`};return  new Promise((_0x1f9ax19)=>{$[__Oxe833e[0x90]](_0x1f9ax25,(_0x1f9ax1a,_0x1f9ax1b,_0x1f9ax1c)=>{try{if(_0x1f9ax1a){$[__Oxe833e[0xb]](_0x1f9ax1a)}else {if(_0x1f9ax1c){_0x1f9ax1c= JSON[__Oxe833e[0x93]](_0x1f9ax1c);if(_0x1f9ax1c[__Oxe833e[0xc9]]=== __Oxe833e[0xca]){$[__Oxe833e[0x43]]= _0x1f9ax1c[__Oxe833e[0x98]]}}else {$[__Oxe833e[0xb]](__Oxe833e[0xcb])}}}catch(error){$[__Oxe833e[0xb]](error)}finally{_0x1f9ax19()}})})}function getSign(_0x1f9ax27,_0x1f9ax15){let _0x1f9ax1c={'\x66\x6E':_0x1f9ax27,'\x62\x6F\x64\x79':JSON[__Oxe833e[0xcc]](_0x1f9ax15)};let _0x1f9ax28={'\x75\x72\x6C':__Oxe833e[0xcd],'\x62\x6F\x64\x79':JSON[__Oxe833e[0xcc]](_0x1f9ax1c),'\x68\x65\x61\x64\x65\x72\x73':{"\x43\x6F\x6E\x74\x65\x6E\x74\x2D\x54\x79\x70\x65":__Oxe833e[0xb9]},'\x74\x69\x6D\x65\x6F\x75\x74':30000};return  new Promise(async (_0x1f9ax19)=>{$[__Oxe833e[0x90]](_0x1f9ax28,(_0x1f9ax1a,_0x1f9ax1b,_0x1f9ax1c)=>{try{if(_0x1f9ax1a){console[__Oxe833e[0xb]](__Oxe833e[0x2]+ JSON[__Oxe833e[0xcc]](_0x1f9ax1a));console[__Oxe833e[0xb]]($[__Oxe833e[0x2a]]+ __Oxe833e[0xce])}else {_0x1f9ax1c= JSON[__Oxe833e[0x93]](_0x1f9ax1c);if(( typeof _0x1f9ax1c=== __Oxe833e[0x96])&& _0x1f9ax1c&& _0x1f9ax1c[__Oxe833e[0xcf]]){if(_0x1f9ax1c[__Oxe833e[0xcf]]){Signz= _0x1f9ax1c[__Oxe833e[0xcf]]|| __Oxe833e[0x2]}}else {console[__Oxe833e[0xb]](__Oxe833e[0xd0])}}}catch(e){$[__Oxe833e[0x25]](e,_0x1f9ax1b)}finally{_0x1f9ax19(_0x1f9ax1c)}})})}function taskPostUrl(_0x1f9ax21,_0x1f9ax2a){d= {actId:$[__Oxe833e[0x32]],..._0x1f9ax2a,"\x6D\x65\x74\x68\x6F\x64":_0x1f9ax21,userId:$[__Oxe833e[0x30]],"\x62\x75\x79\x65\x72\x4E\x69\x63\x6B":($[__Oxe833e[0x45]]|| __Oxe833e[0x2])};sign2= mpdzSign(d);const _0x1f9ax2b={"\x6A\x73\x6F\x6E\x52\x70\x63":__Oxe833e[0xd1],"\x70\x61\x72\x61\x6D\x73":{"\x63\x6F\x6D\x6D\x6F\x6E\x50\x61\x72\x61\x6D\x65\x74\x65\x72":{"\x61\x70\x70\x6B\x65\x79":$[__Oxe833e[0x2e]],"\x6D":__Oxe833e[0x72],"\x73\x69\x67\x6E":sign2[__Oxe833e[0xd2]],"\x74\x69\x6D\x65\x73\x74\x61\x6D\x70":sign2[__Oxe833e[0xd3]],userId:$[__Oxe833e[0x30]]},"\x61\x64\x6D\x4A\x73\x6F\x6E":{actId:$[__Oxe833e[0x32]],..._0x1f9ax2a,"\x6D\x65\x74\x68\x6F\x64":_0x1f9ax21,userId:$[__Oxe833e[0x30]],"\x62\x75\x79\x65\x72\x4E\x69\x63\x6B":($[__Oxe833e[0x45]]|| __Oxe833e[0x2])}}};if(_0x1f9ax21[__Oxe833e[0xb5]](__Oxe833e[0x6e])>  -1){delete _0x1f9ax2b[__Oxe833e[0xd5]][__Oxe833e[0xd4]][__Oxe833e[0x32]]};return $[__Oxe833e[0x8e]](_0x1f9ax2b,_0x1f9ax2b)}function random(_0x1f9ax2d,_0x1f9ax2e){return Math[__Oxe833e[0x20]](Math[__Oxe833e[0x1f]]()* (_0x1f9ax2e- _0x1f9ax2d))+ _0x1f9ax2d}function mpdzSign(_0x1f9ax30){AppSecret= __Oxe833e[0xd6];key= 25747717;time2= ( new Date).valueOf();s2= encodeURIComponent(JSON[__Oxe833e[0xcc]](_0x1f9ax30));c=  new RegExp(__Oxe833e[0xd7],__Oxe833e[0xd8]);A=  new RegExp(__Oxe833e[0xd9],__Oxe833e[0xd8]);s2= s2[__Oxe833e[0xdb]](c,__Oxe833e[0xda]);s2= s2[__Oxe833e[0xdb]](A,__Oxe833e[0xdc]);signBody= key+ __Oxe833e[0xdd]+ key+ __Oxe833e[0xd4]+ s2+ __Oxe833e[0xde]+ time2+ AppSecret;sign= CryptoJS.MD5(signBody[__Oxe833e[0xdf]]()).toString();return {sign,timeStamp:time2}}async function getUa(){id= CryptoJS.MD5(Date[__Oxe833e[0xe1]]()).toString()[__Oxe833e[0xe0]](0,16);CryptoJS[__Oxe833e[0xe4]][__Oxe833e[0xe3]][__Oxe833e[0xe2]]= __Oxe833e[0xe5];const _0x1f9ax32=CryptoJS[__Oxe833e[0xe4]][__Oxe833e[0xe6]][__Oxe833e[0x93]](id);const _0x1f9ax33=CryptoJS[__Oxe833e[0xe4]][__Oxe833e[0xe3]][__Oxe833e[0xcc]](_0x1f9ax32);ep= encodeURIComponent(JSON[__Oxe833e[0xcc]]({"\x68\x64\x69\x64":__Oxe833e[0xe7],"\x74\x73":( new Date)[__Oxe833e[0xe8]](),"\x72\x69\x64\x78":-1,"\x63\x69\x70\x68\x65\x72":{"\x73\x76":__Oxe833e[0xe9],"\x61\x64":_0x1f9ax33,"\x6F\x64":__Oxe833e[0x2],"\x6F\x76":__Oxe833e[0xea],"\x75\x64":_0x1f9ax33},"\x63\x69\x70\x68\x65\x72\x74\x79\x70\x65":5,"\x76\x65\x72\x73\x69\x6F\x6E":__Oxe833e[0xeb],"\x61\x70\x70\x6E\x61\x6D\x65":__Oxe833e[0xec]}));return `${__Oxe833e[0xed]}${ep}${__Oxe833e[0xee]}`}function jsonParse(_0x1f9ax35){if( typeof _0x1f9ax35== __Oxe833e[0xef]){try{return JSON[__Oxe833e[0x93]](_0x1f9ax35)}catch(e){console[__Oxe833e[0xb]](e);$[__Oxe833e[0x2d]]($[__Oxe833e[0x2a]],__Oxe833e[0x2],__Oxe833e[0xf0]);return []}}}(function(_0x1f9ax2b,_0x1f9ax36,_0x1f9ax37,_0x1f9ax38,_0x1f9ax39,_0x1f9ax3a){_0x1f9ax3a= __Oxe833e[0x99];_0x1f9ax38= function(_0x1f9ax3b){if( typeof alert!== _0x1f9ax3a){alert(_0x1f9ax3b)};if( typeof console!== _0x1f9ax3a){console[__Oxe833e[0xb]](_0x1f9ax3b)}};_0x1f9ax37= function(_0x1f9ax3c,_0x1f9ax2b){return _0x1f9ax3c+ _0x1f9ax2b};_0x1f9ax39= _0x1f9ax37(__Oxe833e[0xf1],_0x1f9ax37(_0x1f9ax37(__Oxe833e[0xf2],__Oxe833e[0xf3]),__Oxe833e[0xf4]));try{_0x1f9ax2b= __encode;if(!( typeof _0x1f9ax2b!== _0x1f9ax3a&& _0x1f9ax2b=== _0x1f9ax37(__Oxe833e[0xf5],__Oxe833e[0xf6]))){_0x1f9ax38(_0x1f9ax39)}}catch(e){_0x1f9ax38(_0x1f9ax39)}})({})
+const $ = new Env("头文字JJJ");
+const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
+const notify = $.isNode() ? require('./sendNotify') : '';
+let cookiesArr = [], cookie = '';
+if ($.isNode()) {
+    Object.keys(jdCookieNode).forEach((item) => {
+        cookiesArr.push(jdCookieNode[item])
+    })
+    if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => {
+    };
+} else {
+    cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
+}
+allMessage = '';
+message = '';
+$.hotFlag = false;
+$.outFlag = false;
+let shareUuidArr = ['B2s863iFzsHJxGtOlrCXxsjNhNaYFy2HteErE6izlhTf9nrGY7gBkCdGU4C6z/xD', 'WoDXSUOIZFZbWchg5qcDb14tLNYA4seuA67MOIYQxEk3Vl9+AVo4NF+tgyeIc6A6kdK3rLBQpEQH9V4tdrrh0w==', '3KtP4oQOaF9hH0uFesDKL14tLNYA4seuA67MOIYQxEk3Vl9+AVo4NF+tgyeIc6A6kdK3rLBQpEQH9V4tdrrh0w==', 'OsiH6Sic/uTxioPBG6hh5K9AMkY4oJ31vhy6nI5LWbOiIw7XUQOP/Btn03/M1TYH', '8AIkpPYAb4jMiUQb+YijkcjNhNaYFy2HteErE6izlhTf9nrGY7gBkCdGU4C6z/xD'];
+let n = 0;
+n = Math.floor(Math.random() * shareUuidArr.length);
+let shareUuid = shareUuidArr[n] || '';
+!(async () => {
+    console.log('活动快捷入口： 11:/参与头文字J，集能量兑换京豆，【Jιιngヵ栋】 ￥Z9yfjBqzLWt￥');
+    if (!cookiesArr[0]) {
+        $.msg($.name, '【提示】请先获取cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/', {
+            "open-url": "https://bean.m.jd.com/"
+        });
+        return;
+    }
+    $.userId = '10299171';
+    $.actId = '1760007';
+    $.inviteNick = shareUuid;
+    for (let o = 0; o < 5; o++) {
+        cookie = cookiesArr[o];
+        if (cookie) {
+            $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]);
+            $.index = o + 1;
+            message = '';
+            $.bean = 0;
+            $.hotFlag = false
+            $.nickName = false;
+            $.nickName = '';
+            console.log(`\n\n******开始【京东账号${$.index}】${$.nickName || $.UserName}*********\n`);
+            await getUA();
+            await run();
+            if ($.outFlag) break;
+        }
+    }
+    if ($.outFlag) {
+        let msg = '此ip已被限制，请过10分钟后再执行脚本';
+        $.msg($.name, '', '' + msg);
+        if ($.isNode()) await notify.sendNotify(`${$.name}`, `${msg}`);
+    }
+})()
+    .catch((e) => $.logErr(e))
+    .finally(() => $.done())
 
-// prettier-ignore
-function Env(t, e) { "undefined" != typeof process && JSON.stringify(process.env).indexOf("GITHUB") > -1 && process.exit(0); class s { constructor(t) { this.env = t } send(t, e = "GET") { t = "string" == typeof t ? { url: t } : t; let s = this.get; return "POST" === e && (s = this.post), new Promise((e, i) => { s.call(this, t, (t, s, r) => { t ? i(t) : e(s) }) }) } get(t) { return this.send.call(this.env, t) } post(t) { return this.send.call(this.env, t, "POST") } } return new class { constructor(t, e) { this.name = t, this.http = new s(this), this.data = null, this.dataFile = "box.dat", this.logs = [], this.isMute = !1, this.isNeedRewrite = !1, this.logSeparator = "\n", this.startTime = (new Date).getTime(), Object.assign(this, e), this.log("", `🔔${this.name}, 开始!`) } isNode() { return "undefined" != typeof module && !!module.exports } isQuanX() { return "undefined" != typeof $task } isSurge() { return "undefined" != typeof $httpClient && "undefined" == typeof $loon } isLoon() { return "undefined" != typeof $loon } toObj(t, e = null) { try { return JSON.parse(t) } catch { return e } } toStr(t, e = null) { try { return JSON.stringify(t) } catch { return e } } getjson(t, e) { let s = e; const i = this.getdata(t); if (i) try { s = JSON.parse(this.getdata(t)) } catch { } return s } setjson(t, e) { try { return this.setdata(JSON.stringify(t), e) } catch { return !1 } } getScript(t) { return new Promise(e => { this.get({ url: t }, (t, s, i) => e(i)) }) } runScript(t, e) { return new Promise(s => { let i = this.getdata("@chavy_boxjs_userCfgs.httpapi"); i = i ? i.replace(/\n/g, "").trim() : i; let r = this.getdata("@chavy_boxjs_userCfgs.httpapi_timeout"); r = r ? 1 * r : 20, r = e && e.timeout ? e.timeout : r; const [o, h] = i.split("@"), n = { url: `http://${h}/v1/scripting/evaluate`, body: { script_text: t, mock_type: "cron", timeout: r }, headers: { "X-Key": o, Accept: "*/*" } }; this.post(n, (t, e, i) => s(i)) }).catch(t => this.logErr(t)) } loaddata() { if (!this.isNode()) return {}; { this.fs = this.fs ? this.fs : require("fs"), this.path = this.path ? this.path : require("path"); const t = this.path.resolve(this.dataFile), e = this.path.resolve(process.cwd(), this.dataFile), s = this.fs.existsSync(t), i = !s && this.fs.existsSync(e); if (!s && !i) return {}; { const i = s ? t : e; try { return JSON.parse(this.fs.readFileSync(i)) } catch (t) { return {} } } } } writedata() { if (this.isNode()) { this.fs = this.fs ? this.fs : require("fs"), this.path = this.path ? this.path : require("path"); const t = this.path.resolve(this.dataFile), e = this.path.resolve(process.cwd(), this.dataFile), s = this.fs.existsSync(t), i = !s && this.fs.existsSync(e), r = JSON.stringify(this.data); s ? this.fs.writeFileSync(t, r) : i ? this.fs.writeFileSync(e, r) : this.fs.writeFileSync(t, r) } } lodash_get(t, e, s) { const i = e.replace(/\[(\d+)\]/g, ".$1").split("."); let r = t; for (const t of i) if (r = Object(r)[t], void 0 === r) return s; return r } lodash_set(t, e, s) { return Object(t) !== t ? t : (Array.isArray(e) || (e = e.toString().match(/[^.[\]]+/g) || []), e.slice(0, -1).reduce((t, s, i) => Object(t[s]) === t[s] ? t[s] : t[s] = Math.abs(e[i + 1]) >> 0 == +e[i + 1] ? [] : {}, t)[e[e.length - 1]] = s, t) } getdata(t) { let e = this.getval(t); if (/^@/.test(t)) { const [, s, i] = /^@(.*?)\.(.*?)$/.exec(t), r = s ? this.getval(s) : ""; if (r) try { const t = JSON.parse(r); e = t ? this.lodash_get(t, i, "") : e } catch (t) { e = "" } } return e } setdata(t, e) { let s = !1; if (/^@/.test(e)) { const [, i, r] = /^@(.*?)\.(.*?)$/.exec(e), o = this.getval(i), h = i ? "null" === o ? null : o || "{}" : "{}"; try { const e = JSON.parse(h); this.lodash_set(e, r, t), s = this.setval(JSON.stringify(e), i) } catch (e) { const o = {}; this.lodash_set(o, r, t), s = this.setval(JSON.stringify(o), i) } } else s = this.setval(t, e); return s } getval(t) { return this.isSurge() || this.isLoon() ? $persistentStore.read(t) : this.isQuanX() ? $prefs.valueForKey(t) : this.isNode() ? (this.data = this.loaddata(), this.data[t]) : this.data && this.data[t] || null } setval(t, e) { return this.isSurge() || this.isLoon() ? $persistentStore.write(t, e) : this.isQuanX() ? $prefs.setValueForKey(t, e) : this.isNode() ? (this.data = this.loaddata(), this.data[e] = t, this.writedata(), !0) : this.data && this.data[e] || null } initGotEnv(t) { this.got = this.got ? this.got : require("got"), this.cktough = this.cktough ? this.cktough : require("tough-cookie"), this.ckjar = this.ckjar ? this.ckjar : new this.cktough.CookieJar, t && (t.headers = t.headers ? t.headers : {}, void 0 === t.headers.Cookie && void 0 === t.cookieJar && (t.cookieJar = this.ckjar)) } get(t, e = (() => { })) { t.headers && (delete t.headers["Content-Type"], delete t.headers["Content-Length"]), this.isSurge() || this.isLoon() ? (this.isSurge() && this.isNeedRewrite && (t.headers = t.headers || {}, Object.assign(t.headers, { "X-Surge-Skip-Scripting": !1 })), $httpClient.get(t, (t, s, i) => { !t && s && (s.body = i, s.statusCode = s.status), e(t, s, i) })) : this.isQuanX() ? (this.isNeedRewrite && (t.opts = t.opts || {}, Object.assign(t.opts, { hints: !1 })), $task.fetch(t).then(t => { const { statusCode: s, statusCode: i, headers: r, body: o } = t; e(null, { status: s, statusCode: i, headers: r, body: o }, o) }, t => e(t))) : this.isNode() && (this.initGotEnv(t), this.got(t).on("redirect", (t, e) => { try { if (t.headers["set-cookie"]) { const s = t.headers["set-cookie"].map(this.cktough.Cookie.parse).toString(); s && this.ckjar.setCookieSync(s, null), e.cookieJar = this.ckjar } } catch (t) { this.logErr(t) } }).then(t => { const { statusCode: s, statusCode: i, headers: r, body: o } = t; e(null, { status: s, statusCode: i, headers: r, body: o }, o) }, t => { const { message: s, response: i } = t; e(s, i, i && i.body) })) } post(t, e = (() => { })) { if (t.body && t.headers && !t.headers["Content-Type"] && (t.headers["Content-Type"] = "application/x-www-form-urlencoded"), t.headers && delete t.headers["Content-Length"], this.isSurge() || this.isLoon()) this.isSurge() && this.isNeedRewrite && (t.headers = t.headers || {}, Object.assign(t.headers, { "X-Surge-Skip-Scripting": !1 })), $httpClient.post(t, (t, s, i) => { !t && s && (s.body = i, s.statusCode = s.status), e(t, s, i) }); else if (this.isQuanX()) t.method = "POST", this.isNeedRewrite && (t.opts = t.opts || {}, Object.assign(t.opts, { hints: !1 })), $task.fetch(t).then(t => { const { statusCode: s, statusCode: i, headers: r, body: o } = t; e(null, { status: s, statusCode: i, headers: r, body: o }, o) }, t => e(t)); else if (this.isNode()) { this.initGotEnv(t); const { url: s, ...i } = t; this.got.post(s, i).then(t => { const { statusCode: s, statusCode: i, headers: r, body: o } = t; e(null, { status: s, statusCode: i, headers: r, body: o }, o) }, t => { const { message: s, response: i } = t; e(s, i, i && i.body) }) } } time(t, e = null) { const s = e ? new Date(e) : new Date; let i = { "M+": s.getMonth() + 1, "d+": s.getDate(), "H+": s.getHours(), "m+": s.getMinutes(), "s+": s.getSeconds(), "q+": Math.floor((s.getMonth() + 3) / 3), S: s.getMilliseconds() }; /(y+)/.test(t) && (t = t.replace(RegExp.$1, (s.getFullYear() + "").substr(4 - RegExp.$1.length))); for (let e in i) new RegExp("(" + e + ")").test(t) && (t = t.replace(RegExp.$1, 1 == RegExp.$1.length ? i[e] : ("00" + i[e]).substr(("" + i[e]).length))); return t } msg(e = t, s = "", i = "", r) { const o = t => { if (!t) return t; if ("string" == typeof t) return this.isLoon() ? t : this.isQuanX() ? { "open-url": t } : this.isSurge() ? { url: t } : void 0; if ("object" == typeof t) { if (this.isLoon()) { let e = t.openUrl || t.url || t["open-url"], s = t.mediaUrl || t["media-url"]; return { openUrl: e, mediaUrl: s } } if (this.isQuanX()) { let e = t["open-url"] || t.url || t.openUrl, s = t["media-url"] || t.mediaUrl; return { "open-url": e, "media-url": s } } if (this.isSurge()) { let e = t.url || t.openUrl || t["open-url"]; return { url: e } } } }; if (this.isMute || (this.isSurge() || this.isLoon() ? $notification.post(e, s, i, o(r)) : this.isQuanX() && $notify(e, s, i, o(r))), !this.isMuteLog) { let t = ["", "==============📣系统通知📣=============="]; t.push(e), s && t.push(s), i && t.push(i), console.log(t.join("\n")), this.logs = this.logs.concat(t) } } log(...t) { t.length > 0 && (this.logs = [...this.logs, ...t]), console.log(t.join(this.logSeparator)) } logErr(t, e) { const s = !this.isSurge() && !this.isQuanX() && !this.isLoon(); s ? this.log("", `❗️${this.name}, 错误!`, t.stack) : this.log("", `❗️${this.name}, 错误!`, t) } wait(t) { return new Promise(e => setTimeout(e, t)) } done(t = {}) { const e = (new Date).getTime(), s = (e - this.startTime) / 1e3; this.log("", `🔔${this.name}, 结束! 🕛 ${s} 秒`), this.log(), (this.isSurge() || this.isQuanX() || this.isLoon()) && $done(t) } }(t, e) }
+async function run() {
+    try {
+        $.hasEnd = true;
+        $.Token = '';
+        $.Pin = '';
+        $.MixNick = '';
+        if ($.outFlag) {
+            console.log('此ip已被限制，请过10分钟后再执行脚本');
+            return;
+        }
+        await takePostRequest('isvObfuscator');
+        if ($.Token == '') {
+            console.log('获取token失败！');
+            return;
+        }
+        await takePostRequest('activity_load');
+        if ($.nickName) return;
+        if ($.MixNick == '') {
+            console.log('获取mixnick失败');
+            return;
+        }
+        console.log(`助力码：${$.MixNick}\n`);
+        if ($.hotFlag) return
+        await takePostRequest('taskList');
+        console.log('开始日常任务。。。');
+        for (let i = 0; i < $.taskLists.length; i++) {
+            $.missionType = $.taskLists[i].type
+            if (!$.taskLists[i].isComplete) {
+                switch ($.missionType) {
+                    case 'bingCar':
+                    case 'openCard':
+                    case 'shareAct':
+                        break;
+                    case 'viewCommodity':
+                    case 'viewThemeConference':
+                        for (let i = 0; i < 3; i++) {
+                            await takePostRequest('doTask');
+                            await $.wait(parseInt(Math.random() * 1000 + 1000, 10));
+                        }
+                        break;
+                    case 'collectShop':
+                        for (let i = 0; i < 3; i++) {
+                            await takePostRequest('getCusShop');
+                            await takePostRequest('followShop');
+                            await $.wait(parseInt(Math.random() * 1000 + 1000, 10));
+                        }
+                        break;
+                    case 'addCart':
+                        if (process.env.car_addsku && process.env.car_addsku === 'true') {
+                            for (let i = 0; i < 3; i++) {
+                                await takePostRequest('getCusShopProduct');
+                                await takePostRequest('addCart');
+                                await $.wait(parseInt(Math.random() * 1000 + 1000, 10));
+                            }
+                        } else {
+                            console.log(`默认不加购,请设置变量export car_addsku='true'做加购任务`)
+                        }
+                        break;
+                    default:
+                        await takePostRequest('doTask');
+                        await $.wait(1000);
+                }
+            }
+        }
+        if ($.remainChance) {
+            console.log('\n开始游戏。。。');
+            await takePostRequest('getCarInfo');
+            for (let i = 0; i < $.remainChance; i++) {
+                await takePostRequest('playGame');
+                await $.wait(parseInt(Math.random() * 2000 + 5000));
+                await takePostRequest('sendGameAward');
+                await $.wait(parseInt(Math.random() * 2000 + 1000));
+            }
+        } else {
+            console.log('\n开始游戏：没有游戏币了，明天再来！')
+        }
+        await takePostRequest('activity_load');
+        await $.wait(1000);
+        console.log(`当前能量值：${$.totalPoint}\n`);
+        await takePostRequest('missionInviteList');
+        await $.wait(1000);
+        console.log(`去助力：${$.inviteNick}`);
+        await takePostRequest('助力');
+        if ($.index == 1) {
+            $.inviteNick = $.MixNick;
+            console.log(`后面的号都会助力：${$.inviteNick}`);
+        }
+        await $.wait(parseInt(Math.random() * 1000 + 2000, 10));
+    } catch (e) {
+        console.log(e);
+    }
+}
 
+async function takePostRequest(type) {
+    if ($.outFlag) return;
+    let domain = 'https://mpdz-car-dz.isvjcloud.com';
+    let body = '';
+    let method = 'POST';
+    let admJson = '';
+    switch (type) {
+        case 'isvObfuscator':
+            url = 'https://api.m.jd.com/client.action?functionId=isvObfuscator';
+            body = 'body=%7B%22id%22%3A%22%22%2C%22url%22%3A%22https%3A%2F%2Fmpdz-car-dz.isvjcloud.com%2Fjdbeverage%2Fpages%2Fpaoku%2Fpaoku%3FpushWay%3D2%26collectionId%3D102%26tttparams%3DE1roDCIeyJkTGF0IjowLCJkTG5nIjowLCJnTGF0IjoiMzEuMTM5IiwiZ0xuZyI6IjEyMS40MjM4ODIiLCJncHNfYXJlYSI6IjJfMjgxM182MTEzMF8wIiwibGF0IjozMS4xMzgzOCwibG5nIjoxMjEuNDIzNjM5LCJtb2RlbCI6IkxZQS1BTDAwIiwicHJzdGF0ZSI6IjAiLCJ1bl9hcmVhIjoiMl8yODEzXzYxMTMwXzAifQ7%253D%253D%26sid%3D064681b1f54d7a776f9c0c12c26a2ecw%26un_area%3D2_2813_61130_0%22%7D&clientVersion=11.0.2&client=android&lang=zh_CN&ef=1&ep=%7B%22cipher%22%3A%7B%22uuid%22%3A%22ZwS1ZQC4ZwVrZJZuDzC0ZK%3D%3D%22%2C%22aid%22%3A%22ZwS1ZQC4ZwVrZJZuDzC0ZK%3D%3D%22%7D%2C%22ciphertype%22%3A5%2C%22version%22%3A%221.2.0%22%7D&st=1654963217789&sign=9f925500f3898b80c30ac396d524d5c8&sv=121';
+            break;
+        case 'activity_load':
+            url = `${domain}/dm/front/jdCardRunning/activity/load?open_id=&mix_nick=${$.MixNick}&push_way=3&user_id=`;
+            admJson = {'jdToken': $.Token, 'inviteNick': $.inviteNick};
+            body = _0x5338bf('/jdCardRunning/activity/load', admJson);
+            break;
+        case 'taskList':
+            url = `${domain}/dm/front/jdCardRunning/mission/completeState?open_id=&mix_nick=${$.MixNick}`;
+            admJson = {};
+            body = _0x5338bf('/jdCardRunning/mission/completeState', admJson);
+            break;
+        case'绑定':
+            url = `${domain}/dm/front/jdCardRunning/mission/completeMission?open_id=&mix_nick=${$.MixNick}`;
+            admJson = {'missionType': 'shareAct', 'inviterNick': $.inviteNick || ''};
+            body = _0x5338bf('/jdCardRunning/mission/completeState', admJson);
+            break;
+        case'助力':
+            url = `${domain}/dm/front/jdCardRunning/mission/completeMission?open_id=&mix_nick=${$.MixNick}`;
+            admJson = {'missionType': 'shareAct', 'inviterNick': $.inviteNick || '', 'userId': 10299171};
+            body = _0x5338bf('/jdCardRunning/mission/completeMission', admJson);
+            break;
+        case'followShop':
+            url = `${domain}/dm/front/jdCardRunning/mission/completeMission?open_id=&mix_nick=${$.MixNick}`;
+            admJson = {
+                'missionType': $.missionType,
+                'userId': 10299171,
+                'shopId': $.userIds,
+                'buyerNick': $.inviteNick
+            };
+            body = _0x5338bf('/jdCardRunning/mission/completeMission', admJson);
+            break;
+        case'addCart':
+            url = `${domain}/dm/front/jdCardRunning/mission/completeMission?open_id=&mix_nick=${$.MixNick}`;
+            admJson = {
+                'missionType': $.missionType,
+                'userId': 10299171,
+                'goodsNumId': $.goodsNumId,
+                'buyerNick': $.inviteNick
+            };
+            body = _0x5338bf('/jdCardRunning/mission/completeMission', admJson);
+            break;
+        case 'getCusShop':
+            url = `${domain}/dm/front/jdCardRunning/cusShop/getCusShop?open_id=&mix_nick=${$.MixNick}`;
+            admJson = {};
+            body = _0x5338bf('/jdCardRunning/cusShop/getCusShop', admJson);
+            break;
+        case 'getCusShopProduct':
+            url = `${domain}/dm/front/jdCardRunning/cusShop/getCusShopProduct?open_id=&mix_nick=${$.MixNick}`;
+            admJson = {};
+            body = _0x5338bf('/jdCardRunning/cusShop/getCusShop', admJson);
+            break;
+        case 'doTask':
+            url = `${domain}/dm/front/jdCardRunning/mission/completeMission?open_id=&mix_nick=${$.MixNick}`;
+            admJson = {'actId': $.actId, 'missionType': $.missionType};
+            body = _0x5338bf('/jdCardRunning/mission/completeMission', admJson);
+            break;
+        case 'playGame':
+            url = `${domain}/dm/front/jdCardRunning/game/playGame?open_id=&mix_nick=${$.MixNick}`;
+            admJson = {
+                'actId': $.actId,
+                'carId': $.usecar.id,
+                'carName': $.usecar.carName,
+                'userId': 10299171,
+                'buyerNick': $.inviteNick
+            };
+            body = _0x5338bf('/jdCardRunning/game/playGame', admJson);
+            break;
+        case 'sendGameAward':
+            url = `${domain}/dm/front/jdCardRunning/game/sendGameAward?open_id=&mix_nick=${$.MixNick}`;
+            admJson = {
+                'actId': $.actId,
+                'point': $.point.point || 300,
+                'gameLogId': $.gameLogId,
+                'userId': 10299171,
+                'buyerNick': $.inviteNick
+            };
+            body = _0x5338bf('/jdCardRunning/game/sendGameAward', admJson);
+            break;
+        case 'missionInviteList':
+            url = `${domain}/dm/front/jdCardRunning/customer/inviteList?open_id=&mix_nick=${$.MixNick}`;
+            admJson = {
+                'actId': $.actId,
+                'userId': 10299171,
+                'missionType': 'shareAct',
+                'inviteNum': 1,
+                'buyerNick': $.MixNick
+            };
+            body = _0x5338bf('/jdCardRunning/customer/inviteList', admJson);
+            break;
+        case 'getCarInfo':
+            url = `${domain}/dm/front/jdCardRunning/carInfo/getCarInfo?open_id=&mix_nick=${$.MixNick}`;
+            body = _0x5338bf('/jdCardRunning/cusShop/getCusShop', {});
+            break;
+        default:
+            console.log('错误' + type);
+    }
+    let myRequest = getPostRequest(url, body, method);
+    return new Promise(async resolve => {
+        $.post(myRequest, (err, resp, data) => {
+            try {
+                if (err) {
+                    if (resp && resp.statusCode && resp.statusCode == 493) {
+                        console.log('此ip已被限制，请过10分钟后再执行脚本');
+                        $.outFlag = true;
+                    }
+                    console.log(`${$.toStr(err, err)}`)
+                    console.log(' API请求失败，请检查网路重试');
+                } else {
+                    dealReturn(type, data);
+                }
+            } catch (e) {
+                console.log(e, resp);
+            } finally {
+                resolve();
+            }
+        });
+    });
+}
+
+async function dealReturn(type, data) {
+    let res = '';
+    try {
+        if (type != 'accessLogWithAD' || type != 'drawContent') {
+            if (data) {
+                res = JSON.parse(data);
+            }
+        }
+    } catch (e) {
+        console.log(`${type} 执行任务异常`);
+        console.log(data);
+        $.runFalag = false;
+    }
+    try {
+        switch (type) {
+            case 'isvObfuscator':
+                if (typeof res == 'object') {
+                    if (res.errcode == 0) {
+                        if (typeof res.token != 'undefined') $.Token = res.token;
+                    } else if (res.message) {
+                        console.log(`isvObfuscator ${res.message}`)
+                    } else {
+                        console.log(data);
+                    }
+                } else {
+                    console.log(data);
+                }
+                break;
+            case 'getCusShop':
+                if (typeof res == 'object') {
+                    if (res.success && res.success === true && res.data) {
+                        if (res.data.status && res.data.status == 200) {
+                            $.userIds = res.data.data.cusShop.userId;
+                        }
+                    } else if (res.message) {
+                        console.log(`${type} ${res.message}`)
+                    } else {
+                        console.log(data);
+                    }
+                } else {
+                    console.log(data);
+                }
+                break;
+            case 'getCusShopProduct':
+                if (typeof res == 'object') {
+                    if (res.success && res.success === true && res.data) {
+                        if (res.data.status && res.data.status == 200) {
+                            $.goodsNumId = res.data.data.cusShopProduct.numId;
+                        }
+                    } else if (res.message) {
+                        console.log(`${type} ${res.message}`)
+                    } else {
+                        console.log(data);
+                    }
+                } else {
+                    console.log(data);
+                }
+                break;
+            case 'taskList':
+                if (typeof res == 'object') {
+                    if (res.success && res.success === true && res.data) {
+                        if (res.data.status && res.data.status == 200) {
+                            $.taskLists = res.data.data || [];
+                        }
+                    } else if (res.message) {
+                        console.log(`${type} ${res.message}`)
+                    } else {
+                        console.log(data);
+                    }
+                } else {
+                    console.log(data);
+                }
+                break;
+            case 'getCarInfo':
+                if (typeof res == 'object') {
+                    if (res.success && res.success === true && res.data) {
+                        if (res.data.status && res.data.status == 200) {
+                            $.carlist = res.data.data || [];
+                            $.usecar = $.carlist.reverse().find(item => item.isUnlock === true)
+                            console.log(`使用我最牛X的${$.usecar.carName}进行游戏！`)
+                            let pointArr = [{id: 1, point: 100}, {id: 2, point: 150}, {id: 3, point: 200}, {
+                                id: 4,
+                                point: 300
+                            }]
+                            $.point = pointArr.find(a => a.id === $.usecar.id)
+                        }
+                    } else if (res.message) {
+                        console.log(`${type} ${res.message}`)
+                    } else {
+                        console.log(data);
+                    }
+                } else {
+                    console.log(data);
+                }
+                break;
+            case 'playGame':
+                if (typeof res == 'object') {
+                    if (res.success && res.success === true && res.data) {
+                        if (res.data.status && res.data.status == 200) {
+                            $.gameLogId = res.data.data.gameLogId;
+                            console.log(`游戏ID： ${$.gameLogId}`);
+                        }
+                    } else if (res.message) {
+                        console.log(`${type} ${res.message}`)
+                    } else {
+                        console.log(data);
+                    }
+                } else {
+                    console.log(data);
+                }
+                break;
+            case 'sendGameAward':
+                if (typeof res == 'object') {
+                    if (res.success && res.data) {
+                        console.log(`游戏完成，获得${$.point.point}能量!`);
+                    } else if (res.message) {
+                        console.log(`${type} ${res.message}`)
+                    } else {
+                        console.log(data);
+                    }
+                } else {
+                    console.log(data);
+                }
+                break;
+            case 'accessLogWithAD':
+            case 'drawContent':
+                break;
+            case 'specialSign':
+            case 'activity_load':
+            case 'setMixNick':
+            case 'followShop':
+            case 'doTask':
+            case 'addCart':
+            case 'missionInviteList':
+            case'绑定':
+            case'助力':
+                let title = ''
+                if (type == 'followShop') title = '关注';
+                if (type == 'addCart') title = '加购';
+                if (type == 'specialSign') title = '签到';
+                if (typeof res == 'object') {
+                    if (res.success && res.success === true && res.data) {
+                        if (res.data.status && res.data.status == 200) {
+                            res = res.data;
+                            if (type != 'setMixNick' && (res.msg || res.data.remark)) {
+                                console.log((title && title + ':' || '') + (res.msg || res.data.isOpenCard || res.data.remark || ''));
+                            }
+                            if (type == 'activity_load') {
+                                if (res.data) {
+                                    $.MixNick = res.data.missionCustomer.buyerNick || '';
+                                    $.hasCollectShop = res.data.missionCustomer.hasCollectShop || 0;
+                                    $.totalPoint = res.data.missionCustomer.totalPoint || 0;
+                                    $.remainChance = res.data.missionCustomer.remainChance || 0;
+                                }
+                            } else if (type == 'missionInviteList') {
+                                console.log(`本月已邀请助力(${res.data.total})`);
+                            }
+                        } else if (res.data.msg) {
+                            console.log(res.data.msg);
+                        } else if (res.errorMessage) {
+                            console.log(`${type} ${res.errorMessage}`)
+                        } else {
+                            console.log(data);
+                        }
+                    } else if (res.errorMessage) {
+                        console.log(`${type} ${res.errorMessage}`)
+                    } else {
+                        console.log(data);
+                    }
+                } else {
+                    console.log(data);
+                }
+                break;
+            default:
+                console.log(data);
+        }
+        if (typeof res == 'object') {
+            if (res.errorMessage) {
+                if (res.errorMessage.indexOf('火爆') > -1) {
+                    $.hotFlag = true
+                }
+            }
+        }
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+function getPostRequest(url, body, method = 'POST') {
+    let headers = {
+        'Accept': 'application/json',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Accept-Language': 'zh-cn', 'Connection': 'keep-alive',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Cookie': cookie,
+        'User-Agent': $['UA'],
+        'X-Requested-With': 'XMLHttpRequest'
+    };
+    if (url.indexOf('https://mpdz-car-dz.isvjcloud.com') > -1) {
+        headers['Origin'] = 'https://mpdz-car-dz.isvjcloud.com';
+        headers['Content-Type'] = 'application/json; charset=utf-8';
+        delete headers.Cookie;
+    }
+    return {'url': url, 'method': method, 'headers': headers, 'body': body, 'timeout': 30000};
+}
+
+function randomString(e) {
+    e = e || 32;
+    let t = "abcdef0123456789", a = t.length, n = "";
+    for (i = 0; i < e; i++)
+        n += t.charAt(Math.floor(Math.random() * a));
+    return n
+}
+
+function jsonParse(str) {
+    if (typeof str == "string") {
+        try {
+            return JSON.parse(str);
+        } catch (e) {
+            console.log(e);
+            $.msg($.name, '', '请勿随意在BoxJs输入框修改内容\n建议通过脚本去获取cookie')
+            return [];
+        }
+    }
+}
+
+async function getUA() {
+    $.UA = `jdapp;iPhone;10.1.4;13.1.2;${randomString(40)};network/wifi;model/iPhone8,1;addressid/2308460611;appBuild/167814;jdSupportDarkMode/0;Mozilla/5.0 (iPhone; CPU iPhone OS 13_1_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1`
+}
+;var encode_version = 'jsjiami.com.v5', jisov = '__0xe4bb2',
+    __0xe4bb2 = ['w5PClcOjwo/DvA==', 'wpUww5vDsQk=', 'ZznDlsKTGg==', 'HEMqw4Rb', 'GkBjDzbCk8ODJcOO', 'URQ9', 'QlsVw5E=', 'f301w7YWRsKjw5bDhcK0MFnDn07CgG0g', 'b3h8', '5YuH6Zq854iM5p6i5Y+7772kwozDn+S/oOWtpOaem+W+k+eqiQ==', 'TMKjJcOBwpFawrx9wqJgaw==', 'wq3CiFbCrH8=', 'w5jDqkfCmXUY', 'w4J8Q3tcwpXCtQ==', 'ZTHDtcKfAQ==', 'w6d/w6Edw5g=', 'cWMgw6kl', 'M2rDjMKdbcOr', 'wrclOl7DnA==', 'w61SD3bDpcOV', 'w7wLwq4SwoVhwp8=', 'f3Uxwrwk', 'wo7CtiDDq3QnwoA=', 'EsOzdcOOdg==', 'VDF4w7ZF', 'LsKzw4tWCw==', 'GMOfwoxcVA==', 'wp97XR3Duw==', 'wpDCu1tGw6zChw==', 'wrPCpy4FScOJGw==', 'All5w4Vj', 'bilew5LDrQ==', 'CXjDr8KESQ==', 'w5rDqyQPwrfCrzZhfA==', 'AkbCoMOmb2HDo8Og', 'w5jDrx8VwrLDhyHCpyEOMcK8f0Bgw4lSW8OKwonDjcKAwrvDk1ldwpvCrXoZw4/Cpg==', 'FUHCoA==', 'wpRVwpM=', 'w7lRGm/DicOI', 'woQew5nDmgrDhsKE', 'wo3DoFrDkXHCh8O2ND8=', 'dCVrw5RN', 'w6PCtlnCgCw=', 'w7l0V0BQwrnCuA==', 'KnYIw6xV', 'wqDCqi45Tg==', 'woTCuT9DVyM+CsKH', 'VzRsw4/DrQ==', 'wr7CjlLCiXpew6M=', 'w6NPITQD', 'wovDrEfDmGPCkMOy', 'MCnCqcKEwrM=', 'AkwMw4Jl', 'w4BWSVds', 'CwTCjsKSwpU=', 'HFltNE0=', 'wqvCjGh4Ug==', 'wrhMWQbDuw==', 'PR/Cv8Olwpo=', 'CSxaw51e', 'RE/DvDDDmg==', 'w4XDv8KCLQ0=', 'X1Bz', 'w65JwptjccK3OMO/PMKtQA==', 'wpTCtXpTw7PCnX7Dsg==', 'w5QQwqI=', 'w61PDmHDisOYfGLDog==', 'w4fDqkjCgl0RYMKvwozCqQ1GBMOj', '54iO5py15Y2e77+jTsO85L+05a+C5p6p5byI56q077666LyM6K2r5pSq5o2g5omg5LuO55iC5be25L29', '5YqP6ZuZ54qC5p2C5Y6S776HB8KW5LyZ5a2v5p6Z5b2J56mp', 'w6BLwoBPYQ==', 'C3V2HFM=', 'YmHDkz/Dvw==', 'M11NMiw='];
+(function (_0x15847c, _0x13be9c) {
+    var _0x18b73f = function (_0x2e831c) {
+        while (--_0x2e831c) {
+            _0x15847c['push'](_0x15847c['shift']());
+        }
+    };
+    var _0x3c93d6 = function () {
+        var _0x2cfebf = {
+            'data': {'key': 'cookie', 'value': 'timeout'},
+            'setCookie': function (_0x55dbc4, _0x51ff2, _0x223193, _0x3a07fb) {
+                _0x3a07fb = _0x3a07fb || {};
+                var _0x36f822 = _0x51ff2 + '=' + _0x223193;
+                var _0x1ee0c7 = 0x0;
+                for (var _0x1ee0c7 = 0x0, _0x4f59a8 = _0x55dbc4['length']; _0x1ee0c7 < _0x4f59a8; _0x1ee0c7++) {
+                    var _0x2d6de5 = _0x55dbc4[_0x1ee0c7];
+                    _0x36f822 += ';\x20' + _0x2d6de5;
+                    var _0x57012e = _0x55dbc4[_0x2d6de5];
+                    _0x55dbc4['push'](_0x57012e);
+                    _0x4f59a8 = _0x55dbc4['length'];
+                    if (_0x57012e !== !![]) {
+                        _0x36f822 += '=' + _0x57012e;
+                    }
+                }
+                _0x3a07fb['cookie'] = _0x36f822;
+            },
+            'removeCookie': function () {
+                return 'dev';
+            },
+            'getCookie': function (_0x328dc5, _0x381da8) {
+                _0x328dc5 = _0x328dc5 || function (_0x27b746) {
+                    return _0x27b746;
+                };
+                var _0x3dfcbb = _0x328dc5(new RegExp('(?:^|;\x20)' + _0x381da8['replace'](/([.$?*|{}()[]\/+^])/g, '$1') + '=([^;]*)'));
+                var _0x34882a = function (_0x24b795, _0x12a4d0) {
+                    _0x24b795(++_0x12a4d0);
+                };
+                _0x34882a(_0x18b73f, _0x13be9c);
+                return _0x3dfcbb ? decodeURIComponent(_0x3dfcbb[0x1]) : undefined;
+            }
+        };
+        var _0x5b87ff = function () {
+            var _0x5d9e82 = new RegExp('\x5cw+\x20*\x5c(\x5c)\x20*{\x5cw+\x20*[\x27|\x22].+[\x27|\x22];?\x20*}');
+            return _0x5d9e82['test'](_0x2cfebf['removeCookie']['toString']());
+        };
+        _0x2cfebf['updateCookie'] = _0x5b87ff;
+        var _0x135898 = '';
+        var _0x28414e = _0x2cfebf['updateCookie']();
+        if (!_0x28414e) {
+            _0x2cfebf['setCookie'](['*'], 'counter', 0x1);
+        } else if (_0x28414e) {
+            _0x135898 = _0x2cfebf['getCookie'](null, 'counter');
+        } else {
+            _0x2cfebf['removeCookie']();
+        }
+    };
+    _0x3c93d6();
+}(__0xe4bb2, 0x98));
+var _0x13f9 = function (_0x29b7a7, _0x28d10a) {
+    _0x29b7a7 = _0x29b7a7 - 0x0;
+    var _0x12e5ff = __0xe4bb2[_0x29b7a7];
+    if (_0x13f9['initialized'] === undefined) {
+        (function () {
+            var _0x4db8b7 = typeof window !== 'undefined' ? window : typeof process === 'object' && typeof require === 'function' && typeof global === 'object' ? global : this;
+            var _0x15bb48 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+            _0x4db8b7['atob'] || (_0x4db8b7['atob'] = function (_0x542d19) {
+                var _0x1c6a85 = String(_0x542d19)['replace'](/=+$/, '');
+                for (var _0x3758f7 = 0x0, _0x52c728, _0x4d6b70, _0x27a36b = 0x0, _0x3e0021 = ''; _0x4d6b70 = _0x1c6a85['charAt'](_0x27a36b++); ~_0x4d6b70 && (_0x52c728 = _0x3758f7 % 0x4 ? _0x52c728 * 0x40 + _0x4d6b70 : _0x4d6b70, _0x3758f7++ % 0x4) ? _0x3e0021 += String['fromCharCode'](0xff & _0x52c728 >> (-0x2 * _0x3758f7 & 0x6)) : 0x0) {
+                    _0x4d6b70 = _0x15bb48['indexOf'](_0x4d6b70);
+                }
+                return _0x3e0021;
+            });
+        }());
+        var _0x21e718 = function (_0x3faf49, _0x2603d2) {
+            var _0xe37118 = [], _0x2aff96 = 0x0, _0xac8719, _0x1b83dc = '', _0x3922d9 = '';
+            _0x3faf49 = atob(_0x3faf49);
+            for (var _0x547275 = 0x0, _0x58dba4 = _0x3faf49['length']; _0x547275 < _0x58dba4; _0x547275++) {
+                _0x3922d9 += '%' + ('00' + _0x3faf49['charCodeAt'](_0x547275)['toString'](0x10))['slice'](-0x2);
+            }
+            _0x3faf49 = decodeURIComponent(_0x3922d9);
+            for (var _0x5df057 = 0x0; _0x5df057 < 0x100; _0x5df057++) {
+                _0xe37118[_0x5df057] = _0x5df057;
+            }
+            for (_0x5df057 = 0x0; _0x5df057 < 0x100; _0x5df057++) {
+                _0x2aff96 = (_0x2aff96 + _0xe37118[_0x5df057] + _0x2603d2['charCodeAt'](_0x5df057 % _0x2603d2['length'])) % 0x100;
+                _0xac8719 = _0xe37118[_0x5df057];
+                _0xe37118[_0x5df057] = _0xe37118[_0x2aff96];
+                _0xe37118[_0x2aff96] = _0xac8719;
+            }
+            _0x5df057 = 0x0;
+            _0x2aff96 = 0x0;
+            for (var _0x4d6bd9 = 0x0; _0x4d6bd9 < _0x3faf49['length']; _0x4d6bd9++) {
+                _0x5df057 = (_0x5df057 + 0x1) % 0x100;
+                _0x2aff96 = (_0x2aff96 + _0xe37118[_0x5df057]) % 0x100;
+                _0xac8719 = _0xe37118[_0x5df057];
+                _0xe37118[_0x5df057] = _0xe37118[_0x2aff96];
+                _0xe37118[_0x2aff96] = _0xac8719;
+                _0x1b83dc += String['fromCharCode'](_0x3faf49['charCodeAt'](_0x4d6bd9) ^ _0xe37118[(_0xe37118[_0x5df057] + _0xe37118[_0x2aff96]) % 0x100]);
+            }
+            return _0x1b83dc;
+        };
+        _0x13f9['rc4'] = _0x21e718;
+        _0x13f9['data'] = {};
+        _0x13f9['initialized'] = !![];
+    }
+    var _0x458995 = _0x13f9['data'][_0x29b7a7];
+    if (_0x458995 === undefined) {
+        if (_0x13f9['once'] === undefined) {
+            var _0x3efbfb = function (_0x5b7e5d) {
+                this['rc4Bytes'] = _0x5b7e5d;
+                this['states'] = [0x1, 0x0, 0x0];
+                this['newState'] = function () {
+                    return 'newState';
+                };
+                this['firstState'] = '\x5cw+\x20*\x5c(\x5c)\x20*{\x5cw+\x20*';
+                this['secondState'] = '[\x27|\x22].+[\x27|\x22];?\x20*}';
+            };
+            _0x3efbfb['prototype']['checkState'] = function () {
+                var _0x4fc769 = new RegExp(this['firstState'] + this['secondState']);
+                return this['runState'](_0x4fc769['test'](this['newState']['toString']()) ? --this['states'][0x1] : --this['states'][0x0]);
+            };
+            _0x3efbfb['prototype']['runState'] = function (_0x519ad8) {
+                if (!Boolean(~_0x519ad8)) {
+                    return _0x519ad8;
+                }
+                return this['getState'](this['rc4Bytes']);
+            };
+            _0x3efbfb['prototype']['getState'] = function (_0x29c0f1) {
+                for (var _0x2a188e = 0x0, _0x19a051 = this['states']['length']; _0x2a188e < _0x19a051; _0x2a188e++) {
+                    this['states']['push'](Math['round'](Math['random']()));
+                    _0x19a051 = this['states']['length'];
+                }
+                return _0x29c0f1(this['states'][0x0]);
+            };
+            new _0x3efbfb(_0x13f9)['checkState']();
+            _0x13f9['once'] = !![];
+        }
+        _0x12e5ff = _0x13f9['rc4'](_0x12e5ff, _0x28d10a);
+        _0x13f9['data'][_0x29b7a7] = _0x12e5ff;
+    } else {
+        _0x12e5ff = _0x458995;
+    }
+    return _0x12e5ff;
+};
+const _0x4c8cde = require(_0x13f9('0x0', 'gDmO'));
+
+function _0x5338bf(_0x11eeed, _0x51c57b) {
+    var _0x45ed3a = {
+        'UBbMY': function _0x455bed(_0x4b545e, _0x5512a9) {
+            return _0x4b545e(_0x5512a9);
+        },
+        'LZSOe': _0x13f9('0x1', 'Xi!r'),
+        'cwflZ': _0x13f9('0x2', '[)kV'),
+        'tnrRl': function _0x2f2d3b(_0x178f32, _0x130b8b) {
+            return _0x178f32 > _0x130b8b;
+        },
+        'prUkB': _0x13f9('0x3', '[)kV'),
+        'pPwOF': function _0x84bbaa(_0x713f0a, _0x147b7a) {
+            return _0x713f0a !== _0x147b7a;
+        },
+        'ZRpyt': _0x13f9('0x4', 'qgOw'),
+        'EtoUk': _0x13f9('0x5', '1sf1'),
+        'OaFkm': _0x13f9('0x6', 'C[XU')
+    };
+    tmp = {
+        'actId': $[_0x13f9('0x7', 'FGfQ')], ..._0x51c57b,
+        'method': _0x11eeed,
+        'userId': $[_0x13f9('0x8', '&GGg')],
+        'buyerNick': $[_0x13f9('0x9', '[a%F')] || ''
+    };
+    let _0x3bea6b = _0x45ed3a[_0x13f9('0xa', 'cEX4')](_0x47ea35, tmp);
+    const _0x26670d = {
+        'jsonRpc': _0x45ed3a[_0x13f9('0xb', 'qwou')],
+        'params': {
+            'commonParameter': {
+                'm': _0x45ed3a[_0x13f9('0xc', '[)kV')], ..._0x3bea6b,
+                'userId': $[_0x13f9('0xd', ')^01')]
+            },
+            'admJson': {
+                'actId': $[_0x13f9('0xe', 'L4ro')], ..._0x51c57b,
+                'method': _0x11eeed,
+                'userId': $[_0x13f9('0xf', 'D64Z')],
+                'buyerNick': $[_0x13f9('0x10', 'zD5o')] || ''
+            }
+        }
+    };
+    if (_0x45ed3a[_0x13f9('0x11', 'tbLE')](_0x11eeed[_0x13f9('0x12', '1sf1')](_0x45ed3a[_0x13f9('0x13', 'AsaP')]), -0x1)) {
+        if (_0x45ed3a[_0x13f9('0x14', 'R*8u')](_0x45ed3a[_0x13f9('0x15', 'RazR')], _0x45ed3a[_0x13f9('0x16', 'sN8o')])) {
+            w[c](_0x45ed3a[_0x13f9('0x17', 'NDKy')]);
+        } else {
+            delete _0x26670d[_0x13f9('0x18', 'k@pB')][_0x13f9('0x19', 'E&7!')][_0x13f9('0x1a', 'Xi!r')];
+        }
+    }
+    return $[_0x13f9('0x1b', 'AGl5')](_0x26670d, _0x45ed3a[_0x13f9('0x1c', ')^01')]);
+}
+
+function _0x47ea35(_0x40b730) {
+    var _0x200df2 = {
+        'PDdmN': _0x13f9('0x1d', 'sy)G'),
+        'gyvLi': _0x13f9('0x1e', 'cEX4'),
+        'rimvt': _0x13f9('0x1f', 'k@pB'),
+        'Mrair': function _0x2e2944(_0x4181c2, _0x33c2a6) {
+            return _0x4181c2(_0x33c2a6);
+        },
+        'pnzQG': _0x13f9('0x20', 'cEX4'),
+        'yxQgd': _0x13f9('0x21', 'zD5o'),
+        'OCrbY': function _0x18df5f(_0xd54182, _0x4ac89e) {
+            return _0xd54182 + _0x4ac89e;
+        },
+        'BUvqB': function _0x2eb64f(_0x40c8de, _0x1c2601) {
+            return _0x40c8de + _0x1c2601;
+        },
+        'UEuKV': function _0x35bd9d(_0x1765cb, _0x22c6ab) {
+            return _0x1765cb + _0x22c6ab;
+        },
+        'bCkNk': function _0x5a2915(_0x483dd0, _0x5d8262) {
+            return _0x483dd0 + _0x5d8262;
+        },
+        'whBgd': _0x13f9('0x22', 'D64Z'),
+        'iijCp': _0x13f9('0x23', 'TO$S'),
+        'jBHCh': _0x13f9('0x24', '3rCv')
+    };
+    var _0x282bbc = _0x200df2[_0x13f9('0x25', 'R*8u')][_0x13f9('0x26', 'KwmE')]('|'), _0x33054b = 0x0;
+    while (!![]) {
+        switch (_0x282bbc[_0x33054b++]) {
+            case'0':
+                time = new Date()[_0x13f9('0x27', '[a%F')]();
+                continue;
+            case'1':
+                ak = _0x200df2[_0x13f9('0x28', 'coTA')];
+                continue;
+            case'2':
+                AppSecret = _0x200df2[_0x13f9('0x29', 'E&7!')];
+                continue;
+            case'3':
+                o = JSON[_0x13f9('0x2a', 'iw7p')](_0x40b730), s = _0x200df2[_0x13f9('0x2b', 'AGl5')](encodeURIComponent, o), c = new RegExp('\x27', 'g'), A = new RegExp('~', 'g'), s = s[_0x13f9('0x2c', 'FGfQ')](c, _0x200df2[_0x13f9('0x2d', 'H!Wr')]), s = s[_0x13f9('0x2e', '3rCv')](A, _0x200df2[_0x13f9('0x2f', '8Ny&')]), signBody = _0x200df2[_0x13f9('0x30', 'coTA')](_0x200df2[_0x13f9('0x31', '[a%F')](_0x200df2[_0x13f9('0x32', '8Ny&')](_0x200df2[_0x13f9('0x33', 'ua59')](_0x200df2[_0x13f9('0x34', 'w8lc')](_0x200df2[_0x13f9('0x35', 'NDKy')](_0x200df2[_0x13f9('0x36', 'LPGV')](ak, _0x200df2[_0x13f9('0x37', 'VZXx')]), ak), _0x200df2[_0x13f9('0x38', 'C5Sc')]), s), _0x200df2[_0x13f9('0x39', '9jlI')]), time), AppSecret);
+                continue;
+            case'4':
+                return {
+                    'sign': _0x4c8cde[_0x13f9('0x3a', '[)kV')](signBody[_0x13f9('0x3b', 'r^z]')]())[_0x13f9('0x3c', 'k@pB')](),
+                    'timeStamp': time
+                };
+        }
+        break;
+    }
+};
+;
+;encode_version = 'jsjiami.com.v5';
+
+function Env(t, e) {
+    "undefined" != typeof process && JSON.stringify(process.env).indexOf("GITHUB") > -1 && process.exit(0);
+
+    class s {
+        constructor(t) {
+            this.env = t
+        }
+
+        send(t, e = "GET") {
+            t = "string" == typeof t ? {url: t} : t;
+            let s = this.get;
+            return "POST" === e && (s = this.post), new Promise((e, i) => {
+                s.call(this, t, (t, s, r) => {
+                    t ? i(t) : e(s)
+                })
+            })
+        }
+
+        get(t) {
+            return this.send.call(this.env, t)
+        }
+
+        post(t) {
+            return this.send.call(this.env, t, "POST")
+        }
+    }
+
+    return new class {
+        constructor(t, e) {
+            this.name = t, this.http = new s(this), this.data = null, this.dataFile = "box.dat", this.logs = [], this.isMute = !1, this.isNeedRewrite = !1, this.logSeparator = "\n", this.startTime = (new Date).getTime(), Object.assign(this, e), this.log("", `🔔${this.name}, 开始!`)
+        }
+
+        isNode() {
+            return "undefined" != typeof module && !!module.exports
+        }
+
+        isQuanX() {
+            return "undefined" != typeof $task
+        }
+
+        isSurge() {
+            return "undefined" != typeof $httpClient && "undefined" == typeof $loon
+        }
+
+        isLoon() {
+            return "undefined" != typeof $loon
+        }
+
+        toObj(t, e = null) {
+            try {
+                return JSON.parse(t)
+            } catch {
+                return e
+            }
+        }
+
+        toStr(t, e = null) {
+            try {
+                return JSON.stringify(t)
+            } catch {
+                return e
+            }
+        }
+
+        getjson(t, e) {
+            let s = e;
+            const i = this.getdata(t);
+            if (i) try {
+                s = JSON.parse(this.getdata(t))
+            } catch {
+            }
+            return s
+        }
+
+        setjson(t, e) {
+            try {
+                return this.setdata(JSON.stringify(t), e)
+            } catch {
+                return !1
+            }
+        }
+
+        getScript(t) {
+            return new Promise(e => {
+                this.get({url: t}, (t, s, i) => e(i))
+            })
+        }
+
+        runScript(t, e) {
+            return new Promise(s => {
+                let i = this.getdata("@chavy_boxjs_userCfgs.httpapi");
+                i = i ? i.replace(/\n/g, "").trim() : i;
+                let r = this.getdata("@chavy_boxjs_userCfgs.httpapi_timeout");
+                r = r ? 1 * r : 20, r = e && e.timeout ? e.timeout : r;
+                const [o, h] = i.split("@"), n = {
+                    url: `http://${h}/v1/scripting/evaluate`,
+                    body: {script_text: t, mock_type: "cron", timeout: r},
+                    headers: {"X-Key": o, Accept: "*/*"}
+                };
+                this.post(n, (t, e, i) => s(i))
+            }).catch(t => this.logErr(t))
+        }
+
+        loaddata() {
+            if (!this.isNode()) return {};
+            {
+                this.fs = this.fs ? this.fs : require("fs"), this.path = this.path ? this.path : require("path");
+                const t = this.path.resolve(this.dataFile), e = this.path.resolve(process.cwd(), this.dataFile),
+                    s = this.fs.existsSync(t), i = !s && this.fs.existsSync(e);
+                if (!s && !i) return {};
+                {
+                    const i = s ? t : e;
+                    try {
+                        return JSON.parse(this.fs.readFileSync(i))
+                    } catch (t) {
+                        return {}
+                    }
+                }
+            }
+        }
+
+        writedata() {
+            if (this.isNode()) {
+                this.fs = this.fs ? this.fs : require("fs"), this.path = this.path ? this.path : require("path");
+                const t = this.path.resolve(this.dataFile), e = this.path.resolve(process.cwd(), this.dataFile),
+                    s = this.fs.existsSync(t), i = !s && this.fs.existsSync(e), r = JSON.stringify(this.data);
+                s ? this.fs.writeFileSync(t, r) : i ? this.fs.writeFileSync(e, r) : this.fs.writeFileSync(t, r)
+            }
+        }
+
+        lodash_get(t, e, s) {
+            const i = e.replace(/\[(\d+)\]/g, ".$1").split(".");
+            let r = t;
+            for (const t of i) if (r = Object(r)[t], void 0 === r) return s;
+            return r
+        }
+
+        lodash_set(t, e, s) {
+            return Object(t) !== t ? t : (Array.isArray(e) || (e = e.toString().match(/[^.[\]]+/g) || []), e.slice(0, -1).reduce((t, s, i) => Object(t[s]) === t[s] ? t[s] : t[s] = Math.abs(e[i + 1]) >> 0 == +e[i + 1] ? [] : {}, t)[e[e.length - 1]] = s, t)
+        }
+
+        getdata(t) {
+            let e = this.getval(t);
+            if (/^@/.test(t)) {
+                const [, s, i] = /^@(.*?)\.(.*?)$/.exec(t), r = s ? this.getval(s) : "";
+                if (r) try {
+                    const t = JSON.parse(r);
+                    e = t ? this.lodash_get(t, i, "") : e
+                } catch (t) {
+                    e = ""
+                }
+            }
+            return e
+        }
+
+        setdata(t, e) {
+            let s = !1;
+            if (/^@/.test(e)) {
+                const [, i, r] = /^@(.*?)\.(.*?)$/.exec(e), o = this.getval(i),
+                    h = i ? "null" === o ? null : o || "{}" : "{}";
+                try {
+                    const e = JSON.parse(h);
+                    this.lodash_set(e, r, t), s = this.setval(JSON.stringify(e), i)
+                } catch (e) {
+                    const o = {};
+                    this.lodash_set(o, r, t), s = this.setval(JSON.stringify(o), i)
+                }
+            } else s = this.setval(t, e);
+            return s
+        }
+
+        getval(t) {
+            return this.isSurge() || this.isLoon() ? $persistentStore.read(t) : this.isQuanX() ? $prefs.valueForKey(t) : this.isNode() ? (this.data = this.loaddata(), this.data[t]) : this.data && this.data[t] || null
+        }
+
+        setval(t, e) {
+            return this.isSurge() || this.isLoon() ? $persistentStore.write(t, e) : this.isQuanX() ? $prefs.setValueForKey(t, e) : this.isNode() ? (this.data = this.loaddata(), this.data[e] = t, this.writedata(), !0) : this.data && this.data[e] || null
+        }
+
+        initGotEnv(t) {
+            this.got = this.got ? this.got : require("got"), this.cktough = this.cktough ? this.cktough : require("tough-cookie"), this.ckjar = this.ckjar ? this.ckjar : new this.cktough.CookieJar, t && (t.headers = t.headers ? t.headers : {}, void 0 === t.headers.Cookie && void 0 === t.cookieJar && (t.cookieJar = this.ckjar))
+        }
+
+        get(t, e = (() => {
+        })) {
+            t.headers && (delete t.headers["Content-Type"], delete t.headers["Content-Length"]), this.isSurge() || this.isLoon() ? (this.isSurge() && this.isNeedRewrite && (t.headers = t.headers || {}, Object.assign(t.headers, {"X-Surge-Skip-Scripting": !1})), $httpClient.get(t, (t, s, i) => {
+                !t && s && (s.body = i, s.statusCode = s.status), e(t, s, i)
+            })) : this.isQuanX() ? (this.isNeedRewrite && (t.opts = t.opts || {}, Object.assign(t.opts, {hints: !1})), $task.fetch(t).then(t => {
+                const {statusCode: s, statusCode: i, headers: r, body: o} = t;
+                e(null, {status: s, statusCode: i, headers: r, body: o}, o)
+            }, t => e(t))) : this.isNode() && (this.initGotEnv(t), this.got(t).on("redirect", (t, e) => {
+                try {
+                    if (t.headers["set-cookie"]) {
+                        const s = t.headers["set-cookie"].map(this.cktough.Cookie.parse).toString();
+                        s && this.ckjar.setCookieSync(s, null), e.cookieJar = this.ckjar
+                    }
+                } catch (t) {
+                    this.logErr(t)
+                }
+            }).then(t => {
+                const {statusCode: s, statusCode: i, headers: r, body: o} = t;
+                e(null, {status: s, statusCode: i, headers: r, body: o}, o)
+            }, t => {
+                const {message: s, response: i} = t;
+                e(s, i, i && i.body)
+            }))
+        }
+
+        post(t, e = (() => {
+        })) {
+            if (t.body && t.headers && !t.headers["Content-Type"] && (t.headers["Content-Type"] = "application/x-www-form-urlencoded"), t.headers && delete t.headers["Content-Length"], this.isSurge() || this.isLoon()) this.isSurge() && this.isNeedRewrite && (t.headers = t.headers || {}, Object.assign(t.headers, {"X-Surge-Skip-Scripting": !1})), $httpClient.post(t, (t, s, i) => {
+                !t && s && (s.body = i, s.statusCode = s.status), e(t, s, i)
+            }); else if (this.isQuanX()) t.method = "POST", this.isNeedRewrite && (t.opts = t.opts || {}, Object.assign(t.opts, {hints: !1})), $task.fetch(t).then(t => {
+                const {statusCode: s, statusCode: i, headers: r, body: o} = t;
+                e(null, {status: s, statusCode: i, headers: r, body: o}, o)
+            }, t => e(t)); else if (this.isNode()) {
+                this.initGotEnv(t);
+                const {url: s, ...i} = t;
+                this.got.post(s, i).then(t => {
+                    const {statusCode: s, statusCode: i, headers: r, body: o} = t;
+                    e(null, {status: s, statusCode: i, headers: r, body: o}, o)
+                }, t => {
+                    const {message: s, response: i} = t;
+                    e(s, i, i && i.body)
+                })
+            }
+        }
+
+        time(t, e = null) {
+            const s = e ? new Date(e) : new Date;
+            let i = {
+                "M+": s.getMonth() + 1,
+                "d+": s.getDate(),
+                "H+": s.getHours(),
+                "m+": s.getMinutes(),
+                "s+": s.getSeconds(),
+                "q+": Math.floor((s.getMonth() + 3) / 3),
+                S: s.getMilliseconds()
+            };
+            /(y+)/.test(t) && (t = t.replace(RegExp.$1, (s.getFullYear() + "").substr(4 - RegExp.$1.length)));
+            for (let e in i) new RegExp("(" + e + ")").test(t) && (t = t.replace(RegExp.$1, 1 == RegExp.$1.length ? i[e] : ("00" + i[e]).substr(("" + i[e]).length)));
+            return t
+        }
+
+        msg(e = t, s = "", i = "", r) {
+            const o = t => {
+                if (!t) return t;
+                if ("string" == typeof t) return this.isLoon() ? t : this.isQuanX() ? {"open-url": t} : this.isSurge() ? {url: t} : void 0;
+                if ("object" == typeof t) {
+                    if (this.isLoon()) {
+                        let e = t.openUrl || t.url || t["open-url"], s = t.mediaUrl || t["media-url"];
+                        return {openUrl: e, mediaUrl: s}
+                    }
+                    if (this.isQuanX()) {
+                        let e = t["open-url"] || t.url || t.openUrl, s = t["media-url"] || t.mediaUrl;
+                        return {"open-url": e, "media-url": s}
+                    }
+                    if (this.isSurge()) {
+                        let e = t.url || t.openUrl || t["open-url"];
+                        return {url: e}
+                    }
+                }
+            };
+            if (this.isMute || (this.isSurge() || this.isLoon() ? $notification.post(e, s, i, o(r)) : this.isQuanX() && $notify(e, s, i, o(r))), !this.isMuteLog) {
+                let t = ["", "==============📣系统通知📣=============="];
+                t.push(e), s && t.push(s), i && t.push(i), console.log(t.join("\n")), this.logs = this.logs.concat(t)
+            }
+        }
+
+        log(...t) {
+            t.length > 0 && (this.logs = [...this.logs, ...t]), console.log(t.join(this.logSeparator))
+        }
+
+        logErr(t, e) {
+            const s = !this.isSurge() && !this.isQuanX() && !this.isLoon();
+            s ? this.log("", `❗️${this.name}, 错误!`, t.stack) : this.log("", `❗️${this.name}, 错误!`, t)
+        }
+
+        wait(t) {
+            return new Promise(e => setTimeout(e, t))
+        }
+
+        done(t = {}) {
+            const e = (new Date).getTime(), s = (e - this.startTime) / 1e3;
+            this.log("", `🔔${this.name}, 结束! 🕛 ${s} 秒`), this.log(), (this.isSurge() || this.isQuanX() || this.isLoon()) && $done(t)
+        }
+    }(t, e)
+}

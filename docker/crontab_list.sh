@@ -40,10 +40,6 @@
 40,45 23 * * * node /scripts/jd_duobao.js >> /scripts/logs/jd_duobao.log 2>&1
 # 积分换话费
 33 7 * * * node /scripts/jd_dwapp.js >> /scripts/logs/jd_dwapp.log 2>&1
-### 发财挖宝
-#40 6,17 * * * node /scripts/jd_fcwb.js >> /scripts/logs/jd_fcwb.log 2>&1
-## 发财挖宝
-#40 6,17 * * * node /scripts/jd_fcwb.py >> /scripts/logs/jd_fcwb.log 2>&1
 # 发财挖宝Nark免费
 #40 1,17 * * * node /scripts/jd_fcwb_mfhelp.js >> /scripts/logs/jd_fcwb_mfhelp.log 2>&1
 # 东东农场日常任务
@@ -156,4 +152,8 @@
 15,30,45 0 * * * node /scripts/jd_zjd.ts >> /scripts/logs/jd_zjb.log 2>&1
 # 滑块验证的签到
 43 1,16 * * * node /scripts/jd_slider_sign.js >> /scripts/logs/jd_slider_sign.log 2>&1
+# 东东爱消除
+12 5-10/1 * * * node /scripts/jd_moxigame.js >> /scripts/logs/jd_moxigame.log 2>&1
+# 京东宝藏榜
+10 13 * * * node /scripts/jd_TreasureRank.js >> /scripts/logs/jd_TreasureRank.log 2>&1
 
