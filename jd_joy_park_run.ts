@@ -1,14 +1,13 @@
 /**
- 汪汪乐园-跑步+组队
- 默认翻倍到0.01红包结束,修改请设置变量
- export JD_JOY_PARK_RUN_ASSETS="0.04"
- cron:30 0 * * * *
- 30 0 * * * * jd_joy_park_run.ts
- new Env('极速版汪汪赛跑');
-
+ 汪汪乐园-跑步
+ 只能翻倍0.01能成功！
+ export JD_JOY_PARK_RUN_ASSETS="0.08"
+ 32 * * * * jd_joy_joy_run.ts
+ new Env('极速版汪汪赛跑')
+ Modify By Dylan from HW
  **/
 
-import {get, o2s, post, requireConfig, wait} from './function/TS_USER_AGENTS'
+import {get, o2s, post, requireConfig, wait} from './TS_USER_AGENTS'
 import {H5ST} from "./function/h5st"
 import {getDate} from "date-fns";
 
@@ -18,8 +17,7 @@ let assets: number = 0, captainId: string = '', h5stTool: H5ST = null
 !(async () => {
   let cookiesArr: string[] = await requireConfig()
   let account: { pt_pin: string, joy_park_run: number }[] = []
-
-
+  console.log('每周日18点组队分红！！')
   for (let [index, value] of cookiesArr.entries()) {
     cookie = value
     UserName = decodeURIComponent(cookie.match(/pt_pin=([^;]*)/)![1])
