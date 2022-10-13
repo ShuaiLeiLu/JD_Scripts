@@ -11,11 +11,11 @@
 请求太频繁会被黑ip
 请更换IP后再执行脚本
 
-cron:29 0 14-21 10 *
+cron:1 1 1 1 *
 ============Quantumultx===============
 [task_local]
 #10.14-10.21 金秋福利 好物推荐官
-29 0 14-21 10 * jd_opencardL252.js, tag=10.14-10.21 金秋福利 好物推荐官, enabled=true
+1 1 1 1 * jd_opencardL252.js, tag=10.14-10.21 金秋福利 好物推荐官, enabled=true
 
 */
 
