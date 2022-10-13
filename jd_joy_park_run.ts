@@ -7,8 +7,9 @@
  Modify By Dylan from HW
  **/
 
-import {get, o2s, post, requireConfig, wait} from './TS_USER_AGENTS'
+import {get, post, o2s, requireConfig, wait} from './TS_USER_AGENTS'
 import {H5ST} from "./function/h5st"
+import {existsSync, readFileSync} from "fs";
 import {getDate} from "date-fns";
 
 let cookie: string = '', res: any = '', UserName: string = '', fp_448de: string = '' || process.env.FP_448DE, fp_b6ac3: string = '' || process.env.FP_B6AC3
