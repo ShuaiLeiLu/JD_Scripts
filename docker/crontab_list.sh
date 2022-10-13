@@ -154,4 +154,6 @@
 12 5-10/1 * * * node /scripts/jd_moxigame.js >> /scripts/logs/jd_moxigame.log 2>&1
 # 京东宝藏榜
 10 13 * * * node /scripts/jd_TreasureRank.js >> /scripts/logs/jd_TreasureRank.log 2>&1
+# 京东宝藏榜
+10 3 * * * node /scripts/jd_tyt.js >> /scripts/logs/jd_tyt.log 2>&1
 
