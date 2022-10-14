@@ -207,8 +207,6 @@ function getJingBeanBalanceDetail(page) {
         'Host': 'api.m.jd.com',
         'Content-Type': 'application/x-www-form-urlencoded',
         'Cookie': cookie,
-        'Origin': "https://h5.m.jd.com",
-        'Referer': "https://h5.m.jd.com/",
       }
     }
     $.post(options, (err, resp, data) => {
@@ -219,9 +217,9 @@ function getJingBeanBalanceDetail(page) {
         } else {
           if (data) {
             data = JSON.parse(data);
-            console.log(data)
+            // console.log(data)
           } else {
-            console.log(`京东服务器返回空数据`)
+            // console.log(`京东服务器返回空数据`)
           }
         }
       } catch (e) {
