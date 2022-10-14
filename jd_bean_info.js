@@ -219,9 +219,9 @@ function getJingBeanBalanceDetail(page) {
         } else {
           if (data) {
             data = JSON.parse(data);
-            // console.log(data)
+            console.log(data)
           } else {
-            // console.log(`京东服务器返回空数据`)
+            console.log(`京东服务器返回空数据`)
           }
         }
       } catch (e) {
