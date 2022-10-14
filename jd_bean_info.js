@@ -207,6 +207,8 @@ function getJingBeanBalanceDetail(page) {
         'Host': 'api.m.jd.com',
         'Content-Type': 'application/x-www-form-urlencoded',
         'Cookie': cookie,
+        'Origin': "https://h5.m.jd.com",
+        'Referer': "https://h5.m.jd.com/",
       }
     }
     $.post(options, (err, resp, data) => {
