@@ -42,6 +42,10 @@ if ($.isNode()) {
     $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
     return;
   }
+	if(appIdArr.length <= 0) {
+		console.log(`\n暂无活动~\n`)
+		break
+	}
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
@@ -60,10 +64,7 @@ if ($.isNode()) {
         }
         continue
       }
-			if(appIdArr.length <= 0) {
-				console.log(`\n暂无活动~\n`)
-				break
-			}
+			
       for (let j = 0; j < appIdArr.length; j++) {
         appId = appIdArr[j]
         appName = appNameArr[j]
