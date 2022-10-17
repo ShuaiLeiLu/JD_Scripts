@@ -43,8 +43,8 @@ if ($.isNode()) {
     return;
   }
 	if(appIdArr.length <= 0) {
-		console.log(`\n暂无活动~\n`)
-		break
+		console.log(`\n暂无活动~\n`);
+		return;
 	}
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
