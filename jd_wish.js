@@ -60,6 +60,10 @@ if ($.isNode()) {
         }
         continue
       }
+			if(appIdArr.length <= 0) {
+				console.log(`\n暂无活动~\n`)
+				break
+			}
       for (let j = 0; j < appIdArr.length; j++) {
         appId = appIdArr[j]
         appName = appNameArr[j]
