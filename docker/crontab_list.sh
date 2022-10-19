@@ -160,4 +160,6 @@
 10 13 * * * node /scripts/jd_TreasureRank.js >> /scripts/logs/jd_TreasureRank.log 2>&1
 # 京东推一推
 10 3 * * * node /scripts/jd_tyt.js >> /scripts/logs/jd_tyt.log 2>&1
+# 洗豆
+10 3 * * * node /scripts/jd_washbeans.js >> /scripts/logs/jd_washbeans.log 2>&1
 
