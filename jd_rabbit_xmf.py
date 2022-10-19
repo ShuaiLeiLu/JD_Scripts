@@ -1,11 +1,9 @@
 '''
-cron: 5 12 * * *
 new Env('小魔方');
-变量: JD_COOKIE, RabbitToken
+变量: RabbitToken
 export RabbitToken="token值"
 
-一次评价四个商品
-log剩余次数大于1300方可使用
+log剩余次数大于1499方可使用
 '''
 
 try:

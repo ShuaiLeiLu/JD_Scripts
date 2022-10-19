@@ -36,6 +36,8 @@ if os.environ.get("Koi_Thread"):
 else:
     from MR_util.Koi_util import main
 
+
+
 if "LOG_DEBUG" in os.environ:  # 判断调试模式变量
     logging.basicConfig(level=logging.DEBUG, format='%(message)s')  # 设置日志为 Debug等级输出
     logger = logging.getLogger(__name__)  # 主模块
@@ -43,6 +45,7 @@ if "LOG_DEBUG" in os.environ:  # 判断调试模式变量
 else:  # 判断分支
     logging.basicConfig(level=logging.INFO, format='%(message)s')  # Info级日志
     logger = logging.getLogger(__name__)  # 主模块
+
 
 if __name__ == '__main__':
     main()
