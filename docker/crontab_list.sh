@@ -162,4 +162,6 @@
 10 3 * * * node /scripts/jd_tyt.js >> /scripts/logs/jd_tyt.log 2>&1
 # 洗豆
 10 3 * * * node /scripts/jd_washbeans.js >> /scripts/logs/jd_washbeans.log 2>&1
+# 宠汪汪🐕喂食
+33 0-23/4 * * * node /scripts/jd_joy_feedPets.js >> /scripts/logs/jd_joy_feedPets.log 2>&1
 
