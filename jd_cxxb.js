@@ -16,7 +16,8 @@ if ($.isNode()) {
     Object.keys(jdCookieNode).forEach((item) => {
         cookiesArr.push(jdCookieNode[item])
     })
-    if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => { };
+    if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => {
+    };
 } else {
     cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
 }
@@ -26,11 +27,11 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
 
 !(async () => {
     if (!cookiesArr[0]) {
-        $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', { "open-url": "https://bean.m.jd.com/bean/signIndex.action" });
+        $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
         return;
     }
-    const helpSysInfoArr = []
-    for (let i = 0; i <120; i++) {
+    const helpSysInfoArr = ['ZXASTT0225KkcRxcc8wWGIkvzwf8KcAFjRWnqq7zB55awQ']
+    for (let i = 0; i < 120; i++) {
         if (cookiesArr[i]) {
             cookie = cookiesArr[i];
             wxCookie = wxCookieArr[i] ?? "";
@@ -48,7 +49,7 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
             await TotalBean();
             console.log(`\n******开始【京东账号${$.index}】${$.nickName || $.UserName}*********\n`);
             if (!$.isLogin) {
-                $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, { "open-url": "https://bean.m.jd.com/bean/signIndex.action" });
+                $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
                 if ($.isNode()) {
                     await notify.sendNotify(`${$.name}cookie已失效 - ${$.UserName}`, `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`);
                 }
@@ -102,12 +103,12 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
         $.newHelpCodeArr = [...helpCodeArr]
         for (let i = 0, codeLen = helpCodeArr.length; i < codeLen; i++) {
             const helpCode = helpCodeArr[i]
-            const { pin, code } = helpCode
+            const {pin, code} = helpCode
             if (pin === $.UserName) continue
             console.log(`去帮助用户：${pin}`)
-            const helpRes = await doApi("collectScore", null, { inviteId: code }, true, true)
+            const helpRes = await doApi("collectScore", null, {inviteId: code}, true, true)
             if (helpRes?.result?.score) {
-                const { alreadyAssistTimes, maxAssistTimes, maxTimes, score, times } = helpRes.result
+                const {alreadyAssistTimes, maxAssistTimes, maxTimes, score, times} = helpRes.result
                 const c = maxAssistTimes - alreadyAssistTimes
                 console.log(`互助成功，获得${score}金币，他还需要${maxTimes - times}人完成助力，你还有${maxAssistTimes - alreadyAssistTimes}次助力机会`)
                 if (!c) break
@@ -124,7 +125,7 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
         // $.joyytoken = ""
         // cookie = cookie.replace(/joyytoken=\S+?;/, "joyytoken=;")
         if (teamPlayerAutoTeam.hasOwnProperty($.UserName)) {
-            const { groupJoinInviteId, groupNum, groupName } = teamLeaderArr[teamPlayerAutoTeam[$.UserName]]
+            const {groupJoinInviteId, groupNum, groupName} = teamLeaderArr[teamPlayerAutoTeam[$.UserName]]
             console.log(`${groupName}人数：${groupNum}，正在去加入他的队伍...`)
             await joinTeam(groupJoinInviteId)
             teamLeaderArr[teamPlayerAutoTeam[$.UserName]].groupNum += 1
@@ -140,22 +141,22 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
 
 async function travel() {
     try {
-        const mainMsgPopUp = await doApi("getMainMsgPopUp", { "channel": "1" })
+        const mainMsgPopUp = await doApi("getMainMsgPopUp", {"channel": "1"})
         mainMsgPopUp?.score && formatMsg(mainMsgPopUp.score, "首页弹窗")
         const homeData = await doApi("getHomeData")
         // console.log(homeData)
         if (homeData) {
-            const { homeMainInfo: { todaySignStatus, secretp } } = homeData
+            const {homeMainInfo: {todaySignStatus, secretp}} = homeData
             if (secretp) $.secretp = secretp
             if (!todaySignStatus) {
-                const { awardResult, nextRedPacketDays, progress, scoreResult } = await doApi("sign", null, null, true)
+                const {awardResult, nextRedPacketDays, progress, scoreResult} = await doApi("sign", null, null, true)
                 let ap = []
                 for (let key in awardResult || {}) {
                     if (key === "couponResult") {
-                        const { usageThreshold, quota, desc } = awardResult[key]
+                        const {usageThreshold, quota, desc} = awardResult[key]
                         ap.push(`获得优惠券：满${usageThreshold || 0}减${quota || 0}（${desc}）`)
                     } else if (key === "redPacketResult") {
-                        const { value } = awardResult[key]
+                        const {value} = awardResult[key]
                         ap.push(`获得红包：${value}元`)
                     } else {
                         ap.push(`获得未知东东（${key}）：${JSON.stringify(awardResult[key])}`)
@@ -175,7 +176,7 @@ async function travel() {
             //console.log("\n去看看战队\n")
             const pkHomeData = await doApi("pk_getHomeData")
 
-            const { groupJoinInviteId, groupName, groupNum } = pkHomeData?.groupInfo || {}
+            const {groupJoinInviteId, groupName, groupNum} = pkHomeData?.groupInfo || {}
             if (groupNum !== undefined && groupNum < 30 && $.index <= pkTeamNum) {
                 if (groupJoinInviteId) {
                     teamLeaderArr.push({
@@ -202,7 +203,7 @@ async function travel() {
     //if (helpFlag) {
     try {
         $.WxUA = getWxUA()
-        const WxHomeData = await doWxApi("getHomeData", { inviteId: "" })
+        const WxHomeData = await doWxApi("getHomeData", {inviteId: ""})
         $.WxSecretp = WxHomeData?.homeMainInfo?.secretp || $.secretp
         console.log("\n去做微信小程序任务\n")
         await doWxTask()
@@ -231,8 +232,8 @@ try {
 
 async function joinTeam(groupJoinInviteId) {
     const inviteId = groupJoinInviteId
-    await doApi("pk_getHomeData", { inviteId })
-    const { bizCode, bizMsg } = await doApi("pk_joinGroup", { inviteId, confirmFlag: "1" }, null, true, true)
+    await doApi("pk_getHomeData", {inviteId})
+    const {bizCode, bizMsg} = await doApi("pk_joinGroup", {inviteId, confirmFlag: "1"}, null, true, true)
     if (bizCode === 0) {
         console.log("加入队伍成功！")
     } else {
@@ -241,7 +242,7 @@ async function joinTeam(groupJoinInviteId) {
 }
 
 async function votFor(votFor) {
-    const { bizCode, bizMsg } = await doApi("pk_votFor", { votFor }, null, false, true)
+    const {bizCode, bizMsg} = await doApi("pk_votFor", {votFor}, null, false, true)
     if (bizCode === 0) {
         console.log("投票成功！")
     } else {
@@ -264,7 +265,7 @@ async function raise(isFirst = false) {
         if (res) {
             if (!flag) flag = true
             let arr = [`解锁'${pointName}'成功`]
-            const { levelUpAward: { awardCoins, canFirstShare, couponInfo, firstShareAwardCoins, redNum } } = res
+            const {levelUpAward: {awardCoins, canFirstShare, couponInfo, firstShareAwardCoins, redNum}} = res
             arr.push(`获得${awardCoins}个金币`)
             if (couponInfo) {
                 arr.push(`获得【${couponInfo.name}】优惠券：满${couponInfo.usageThreshold}减${couponInfo.quota}（${couponInfo.desc}）`)
@@ -274,7 +275,7 @@ async function raise(isFirst = false) {
             }
             console.log(arr.join("，"))
             if (canFirstShare) {
-                const WelfareScore = await doApi("getWelfareScore", { type: 1 })
+                const WelfareScore = await doApi("getWelfareScore", {type: 1})
                 if (WelfareScore?.score) formatMsg(WelfareScore?.score, "分享收益")
             }
             curScore -= clockNeedsCoins
@@ -290,7 +291,7 @@ async function raise(isFirst = false) {
 }
 
 async function doAppTask() {
-    const { inviteId, lotteryTaskVos, taskVos } = await doApi("getTaskDetail")
+    const {inviteId, lotteryTaskVos, taskVos} = await doApi("getTaskDetail")
     if (inviteId) {
         console.log(`你的互助码：${inviteId}`)
         if (!helpPinArr.includes($.UserName)) {
@@ -301,10 +302,10 @@ async function doAppTask() {
             helpPinArr.push($.UserName)
         }
     }
-    for (const { times, badgeAwardVos } of lotteryTaskVos || []) {
-        for (const { awardToken, requireIndex, status } of badgeAwardVos) {
+    for (const {times, badgeAwardVos} of lotteryTaskVos || []) {
+        for (const {awardToken, requireIndex, status} of badgeAwardVos) {
             if (times >= requireIndex && status === 3) {
-                const res = await doApi("getBadgeAward", { awardToken })
+                const res = await doApi("getBadgeAward", {awardToken})
                 if (res?.score) {
                     formatMsg(res.score, "奖励宝箱收益")
                 } else {
@@ -327,39 +328,39 @@ async function doAppTask() {
     const feedList = []
     for (let mainTask of taskVos) {
         // console.log(mainTask)
-        const { taskId, taskName, waitDuration, times: timesTemp, maxTimes, status } = mainTask
+        const {taskId, taskName, waitDuration, times: timesTemp, maxTimes, status} = mainTask
         if (status === 2) continue
         let times = timesTemp, flag = false
         const other = mohuReadJson(mainTask, "Vos?$", -1, "taskToken")
         if (other) {
-            const { taskToken } = other
+            const {taskToken} = other
             if (!taskToken) continue
             if (taskId === 1) {
                 continue
             }
             console.log(`当前正在做任务：${taskName}`)
-            const body = { taskId, taskToken, actionType: 1 }
+            const body = {taskId, taskToken, actionType: 1}
             if (taskId === 31) {
                 await doApi("pk_getHomeData")
                 await doApi("pk_getPkTaskDetail", null, null, false, true)
                 await doApi("pk_getMsgPopup")
                 delete body.actionType
             }
-            const res = await doApi("collectScore", { taskId, taskToken, actionType: 1 }, null, true)
+            const res = await doApi("collectScore", {taskId, taskToken, actionType: 1}, null, true)
             res?.score && (formatMsg(res.score, "任务收益"), true)/*  || console.log(res) */
             continue
         }
         $.stopCard = false
         for (let activity of mohuReadJson(mainTask, "Vo(s)?$", maxTimes, "taskToken") || []) {
             if (!flag) flag = true
-            const { shopName, title, taskToken, status } = activity
+            const {shopName, title, taskToken, status} = activity
             if (status !== 1) continue
             console.log(`当前正在做任务：${shopName || title}`)
-            const res = await doApi("collectScore", { taskId, taskToken, actionType: 1 }, null, true)
+            const res = await doApi("collectScore", {taskId, taskToken, actionType: 1}, null, true)
             if ($.stopCard) break
             if (waitDuration || res.taskToken) {
                 await $.wait(waitDuration * 1000)
-                const res = await doApi("collectScore", { taskId, taskToken, actionType: 0 }, null, true)
+                const res = await doApi("collectScore", {taskId, taskToken, actionType: 0}, null, true)
                 res?.score && (formatMsg(res.score, "任务收益"), true)/*  || console.log(res) */
             } else {
                 res?.score && (formatMsg(res.score, "任务收益"), true)/*  || console.log(res) */
@@ -374,19 +375,28 @@ async function doAppTask() {
         })
     }
     for (let feed of feedList) {
-        const { taskId: id, taskName: name } = feed
-        const res = await doApi("getFeedDetail", { taskId: id.toString() })
+        const {taskId: id, taskName: name} = feed
+        const res = await doApi("getFeedDetail", {taskId: id.toString()})
         if (!res) continue
         for (let mainTask of mohuReadJson(res, "Vos?$", 1, "taskId") || []) {
-            const { score, taskId, taskBeginTime, taskEndTime, taskName, times: timesTemp, maxTimes, waitDuration } = mainTask
+            const {
+                score,
+                taskId,
+                taskBeginTime,
+                taskEndTime,
+                taskName,
+                times: timesTemp,
+                maxTimes,
+                waitDuration
+            } = mainTask
             const t = Date.now()
             let times = timesTemp
             if (t >= taskBeginTime && t <= taskEndTime) {
                 console.log(`当前正在做任务：${taskName}`)
                 for (let productInfo of mohuReadJson(mainTask, "Vo(s)?$", maxTimes, "taskToken") || []) {
-                    const { taskToken, status } = productInfo
+                    const {taskToken, status} = productInfo
                     if (status !== 1) continue
-                    const res = await doApi("collectScore", { taskId, taskToken, actionType: 1 }, null, true)
+                    const res = await doApi("collectScore", {taskId, taskToken, actionType: 1}, null, true)
                     times = res?.times ?? (times + 1)
                     await $.wait(waitDuration * 1000)
                     if (times >= maxTimes) {
@@ -404,20 +414,20 @@ async function doAppTask() {
 async function doWxTask() {
     $.stopWxTask = false
     const feedList = []
-    const { taskVos } = await doWxApi("getTaskDetail", { taskId: "", appSign: 2 })
+    const {taskVos} = await doWxApi("getTaskDetail", {taskId: "", appSign: 2})
     for (let mainTask of taskVos) {
-        const { taskId, taskName, waitDuration, times: timesTemp, maxTimes, status } = mainTask
+        const {taskId, taskName, waitDuration, times: timesTemp, maxTimes, status} = mainTask
         let times = timesTemp, flag = false
         if (status === 2) continue
         const other = mohuReadJson(mainTask, "Vos?$", -1, "taskToken")
         if (other) {
-            const { taskToken } = other
+            const {taskToken} = other
             if (!taskToken) continue
             if (taskId === 1) {
                 continue
             }
             console.log(`当前正在做任务：${taskName}`)
-            const res = await doWxApi("collectScore", { taskId, taskToken, actionType: 1 }, null, true)
+            const res = await doWxApi("collectScore", {taskId, taskToken, actionType: 1}, null, true)
             if ($.stopWxTask) return
             res?.score && (formatMsg(res.score, "任务收益"), true)/*  || console.log(res) */
             continue
@@ -425,14 +435,14 @@ async function doWxTask() {
         $.stopCard = false
         for (let activity of mohuReadJson(mainTask, "Vo(s)?$", maxTimes, "taskToken") || []) {
             if (!flag) flag = true
-            const { shopName, title, taskToken, status } = activity
+            const {shopName, title, taskToken, status} = activity
             if (status !== 1) continue
             console.log(`当前正在做任务：${shopName || title}`)
-            const res = await doWxApi("collectScore", { taskId, taskToken, actionType: 1 }, null, true)
+            const res = await doWxApi("collectScore", {taskId, taskToken, actionType: 1}, null, true)
             if ($.stopCard || $.stopWxTask) break
             if (waitDuration || res.taskToken) {
                 await $.wait(waitDuration * 1000)
-                const res = await doWxApi("collectScore", { taskId, taskToken, actionType: 0 }, null, true)
+                const res = await doWxApi("collectScore", {taskId, taskToken, actionType: 0}, null, true)
                 if ($.stopWxTask) return
                 res?.score && (formatMsg(res.score, "任务收益"), true)/*  || console.log(res) */
             } else {
@@ -449,19 +459,28 @@ async function doWxTask() {
         })
     }
     for (let feed of feedList) {
-        const { taskId: id, taskName: name } = feed
-        const res = await doWxApi("getFeedDetail", { taskId: id.toString() }, null, true)
+        const {taskId: id, taskName: name} = feed
+        const res = await doWxApi("getFeedDetail", {taskId: id.toString()}, null, true)
         if (!res) continue
         for (let mainTask of mohuReadJson(res, "Vos?$", 1, "taskId") || []) {
-            const { score, taskId, taskBeginTime, taskEndTime, taskName, times: timesTemp, maxTimes, waitDuration } = mainTask
+            const {
+                score,
+                taskId,
+                taskBeginTime,
+                taskEndTime,
+                taskName,
+                times: timesTemp,
+                maxTimes,
+                waitDuration
+            } = mainTask
             const t = Date.now()
             let times = timesTemp
             if (t >= taskBeginTime && t <= taskEndTime) {
                 console.log(`当前正在做任务：${taskName}`)
                 for (let productInfo of mohuReadJson(mainTask, "Vo(s)?$", maxTimes, "taskToken") || []) {
-                    const { taskToken, status } = productInfo
+                    const {taskToken, status} = productInfo
                     if (status !== 1) continue
-                    const res = await doWxApi("collectScore", { taskId, taskToken, actionType: 1 }, null, true)
+                    const res = await doWxApi("collectScore", {taskId, taskToken, actionType: 1}, null, true)
                     if ($.stopWxTask) return
                     times = res?.times ?? (times + 1)
                     await $.wait(waitDuration * 1000)
@@ -480,7 +499,7 @@ async function doWxTask() {
 async function doJrAppTask() {
     $.isJr = true
     $.JrUA = getJrUA()
-    const { trades, views } = await doJrPostApi("miMissions", null, null, true)
+    const {trades, views} = await doJrPostApi("miMissions", null, null, true)
     /* for (let task of trades || views || []) {
         const { status, missionId, channel } = task
         if (status !== 1 && status !== 3) continue
@@ -496,9 +515,9 @@ async function doJrAppTask() {
         console.log(`做任务结果：${msg}（${code}）`)
     } */
     for (let task of views || []) {
-        const { status, missionId, channel, total, complete } = task
+        const {status, missionId, channel, total, complete} = task
         if (status !== 1 && status !== 3) continue
-        const { subTitle, title, url } = await doJrPostApi("miTakeMission", null, {
+        const {subTitle, title, url} = await doJrPostApi("miTakeMission", null, {
             missionId,
             validate: "",
             channel,
@@ -508,12 +527,12 @@ async function doJrAppTask() {
         const readTime = url.getKeyVal("readTime")
         const juid = url.getKeyVal("juid")
         if (readTime) {
-            await doJrGetApi("queryMissionReceiveAfterStatus", { missionId })
-            await $.wait(+ readTime * 1000)
-            const { code, msg, data } = await doJrGetApi("finishReadMission", { missionId, readTime })
+            await doJrGetApi("queryMissionReceiveAfterStatus", {missionId})
+            await $.wait(+readTime * 1000)
+            const {code, msg, data} = await doJrGetApi("finishReadMission", {missionId, readTime})
             console.log(`做任务结果：${msg}`)
         } else if (juid) {
-            const { code, msg, data } = await doJrGetApi("getJumpInfo", { juid })
+            const {code, msg, data} = await doJrGetApi("getJumpInfo", {juid})
             console.log(`做任务结果：${msg}`)
         } else {
             console.log(`不知道这是啥：${url}`)
@@ -592,7 +611,7 @@ async function doApi(functionId, prepend = {}, append = {}, needSs = false, getL
         })),
         client: "m",
         clientVersion: "1.0.0",
-        appid :"signed_wh5"
+        appid: "signed_wh5"
     })
     const option = {
         url,
@@ -844,7 +863,7 @@ function getToken(appname = appid, platform = "1") {
                     console.log(err)
                     resolve()
                 }
-                const { joyytoken } = JSON.parse(data)
+                const {joyytoken} = JSON.parse(data)
                 resolve(joyytoken)
             } catch (e) {
                 console.log(e)
@@ -904,7 +923,7 @@ function randomUUID(option = {
     if (!option.formatData) option.formatData = `${"X".repeat(8)}-${"X".repeat(4)}-${"X".repeat(4)}-${"X".repeat(12)}`
     if (!option.charArr) option.charArr = [...Array(16).keys()].map(k => k.toString(16).toUpperCase())
     if (!option.followCase === undefined) option.followCase = true
-    let { formatData: res, charArr } = option
+    let {formatData: res, charArr} = option
     res = res.split("")
     const charLen = charArr.length - 1
     const resLen = res.length
@@ -935,7 +954,7 @@ function getJrUA() {
     return `Mozilla/5.0 (iPhone; CPU iPhone OS ${osV.replace(/\./g, "_")} AppleWebKit/60${randomNum(3, 5)}.1.15 (KHTML, like Gecko) Mobile/15E148/application=JDJR-App&deviceId=${deviceId}&eufv=1&clientType=ios&iosType=iphone&clientVersion=${appV}&HiClVersion=${appV}&isUpdate=0&osVersion=${osV}&osName=iOS&platform=${mobile}&screen=${screen}&src=App Store&netWork=1&netWorkType=1&CpayJS=UnionPay/1.0 JDJR&stockSDK=stocksdk-iphone_3.5.0&sPoint=&jdPay=(*#@jdPaySDK*#@jdPayChannel=jdfinance&jdPayChannelVersion=${osV}&jdPaySdkVersion=${jdPaySdkV}&jdPayClientName=iOS*#@jdPaySDK*#@)`
 }
 
-function toCurl(option = { url: "", body: "", headers: {} }) {
+function toCurl(option = {url: "", body: "", headers: {}}) {
     if (!option.url) return ""
     let res = "curl "
     if (!option.headers.Host) option.headers.Host = option.url.match(/^http(s)?:\/\/(.*?)($|\/)/)?.[2] || ""
@@ -980,7 +999,8 @@ function str2ToObj(keyMap) {
         if (/\d{1,16}|[.*?]|{}|{"\w+?":.*?(,"\w+?":.*?)*}|true|false/.test(curValue)) {
             try {
                 cur[1] = eval(`(${curValue})`)
-            } catch (_) { }
+            } catch (_) {
+            }
         }
         res[cur[0]] = cur[1]
     }
@@ -1063,47 +1083,50 @@ String.prototype.getKeyVal = function (str) {
     }
     return res
 }
-! function(t, r) {
+!function (t, r) {
     "object" == typeof exports ? module.exports = exports = r() : "function" == typeof define && define.amd ? define([], r) : t.CryptoJS = r()
-}(this, function() {
-    var t = t || function(t, r) {
-        var e = Object.create || function() {
-                function t() {}
-                return function(r) {
+}(this, function () {
+    var t = t || function (t, r) {
+        var e = Object.create || function () {
+                function t() {
+                }
+
+                return function (r) {
                     var e;
                     return t.prototype = r, e = new t, t.prototype = null, e
                 }
             }(),
-            i = {}, n = i.lib = {}, o = n.Base = function() {
+            i = {}, n = i.lib = {}, o = n.Base = function () {
                 return {
-                    extend: function(t) {
+                    extend: function (t) {
                         var r = e(this);
-                        return t && r.mixIn(t), r.hasOwnProperty("init") && this.init !== r.init || (r.init = function() {
+                        return t && r.mixIn(t), r.hasOwnProperty("init") && this.init !== r.init || (r.init = function () {
                             r.$super.init.apply(this, arguments)
                         }), r.init.prototype = r, r.$super = this, r
                     },
-                    create: function() {
+                    create: function () {
                         var t = this.extend();
                         return t.init.apply(t, arguments), t
                     },
-                    init: function() {},
-                    mixIn: function(t) {
+                    init: function () {
+                    },
+                    mixIn: function (t) {
                         for (var r in t) t.hasOwnProperty(r) && (this[r] = t[r]);
                         t.hasOwnProperty("toString") && (this.toString = t.toString)
                     },
-                    clone: function() {
+                    clone: function () {
                         return this.init.prototype.extend(this)
                     }
                 }
             }(),
             s = n.WordArray = o.extend({
-                init: function(t, e) {
+                init: function (t, e) {
                     t = this.words = t || [], e != r ? this.sigBytes = e : this.sigBytes = 4 * t.length
                 },
-                toString: function(t) {
+                toString: function (t) {
                     return (t || c).stringify(this)
                 },
-                concat: function(t) {
+                concat: function (t) {
                     var r = this.words,
                         e = t.words,
                         i = this.sigBytes,
@@ -1114,21 +1137,21 @@ String.prototype.getKeyVal = function (str) {
                     } else for (var o = 0; o < n; o += 4) r[i + o >>> 2] = e[o >>> 2];
                     return this.sigBytes += n, this
                 },
-                clamp: function() {
+                clamp: function () {
                     var r = this.words,
                         e = this.sigBytes;
                     r[e >>> 2] &= 4294967295 << 32 - e % 4 * 8, r.length = t.ceil(e / 4)
                 },
-                clone: function() {
+                clone: function () {
                     var t = o.clone.call(this);
                     return t.words = this.words.slice(0), t
                 },
-                random: function(r) {
-                    for (var e, i = [], n = function(r) {
+                random: function (r) {
+                    for (var e, i = [], n = function (r) {
                         var r = r,
                             e = 987654321,
                             i = 4294967295;
-                        return function() {
+                        return function () {
                             e = 36969 * (65535 & e) + (e >> 16) & i, r = 18e3 * (65535 & r) + (r >> 16) & i;
                             var n = (e << 16) + r & i;
                             return n /= 4294967296, n += .5, n * (t.random() > .5 ? 1 : -1)
@@ -1141,49 +1164,49 @@ String.prototype.getKeyVal = function (str) {
                 }
             }),
             a = i.enc = {}, c = a.Hex = {
-                stringify: function(t) {
+                stringify: function (t) {
                     for (var r = t.words, e = t.sigBytes, i = [], n = 0; n < e; n++) {
                         var o = r[n >>> 2] >>> 24 - n % 4 * 8 & 255;
                         i.push((o >>> 4).toString(16)), i.push((15 & o).toString(16))
                     }
                     return i.join("")
                 },
-                parse: function(t) {
+                parse: function (t) {
                     for (var r = t.length, e = [], i = 0; i < r; i += 2) e[i >>> 3] |= parseInt(t.substr(i, 2), 16) << 24 - i % 8 * 4;
                     return new s.init(e, r / 2)
 
                 }
             }, h = a.Latin1 = {
-                stringify: function(t) {
+                stringify: function (t) {
                     for (var r = t.words, e = t.sigBytes, i = [], n = 0; n < e; n++) {
                         var o = r[n >>> 2] >>> 24 - n % 4 * 8 & 255;
                         i.push(String.fromCharCode(o))
                     }
                     return i.join("")
                 },
-                parse: function(t) {
+                parse: function (t) {
                     for (var r = t.length, e = [], i = 0; i < r; i++) e[i >>> 2] |= (255 & t.charCodeAt(i)) << 24 - i % 4 * 8;
                     return new s.init(e, r)
                 }
             }, l = a.Utf8 = {
-                stringify: function(t) {
+                stringify: function (t) {
                     try {
                         return decodeURIComponent(escape(h.stringify(t)))
                     } catch (t) {
                         throw new Error("Malformed UTF-8 data")
                     }
                 },
-                parse: function(t) {
+                parse: function (t) {
                     return h.parse(unescape(encodeURIComponent(t)))
                 }
             }, f = n.BufferedBlockAlgorithm = o.extend({
-                reset: function() {
+                reset: function () {
                     this._data = new s.init, this._nDataBytes = 0
                 },
-                _append: function(t) {
+                _append: function (t) {
                     "string" == typeof t && (t = l.parse(t)), this._data.concat(t), this._nDataBytes += t.sigBytes
                 },
-                _process: function(r) {
+                _process: function (r) {
                     var e = this._data,
                         i = e.words,
                         n = e.sigBytes,
@@ -1200,7 +1223,7 @@ String.prototype.getKeyVal = function (str) {
                     }
                     return new s.init(u, l)
                 },
-                clone: function() {
+                clone: function () {
                     var t = o.clone.call(this);
                     return t._data = this._data.clone(), t
                 },
@@ -1208,35 +1231,35 @@ String.prototype.getKeyVal = function (str) {
             }),
             u = (n.Hasher = f.extend({
                 cfg: o.extend(),
-                init: function(t) {
+                init: function (t) {
                     this.cfg = this.cfg.extend(t), this.reset()
                 },
-                reset: function() {
+                reset: function () {
                     f.reset.call(this), this._doReset()
                 },
-                update: function(t) {
+                update: function (t) {
                     return this._append(t), this._process(), this
                 },
-                finalize: function(t) {
+                finalize: function (t) {
                     t && this._append(t);
                     var r = this._doFinalize();
                     return r
                 },
                 blockSize: 16,
-                _createHelper: function(t) {
-                    return function(r, e) {
+                _createHelper: function (t) {
+                    return function (r, e) {
                         return new t.init(e).finalize(r)
                     }
                 },
-                _createHmacHelper: function(t) {
-                    return function(r, e) {
+                _createHmacHelper: function (t) {
+                    return function (r, e) {
                         return new u.HMAC.init(t, e).finalize(r)
                     }
                 }
             }), i.algo = {});
         return i
     }(Math);
-    return function() {
+    return function () {
         function r(t, r, e) {
             for (var i = [], o = 0, s = 0; s < r; s++) if (s % 4) {
                 var a = e[t.charCodeAt(s - 1)] << s % 4 * 2,
@@ -1245,12 +1268,13 @@ String.prototype.getKeyVal = function (str) {
             }
             return n.create(i, o)
         }
+
         var e = t,
             i = e.lib,
             n = i.WordArray,
             o = e.enc;
         o.Base64 = {
-            stringify: function(t) {
+            stringify: function (t) {
                 var r = t.words,
                     e = t.sigBytes,
                     i = this._map;
@@ -1260,7 +1284,7 @@ String.prototype.getKeyVal = function (str) {
                 if (f) for (; n.length % 4;) n.push(f);
                 return n.join("")
             },
-            parse: function(t) {
+            parse: function (t) {
                 var e = t.length,
                     i = this._map,
                     n = this._reverseMap;
@@ -1278,37 +1302,41 @@ String.prototype.getKeyVal = function (str) {
             _map: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/="
         }
     }(),
-        function(r) {
+        function (r) {
             function e(t, r, e, i, n, o, s) {
                 var a = t + (r & e | ~r & i) + n + s;
                 return (a << o | a >>> 32 - o) + r
             }
+
             function i(t, r, e, i, n, o, s) {
                 var a = t + (r & i | e & ~i) + n + s;
                 return (a << o | a >>> 32 - o) + r
             }
+
             function n(t, r, e, i, n, o, s) {
                 var a = t + (r ^ e ^ i) + n + s;
                 return (a << o | a >>> 32 - o) + r
             }
+
             function o(t, r, e, i, n, o, s) {
                 var a = t + (e ^ (r | ~i)) + n + s;
                 return (a << o | a >>> 32 - o) + r
             }
+
             var s = t,
                 a = s.lib,
                 c = a.WordArray,
                 h = a.Hasher,
                 l = s.algo,
                 f = [];
-            ! function() {
+            !function () {
                 for (var t = 0; t < 64; t++) f[t] = 4294967296 * r.abs(r.sin(t + 1)) | 0
             }();
             var u = l.MD5 = h.extend({
-                _doReset: function() {
+                _doReset: function () {
                     this._hash = new c.init([1732584193, 4023233417, 2562383102, 271733878])
                 },
-                _doProcessBlock: function(t, r) {
+                _doProcessBlock: function (t, r) {
                     for (var s = 0; s < 16; s++) {
                         var a = r + s,
                             c = t[a];
@@ -1337,7 +1365,7 @@ String.prototype.getKeyVal = function (str) {
                         D = h[3];
                     z = e(z, A, C, D, l, 7, f[0]), D = e(D, z, A, C, u, 12, f[1]), C = e(C, D, z, A, d, 17, f[2]), A = e(A, C, D, z, v, 22, f[3]), z = e(z, A, C, D, p, 7, f[4]), D = e(D, z, A, C, _, 12, f[5]), C = e(C, D, z, A, y, 17, f[6]), A = e(A, C, D, z, g, 22, f[7]), z = e(z, A, C, D, B, 7, f[8]), D = e(D, z, A, C, w, 12, f[9]), C = e(C, D, z, A, k, 17, f[10]), A = e(A, C, D, z, S, 22, f[11]), z = e(z, A, C, D, m, 7, f[12]), D = e(D, z, A, C, x, 12, f[13]), C = e(C, D, z, A, b, 17, f[14]), A = e(A, C, D, z, H, 22, f[15]), z = i(z, A, C, D, u, 5, f[16]), D = i(D, z, A, C, y, 9, f[17]), C = i(C, D, z, A, S, 14, f[18]), A = i(A, C, D, z, l, 20, f[19]), z = i(z, A, C, D, _, 5, f[20]), D = i(D, z, A, C, k, 9, f[21]), C = i(C, D, z, A, H, 14, f[22]), A = i(A, C, D, z, p, 20, f[23]), z = i(z, A, C, D, w, 5, f[24]), D = i(D, z, A, C, b, 9, f[25]), C = i(C, D, z, A, v, 14, f[26]), A = i(A, C, D, z, B, 20, f[27]), z = i(z, A, C, D, x, 5, f[28]), D = i(D, z, A, C, d, 9, f[29]), C = i(C, D, z, A, g, 14, f[30]), A = i(A, C, D, z, m, 20, f[31]), z = n(z, A, C, D, _, 4, f[32]), D = n(D, z, A, C, B, 11, f[33]), C = n(C, D, z, A, S, 16, f[34]), A = n(A, C, D, z, b, 23, f[35]), z = n(z, A, C, D, u, 4, f[36]), D = n(D, z, A, C, p, 11, f[37]), C = n(C, D, z, A, g, 16, f[38]), A = n(A, C, D, z, k, 23, f[39]), z = n(z, A, C, D, x, 4, f[40]), D = n(D, z, A, C, l, 11, f[41]), C = n(C, D, z, A, v, 16, f[42]), A = n(A, C, D, z, y, 23, f[43]), z = n(z, A, C, D, w, 4, f[44]), D = n(D, z, A, C, m, 11, f[45]), C = n(C, D, z, A, H, 16, f[46]), A = n(A, C, D, z, d, 23, f[47]), z = o(z, A, C, D, l, 6, f[48]), D = o(D, z, A, C, g, 10, f[49]), C = o(C, D, z, A, b, 15, f[50]), A = o(A, C, D, z, _, 21, f[51]), z = o(z, A, C, D, m, 6, f[52]), D = o(D, z, A, C, v, 10, f[53]), C = o(C, D, z, A, k, 15, f[54]), A = o(A, C, D, z, u, 21, f[55]), z = o(z, A, C, D, B, 6, f[56]), D = o(D, z, A, C, H, 10, f[57]), C = o(C, D, z, A, y, 15, f[58]), A = o(A, C, D, z, x, 21, f[59]), z = o(z, A, C, D, p, 6, f[60]), D = o(D, z, A, C, S, 10, f[61]), C = o(C, D, z, A, d, 15, f[62]), A = o(A, C, D, z, w, 21, f[63]), h[0] = h[0] + z | 0, h[1] = h[1] + A | 0, h[2] = h[2] + C | 0, h[3] = h[3] + D | 0
                 },
-                _doFinalize: function() {
+                _doFinalize: function () {
                     var t = this._data,
                         e = t.words,
                         i = 8 * this._nDataBytes,
@@ -1352,14 +1380,14 @@ String.prototype.getKeyVal = function (str) {
                     }
                     return a
                 },
-                clone: function() {
+                clone: function () {
                     var t = h.clone.call(this);
                     return t._hash = this._hash.clone(), t
                 }
             });
             s.MD5 = h._createHelper(u), s.HmacMD5 = h._createHmacHelper(u)
         }(Math),
-        function() {
+        function () {
             var r = t,
                 e = r.lib,
                 i = e.WordArray,
@@ -1367,10 +1395,10 @@ String.prototype.getKeyVal = function (str) {
                 o = r.algo,
                 s = [],
                 a = o.SHA1 = n.extend({
-                    _doReset: function() {
+                    _doReset: function () {
                         this._hash = new i.init([1732584193, 4023233417, 2562383102, 271733878, 3285377520])
                     },
-                    _doProcessBlock: function(t, r) {
+                    _doProcessBlock: function (t, r) {
                         for (var e = this._hash.words, i = e[0], n = e[1], o = e[2], a = e[3], c = e[4], h = 0; h < 80; h++) {
                             if (h < 16) s[h] = 0 | t[r + h];
                             else {
@@ -1382,21 +1410,21 @@ String.prototype.getKeyVal = function (str) {
                         }
                         e[0] = e[0] + i | 0, e[1] = e[1] + n | 0, e[2] = e[2] + o | 0, e[3] = e[3] + a | 0, e[4] = e[4] + c | 0
                     },
-                    _doFinalize: function() {
+                    _doFinalize: function () {
                         var t = this._data,
                             r = t.words,
                             e = 8 * this._nDataBytes,
                             i = 8 * t.sigBytes;
                         return r[i >>> 5] |= 128 << 24 - i % 32, r[(i + 64 >>> 9 << 4) + 14] = Math.floor(e / 4294967296), r[(i + 64 >>> 9 << 4) + 15] = e, t.sigBytes = 4 * r.length, this._process(), this._hash
                     },
-                    clone: function() {
+                    clone: function () {
                         var t = n.clone.call(this);
                         return t._hash = this._hash.clone(), t
                     }
                 });
             r.SHA1 = n._createHelper(a), r.HmacSHA1 = n._createHmacHelper(a)
         }(),
-        function(r) {
+        function (r) {
             var e = t,
                 i = e.lib,
                 n = i.WordArray,
@@ -1404,22 +1432,24 @@ String.prototype.getKeyVal = function (str) {
                 s = e.algo,
                 a = [],
                 c = [];
-            ! function() {
+            !function () {
                 function t(t) {
                     for (var e = r.sqrt(t), i = 2; i <= e; i++) if (!(t % i)) return !1;
                     return !0
                 }
+
                 function e(t) {
                     return 4294967296 * (t - (0 | t)) | 0
                 }
+
                 for (var i = 2, n = 0; n < 64;) t(i) && (n < 8 && (a[n] = e(r.pow(i, .5))), c[n] = e(r.pow(i, 1 / 3)), n++), i++
             }();
             var h = [],
                 l = s.SHA256 = o.extend({
-                    _doReset: function() {
+                    _doReset: function () {
                         this._hash = new n.init(a.slice(0))
                     },
-                    _doProcessBlock: function(t, r) {
+                    _doProcessBlock: function (t, r) {
                         for (var e = this._hash.words, i = e[0], n = e[1], o = e[2], s = e[3], a = e[4], l = e[5], f = e[6], u = e[7], d = 0; d < 64; d++) {
                             if (d < 16) h[d] = 0 | t[r + d];
                             else {
@@ -1439,62 +1469,63 @@ String.prototype.getKeyVal = function (str) {
                         }
                         e[0] = e[0] + i | 0, e[1] = e[1] + n | 0, e[2] = e[2] + o | 0, e[3] = e[3] + s | 0, e[4] = e[4] + a | 0, e[5] = e[5] + l | 0, e[6] = e[6] + f | 0, e[7] = e[7] + u | 0
                     },
-                    _doFinalize: function() {
+                    _doFinalize: function () {
                         var t = this._data,
                             e = t.words,
                             i = 8 * this._nDataBytes,
                             n = 8 * t.sigBytes;
                         return e[n >>> 5] |= 128 << 24 - n % 32, e[(n + 64 >>> 9 << 4) + 14] = r.floor(i / 4294967296), e[(n + 64 >>> 9 << 4) + 15] = i, t.sigBytes = 4 * e.length, this._process(), this._hash
                     },
-                    clone: function() {
+                    clone: function () {
                         var t = o.clone.call(this);
                         return t._hash = this._hash.clone(), t
                     }
                 });
             e.SHA256 = o._createHelper(l), e.HmacSHA256 = o._createHmacHelper(l)
         }(Math),
-        function() {
+        function () {
             function r(t) {
                 return t << 8 & 4278255360 | t >>> 8 & 16711935
             }
+
             var e = t,
                 i = e.lib,
                 n = i.WordArray,
                 o = e.enc;
             o.Utf16 = o.Utf16BE = {
-                stringify: function(t) {
+                stringify: function (t) {
                     for (var r = t.words, e = t.sigBytes, i = [], n = 0; n < e; n += 2) {
                         var o = r[n >>> 2] >>> 16 - n % 4 * 8 & 65535;
                         i.push(String.fromCharCode(o))
                     }
                     return i.join("")
                 },
-                parse: function(t) {
+                parse: function (t) {
                     for (var r = t.length, e = [], i = 0; i < r; i++) e[i >>> 1] |= t.charCodeAt(i) << 16 - i % 2 * 16;
                     return n.create(e, 2 * r)
                 }
             };
             o.Utf16LE = {
-                stringify: function(t) {
+                stringify: function (t) {
                     for (var e = t.words, i = t.sigBytes, n = [], o = 0; o < i; o += 2) {
                         var s = r(e[o >>> 2] >>> 16 - o % 4 * 8 & 65535);
                         n.push(String.fromCharCode(s))
                     }
                     return n.join("")
                 },
-                parse: function(t) {
+                parse: function (t) {
                     for (var e = t.length, i = [], o = 0; o < e; o++) i[o >>> 1] |= r(t.charCodeAt(o) << 16 - o % 2 * 16);
                     return n.create(i, 2 * e)
                 }
             }
         }(),
-        function() {
+        function () {
             if ("function" == typeof ArrayBuffer) {
                 var r = t,
                     e = r.lib,
                     i = e.WordArray,
                     n = i.init,
-                    o = i.init = function(t) {
+                    o = i.init = function (t) {
                         if (t instanceof ArrayBuffer && (t = new Uint8Array(t)), (t instanceof Int8Array || "undefined" != typeof Uint8ClampedArray && t instanceof Uint8ClampedArray || t instanceof Int16Array || t instanceof Uint16Array || t instanceof Int32Array || t instanceof Uint32Array || t instanceof Float32Array || t instanceof Float64Array) && (t = new Uint8Array(t.buffer, t.byteOffset, t.byteLength)), t instanceof Uint8Array) {
                             for (var r = t.byteLength, e = [], i = 0; i < r; i++) e[i >>> 2] |= t[i] << 24 - i % 4 * 8;
                             n.call(this, e, r)
@@ -1503,25 +1534,31 @@ String.prototype.getKeyVal = function (str) {
                 o.prototype = i
             }
         }(),
-        function(r) {
+        function (r) {
             function e(t, r, e) {
                 return t ^ r ^ e
             }
+
             function i(t, r, e) {
                 return t & r | ~t & e
             }
+
             function n(t, r, e) {
                 return (t | ~r) ^ e
             }
+
             function o(t, r, e) {
                 return t & e | r & ~e
             }
+
             function s(t, r, e) {
                 return t ^ (r | ~e)
             }
+
             function a(t, r) {
                 return t << r | t >>> 32 - r
             }
+
             var c = t,
                 h = c.lib,
                 l = h.WordArray,
@@ -1534,10 +1571,10 @@ String.prototype.getKeyVal = function (str) {
                 y = l.create([0, 1518500249, 1859775393, 2400959708, 2840853838]),
                 g = l.create([1352829926, 1548603684, 1836072691, 2053994217, 0]),
                 B = u.RIPEMD160 = f.extend({
-                    _doReset: function() {
+                    _doReset: function () {
                         this._hash = l.create([1732584193, 4023233417, 2562383102, 271733878, 3285377520])
                     },
-                    _doProcessBlock: function(t, r) {
+                    _doProcessBlock: function (t, r) {
                         for (var c = 0; c < 16; c++) {
                             var h = r + c,
                                 l = t[h];
@@ -1554,7 +1591,7 @@ String.prototype.getKeyVal = function (str) {
                         for (var F, c = 0; c < 80; c += 1) F = f + t[r + D[c]] | 0, F += c < 16 ? e(u, B, w) + A[0] : c < 32 ? i(u, B, w) + A[1] : c < 48 ? n(u, B, w) + A[2] : c < 64 ? o(u, B, w) + A[3] : s(u, B, w) + A[4], F |= 0, F = a(F, E[c]), F = F + k | 0, f = k, k = w, w = a(B, 10), B = u, u = F, F = S + t[r + R[c]] | 0, F += c < 16 ? s(m, x, b) + C[0] : c < 32 ? o(m, x, b) + C[1] : c < 48 ? n(m, x, b) + C[2] : c < 64 ? i(m, x, b) + C[3] : e(m, x, b) + C[4], F |= 0, F = a(F, M[c]), F = F + H | 0, S = H, H = b, b = a(x, 10), x = m, m = F;
                         F = z[1] + B + b | 0, z[1] = z[2] + w + H | 0, z[2] = z[3] + k + S | 0, z[3] = z[4] + f + m | 0, z[4] = z[0] + u + x | 0, z[0] = F
                     },
-                    _doFinalize: function() {
+                    _doFinalize: function () {
                         var t = this._data,
                             r = t.words,
                             e = 8 * this._nDataBytes,
@@ -1566,14 +1603,14 @@ String.prototype.getKeyVal = function (str) {
                         }
                         return n
                     },
-                    clone: function() {
+                    clone: function () {
                         var t = f.clone.call(this);
                         return t._hash = this._hash.clone(), t
                     }
                 });
             c.RIPEMD160 = f._createHelper(B), c.HmacRIPEMD160 = f._createHmacHelper(B)
         }(Math),
-        function() {
+        function () {
             var r = t,
                 e = r.lib,
                 i = e.Base,
@@ -1581,7 +1618,7 @@ String.prototype.getKeyVal = function (str) {
                 o = n.Utf8,
                 s = r.algo;
             s.HMAC = i.extend({
-                init: function(t, r) {
+                init: function (t, r) {
                     t = this._hasher = new t.init, "string" == typeof r && (r = o.parse(r));
                     var e = t.blockSize,
                         i = 4 * e;
@@ -1589,14 +1626,14 @@ String.prototype.getKeyVal = function (str) {
                     for (var n = this._oKey = r.clone(), s = this._iKey = r.clone(), a = n.words, c = s.words, h = 0; h < e; h++) a[h] ^= 1549556828, c[h] ^= 909522486;
                     n.sigBytes = s.sigBytes = i, this.reset()
                 },
-                reset: function() {
+                reset: function () {
                     var t = this._hasher;
                     t.reset(), t.update(this._iKey)
                 },
-                update: function(t) {
+                update: function (t) {
                     return this._hasher.update(t), this
                 },
-                finalize: function(t) {
+                finalize: function (t) {
                     var r = this._hasher,
                         e = r.finalize(t);
                     r.reset();
@@ -1605,7 +1642,7 @@ String.prototype.getKeyVal = function (str) {
                 }
             })
         }(),
-        function() {
+        function () {
             var r = t,
                 e = r.lib,
                 i = e.Base,
@@ -1619,10 +1656,10 @@ String.prototype.getKeyVal = function (str) {
                         hasher: s,
                         iterations: 1
                     }),
-                    init: function(t) {
+                    init: function (t) {
                         this.cfg = this.cfg.extend(t)
                     },
-                    compute: function(t, r) {
+                    compute: function (t, r) {
                         for (var e = this.cfg, i = a.create(e.hasher, t), o = n.create(), s = n.create([1]), c = o.words, h = s.words, l = e.keySize, f = e.iterations; c.length < l;) {
                             var u = i.update(r).finalize(s);
                             i.reset();
@@ -1635,11 +1672,11 @@ String.prototype.getKeyVal = function (str) {
                         return o.sigBytes = 4 * l, o
                     }
                 });
-            r.PBKDF2 = function(t, r, e) {
+            r.PBKDF2 = function (t, r, e) {
                 return c.create(e).compute(t, r)
             }
         }(),
-        function() {
+        function () {
             var r = t,
                 e = r.lib,
                 i = e.Base,
@@ -1652,10 +1689,10 @@ String.prototype.getKeyVal = function (str) {
                         hasher: s,
                         iterations: 1
                     }),
-                    init: function(t) {
+                    init: function (t) {
                         this.cfg = this.cfg.extend(t)
                     },
-                    compute: function(t, r) {
+                    compute: function (t, r) {
                         for (var e = this.cfg, i = e.hasher.create(), o = n.create(), s = o.words, a = e.keySize, c = e.iterations; s.length < a;) {
                             h && i.update(h);
                             var h = i.update(t).finalize(r);
@@ -1666,55 +1703,55 @@ String.prototype.getKeyVal = function (str) {
                         return o.sigBytes = 4 * a, o
                     }
                 });
-            r.EvpKDF = function(t, r, e) {
+            r.EvpKDF = function (t, r, e) {
                 return a.create(e).compute(t, r)
             }
         }(),
-        function() {
+        function () {
             var r = t,
                 e = r.lib,
                 i = e.WordArray,
                 n = r.algo,
                 o = n.SHA256,
                 s = n.SHA224 = o.extend({
-                    _doReset: function() {
+                    _doReset: function () {
                         this._hash = new i.init([3238371032, 914150663, 812702999, 4144912697, 4290775857, 1750603025, 1694076839, 3204075428])
                     },
-                    _doFinalize: function() {
+                    _doFinalize: function () {
                         var t = o._doFinalize.call(this);
                         return t.sigBytes -= 4, t
                     }
                 });
             r.SHA224 = o._createHelper(s), r.HmacSHA224 = o._createHmacHelper(s)
         }(),
-        function(r) {
+        function (r) {
             var e = t,
                 i = e.lib,
                 n = i.Base,
                 o = i.WordArray,
                 s = e.x64 = {};
             s.Word = n.extend({
-                init: function(t, r) {
+                init: function (t, r) {
                     this.high = t, this.low = r
                 }
             }), s.WordArray = n.extend({
-                init: function(t, e) {
+                init: function (t, e) {
                     t = this.words = t || [], e != r ? this.sigBytes = e : this.sigBytes = 8 * t.length
                 },
-                toX32: function() {
+                toX32: function () {
                     for (var t = this.words, r = t.length, e = [], i = 0; i < r; i++) {
                         var n = t[i];
                         e.push(n.high), e.push(n.low)
                     }
                     return o.create(e, this.sigBytes)
                 },
-                clone: function() {
+                clone: function () {
                     for (var t = n.clone.call(this), r = t.words = this.words.slice(0), e = r.length, i = 0; i < e; i++) r[i] = r[i].clone();
                     return t
                 }
             })
         }(),
-        function(r) {
+        function (r) {
             var e = t,
                 i = e.lib,
                 n = i.WordArray,
@@ -1725,7 +1762,7 @@ String.prototype.getKeyVal = function (str) {
                 h = [],
                 l = [],
                 f = [];
-            ! function() {
+            !function () {
                 for (var t = 1, r = 0, e = 0; e < 24; e++) {
                     h[t + 5 * r] = (e + 1) * (e + 2) / 2 % 64;
                     var i = r % 5,
@@ -1745,18 +1782,18 @@ String.prototype.getKeyVal = function (str) {
                 }
             }();
             var u = [];
-            ! function() {
+            !function () {
                 for (var t = 0; t < 25; t++) u[t] = a.create()
             }();
             var d = c.SHA3 = o.extend({
                 cfg: o.cfg.extend({
                     outputLength: 512
                 }),
-                _doReset: function() {
+                _doReset: function () {
                     for (var t = this._state = [], r = 0; r < 25; r++) t[r] = new a.init;
                     this.blockSize = (1600 - 2 * this.cfg.outputLength) / 32
                 },
-                _doProcessBlock: function(t, r) {
+                _doProcessBlock: function (t, r) {
                     for (var e = this._state, i = this.blockSize / 2, n = 0; n < i; n++) {
                         var o = t[r + 2 * n],
                             s = t[r + 2 * n + 1];
@@ -1805,7 +1842,7 @@ String.prototype.getKeyVal = function (str) {
                         a.high ^= E.high, a.low ^= E.low
                     }
                 },
-                _doFinalize: function() {
+                _doFinalize: function () {
                     var t = this._data,
                         e = t.words,
                         i = (8 * this._nDataBytes, 8 * t.sigBytes),
@@ -1819,17 +1856,18 @@ String.prototype.getKeyVal = function (str) {
                     }
                     return new n.init(h, a)
                 },
-                clone: function() {
+                clone: function () {
                     for (var t = o.clone.call(this), r = t._state = this._state.slice(0), e = 0; e < 25; e++) r[e] = r[e].clone();
                     return t
                 }
             });
             e.SHA3 = o._createHelper(d), e.HmacSHA3 = o._createHmacHelper(d)
         }(Math),
-        function() {
+        function () {
             function r() {
                 return s.create.apply(s, arguments)
             }
+
             var e = t,
                 i = e.lib,
                 n = i.Hasher,
@@ -1839,14 +1877,14 @@ String.prototype.getKeyVal = function (str) {
                 c = e.algo,
                 h = [r(1116352408, 3609767458), r(1899447441, 602891725), r(3049323471, 3964484399), r(3921009573, 2173295548), r(961987163, 4081628472), r(1508970993, 3053834265), r(2453635748, 2937671579), r(2870763221, 3664609560), r(3624381080, 2734883394), r(310598401, 1164996542), r(607225278, 1323610764), r(1426881987, 3590304994), r(1925078388, 4068182383), r(2162078206, 991336113), r(2614888103, 633803317), r(3248222580, 3479774868), r(3835390401, 2666613458), r(4022224774, 944711139), r(264347078, 2341262773), r(604807628, 2007800933), r(770255983, 1495990901), r(1249150122, 1856431235), r(1555081692, 3175218132), r(1996064986, 2198950837), r(2554220882, 3999719339), r(2821834349, 766784016), r(2952996808, 2566594879), r(3210313671, 3203337956), r(3336571891, 1034457026), r(3584528711, 2466948901), r(113926993, 3758326383), r(338241895, 168717936), r(666307205, 1188179964), r(773529912, 1546045734), r(1294757372, 1522805485), r(1396182291, 2643833823), r(1695183700, 2343527390), r(1986661051, 1014477480), r(2177026350, 1206759142), r(2456956037, 344077627), r(2730485921, 1290863460), r(2820302411, 3158454273), r(3259730800, 3505952657), r(3345764771, 106217008), r(3516065817, 3606008344), r(3600352804, 1432725776), r(4094571909, 1467031594), r(275423344, 851169720), r(430227734, 3100823752), r(506948616, 1363258195), r(659060556, 3750685593), r(883997877, 3785050280), r(958139571, 3318307427), r(1322822218, 3812723403), r(1537002063, 2003034995), r(1747873779, 3602036899), r(1955562222, 1575990012), r(2024104815, 1125592928), r(2227730452, 2716904306), r(2361852424, 442776044), r(2428436474, 593698344), r(2756734187, 3733110249), r(3204031479, 2999351573), r(3329325298, 3815920427), r(3391569614, 3928383900), r(3515267271, 566280711), r(3940187606, 3454069534), r(4118630271, 4000239992), r(116418474, 1914138554), r(174292421, 2731055270), r(289380356, 3203993006), r(460393269, 320620315), r(685471733, 587496836), r(852142971, 1086792851), r(1017036298, 365543100), r(1126000580, 2618297676), r(1288033470, 3409855158), r(1501505948, 4234509866), r(1607167915, 987167468), r(1816402316, 1246189591)],
                 l = [];
-            ! function() {
+            !function () {
                 for (var t = 0; t < 80; t++) l[t] = r()
             }();
             var f = c.SHA512 = n.extend({
-                _doReset: function() {
+                _doReset: function () {
                     this._hash = new a.init([new s.init(1779033703, 4089235720), new s.init(3144134277, 2227873595), new s.init(1013904242, 4271175723), new s.init(2773480762, 1595750129), new s.init(1359893119, 2917565137), new s.init(2600822924, 725511199), new s.init(528734635, 4215389547), new s.init(1541459225, 327033209)])
                 },
-                _doProcessBlock: function(t, r) {
+                _doProcessBlock: function (t, r) {
                     for (var e = this._hash.words, i = e[0], n = e[1], o = e[2], s = e[3], a = e[4], c = e[5], f = e[6], u = e[7], d = i.high, v = i.low, p = n.high, _ = n.low, y = o.high, g = o.low, B = s.high, w = s.low, k = a.high, S = a.low, m = c.high, x = c.low, b = f.high, H = f.low, z = u.high, A = u.low, C = d, D = v, R = p, E = _, M = y, F = g, P = B, W = w, O = k, U = S, I = m, K = x, X = b, L = H, j = z, N = A, T = 0; T < 80; T++) {
                         var Z = l[T];
                         if (T < 16) var q = Z.high = 0 | t[r + 2 * T],
@@ -1901,7 +1939,7 @@ String.prototype.getKeyVal = function (str) {
                     }
                     v = i.low = v + D, i.high = d + C + (v >>> 0 < D >>> 0 ? 1 : 0), _ = n.low = _ + E, n.high = p + R + (_ >>> 0 < E >>> 0 ? 1 : 0), g = o.low = g + F, o.high = y + M + (g >>> 0 < F >>> 0 ? 1 : 0), w = s.low = w + W, s.high = B + P + (w >>> 0 < W >>> 0 ? 1 : 0), S = a.low = S + U, a.high = k + O + (S >>> 0 < U >>> 0 ? 1 : 0), x = c.low = x + K, c.high = m + I + (x >>> 0 < K >>> 0 ? 1 : 0), H = f.low = H + L, f.high = b + X + (H >>> 0 < L >>> 0 ? 1 : 0), A = u.low = A + N, u.high = z + j + (A >>> 0 < N >>> 0 ? 1 : 0)
                 },
-                _doFinalize: function() {
+                _doFinalize: function () {
                     var t = this._data,
                         r = t.words,
                         e = 8 * this._nDataBytes,
@@ -1910,7 +1948,7 @@ String.prototype.getKeyVal = function (str) {
                     var n = this._hash.toX32();
                     return n
                 },
-                clone: function() {
+                clone: function () {
                     var t = n.clone.call(this);
                     return t._hash = this._hash.clone(), t
                 },
@@ -1918,7 +1956,7 @@ String.prototype.getKeyVal = function (str) {
             });
             e.SHA512 = n._createHelper(f), e.HmacSHA512 = n._createHmacHelper(f)
         }(),
-        function() {
+        function () {
             var r = t,
                 e = r.x64,
                 i = e.Word,
@@ -1926,16 +1964,16 @@ String.prototype.getKeyVal = function (str) {
                 o = r.algo,
                 s = o.SHA512,
                 a = o.SHA384 = s.extend({
-                    _doReset: function() {
+                    _doReset: function () {
                         this._hash = new n.init([new i.init(3418070365, 3238371032), new i.init(1654270250, 914150663), new i.init(2438529370, 812702999), new i.init(355462360, 4144912697), new i.init(1731405415, 4290775857), new i.init(2394180231, 1750603025), new i.init(3675008525, 1694076839), new i.init(1203062813, 3204075428)])
                     },
-                    _doFinalize: function() {
+                    _doFinalize: function () {
                         var t = s._doFinalize.call(this);
                         return t.sigBytes -= 16, t
                     }
                 });
             r.SHA384 = s._createHelper(a), r.HmacSHA384 = s._createHmacHelper(a)
-        }(), t.lib.Cipher || function(r) {
+        }(), t.lib.Cipher || function (r) {
         var e = t,
             i = e.lib,
             n = i.Base,
@@ -1947,22 +1985,22 @@ String.prototype.getKeyVal = function (str) {
             l = h.EvpKDF,
             f = i.Cipher = s.extend({
                 cfg: n.extend(),
-                createEncryptor: function(t, r) {
+                createEncryptor: function (t, r) {
                     return this.create(this._ENC_XFORM_MODE, t, r)
                 },
-                createDecryptor: function(t, r) {
+                createDecryptor: function (t, r) {
                     return this.create(this._DEC_XFORM_MODE, t, r)
                 },
-                init: function(t, r, e) {
+                init: function (t, r, e) {
                     this.cfg = this.cfg.extend(e), this._xformMode = t, this._key = r, this.reset()
                 },
-                reset: function() {
+                reset: function () {
                     s.reset.call(this), this._doReset()
                 },
-                process: function(t) {
+                process: function (t) {
                     return this._append(t), this._process()
                 },
-                finalize: function(t) {
+                finalize: function (t) {
                     t && this._append(t);
                     var r = this._doFinalize();
                     return r
@@ -1971,16 +2009,17 @@ String.prototype.getKeyVal = function (str) {
                 ivSize: 4,
                 _ENC_XFORM_MODE: 1,
                 _DEC_XFORM_MODE: 2,
-                _createHelper: function() {
+                _createHelper: function () {
                     function t(t) {
                         return "string" == typeof t ? m : w
                     }
-                    return function(r) {
+
+                    return function (r) {
                         return {
-                            encrypt: function(e, i, n) {
+                            encrypt: function (e, i, n) {
                                 return t(i).encrypt(r, e, i, n)
                             },
-                            decrypt: function(e, i, n) {
+                            decrypt: function (e, i, n) {
                                 return t(i).decrypt(r, e, i, n)
                             }
                         }
@@ -1988,24 +2027,24 @@ String.prototype.getKeyVal = function (str) {
                 }()
             }),
             u = (i.StreamCipher = f.extend({
-                _doFinalize: function() {
+                _doFinalize: function () {
                     var t = this._process(!0);
                     return t
                 },
                 blockSize: 1
             }), e.mode = {}),
             d = i.BlockCipherMode = n.extend({
-                createEncryptor: function(t, r) {
+                createEncryptor: function (t, r) {
                     return this.Encryptor.create(t, r)
                 },
-                createDecryptor: function(t, r) {
+                createDecryptor: function (t, r) {
                     return this.Decryptor.create(t, r)
                 },
-                init: function(t, r) {
+                init: function (t, r) {
                     this._cipher = t, this._iv = r
                 }
             }),
-            v = u.CBC = function() {
+            v = u.CBC = function () {
                 function t(t, e, i) {
                     var n = this._iv;
                     if (n) {
@@ -2014,15 +2053,16 @@ String.prototype.getKeyVal = function (str) {
                     } else var o = this._prevBlock;
                     for (var s = 0; s < i; s++) t[e + s] ^= o[s]
                 }
+
                 var e = d.extend();
                 return e.Encryptor = e.extend({
-                    processBlock: function(r, e) {
+                    processBlock: function (r, e) {
                         var i = this._cipher,
                             n = i.blockSize;
                         t.call(this, r, e, n), i.encryptBlock(r, e), this._prevBlock = r.slice(e, e + n)
                     }
                 }), e.Decryptor = e.extend({
-                    processBlock: function(r, e) {
+                    processBlock: function (r, e) {
                         var i = this._cipher,
                             n = i.blockSize,
                             o = r.slice(e, e + n);
@@ -2031,12 +2071,12 @@ String.prototype.getKeyVal = function (str) {
                 }), e
             }(),
             p = e.pad = {}, _ = p.Pkcs7 = {
-                pad: function(t, r) {
+                pad: function (t, r) {
                     for (var e = 4 * r, i = e - t.sigBytes % e, n = i << 24 | i << 16 | i << 8 | i, s = [], a = 0; a < i; a += 4) s.push(n);
                     var c = o.create(s, i);
                     t.concat(c)
                 },
-                unpad: function(t) {
+                unpad: function (t) {
                     var r = 255 & t.words[t.sigBytes - 1 >>> 2];
                     t.sigBytes -= r
                 }
@@ -2045,7 +2085,7 @@ String.prototype.getKeyVal = function (str) {
                     mode: v,
                     padding: _
                 }),
-                reset: function() {
+                reset: function () {
                     f.reset.call(this);
                     var t = this.cfg,
                         r = t.iv,
@@ -2057,10 +2097,10 @@ String.prototype.getKeyVal = function (str) {
                     }
                     this._mode && this._mode.__creator == i ? this._mode.init(this, r && r.words) : (this._mode = i.call(e, this, r && r.words), this._mode.__creator = i)
                 },
-                _doProcessBlock: function(t, r) {
+                _doProcessBlock: function (t, r) {
                     this._mode.processBlock(t, r)
                 },
-                _doFinalize: function() {
+                _doFinalize: function () {
                     var t = this.cfg.padding;
                     if (this._xformMode == this._ENC_XFORM_MODE) {
                         t.pad(this._data, this.blockSize);
@@ -2073,22 +2113,22 @@ String.prototype.getKeyVal = function (str) {
                 },
                 blockSize: 4
             }), i.CipherParams = n.extend({
-                init: function(t) {
+                init: function (t) {
                     this.mixIn(t)
                 },
-                toString: function(t) {
+                toString: function (t) {
                     return (t || this.formatter).stringify(this)
                 }
             })),
             g = e.format = {}, B = g.OpenSSL = {
-                stringify: function(t) {
+                stringify: function (t) {
                     var r = t.ciphertext,
                         e = t.salt;
                     if (e) var i = o.create([1398893684, 1701076831]).concat(e).concat(r);
                     else var i = r;
                     return i.toString(c)
                 },
-                parse: function(t) {
+                parse: function (t) {
                     var r = c.parse(t),
                         e = r.words;
                     if (1398893684 == e[0] && 1701076831 == e[1]) {
@@ -2104,7 +2144,7 @@ String.prototype.getKeyVal = function (str) {
                 cfg: n.extend({
                     format: B
                 }),
-                encrypt: function(t, r, e, i) {
+                encrypt: function (t, r, e, i) {
                     i = this.cfg.extend(i);
                     var n = t.createEncryptor(e, i),
                         o = n.finalize(r),
@@ -2120,17 +2160,17 @@ String.prototype.getKeyVal = function (str) {
                         formatter: i.format
                     })
                 },
-                decrypt: function(t, r, e, i) {
+                decrypt: function (t, r, e, i) {
                     i = this.cfg.extend(i), r = this._parse(r, i.format);
                     var n = t.createDecryptor(e, i).finalize(r.ciphertext);
                     return n
                 },
-                _parse: function(t, r) {
+                _parse: function (t, r) {
                     return "string" == typeof t ? r.parse(t, this) : t
                 }
             }),
             k = e.kdf = {}, S = k.OpenSSL = {
-                execute: function(t, r, e, i) {
+                execute: function (t, r, e, i) {
                     i || (i = o.random(8));
                     var n = l.create({
                             keySize: r + e
@@ -2146,14 +2186,14 @@ String.prototype.getKeyVal = function (str) {
                 cfg: w.cfg.extend({
                     kdf: S
                 }),
-                encrypt: function(t, r, e, i) {
+                encrypt: function (t, r, e, i) {
                     i = this.cfg.extend(i);
                     var n = i.kdf.execute(e, t.keySize, t.ivSize);
                     i.iv = n.iv;
                     var o = w.encrypt.call(this, t, r, n.key, i);
                     return o.mixIn(n), o
                 },
-                decrypt: function(t, r, e, i) {
+                decrypt: function (t, r, e, i) {
                     i = this.cfg.extend(i), r = this._parse(r, i.format);
                     var n = i.kdf.execute(e, t.keySize, t.ivSize, r.salt);
                     i.iv = n.iv;
@@ -2161,7 +2201,7 @@ String.prototype.getKeyVal = function (str) {
                     return o
                 }
             })
-    }(), t.mode.CFB = function() {
+    }(), t.mode.CFB = function () {
         function r(t, r, e, i) {
             var n = this._iv;
             if (n) {
@@ -2171,65 +2211,66 @@ String.prototype.getKeyVal = function (str) {
             i.encryptBlock(o, 0);
             for (var s = 0; s < e; s++) t[r + s] ^= o[s]
         }
+
         var e = t.lib.BlockCipherMode.extend();
         return e.Encryptor = e.extend({
-            processBlock: function(t, e) {
+            processBlock: function (t, e) {
                 var i = this._cipher,
                     n = i.blockSize;
                 r.call(this, t, e, n, i), this._prevBlock = t.slice(e, e + n)
             }
         }), e.Decryptor = e.extend({
-            processBlock: function(t, e) {
+            processBlock: function (t, e) {
                 var i = this._cipher,
                     n = i.blockSize,
                     o = t.slice(e, e + n);
                 r.call(this, t, e, n, i), this._prevBlock = o
             }
         }), e
-    }(), t.mode.ECB = function() {
+    }(), t.mode.ECB = function () {
         var r = t.lib.BlockCipherMode.extend();
         return r.Encryptor = r.extend({
-            processBlock: function(t, r) {
+            processBlock: function (t, r) {
                 this._cipher.encryptBlock(t, r)
             }
         }), r.Decryptor = r.extend({
-            processBlock: function(t, r) {
+            processBlock: function (t, r) {
                 this._cipher.decryptBlock(t, r)
             }
         }), r
     }(), t.pad.AnsiX923 = {
-        pad: function(t, r) {
+        pad: function (t, r) {
             var e = t.sigBytes,
                 i = 4 * r,
                 n = i - e % i,
                 o = e + n - 1;
             t.clamp(), t.words[o >>> 2] |= n << 24 - o % 4 * 8, t.sigBytes += n
         },
-        unpad: function(t) {
+        unpad: function (t) {
             var r = 255 & t.words[t.sigBytes - 1 >>> 2];
             t.sigBytes -= r
         }
     }, t.pad.Iso10126 = {
-        pad: function(r, e) {
+        pad: function (r, e) {
             var i = 4 * e,
                 n = i - r.sigBytes % i;
             r.concat(t.lib.WordArray.random(n - 1)).concat(t.lib.WordArray.create([n << 24], 1))
         },
-        unpad: function(t) {
+        unpad: function (t) {
             var r = 255 & t.words[t.sigBytes - 1 >>> 2];
             t.sigBytes -= r
         }
     }, t.pad.Iso97971 = {
-        pad: function(r, e) {
+        pad: function (r, e) {
             r.concat(t.lib.WordArray.create([2147483648], 1)), t.pad.ZeroPadding.pad(r, e)
         },
-        unpad: function(r) {
+        unpad: function (r) {
             t.pad.ZeroPadding.unpad(r), r.sigBytes--
         }
-    }, t.mode.OFB = function() {
+    }, t.mode.OFB = function () {
         var r = t.lib.BlockCipherMode.extend(),
             e = r.Encryptor = r.extend({
-                processBlock: function(t, r) {
+                processBlock: function (t, r) {
                     var e = this._cipher,
                         i = e.blockSize,
                         n = this._iv,
@@ -2240,10 +2281,12 @@ String.prototype.getKeyVal = function (str) {
             });
         return r.Decryptor = e, r
     }(), t.pad.NoPadding = {
-        pad: function() {},
-        unpad: function() {}
+        pad: function () {
+        },
+        unpad: function () {
+        }
     },
-        function(r) {
+        function (r) {
             var e = t,
                 i = e.lib,
                 n = i.CipherParams,
@@ -2251,10 +2294,10 @@ String.prototype.getKeyVal = function (str) {
                 s = o.Hex,
                 a = e.format;
             a.Hex = {
-                stringify: function(t) {
+                stringify: function (t) {
                     return t.ciphertext.toString(s)
                 },
-                parse: function(t) {
+                parse: function (t) {
                     var r = s.parse(t);
                     return n.create({
                         ciphertext: r
@@ -2262,7 +2305,7 @@ String.prototype.getKeyVal = function (str) {
                 }
             }
         }(),
-        function() {
+        function () {
             var r = t,
                 e = r.lib,
                 i = e.BlockCipher,
@@ -2277,7 +2320,7 @@ String.prototype.getKeyVal = function (str) {
                 u = [],
                 d = [],
                 v = [];
-            ! function() {
+            !function () {
                 for (var t = [], r = 0; r < 256; r++) r < 128 ? t[r] = r << 1 : t[r] = r << 1 ^ 283;
                 for (var e = 0, i = 0, r = 0; r < 256; r++) {
                     var n = i ^ i << 1 ^ i << 2 ^ i << 3 ^ i << 4;
@@ -2293,7 +2336,7 @@ String.prototype.getKeyVal = function (str) {
             }();
             var p = [0, 1, 2, 4, 8, 16, 32, 64, 128, 27, 54],
                 _ = n.AES = i.extend({
-                    _doReset: function() {
+                    _doReset: function () {
                         if (!this._nRounds || this._keyPriorReset !== this._key) {
                             for (var t = this._keyPriorReset = this._key, r = t.words, e = t.sigBytes / 4, i = this._nRounds = e + 6, n = 4 * (i + 1), s = this._keySchedule = [], a = 0; a < n; a++) if (a < e) s[a] = r[a];
                             else {
@@ -2308,16 +2351,16 @@ String.prototype.getKeyVal = function (str) {
                             }
                         }
                     },
-                    encryptBlock: function(t, r) {
+                    encryptBlock: function (t, r) {
                         this._doCryptBlock(t, r, this._keySchedule, a, c, h, l, o)
                     },
-                    decryptBlock: function(t, r) {
+                    decryptBlock: function (t, r) {
                         var e = t[r + 1];
                         t[r + 1] = t[r + 3], t[r + 3] = e, this._doCryptBlock(t, r, this._invKeySchedule, f, u, d, v, s);
                         var e = t[r + 1];
                         t[r + 1] = t[r + 3], t[r + 3] = e
                     },
-                    _doCryptBlock: function(t, r, e, i, n, o, s, a) {
+                    _doCryptBlock: function (t, r, e, i, n, o, s, a) {
                         for (var c = this._nRounds, h = t[r] ^ e[0], l = t[r + 1] ^ e[1], f = t[r + 2] ^ e[2], u = t[r + 3] ^ e[3], d = 4, v = 1; v < c; v++) {
                             var p = i[h >>> 24] ^ n[l >>> 16 & 255] ^ o[f >>> 8 & 255] ^ s[255 & u] ^ e[d++],
                                 _ = i[l >>> 24] ^ n[f >>> 16 & 255] ^ o[u >>> 8 & 255] ^ s[255 & h] ^ e[d++],
@@ -2335,15 +2378,17 @@ String.prototype.getKeyVal = function (str) {
                 });
             r.AES = i._createHelper(_)
         }(),
-        function() {
+        function () {
             function r(t, r) {
                 var e = (this._lBlock >>> t ^ this._rBlock) & r;
                 this._rBlock ^= e, this._lBlock ^= e << t
             }
+
             function e(t, r) {
                 var e = (this._rBlock >>> t ^ this._lBlock) & r;
                 this._lBlock ^= e, this._rBlock ^= e << t;
             }
+
             var i = t,
                 n = i.lib,
                 o = n.WordArray,
@@ -2875,7 +2920,7 @@ String.prototype.getKeyVal = function (str) {
                 }],
                 u = [4160749569, 528482304, 33030144, 2064384, 129024, 8064, 504, 2147483679],
                 d = a.DES = s.extend({
-                    _doReset: function() {
+                    _doReset: function () {
                         for (var t = this._key, r = t.words, e = [], i = 0; i < 56; i++) {
                             var n = c[i] - 1;
                             e[i] = r[n >>> 5] >>> 31 - n % 32 & 1
@@ -2888,13 +2933,13 @@ String.prototype.getKeyVal = function (str) {
                         }
                         for (var u = this._invSubKeys = [], i = 0; i < 16; i++) u[i] = o[15 - i]
                     },
-                    encryptBlock: function(t, r) {
+                    encryptBlock: function (t, r) {
                         this._doCryptBlock(t, r, this._subKeys)
                     },
-                    decryptBlock: function(t, r) {
+                    decryptBlock: function (t, r) {
                         this._doCryptBlock(t, r, this._invSubKeys)
                     },
-                    _doCryptBlock: function(t, i, n) {
+                    _doCryptBlock: function (t, i, n) {
                         this._lBlock = t[i], this._rBlock = t[i + 1], r.call(this, 4, 252645135), r.call(this, 16, 65535), e.call(this, 2, 858993459), e.call(this, 8, 16711935), r.call(this, 1, 1431655765);
                         for (var o = 0; o < 16; o++) {
                             for (var s = n[o], a = this._lBlock, c = this._rBlock, h = 0, l = 0; l < 8; l++) h |= f[l][((c ^ s[l]) & u[l]) >>> 0];
@@ -2909,15 +2954,15 @@ String.prototype.getKeyVal = function (str) {
                 });
             i.DES = s._createHelper(d);
             var v = a.TripleDES = s.extend({
-                _doReset: function() {
+                _doReset: function () {
                     var t = this._key,
                         r = t.words;
                     this._des1 = d.createEncryptor(o.create(r.slice(0, 2))), this._des2 = d.createEncryptor(o.create(r.slice(2, 4))), this._des3 = d.createEncryptor(o.create(r.slice(4, 6)))
                 },
-                encryptBlock: function(t, r) {
+                encryptBlock: function (t, r) {
                     this._des1.encryptBlock(t, r), this._des2.decryptBlock(t, r), this._des3.encryptBlock(t, r)
                 },
-                decryptBlock: function(t, r) {
+                decryptBlock: function (t, r) {
                     this._des3.decryptBlock(t, r), this._des2.encryptBlock(t, r), this._des1.decryptBlock(t, r)
                 },
                 keySize: 6,
@@ -2926,7 +2971,7 @@ String.prototype.getKeyVal = function (str) {
             });
             i.TripleDES = s._createHelper(v)
         }(),
-        function() {
+        function () {
             function r() {
                 for (var t = this._S, r = this._i, e = this._j, i = 0, n = 0; n < 4; n++) {
                     r = (r + 1) % 256, e = (e + t[r]) % 256;
@@ -2935,12 +2980,13 @@ String.prototype.getKeyVal = function (str) {
                 }
                 return this._i = r, this._j = e, i
             }
+
             var e = t,
                 i = e.lib,
                 n = i.StreamCipher,
                 o = e.algo,
                 s = o.RC4 = n.extend({
-                    _doReset: function() {
+                    _doReset: function () {
                         for (var t = this._key, r = t.words, e = t.sigBytes, i = this._S = [], n = 0; n < 256; n++) i[n] = n;
                         for (var n = 0, o = 0; n < 256; n++) {
                             var s = n % e,
@@ -2951,7 +2997,7 @@ String.prototype.getKeyVal = function (str) {
                         }
                         this._i = this._j = 0
                     },
-                    _doProcessBlock: function(t, e) {
+                    _doProcessBlock: function (t, e) {
                         t[e] ^= r.call(this)
                     },
                     keySize: 8,
@@ -2962,13 +3008,13 @@ String.prototype.getKeyVal = function (str) {
                 cfg: s.cfg.extend({
                     drop: 192
                 }),
-                _doReset: function() {
+                _doReset: function () {
                     s._doReset.call(this);
                     for (var t = this.cfg.drop; t > 0; t--) r.call(this)
                 }
             });
             e.RC4Drop = n._createHelper(a)
-        }(), t.mode.CTRGladman = function() {
+        }(), t.mode.CTRGladman = function () {
         function r(t) {
             if (255 === (t >> 24 & 255)) {
                 var r = t >> 16 & 255,
@@ -2978,12 +3024,14 @@ String.prototype.getKeyVal = function (str) {
             } else t += 1 << 24;
             return t
         }
+
         function e(t) {
             return 0 === (t[0] = r(t[0])) && (t[1] = r(t[1])), t
         }
+
         var i = t.lib.BlockCipherMode.extend(),
             n = i.Encryptor = i.extend({
-                processBlock: function(t, r) {
+                processBlock: function (t, r) {
                     var i = this._cipher,
                         n = i.blockSize,
                         o = this._iv,
@@ -2996,7 +3044,7 @@ String.prototype.getKeyVal = function (str) {
             });
         return i.Decryptor = n, i
     }(),
-        function() {
+        function () {
             function r() {
                 for (var t = this._X, r = this._C, e = 0; e < 8; e++) a[e] = r[e];
                 r[0] = r[0] + 1295307597 + this._b | 0, r[1] = r[1] + 3545052371 + (r[0] >>> 0 < a[0] >>> 0 ? 1 : 0) | 0, r[2] = r[2] + 886263092 + (r[1] >>> 0 < a[1] >>> 0 ? 1 : 0) | 0, r[3] = r[3] + 1295307597 + (r[2] >>> 0 < a[2] >>> 0 ? 1 : 0) | 0, r[4] = r[4] + 3545052371 + (r[3] >>> 0 < a[3] >>> 0 ? 1 : 0) | 0, r[5] = r[5] + 886263092 + (r[4] >>> 0 < a[4] >>> 0 ? 1 : 0) | 0, r[6] = r[6] + 1295307597 + (r[5] >>> 0 < a[5] >>> 0 ? 1 : 0) | 0, r[7] = r[7] + 3545052371 + (r[6] >>> 0 < a[6] >>> 0 ? 1 : 0) | 0, this._b = r[7] >>> 0 < a[7] >>> 0 ? 1 : 0;
@@ -3010,6 +3058,7 @@ String.prototype.getKeyVal = function (str) {
                 }
                 t[0] = c[0] + (c[7] << 16 | c[7] >>> 16) + (c[6] << 16 | c[6] >>> 16) | 0, t[1] = c[1] + (c[0] << 8 | c[0] >>> 24) + c[7] | 0, t[2] = c[2] + (c[1] << 16 | c[1] >>> 16) + (c[0] << 16 | c[0] >>> 16) | 0, t[3] = c[3] + (c[2] << 8 | c[2] >>> 24) + c[1] | 0, t[4] = c[4] + (c[3] << 16 | c[3] >>> 16) + (c[2] << 16 | c[2] >>> 16) | 0, t[5] = c[5] + (c[4] << 8 | c[4] >>> 24) + c[3] | 0, t[6] = c[6] + (c[5] << 16 | c[5] >>> 16) + (c[4] << 16 | c[4] >>> 16) | 0, t[7] = c[7] + (c[6] << 8 | c[6] >>> 24) + c[5] | 0
             }
+
             var e = t,
                 i = e.lib,
                 n = i.StreamCipher,
@@ -3018,7 +3067,7 @@ String.prototype.getKeyVal = function (str) {
                 a = [],
                 c = [],
                 h = o.Rabbit = n.extend({
-                    _doReset: function() {
+                    _doReset: function () {
                         for (var t = this._key.words, e = this.cfg.iv, i = 0; i < 4; i++) t[i] = 16711935 & (t[i] << 8 | t[i] >>> 24) | 4278255360 & (t[i] << 24 | t[i] >>> 8);
                         var n = this._X = [t[0], t[3] << 16 | t[2] >>> 16, t[1], t[0] << 16 | t[3] >>> 16, t[2], t[1] << 16 | t[0] >>> 16, t[3], t[2] << 16 | t[1] >>> 16],
                             o = this._C = [t[2] << 16 | t[2] >>> 16, 4294901760 & t[0] | 65535 & t[1], t[3] << 16 | t[3] >>> 16, 4294901760 & t[1] | 65535 & t[2], t[0] << 16 | t[0] >>> 16, 4294901760 & t[2] | 65535 & t[3], t[1] << 16 | t[1] >>> 16, 4294901760 & t[3] | 65535 & t[0]];
@@ -3037,7 +3086,7 @@ String.prototype.getKeyVal = function (str) {
                             for (var i = 0; i < 4; i++) r.call(this)
                         }
                     },
-                    _doProcessBlock: function(t, e) {
+                    _doProcessBlock: function (t, e) {
                         var i = this._X;
                         r.call(this), s[0] = i[0] ^ i[5] >>> 16 ^ i[3] << 16, s[1] = i[2] ^ i[7] >>> 16 ^ i[5] << 16, s[2] = i[4] ^ i[1] >>> 16 ^ i[7] << 16, s[3] = i[6] ^ i[3] >>> 16 ^ i[1] << 16;
                         for (var n = 0; n < 4; n++) s[n] = 16711935 & (s[n] << 8 | s[n] >>> 24) | 4278255360 & (s[n] << 24 | s[n] >>> 8), t[e + n] ^= s[n]
@@ -3046,10 +3095,10 @@ String.prototype.getKeyVal = function (str) {
                     ivSize: 2
                 });
             e.Rabbit = n._createHelper(h)
-        }(), t.mode.CTR = function() {
+        }(), t.mode.CTR = function () {
         var r = t.lib.BlockCipherMode.extend(),
             e = r.Encryptor = r.extend({
-                processBlock: function(t, r) {
+                processBlock: function (t, r) {
                     var e = this._cipher,
                         i = e.blockSize,
                         n = this._iv,
@@ -3062,7 +3111,7 @@ String.prototype.getKeyVal = function (str) {
             });
         return r.Decryptor = e, r
     }(),
-        function() {
+        function () {
             function r() {
                 for (var t = this._X, r = this._C, e = 0; e < 8; e++) a[e] = r[e];
                 r[0] = r[0] + 1295307597 + this._b | 0, r[1] = r[1] + 3545052371 + (r[0] >>> 0 < a[0] >>> 0 ? 1 : 0) | 0, r[2] = r[2] + 886263092 + (r[1] >>> 0 < a[1] >>> 0 ? 1 : 0) | 0, r[3] = r[3] + 1295307597 + (r[2] >>> 0 < a[2] >>> 0 ? 1 : 0) | 0, r[4] = r[4] + 3545052371 + (r[3] >>> 0 < a[3] >>> 0 ? 1 : 0) | 0, r[5] = r[5] + 886263092 + (r[4] >>> 0 < a[4] >>> 0 ? 1 : 0) | 0, r[6] = r[6] + 1295307597 + (r[5] >>> 0 < a[5] >>> 0 ? 1 : 0) | 0, r[7] = r[7] + 3545052371 + (r[6] >>> 0 < a[6] >>> 0 ? 1 : 0) | 0, this._b = r[7] >>> 0 < a[7] >>> 0 ? 1 : 0;
@@ -3076,6 +3125,7 @@ String.prototype.getKeyVal = function (str) {
                 }
                 t[0] = c[0] + (c[7] << 16 | c[7] >>> 16) + (c[6] << 16 | c[6] >>> 16) | 0, t[1] = c[1] + (c[0] << 8 | c[0] >>> 24) + c[7] | 0, t[2] = c[2] + (c[1] << 16 | c[1] >>> 16) + (c[0] << 16 | c[0] >>> 16) | 0, t[3] = c[3] + (c[2] << 8 | c[2] >>> 24) + c[1] | 0, t[4] = c[4] + (c[3] << 16 | c[3] >>> 16) + (c[2] << 16 | c[2] >>> 16) | 0, t[5] = c[5] + (c[4] << 8 | c[4] >>> 24) + c[3] | 0, t[6] = c[6] + (c[5] << 16 | c[5] >>> 16) + (c[4] << 16 | c[4] >>> 16) | 0, t[7] = c[7] + (c[6] << 8 | c[6] >>> 24) + c[5] | 0
             }
+
             var e = t,
                 i = e.lib,
                 n = i.StreamCipher,
@@ -3084,7 +3134,7 @@ String.prototype.getKeyVal = function (str) {
                 a = [],
                 c = [],
                 h = o.RabbitLegacy = n.extend({
-                    _doReset: function() {
+                    _doReset: function () {
                         var t = this._key.words,
                             e = this.cfg.iv,
                             i = this._X = [t[0], t[3] << 16 | t[2] >>> 16, t[1], t[0] << 16 | t[3] >>> 16, t[2], t[1] << 16 | t[0] >>> 16, t[3], t[2] << 16 | t[1] >>> 16],
@@ -3104,7 +3154,7 @@ String.prototype.getKeyVal = function (str) {
                             for (var o = 0; o < 4; o++) r.call(this)
                         }
                     },
-                    _doProcessBlock: function(t, e) {
+                    _doProcessBlock: function (t, e) {
                         var i = this._X;
                         r.call(this), s[0] = i[0] ^ i[5] >>> 16 ^ i[3] << 16, s[1] = i[2] ^ i[7] >>> 16 ^ i[5] << 16, s[2] = i[4] ^ i[1] >>> 16 ^ i[7] << 16, s[3] = i[6] ^ i[3] >>> 16 ^ i[1] << 16;
                         for (var n = 0; n < 4; n++) s[n] = 16711935 & (s[n] << 8 | s[n] >>> 24) | 4278255360 & (s[n] << 24 | s[n] >>> 8), t[e + n] ^= s[n]
@@ -3114,11 +3164,11 @@ String.prototype.getKeyVal = function (str) {
                 });
             e.RabbitLegacy = n._createHelper(h)
         }(), t.pad.ZeroPadding = {
-        pad: function(t, r) {
+        pad: function (t, r) {
             var e = 4 * r;
             t.clamp(), t.sigBytes += e - (t.sigBytes % e || e)
         },
-        unpad: function(t) {
+        unpad: function (t) {
             for (var r = t.words, e = t.sigBytes - 1; !(r[e >>> 2] >>> 24 - e % 4 * 8 & 255);) e--;
             t.sigBytes = e + 1
         }
@@ -3129,103 +3179,104 @@ String.prototype.getKeyVal = function (str) {
 function _0x3ae16b(_0x5a3e57, _0x14e9cd, _0x5c6201) {
     var _0x246eb8 = {
         'AJxuL': '2|3|0|4|1',
-        'Dbsnw': function(_0xa072dc, _0x1f093e) {
+        'Dbsnw': function (_0xa072dc, _0x1f093e) {
             return _0xa072dc >> _0x1f093e;
         },
-        'QkbcW': function(_0x47a39e, _0x3ff673) {
+        'QkbcW': function (_0x47a39e, _0x3ff673) {
             return _0x47a39e - _0x3ff673;
         },
-        'PCclX': function(_0x396af4, _0x150d27) {
+        'PCclX': function (_0x396af4, _0x150d27) {
             return _0x396af4 % _0x150d27;
         },
-        'YXFak': function(_0x4a1414, _0x2bf484) {
+        'YXFak': function (_0x4a1414, _0x2bf484) {
             return _0x4a1414 + _0x2bf484;
         },
-        'zlqgX': function(_0x44ad08, _0x55e887) {
+        'zlqgX': function (_0x44ad08, _0x55e887) {
             return _0x44ad08 << _0x55e887;
         },
-        'ebLRE': function(_0x451844, _0x2ab79c) {
+        'ebLRE': function (_0x451844, _0x2ab79c) {
             return _0x451844 >>> _0x2ab79c;
         },
-        'HDahn': function(_0x1d79ee, _0x4642bb) {
+        'HDahn': function (_0x1d79ee, _0x4642bb) {
             return _0x1d79ee + _0x4642bb;
         },
-        'LzNNV': function(_0x4e7c93, _0xf89d40) {
+        'LzNNV': function (_0x4e7c93, _0xf89d40) {
             return _0x4e7c93(_0xf89d40);
         },
-        'iiVpi': function(_0xb960fa, _0xf463c) {
+        'iiVpi': function (_0xb960fa, _0xf463c) {
             return _0xb960fa(_0xf463c);
         },
-        'DyzqP': function(_0x269a4e, _0x2c4762) {
+        'DyzqP': function (_0x269a4e, _0x2c4762) {
             return _0x269a4e * _0x2c4762;
         },
-        'kiGQQ': function(_0x266a67, _0x58ea41) {
+        'kiGQQ': function (_0x266a67, _0x58ea41) {
             return _0x266a67 < _0x58ea41;
         },
-        'QbYpJ': function(_0x32d0e4, _0x4ed47b) {
+        'QbYpJ': function (_0x32d0e4, _0x4ed47b) {
             return _0x32d0e4 < _0x4ed47b;
         },
-        'JAWHp': function(_0x4e2455, _0x42e2c4) {
+        'JAWHp': function (_0x4e2455, _0x42e2c4) {
             return _0x4e2455 + _0x42e2c4;
         },
-        'FjIUk': function(_0x4b6281, _0x25d16d) {
+        'FjIUk': function (_0x4b6281, _0x25d16d) {
             return _0x4b6281 ^ _0x25d16d;
         },
-        'QddEN': function(_0x4134a3, _0x102520) {
+        'QddEN': function (_0x4134a3, _0x102520) {
             return _0x4134a3 ^ _0x102520;
         },
-        'GMYEG': function(_0x49a99b, _0x19b88b) {
+        'GMYEG': function (_0x49a99b, _0x19b88b) {
             return _0x49a99b ^ _0x19b88b;
         },
-        'fumQT': function(_0x4aaa7e, _0x67d23e) {
+        'fumQT': function (_0x4aaa7e, _0x67d23e) {
             return _0x4aaa7e - _0x67d23e;
         },
-        'OBXZF': function(_0x54d561, _0x1fda6d) {
+        'OBXZF': function (_0x54d561, _0x1fda6d) {
             return _0x54d561 | _0x1fda6d;
         },
-        'kjvjR': function(_0x3f372a, _0x369915) {
+        'kjvjR': function (_0x3f372a, _0x369915) {
             return _0x3f372a + _0x369915;
         },
-        'gaTAt': function(_0x36391f, _0x286a1d) {
+        'gaTAt': function (_0x36391f, _0x286a1d) {
             return _0x36391f >>> _0x286a1d;
         },
-        'PtTaG': function(_0x1b0f41, _0x3a1d33) {
+        'PtTaG': function (_0x1b0f41, _0x3a1d33) {
             return _0x1b0f41 >>> _0x3a1d33;
         },
-        'VSzoS': function(_0x1f7c95, _0x33bb4f) {
+        'VSzoS': function (_0x1f7c95, _0x33bb4f) {
             return _0x1f7c95 & _0x33bb4f;
         },
-        'fEwuO': function(_0x4be3b3, _0x276c20) {
+        'fEwuO': function (_0x4be3b3, _0x276c20) {
             return _0x4be3b3 + _0x276c20;
         },
-        'BWuqJ': function(_0x1d62c6, _0x4dabf4) {
+        'BWuqJ': function (_0x1d62c6, _0x4dabf4) {
             return _0x1d62c6 ^ _0x4dabf4;
         },
-        'Lpfuc': function(_0x40caec, _0x127671) {
+        'Lpfuc': function (_0x40caec, _0x127671) {
             return _0x40caec - _0x127671;
         },
-        'OUGyN': function(_0x1ec0dd, _0x57bae3) {
+        'OUGyN': function (_0x1ec0dd, _0x57bae3) {
             return _0x1ec0dd | _0x57bae3;
         },
-        'TMqAw': function(_0x3426b4, _0x53507d) {
+        'TMqAw': function (_0x3426b4, _0x53507d) {
             return _0x3426b4 & _0x53507d;
         },
-        'AZGei': function(_0xf39963, _0x571451) {
+        'AZGei': function (_0xf39963, _0x571451) {
             return _0xf39963 | _0x571451;
         },
-        'BmKIn': function(_0x87889f, _0xafb6a7) {
+        'BmKIn': function (_0x87889f, _0xafb6a7) {
             return _0x87889f !== _0xafb6a7;
         },
         'CaqeM': 'IHdXZ',
         'tnAKq': 'yUVEs',
         'eCYad': 'MTfuu'
     };
-    let _0x30957c = '', _0x39bf9a = _0x14e9cd, _0x8a637d = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+    let _0x30957c = '', _0x39bf9a = _0x14e9cd,
+        _0x8a637d = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
     if (_0x5a3e57) {
         if (_0x246eb8['BmKIn'](_0x246eb8['CaqeM'], _0x246eb8['CaqeM'])) {
             var _0x14e623 = _0x246eb8['AJxuL']['split']('|'),
                 _0x3d37b6 = 0x0;
-            while ( !! []) {
+            while (!![]) {
                 switch (_0x14e623[_0x3d37b6++]) {
                     case '0':
                         _0x5c13e7[_0x246eb8['Dbsnw'](_0x207247, 0x5)] |= 0x80 << _0x246eb8['QkbcW'](0x18, _0x246eb8['PCclX'](_0x207247, 0x20)),
@@ -3307,134 +3358,134 @@ function _0x492c17(_0x6fe761) {
 
 function _0x37a6aa(_0x9f40d3) {
     var _0xc223b4 = {
-        'bFDjm': function(_0x3a95fa, _0x5899d0) {
+        'bFDjm': function (_0x3a95fa, _0x5899d0) {
             return _0x3a95fa + _0x5899d0;
         },
-        'AHpKF': function(_0x3d56ce, _0x4436a7) {
+        'AHpKF': function (_0x3d56ce, _0x4436a7) {
             return _0x3d56ce - _0x4436a7;
         },
-        'XrdsW': function(_0x308a26, _0x8c366c) {
+        'XrdsW': function (_0x308a26, _0x8c366c) {
             return _0x308a26 ^ _0x8c366c;
         },
-        'iRNjg': function(_0x3ead64, _0x1f18fe) {
+        'iRNjg': function (_0x3ead64, _0x1f18fe) {
             return _0x3ead64 < _0x1f18fe;
         },
-        'MdjrP': function(_0x5bf48b, _0x299607) {
+        'MdjrP': function (_0x5bf48b, _0x299607) {
             return _0x5bf48b & _0x299607;
         },
-        'kTshg': function(_0xfc8d9b, _0x5c5c47) {
+        'kTshg': function (_0xfc8d9b, _0x5c5c47) {
             return _0xfc8d9b | _0x5c5c47;
         },
-        'HLgKD': function(_0x2d12ab, _0x356820) {
+        'HLgKD': function (_0x2d12ab, _0x356820) {
             return _0x2d12ab << _0x356820;
         },
-        'zFVgN': function(_0xf70724, _0x431262) {
+        'zFVgN': function (_0xf70724, _0x431262) {
             return _0xf70724 - _0x431262;
         },
-        'NFXHB': function(_0x3c9bee, _0x3f731e) {
+        'NFXHB': function (_0x3c9bee, _0x3f731e) {
             return _0x3c9bee * _0x3f731e;
         },
-        'TYvmE': function(_0x4bc9fe, _0x31a953) {
+        'TYvmE': function (_0x4bc9fe, _0x31a953) {
             return _0x4bc9fe - _0x31a953;
         },
-        'ldqsK': function(_0x4e166e, _0x5e1bfd) {
+        'ldqsK': function (_0x4e166e, _0x5e1bfd) {
             return _0x4e166e < _0x5e1bfd;
         },
-        'wRYnR': function(_0x388a41, _0x4abb34) {
+        'wRYnR': function (_0x388a41, _0x4abb34) {
             return _0x388a41 === _0x4abb34;
         },
         'Geimp': 'UszxO',
         'EAAYv': 'BjaoJ',
-        'Kvzjn': function(_0x50257c, _0x579a51) {
+        'Kvzjn': function (_0x50257c, _0x579a51) {
             return _0x50257c < _0x579a51;
         },
         'MxiWL': 'GNqMB',
-        'BJGcH': function(_0x40a4ff, _0xacd3ad) {
+        'BJGcH': function (_0x40a4ff, _0xacd3ad) {
             return _0x40a4ff | _0xacd3ad;
         },
-        'CKsbW': function(_0x3d0216, _0x4998af) {
+        'CKsbW': function (_0x3d0216, _0x4998af) {
             return _0x3d0216 >> _0x4998af;
         },
-        'vzjDv': function(_0x4ef9f8, _0x414884) {
+        'vzjDv': function (_0x4ef9f8, _0x414884) {
             return _0x4ef9f8 & _0x414884;
         },
-        'AFkCt': function(_0x12ae06, _0x155687) {
+        'AFkCt': function (_0x12ae06, _0x155687) {
             return _0x12ae06(_0x155687);
         },
-        'nrgzW': function(_0x1c1dbc, _0xa06115) {
+        'nrgzW': function (_0x1c1dbc, _0xa06115) {
             return _0x1c1dbc < _0xa06115;
         },
-        'jwnlL': function(_0x50da32, _0xbaca9e) {
+        'jwnlL': function (_0x50da32, _0xbaca9e) {
             return _0x50da32 ^ _0xbaca9e;
         },
-        'EkTLg': function(_0x523c74, _0x3f8a7a) {
+        'EkTLg': function (_0x523c74, _0x3f8a7a) {
             return _0x523c74 & _0x3f8a7a;
         },
-        'ZoeCp': function(_0x420891, _0x58cfa9) {
+        'ZoeCp': function (_0x420891, _0x58cfa9) {
             return _0x420891 >>> _0x58cfa9;
         }
     };
 
     function _0x577ce3(_0x115ee8) {
         var _0x3ca9cf = {
-            'cYqyv': function(_0x4618aa, _0x491309) {
+            'cYqyv': function (_0x4618aa, _0x491309) {
                 return _0xc223b4['bFDjm'](_0x4618aa, _0x491309);
             },
-            'YITZr': function(_0x3a6cae, _0x57180b) {
+            'YITZr': function (_0x3a6cae, _0x57180b) {
                 return _0xc223b4['AHpKF'](_0x3a6cae, _0x57180b);
             },
-            'YmKFs': function(_0x29414e, _0x5089da) {
+            'YmKFs': function (_0x29414e, _0x5089da) {
                 return _0x29414e < _0x5089da;
             },
-            'ODygq': function(_0x515a5b, _0x3c81a2) {
+            'ODygq': function (_0x515a5b, _0x3c81a2) {
                 return _0x515a5b + _0x3c81a2;
             },
-            'AMjdt': function(_0xd58b55, _0xbd65a4) {
+            'AMjdt': function (_0xd58b55, _0xbd65a4) {
                 return _0xc223b4['XrdsW'](_0xd58b55, _0xbd65a4);
             },
-            'hYOIf': function(_0x14c0be, _0x6980d9) {
+            'hYOIf': function (_0x14c0be, _0x6980d9) {
                 return _0x14c0be - _0x6980d9;
             },
-            'TZicU': function(_0x5d9935, _0x3ea097) {
+            'TZicU': function (_0x5d9935, _0x3ea097) {
                 return _0x5d9935 + _0x3ea097;
             },
-            'quAvl': function(_0x533bf7, _0x322cc0) {
+            'quAvl': function (_0x533bf7, _0x322cc0) {
                 return _0x533bf7 | _0x322cc0;
             },
-            'JjJJx': function(_0x3a2046, _0x56df5d) {
+            'JjJJx': function (_0x3a2046, _0x56df5d) {
                 return _0x3a2046 << _0x56df5d;
             },
-            'huUzX': function(_0x1e4684, _0x306cca) {
+            'huUzX': function (_0x1e4684, _0x306cca) {
                 return _0x1e4684 >>> _0x306cca;
             },
-            'tVKXk': function(_0x2958da, _0xb97a34) {
+            'tVKXk': function (_0x2958da, _0xb97a34) {
                 return _0xc223b4['iRNjg'](_0x2958da, _0xb97a34);
             },
-            'JcTTg': function(_0x22e90d, _0x227433) {
+            'JcTTg': function (_0x22e90d, _0x227433) {
                 return _0xc223b4['MdjrP'](_0x22e90d, _0x227433);
             },
-            'TpHCm': function(_0x4abc0a, _0x36ff74) {
+            'TpHCm': function (_0x4abc0a, _0x36ff74) {
                 return _0xc223b4['XrdsW'](_0x4abc0a, _0x36ff74);
             },
-            'nVfQO': function(_0xc13c2d, _0x582867) {
+            'nVfQO': function (_0xc13c2d, _0x582867) {
                 return _0xc223b4['kTshg'](_0xc13c2d, _0x582867);
             },
-            'FZqxk': function(_0xd776fd, _0x4971c1) {
+            'FZqxk': function (_0xd776fd, _0x4971c1) {
                 return _0xd776fd ^ _0x4971c1;
             },
-            'DYHVB': function(_0x36d052, _0x48d51c) {
+            'DYHVB': function (_0x36d052, _0x48d51c) {
                 return _0xc223b4['XrdsW'](_0x36d052, _0x48d51c);
             },
-            'Xzlqe': function(_0x317558, _0x519d35) {
+            'Xzlqe': function (_0x317558, _0x519d35) {
                 return _0xc223b4['HLgKD'](_0x317558, _0x519d35);
             },
-            'iFtgP': function(_0x55b295, _0x1f194d) {
+            'iFtgP': function (_0x55b295, _0x1f194d) {
                 return _0xc223b4['zFVgN'](_0x55b295, _0x1f194d);
             },
-            'eUrnD': function(_0x50d416, _0x39f89e) {
+            'eUrnD': function (_0x50d416, _0x39f89e) {
                 return _0xc223b4['NFXHB'](_0x50d416, _0x39f89e);
             },
-            'Gokrz': function(_0x573bf9, _0x7b6d9b) {
+            'Gokrz': function (_0x573bf9, _0x7b6d9b) {
                 return _0xc223b4['TYvmE'](_0x573bf9, _0x7b6d9b);
             }
         };
@@ -3477,7 +3528,8 @@ function _0x37a6aa(_0x9f40d3) {
                         _0x16554e += String['fromCharCode'](_0xc223b4['BJGcH'](_0xc223b4['vzjDv'](_0x16c125 >> 0x6, 0x3f), 0x80));
                         _0x16554e += String['fromCharCode'](_0xc223b4['BJGcH'](_0xc223b4['vzjDv'](_0x16c125, 0x3f), 0x80));
                     } else {
-                        let _0x5273f7 = '', _0x19adaa = min, _0x350057 = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+                        let _0x5273f7 = '', _0x19adaa = min,
+                            _0x350057 = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
                         if (randomFlag) {
                             _0x19adaa = _0x3ca9cf['TZicU'](Math['round'](Math['random']() * _0x3ca9cf['iFtgP'](max, min)), min);
                         }
@@ -3509,7 +3561,7 @@ function keyjiami(e) {
 }
 
 function _e(e, t) {
-    return e = wordsToBytes(function(e) {
+    return e = wordsToBytes(function (e) {
         e = Array.prototype.slice.call(stringToBytes(e), 0)
         var t = bytesToWords(e),
             n = [],
@@ -3636,7 +3688,294 @@ var _ss_log = '0',
     _xinghao = '',
     _nav = '',
     _time = timestamp;
-var pinjie = '{"tm":[],"tnm":["d5-69,DA,1IX,1.000,t","d7-69,DH,1JZ,1.000,t","d8-6A,DN,1RV,u,t"],"grn":1,"ss":"'+timestamp+'9250","wed":"tttttfuf","wea":"ffttttua","pdn":[9,41,2,3,1,5],"jj":1,"cs":"39710915a734dacc5dba2f8e8b964987","np":"Linux i686","t":1642319530621,"jk":"f78382db5b9f46445838e8bca26b6441","fpb":"016c95c8a80f4ab5ca3ffd8b1","nv":"Apple Computer, Inc.","nav":"727652","scr":[854,480],"ro":["iPhone10,1","iOS","11.3.3","10.1.8","727652","f78382db5b9f46445838e8bca26b6441","a"],"ioa":"fffffftt","aj":"u","ci":"w3.4.0","cf_v":"02","bd":"random=53554918","mj":[1,0,0],"blog":"a","msg":"a"}';
+var pinjie = '{"tm":[],"tnm":["d5-69,DA,1IX,1.000,t","d7-69,DH,1JZ,1.000,t","d8-6A,DN,1RV,u,t"],"grn":1,"ss":"' + timestamp + '9250","wed":"tttttfuf","wea":"ffttttua","pdn":[9,41,2,3,1,5],"jj":1,"cs":"39710915a734dacc5dba2f8e8b964987","np":"Linux i686","t":1642319530621,"jk":"f78382db5b9f46445838e8bca26b6441","fpb":"016c95c8a80f4ab5ca3ffd8b1","nv":"Apple Computer, Inc.","nav":"727652","scr":[854,480],"ro":["iPhone10,1","iOS","11.3.3","10.1.8","727652","f78382db5b9f46445838e8bca26b6441","a"],"ioa":"fffffftt","aj":"u","ci":"w3.4.0","cf_v":"02","bd":"random=53554918","mj":[1,0,0],"blog":"a","msg":"a"}';
 
 //console.log(getBody(53554918))
-function Env(t, e) { "undefined" != typeof process && JSON.stringify(process.env).indexOf("GITHUB") > -1 && process.exit(0); class s { constructor(t) { this.env = t } send(t, e = "GET") { t = "string" == typeof t ? { url: t } : t; let s = this.get; return "POST" === e && (s = this.post), new Promise((e, i) => { s.call(this, t, (t, s, r) => { t ? i(t) : e(s) }) }) } get(t) { return this.send.call(this.env, t) } post(t) { return this.send.call(this.env, t, "POST") } } return new class { constructor(t, e) { this.name = t, this.http = new s(this), this.data = null, this.dataFile = "box.dat", this.logs = [], this.isMute = !1, this.isNeedRewrite = !1, this.logSeparator = "\n", this.startTime = (new Date).getTime(), Object.assign(this, e), this.log("", `🔔${this.name}, 开始!`) } isNode() { return "undefined" != typeof module && !!module.exports } isQuanX() { return "undefined" != typeof $task } isSurge() { return "undefined" != typeof $httpClient && "undefined" == typeof $loon } isLoon() { return "undefined" != typeof $loon } toObj(t, e = null) { try { return JSON.parse(t) } catch { return e } } toStr(t, e = null) { try { return JSON.stringify(t) } catch { return e } } getjson(t, e) { let s = e; const i = this.getdata(t); if (i) try { s = JSON.parse(this.getdata(t)) } catch { } return s } setjson(t, e) { try { return this.setdata(JSON.stringify(t), e) } catch { return !1 } } getScript(t) { return new Promise(e => { this.get({ url: t }, (t, s, i) => e(i)) }) } runScript(t, e) { return new Promise(s => { let i = this.getdata("@chavy_boxjs_userCfgs.httpapi"); i = i ? i.replace(/\n/g, "").trim() : i; let r = this.getdata("@chavy_boxjs_userCfgs.httpapi_timeout"); r = r ? 1 * r : 20, r = e && e.timeout ? e.timeout : r; const [o, h] = i.split("@"), n = { url: `http://${h}/v1/scripting/evaluate`, body: { script_text: t, mock_type: "cron", timeout: r }, headers: { "X-Key": o, Accept: "*/*" } }; this.post(n, (t, e, i) => s(i)) }).catch(t => this.logErr(t)) } loaddata() { if (!this.isNode()) return {}; { this.fs = this.fs ? this.fs : require("fs"), this.path = this.path ? this.path : require("path"); const t = this.path.resolve(this.dataFile), e = this.path.resolve(process.cwd(), this.dataFile), s = this.fs.existsSync(t), i = !s && this.fs.existsSync(e); if (!s && !i) return {}; { const i = s ? t : e; try { return JSON.parse(this.fs.readFileSync(i)) } catch (t) { return {} } } } } writedata() { if (this.isNode()) { this.fs = this.fs ? this.fs : require("fs"), this.path = this.path ? this.path : require("path"); const t = this.path.resolve(this.dataFile), e = this.path.resolve(process.cwd(), this.dataFile), s = this.fs.existsSync(t), i = !s && this.fs.existsSync(e), r = JSON.stringify(this.data); s ? this.fs.writeFileSync(t, r) : i ? this.fs.writeFileSync(e, r) : this.fs.writeFileSync(t, r) } } lodash_get(t, e, s) { const i = e.replace(/\[(\d+)\]/g, ".$1").split("."); let r = t; for (const t of i) if (r = Object(r)[t], void 0 === r) return s; return r } lodash_set(t, e, s) { return Object(t) !== t ? t : (Array.isArray(e) || (e = e.toString().match(/[^.[\]]+/g) || []), e.slice(0, -1).reduce((t, s, i) => Object(t[s]) === t[s] ? t[s] : t[s] = Math.abs(e[i + 1]) >> 0 == +e[i + 1] ? [] : {}, t)[e[e.length - 1]] = s, t) } getdata(t) { let e = this.getval(t); if (/^@/.test(t)) { const [, s, i] = /^@(.*?)\.(.*?)$/.exec(t), r = s ? this.getval(s) : ""; if (r) try { const t = JSON.parse(r); e = t ? this.lodash_get(t, i, "") : e } catch (t) { e = "" } } return e } setdata(t, e) { let s = !1; if (/^@/.test(e)) { const [, i, r] = /^@(.*?)\.(.*?)$/.exec(e), o = this.getval(i), h = i ? "null" === o ? null : o || "{}" : "{}"; try { const e = JSON.parse(h); this.lodash_set(e, r, t), s = this.setval(JSON.stringify(e), i) } catch (e) { const o = {}; this.lodash_set(o, r, t), s = this.setval(JSON.stringify(o), i) } } else s = this.setval(t, e); return s } getval(t) { return this.isSurge() || this.isLoon() ? $persistentStore.read(t) : this.isQuanX() ? $prefs.valueForKey(t) : this.isNode() ? (this.data = this.loaddata(), this.data[t]) : this.data && this.data[t] || null } setval(t, e) { return this.isSurge() || this.isLoon() ? $persistentStore.write(t, e) : this.isQuanX() ? $prefs.setValueForKey(t, e) : this.isNode() ? (this.data = this.loaddata(), this.data[e] = t, this.writedata(), !0) : this.data && this.data[e] || null } initGotEnv(t) { this.got = this.got ? this.got : require("got"), this.cktough = this.cktough ? this.cktough : require("tough-cookie"), this.ckjar = this.ckjar ? this.ckjar : new this.cktough.CookieJar, t && (t.headers = t.headers ? t.headers : {}, void 0 === t.headers.Cookie && void 0 === t.cookieJar && (t.cookieJar = this.ckjar)) } get(t, e = (() => { })) { t.headers && (delete t.headers["Content-Type"], delete t.headers["Content-Length"]), this.isSurge() || this.isLoon() ? (this.isSurge() && this.isNeedRewrite && (t.headers = t.headers || {}, Object.assign(t.headers, { "X-Surge-Skip-Scripting": !1 })), $httpClient.get(t, (t, s, i) => { !t && s && (s.body = i, s.statusCode = s.status), e(t, s, i) })) : this.isQuanX() ? (this.isNeedRewrite && (t.opts = t.opts || {}, Object.assign(t.opts, { hints: !1 })), $task.fetch(t).then(t => { const { statusCode: s, statusCode: i, headers: r, body: o } = t; e(null, { status: s, statusCode: i, headers: r, body: o }, o) }, t => e(t))) : this.isNode() && (this.initGotEnv(t), this.got(t).on("redirect", (t, e) => { try { if (t.headers["set-cookie"]) { const s = t.headers["set-cookie"].map(this.cktough.Cookie.parse).toString(); s && this.ckjar.setCookieSync(s, null), e.cookieJar = this.ckjar } } catch (t) { this.logErr(t) } }).then(t => { const { statusCode: s, statusCode: i, headers: r, body: o } = t; e(null, { status: s, statusCode: i, headers: r, body: o }, o) }, t => { const { message: s, response: i } = t; e(s, i, i && i.body) })) } post(t, e = (() => { })) { if (t.body && t.headers && !t.headers["Content-Type"] && (t.headers["Content-Type"] = "application/x-www-form-urlencoded"), t.headers && delete t.headers["Content-Length"], this.isSurge() || this.isLoon()) this.isSurge() && this.isNeedRewrite && (t.headers = t.headers || {}, Object.assign(t.headers, { "X-Surge-Skip-Scripting": !1 })), $httpClient.post(t, (t, s, i) => { !t && s && (s.body = i, s.statusCode = s.status), e(t, s, i) }); else if (this.isQuanX()) t.method = "POST", this.isNeedRewrite && (t.opts = t.opts || {}, Object.assign(t.opts, { hints: !1 })), $task.fetch(t).then(t => { const { statusCode: s, statusCode: i, headers: r, body: o } = t; e(null, { status: s, statusCode: i, headers: r, body: o }, o) }, t => e(t)); else if (this.isNode()) { this.initGotEnv(t); const { url: s, ...i } = t; this.got.post(s, i).then(t => { const { statusCode: s, statusCode: i, headers: r, body: o } = t; e(null, { status: s, statusCode: i, headers: r, body: o }, o) }, t => { const { message: s, response: i } = t; e(s, i, i && i.body) }) } } time(t, e = null) { const s = e ? new Date(e) : new Date; let i = { "M+": s.getMonth() + 1, "d+": s.getDate(), "H+": s.getHours(), "m+": s.getMinutes(), "s+": s.getSeconds(), "q+": Math.floor((s.getMonth() + 3) / 3), S: s.getMilliseconds() }; /(y+)/.test(t) && (t = t.replace(RegExp.$1, (s.getFullYear() + "").substr(4 - RegExp.$1.length))); for (let e in i) new RegExp("(" + e + ")").test(t) && (t = t.replace(RegExp.$1, 1 == RegExp.$1.length ? i[e] : ("00" + i[e]).substr(("" + i[e]).length))); return t } msg(e = t, s = "", i = "", r) { const o = t => { if (!t) return t; if ("string" == typeof t) return this.isLoon() ? t : this.isQuanX() ? { "open-url": t } : this.isSurge() ? { url: t } : void 0; if ("object" == typeof t) { if (this.isLoon()) { let e = t.openUrl || t.url || t["open-url"], s = t.mediaUrl || t["media-url"]; return { openUrl: e, mediaUrl: s } } if (this.isQuanX()) { let e = t["open-url"] || t.url || t.openUrl, s = t["media-url"] || t.mediaUrl; return { "open-url": e, "media-url": s } } if (this.isSurge()) { let e = t.url || t.openUrl || t["open-url"]; return { url: e } } } }; if (this.isMute || (this.isSurge() || this.isLoon() ? $notification.post(e, s, i, o(r)) : this.isQuanX() && $notify(e, s, i, o(r))), !this.isMuteLog) { let t = ["", "==============📣系统通知📣=============="]; t.push(e), s && t.push(s), i && t.push(i), console.log(t.join("\n")), this.logs = this.logs.concat(t) } } log(...t) { t.length > 0 && (this.logs = [...this.logs, ...t]), console.log(t.join(this.logSeparator)) } logErr(t, e) { const s = !this.isSurge() && !this.isQuanX() && !this.isLoon(); s ? this.log("", `❗️${this.name}, 错误!`, t.stack) : this.log("", `❗️${this.name}, 错误!`, t) } wait(t) { return new Promise(e => setTimeout(e, t)) } done(t = {}) { const e = (new Date).getTime(), s = (e - this.startTime) / 1e3; this.log("", `🔔${this.name}, 结束! 🕛 ${s} 秒`), this.log(), (this.isSurge() || this.isQuanX() || this.isLoon()) && $done(t) } }(t, e) }
+function Env(t, e) {
+    "undefined" != typeof process && JSON.stringify(process.env).indexOf("GITHUB") > -1 && process.exit(0);
+
+    class s {
+        constructor(t) {
+            this.env = t
+        }
+
+        send(t, e = "GET") {
+            t = "string" == typeof t ? {url: t} : t;
+            let s = this.get;
+            return "POST" === e && (s = this.post), new Promise((e, i) => {
+                s.call(this, t, (t, s, r) => {
+                    t ? i(t) : e(s)
+                })
+            })
+        }
+
+        get(t) {
+            return this.send.call(this.env, t)
+        }
+
+        post(t) {
+            return this.send.call(this.env, t, "POST")
+        }
+    }
+
+    return new class {
+        constructor(t, e) {
+            this.name = t, this.http = new s(this), this.data = null, this.dataFile = "box.dat", this.logs = [], this.isMute = !1, this.isNeedRewrite = !1, this.logSeparator = "\n", this.startTime = (new Date).getTime(), Object.assign(this, e), this.log("", `🔔${this.name}, 开始!`)
+        }
+
+        isNode() {
+            return "undefined" != typeof module && !!module.exports
+        }
+
+        isQuanX() {
+            return "undefined" != typeof $task
+        }
+
+        isSurge() {
+            return "undefined" != typeof $httpClient && "undefined" == typeof $loon
+        }
+
+        isLoon() {
+            return "undefined" != typeof $loon
+        }
+
+        toObj(t, e = null) {
+            try {
+                return JSON.parse(t)
+            } catch {
+                return e
+            }
+        }
+
+        toStr(t, e = null) {
+            try {
+                return JSON.stringify(t)
+            } catch {
+                return e
+            }
+        }
+
+        getjson(t, e) {
+            let s = e;
+            const i = this.getdata(t);
+            if (i) try {
+                s = JSON.parse(this.getdata(t))
+            } catch {
+            }
+            return s
+        }
+
+        setjson(t, e) {
+            try {
+                return this.setdata(JSON.stringify(t), e)
+            } catch {
+                return !1
+            }
+        }
+
+        getScript(t) {
+            return new Promise(e => {
+                this.get({url: t}, (t, s, i) => e(i))
+            })
+        }
+
+        runScript(t, e) {
+            return new Promise(s => {
+                let i = this.getdata("@chavy_boxjs_userCfgs.httpapi");
+                i = i ? i.replace(/\n/g, "").trim() : i;
+                let r = this.getdata("@chavy_boxjs_userCfgs.httpapi_timeout");
+                r = r ? 1 * r : 20, r = e && e.timeout ? e.timeout : r;
+                const [o, h] = i.split("@"), n = {
+                    url: `http://${h}/v1/scripting/evaluate`,
+                    body: {script_text: t, mock_type: "cron", timeout: r},
+                    headers: {"X-Key": o, Accept: "*/*"}
+                };
+                this.post(n, (t, e, i) => s(i))
+            }).catch(t => this.logErr(t))
+        }
+
+        loaddata() {
+            if (!this.isNode()) return {};
+            {
+                this.fs = this.fs ? this.fs : require("fs"), this.path = this.path ? this.path : require("path");
+                const t = this.path.resolve(this.dataFile), e = this.path.resolve(process.cwd(), this.dataFile),
+                    s = this.fs.existsSync(t), i = !s && this.fs.existsSync(e);
+                if (!s && !i) return {};
+                {
+                    const i = s ? t : e;
+                    try {
+                        return JSON.parse(this.fs.readFileSync(i))
+                    } catch (t) {
+                        return {}
+                    }
+                }
+            }
+        }
+
+        writedata() {
+            if (this.isNode()) {
+                this.fs = this.fs ? this.fs : require("fs"), this.path = this.path ? this.path : require("path");
+                const t = this.path.resolve(this.dataFile), e = this.path.resolve(process.cwd(), this.dataFile),
+                    s = this.fs.existsSync(t), i = !s && this.fs.existsSync(e), r = JSON.stringify(this.data);
+                s ? this.fs.writeFileSync(t, r) : i ? this.fs.writeFileSync(e, r) : this.fs.writeFileSync(t, r)
+            }
+        }
+
+        lodash_get(t, e, s) {
+            const i = e.replace(/\[(\d+)\]/g, ".$1").split(".");
+            let r = t;
+            for (const t of i) if (r = Object(r)[t], void 0 === r) return s;
+            return r
+        }
+
+        lodash_set(t, e, s) {
+            return Object(t) !== t ? t : (Array.isArray(e) || (e = e.toString().match(/[^.[\]]+/g) || []), e.slice(0, -1).reduce((t, s, i) => Object(t[s]) === t[s] ? t[s] : t[s] = Math.abs(e[i + 1]) >> 0 == +e[i + 1] ? [] : {}, t)[e[e.length - 1]] = s, t)
+        }
+
+        getdata(t) {
+            let e = this.getval(t);
+            if (/^@/.test(t)) {
+                const [, s, i] = /^@(.*?)\.(.*?)$/.exec(t), r = s ? this.getval(s) : "";
+                if (r) try {
+                    const t = JSON.parse(r);
+                    e = t ? this.lodash_get(t, i, "") : e
+                } catch (t) {
+                    e = ""
+                }
+            }
+            return e
+        }
+
+        setdata(t, e) {
+            let s = !1;
+            if (/^@/.test(e)) {
+                const [, i, r] = /^@(.*?)\.(.*?)$/.exec(e), o = this.getval(i),
+                    h = i ? "null" === o ? null : o || "{}" : "{}";
+                try {
+                    const e = JSON.parse(h);
+                    this.lodash_set(e, r, t), s = this.setval(JSON.stringify(e), i)
+                } catch (e) {
+                    const o = {};
+                    this.lodash_set(o, r, t), s = this.setval(JSON.stringify(o), i)
+                }
+            } else s = this.setval(t, e);
+            return s
+        }
+
+        getval(t) {
+            return this.isSurge() || this.isLoon() ? $persistentStore.read(t) : this.isQuanX() ? $prefs.valueForKey(t) : this.isNode() ? (this.data = this.loaddata(), this.data[t]) : this.data && this.data[t] || null
+        }
+
+        setval(t, e) {
+            return this.isSurge() || this.isLoon() ? $persistentStore.write(t, e) : this.isQuanX() ? $prefs.setValueForKey(t, e) : this.isNode() ? (this.data = this.loaddata(), this.data[e] = t, this.writedata(), !0) : this.data && this.data[e] || null
+        }
+
+        initGotEnv(t) {
+            this.got = this.got ? this.got : require("got"), this.cktough = this.cktough ? this.cktough : require("tough-cookie"), this.ckjar = this.ckjar ? this.ckjar : new this.cktough.CookieJar, t && (t.headers = t.headers ? t.headers : {}, void 0 === t.headers.Cookie && void 0 === t.cookieJar && (t.cookieJar = this.ckjar))
+        }
+
+        get(t, e = (() => {
+        })) {
+            t.headers && (delete t.headers["Content-Type"], delete t.headers["Content-Length"]), this.isSurge() || this.isLoon() ? (this.isSurge() && this.isNeedRewrite && (t.headers = t.headers || {}, Object.assign(t.headers, {"X-Surge-Skip-Scripting": !1})), $httpClient.get(t, (t, s, i) => {
+                !t && s && (s.body = i, s.statusCode = s.status), e(t, s, i)
+            })) : this.isQuanX() ? (this.isNeedRewrite && (t.opts = t.opts || {}, Object.assign(t.opts, {hints: !1})), $task.fetch(t).then(t => {
+                const {statusCode: s, statusCode: i, headers: r, body: o} = t;
+                e(null, {status: s, statusCode: i, headers: r, body: o}, o)
+            }, t => e(t))) : this.isNode() && (this.initGotEnv(t), this.got(t).on("redirect", (t, e) => {
+                try {
+                    if (t.headers["set-cookie"]) {
+                        const s = t.headers["set-cookie"].map(this.cktough.Cookie.parse).toString();
+                        s && this.ckjar.setCookieSync(s, null), e.cookieJar = this.ckjar
+                    }
+                } catch (t) {
+                    this.logErr(t)
+                }
+            }).then(t => {
+                const {statusCode: s, statusCode: i, headers: r, body: o} = t;
+                e(null, {status: s, statusCode: i, headers: r, body: o}, o)
+            }, t => {
+                const {message: s, response: i} = t;
+                e(s, i, i && i.body)
+            }))
+        }
+
+        post(t, e = (() => {
+        })) {
+            if (t.body && t.headers && !t.headers["Content-Type"] && (t.headers["Content-Type"] = "application/x-www-form-urlencoded"), t.headers && delete t.headers["Content-Length"], this.isSurge() || this.isLoon()) this.isSurge() && this.isNeedRewrite && (t.headers = t.headers || {}, Object.assign(t.headers, {"X-Surge-Skip-Scripting": !1})), $httpClient.post(t, (t, s, i) => {
+                !t && s && (s.body = i, s.statusCode = s.status), e(t, s, i)
+            }); else if (this.isQuanX()) t.method = "POST", this.isNeedRewrite && (t.opts = t.opts || {}, Object.assign(t.opts, {hints: !1})), $task.fetch(t).then(t => {
+                const {statusCode: s, statusCode: i, headers: r, body: o} = t;
+                e(null, {status: s, statusCode: i, headers: r, body: o}, o)
+            }, t => e(t)); else if (this.isNode()) {
+                this.initGotEnv(t);
+                const {url: s, ...i} = t;
+                this.got.post(s, i).then(t => {
+                    const {statusCode: s, statusCode: i, headers: r, body: o} = t;
+                    e(null, {status: s, statusCode: i, headers: r, body: o}, o)
+                }, t => {
+                    const {message: s, response: i} = t;
+                    e(s, i, i && i.body)
+                })
+            }
+        }
+
+        time(t, e = null) {
+            const s = e ? new Date(e) : new Date;
+            let i = {
+                "M+": s.getMonth() + 1,
+                "d+": s.getDate(),
+                "H+": s.getHours(),
+                "m+": s.getMinutes(),
+                "s+": s.getSeconds(),
+                "q+": Math.floor((s.getMonth() + 3) / 3),
+                S: s.getMilliseconds()
+            };
+            /(y+)/.test(t) && (t = t.replace(RegExp.$1, (s.getFullYear() + "").substr(4 - RegExp.$1.length)));
+            for (let e in i) new RegExp("(" + e + ")").test(t) && (t = t.replace(RegExp.$1, 1 == RegExp.$1.length ? i[e] : ("00" + i[e]).substr(("" + i[e]).length)));
+            return t
+        }
+
+        msg(e = t, s = "", i = "", r) {
+            const o = t => {
+                if (!t) return t;
+                if ("string" == typeof t) return this.isLoon() ? t : this.isQuanX() ? {"open-url": t} : this.isSurge() ? {url: t} : void 0;
+                if ("object" == typeof t) {
+                    if (this.isLoon()) {
+                        let e = t.openUrl || t.url || t["open-url"], s = t.mediaUrl || t["media-url"];
+                        return {openUrl: e, mediaUrl: s}
+                    }
+                    if (this.isQuanX()) {
+                        let e = t["open-url"] || t.url || t.openUrl, s = t["media-url"] || t.mediaUrl;
+                        return {"open-url": e, "media-url": s}
+                    }
+                    if (this.isSurge()) {
+                        let e = t.url || t.openUrl || t["open-url"];
+                        return {url: e}
+                    }
+                }
+            };
+            if (this.isMute || (this.isSurge() || this.isLoon() ? $notification.post(e, s, i, o(r)) : this.isQuanX() && $notify(e, s, i, o(r))), !this.isMuteLog) {
+                let t = ["", "==============📣系统通知📣=============="];
+                t.push(e), s && t.push(s), i && t.push(i), console.log(t.join("\n")), this.logs = this.logs.concat(t)
+            }
+        }
+
+        log(...t) {
+            t.length > 0 && (this.logs = [...this.logs, ...t]), console.log(t.join(this.logSeparator))
+        }
+
+        logErr(t, e) {
+            const s = !this.isSurge() && !this.isQuanX() && !this.isLoon();
+            s ? this.log("", `❗️${this.name}, 错误!`, t.stack) : this.log("", `❗️${this.name}, 错误!`, t)
+        }
+
+        wait(t) {
+            return new Promise(e => setTimeout(e, t))
+        }
+
+        done(t = {}) {
+            const e = (new Date).getTime(), s = (e - this.startTime) / 1e3;
+            this.log("", `🔔${this.name}, 结束! 🕛 ${s} 秒`), this.log(), (this.isSurge() || this.isQuanX() || this.isLoon()) && $done(t)
+        }
+    }(t, e)
+}
