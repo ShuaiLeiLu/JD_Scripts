@@ -1,15 +1,16 @@
 '''
 new Env('热爱穿行-组队-2022');
 export RabbitToken="token值"
-export ZD_ReverseCk=true 或者 false
+export ZD_ReverseCk=0 或 1 或 2
 export RABBIT_HELP_PIN="pin1,pin2,pin3"
 
 变量:
 RabbitToken： 机器人给你发的token
 RABBIT_HELP_PIN：设置车头pin
-ZD_ReverseCk：ck是否反序运行，默认正序
+ZD_ReverseCk：0：正序，1：反序，2：乱序
 
 log剩余次数大于6500方可使用
+更新专用2
 '''
 
 try:
