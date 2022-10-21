@@ -72,6 +72,9 @@ if ($.isNode()) {
                 if ($.isNode()) {
                     await notify.sendNotify(`${$.name}cookie已失效 - ${$.UserName}`, `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`);
                 }
+                if (WP_APP_TOKEN_ONE) {
+                    await notify.sendNotifybyWxPucher($.name, `【京东账号】${$.nickName || $.UserName}\n【提醒⏰】可免费领取-${title}\n入口:京东-我的-更多工具-新品试用`, `${$.UserName}`);
+                }
                 continue
             }
             let data = await try_list()
@@ -90,6 +93,9 @@ if ($.isNode()) {
                             }
                         } else {
                             console.log("开始领取两天后不再推")
+                            if (WP_APP_TOKEN_ONE) {
+                                await notify.sendNotifybyWxPucher($.name, `【京东账号】${$.nickName || $.UserName}\n【提醒⏰】试用可免费领取\n入口:京东-我的-更多工具-新品试用`, `${$.UserName}`);
+                            }
                         }
                     }
                 }
