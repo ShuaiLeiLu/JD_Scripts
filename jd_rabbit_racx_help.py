@@ -11,7 +11,7 @@ RABBIT_HELP_PIN：设置车头pin
 RABBIT_HELP_NUM：设置前多少个号为车头,设置了pin时，这个设置失效
 HELP_ReverseCk：0：正序，1：反序，2：乱序
 
-log剩余次数大于6500方可使用
+log剩余次数大于5000方可使用
 '''
 
 try:
