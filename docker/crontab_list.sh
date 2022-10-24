@@ -152,18 +152,16 @@
 20 0 * * * node /scripts/jd_zjb.js >> /scripts/logs/jd_zjb.log 2>&1
 # 赚喜豆-TS版
 15,30,45 * * * node /scripts/jd_zjd.ts >> /scripts/logs/jd_zjb.log 2>&1
-# 滑块验证的签到
-43 1,16 * * * node /scripts/jd_slider_sign.js >> /scripts/logs/jd_slider_sign.log 2>&1
+## 滑块验证的签到
+#43 1,16 * * * node /scripts/jd_slider_sign.js >> /scripts/logs/jd_slider_sign.log 2>&1
 # 东东爱消除
 12 5-10/1 * * * node /scripts/jd_moxigame.js >> /scripts/logs/jd_moxigame.log 2>&1
 # 京东宝藏榜
 10 13 * * * node /scripts/jd_TreasureRank.js >> /scripts/logs/jd_TreasureRank.log 2>&1
 # 京东推一推
 10 3 * * * node /scripts/jd_tyt.js >> /scripts/logs/jd_tyt.log 2>&1
-# 洗豆
-10 3 * * * node /scripts/jd_washbeans.js >> /scripts/logs/jd_washbeans.log 2>&1
+## 洗豆
+#10 3 * * * node /scripts/jd_washbeans.js >> /scripts/logs/jd_washbeans.log 2>&1
 # 宠汪汪🐕喂食
 33 0-23/4 * * * node /scripts/jd_joy_feedPets.js >> /scripts/logs/jd_joy_feedPets.log 2>&1
-# 卷民空间站分红包
-35 8,14 * * * node /scripts/jd_couponspace.js >> /scripts/logs/jd_couponspace.log 2>&1
 
