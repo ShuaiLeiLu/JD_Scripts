@@ -163,5 +163,7 @@
 # 穿越寻宝组队奖励领取
 10 10 10 10 * node /scripts/jd_cxxb_award.js >> /scripts/logs/jd_cxxb_award.log 2>&1
 # 穿行寻宝 大富翁刷金币
-41 0,15 * * * node /scripts/jd_dfw.js >> /scripts/logs/jd_cxxb_award.log 2>&1
+41 0,15 * * * node /scripts/jd_dfw.js >> /scripts/logs/jd_dfw.log 2>&1
+# 穿行寻宝 大富翁刷金币
+1 1 1 1 * node /scripts/jd_mfredrain.js >> /scripts/logs/jd_mfredrain.log 2>&1
 
