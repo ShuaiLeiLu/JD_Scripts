@@ -3,9 +3,11 @@ new Env('热爱穿行-2022');
 变量: RabbitToken
 export RabbitToken="token值"
 export CXJ_THREADS_NUMS=1
+export CXJ_PINS="pin1,pin2,pin3"
 
 
-CXJ_THREADS_NUMS并发数
+CXJ_THREADS_NUMS: 并发数
+CXJ_PIN: 需要跑的ck的pin值
 
 log剩余次数大于5000方可使用
 '''

@@ -2,13 +2,13 @@
 new Env('热爱穿行-助力-2022');
 export RabbitToken="token值"
 export HELP_ReverseCk=0 或 1 或 2
-export RABBIT_HELP_PIN="pin1,pin2,pin3"
-export RABBIT_HELP_NUM=200
+export HELP_HELP_PIN="pin1,pin2,pin3"
+export HELP_HELP_NUM=200
 
 变量:
 RabbitToken： 机器人给你发的token
-RABBIT_HELP_PIN：设置车头pin
-RABBIT_HELP_NUM：设置前多少个号为车头,设置了pin时，这个设置失效
+HELP_HELP_PIN：设置车头pin
+HELP_HELP_NUM：设置前多少个号为车头,设置了pin时，这个设置失效
 HELP_ReverseCk：0：正序，1：反序，2：乱序
 
 log剩余次数大于5000方可使用
