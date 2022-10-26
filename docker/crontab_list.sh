@@ -42,8 +42,6 @@
 40,45 23 * * * node /scripts/jd_duobao.js >> /scripts/logs/jd_duobao.log 2>&1
 # 积分换话费
 33 7 * * * node /scripts/jd_dwapp.js >> /scripts/logs/jd_dwapp.log 2>&1
-# 发财挖宝Nark免费
-#40 1,17 * * * node /scripts/jd_fcwb_mfhelp.js >> /scripts/logs/jd_fcwb_mfhelp.log 2>&1
 # 东东农场日常任务
 5 6-18/6 * * * node /scripts/jd_fruit.js >> /scripts/logs/jd_fruit.log 2>&1
 # 东东农场好友删减奖励
@@ -84,12 +82,6 @@
 0 1 * * * node /scripts/jd_js_sign.js >> /scripts/logs/jd_js_sign.log 2>&1
 # 京喜签到
 20 1,8 * * * node /scripts/jd_jx_sign.js >> /scripts/logs/jd_jx_sign.log 2>&1
-# 京喜工厂商品列表详情
-10 10 * * * node /scripts/jd_jxgckc.js >> /scripts/logs/jd_jxgckc.log 2>&1
-# 京喜牧场
-20 0-23/2 * * * node /scripts/jd_jxmc.js >> /scripts/logs/jd_jxmc.log 2>&1
-# 砍价免费拿
-0 0 * * * node /scripts/jd_kanjia.js >> /scripts/logs/jd_kanjia.log 2>&1
 # 京东快递签到
 10 0 * * * node /scripts/jd_kd.js >> /scripts/logs/jd_kd.log 2>&1
 # joy抽奖机通用
@@ -150,8 +142,6 @@
 2 6 * * 5 node /scripts/jd_xs_zzl.js >> /scripts/logs/jd_xs_zzl.log 2>&1
 # 柠檬赚金币
 20 0 * * * node /scripts/jd_zjb.js >> /scripts/logs/jd_zjb.log 2>&1
-# 赚喜豆-TS版
-15,30,45 * * * node /scripts/jd_zjd.ts >> /scripts/logs/jd_zjb.log 2>&1
 # 东东爱消除
 12 5-10/1 * * * node /scripts/jd_moxigame.js >> /scripts/logs/jd_moxigame.log 2>&1
 # 京东宝藏榜
