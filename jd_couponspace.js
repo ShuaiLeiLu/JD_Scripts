@@ -1,8 +1,8 @@
 
 /*
-入口：领券中心-右侧悬浮
-35 8,14,22 * * * https://raw.githubusercontent.com/6dylan6/jdpro/main/jd_couponspace.js
-updatetime: 2022/10/21 瓜分
+入口：领券中心
+35 8,12,22 * * * https://raw.githubusercontent.com/6dylan6/jdpro/main/jd_couponspace.js
+updatetime: 2022/10/27 
  */
 
 const $ = new Env('卷民空间站分红包');
@@ -101,8 +101,8 @@ if ($.isNode()) {
         await $.wait(2000)
     }
 
-    // console.log('\n\n开始内部互助...')
-    // await help();
+    console.log('\n\n开始内部互助...')
+    await help();
 })()
     .catch((e) => {
         $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
@@ -112,10 +112,11 @@ if ($.isNode()) {
     })
 
 async function help() {
-    for (let j of groId) {
-        console.log('去助力-->' + j);
-        for (let i = 0; i < cookiesArr.length; i++) {
-            if (cookiesArr[i]) {
+    for (let i = 0; i < cookiesArr.length; i++) {
+        $.nohelp = false;
+        for (let j of groId) {
+            console.log('去助力-->' + j);
+            if (!$.nohelp) {
                 cookie = cookiesArr[i];
                 await explorePlanet_assist(j);
                 await $.wait(500);
@@ -152,7 +153,7 @@ async function homepage() {
 }
 async function explorePlanet_taskList() {
     return new Promise(async (resolve) => {
-        $.post(taskUrl('explorePlanet_taskList', 'body={"activityId":9}'), async (err, resp, data) => {
+        $.post(taskUrl('explorePlanet_taskList', `body={"activityId":${$.activityid}}`), async (err, resp, data) => {
             try {
                 if (err) {
                     console.log(`${JSON.stringify(err)}`)
@@ -181,7 +182,7 @@ async function explorePlanet_taskList() {
 async function explorePlanet_taskReport(encryptTaskId, itemId, flag) {
     if (flag === 1) $.componentTaskPid = $.specialComponentTaskPid;
     return new Promise(async (resolve) => {
-        $.post(taskUrl('explorePlanet_taskReport', `body={"activityId":9,"encryptTaskId":"${encryptTaskId}","encryptProjectId":"${$.componentTaskPid}","itemId":"${itemId}"}`), async (err, resp, data) => {
+        $.post(taskUrl('explorePlanet_taskReport', `body={"activityId":${$.activityid},"encryptTaskId":"${encryptTaskId}","encryptProjectId":"${$.componentTaskPid}","itemId":"${itemId}"}`), async (err, resp, data) => {
             try {
                 if (err) {
                     console.log(`${JSON.stringify(err)}`)
@@ -204,7 +205,7 @@ async function explorePlanet_taskReport(encryptTaskId, itemId, flag) {
 }
 async function explorePlanet_explore() {
     return new Promise(async (resolve) => {
-        $.post(taskUrl('explorePlanet_explore', 'body={"activityId":9}'), async (err, resp, data) => {
+        $.post(taskUrl('explorePlanet_explore', `body={"activityId":${$.activityid}}`), async (err, resp, data) => {
             try {
                 if (err) {
                     console.log(`${JSON.stringify(err)}`)
@@ -227,7 +228,7 @@ async function explorePlanet_explore() {
 }
 async function explorePlanet_compositeCard() {
     return new Promise(async (resolve) => {
-        $.post(taskUrl('explorePlanet_compositeCard', 'body={"activityId":9}'), async (err, resp, data) => {
+        $.post(taskUrl('explorePlanet_compositeCard', `body={"activityId":${$.activityid}}`), async (err, resp, data) => {
             try {
                 if (err) {
                     console.log(`${JSON.stringify(err)}`)
@@ -252,7 +253,7 @@ async function explorePlanet_compositeCard() {
 
 async function explorePlanet_assist(gId) {
     return new Promise(async (resolve) => {
-        $.post(taskUrl('explorePlanet_assist', `body={"activityId":"9","groupId":${gId},"eu":"","fv":""}`), async (err, resp, data) => {
+        $.post(taskUrl('explorePlanet_assist', `body={"activityId":${$.activityid},"groupId":${gId},"eu":"","fv":""}`), async (err, resp, data) => {
             try {
                 if (err) {
                     console.log(`${JSON.stringify(err)}`)
@@ -261,6 +262,8 @@ async function explorePlanet_assist(gId) {
                     data = JSON.parse(data)
                     if (data.data.biz_code === 0) {
                         console.log('助力成功 ' + gId);
+                    } else if (data.data.biz_code === 1006) {
+                        $.nohelp = true;
                     } else {
                         console.log(data.data.biz_msg)
                     }
@@ -275,7 +278,7 @@ async function explorePlanet_assist(gId) {
 }
 async function explorePlanet_openGroup() {
     return new Promise(async (resolve) => {
-        $.post(taskUrl('explorePlanet_openGroup', `body={"activityId":"9"}`), async (err, resp, data) => {
+        $.post(taskUrl('explorePlanet_openGroup', `body={"activityId":${$.activityid}}`), async (err, resp, data) => {
             try {
                 if (err) {
                     console.log(`${JSON.stringify(err)}`)
@@ -299,7 +302,7 @@ async function explorePlanet_openGroup() {
 }
 async function explorePlanet_divideReward() {
     return new Promise(async (resolve) => {
-        $.post(taskUrl('explorePlanet_divideReward', `body={"activityId":"9"}`), async (err, resp, data) => {
+        $.post(taskUrl('explorePlanet_divideReward', `body={"activityId":${$.activityid}}`), async (err, resp, data) => {
             try {
                 if (err) {
                     console.log(`${JSON.stringify(err)}`)
@@ -370,45 +373,33 @@ function taskUrl(fn, body) {
 }
 
 function TotalBean() {
-    return new Promise(async resolve => {
+    return new Promise((resolve) => {
         const options = {
-            url: "https://wq.jd.com/user_new/info/GetJDUserInfoUnion?sceneval=2",
+            url: 'https://plogin.m.jd.com/cgi-bin/ml/islogin',
             headers: {
-                Host: "wq.jd.com",
-                Accept: "*/*",
-                Connection: "keep-alive",
-                Cookie: cookie,
-                "User-Agent": $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.4.4;14.3;network/4g;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1"),
-                "Accept-Language": "zh-cn",
-                "Referer": "https://home.m.jd.com/myJd/newhome.action?sceneval=2&ufc=&",
-                "Accept-Encoding": "gzip, deflate, br"
-            }
+                "Cookie": cookie,
+                "referer": "https://h5.m.jd.com/",
+                "User-Agent": $.UA,
+            },
+            timeout: 10000
         }
         $.get(options, (err, resp, data) => {
             try {
-                if (err) {
-                    $.logErr(err)
-                } else {
-                    if (data) {
-                        data = JSON.parse(data);
-                        if (data['retcode'] === 1001) {
-                            $.isLogin = false;
-                            return;
-                        }
-                        if (data['retcode'] === 0 && data.data && data.data.hasOwnProperty("userInfo")) {
-                            $.nickName = data.data.userInfo.baseInfo.nickname;
-                        }
-                    } else {
-                        console.log('京东服务器返回空数据');
+                if (data) {
+                    data = JSON.parse(data);
+                    if (data.islogin === "1") {
+                    } else if (data.islogin === "0") {
+                        $.isLogin = false;
                     }
                 }
             } catch (e) {
-                $.logErr(e)
-            } finally {
+                console.log(e);
+            }
+            finally {
                 resolve();
             }
-        })
-    })
+        });
+    });
 }
 function showMsg() {
     return new Promise(resolve => {
