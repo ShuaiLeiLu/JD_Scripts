@@ -19,8 +19,8 @@
 20 7,12,19 * * * node /scripts/jd_beauty.js >> /scripts/logs/jd_beauty.log 2>&1
 # 头文字J
 30 4,16 * * * node /scripts/jd_carplay.js >> /scripts/logs/jd_carplay.log 2>&1
-# 签到领现金_Windfgg
-30 8,14 * * * node /scripts/jd_cash_windfg.js >> /scripts/logs/jd_cash_windfg.log 2>&1
+# 签到领现金
+30 8,14 * * * node /scripts/jd_cash_nolan.js >> /scripts/logs/jd_cash_nolan.log 2>&1
 # 微信签到领现金
 16 0,5 * * * node /scripts/jd_cash_wx.js >> /scripts/logs/jd_cash_wx.log 2>&1
 # 京喜财富岛
