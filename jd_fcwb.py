@@ -64,7 +64,7 @@ def v4_env(env,paths):
                 break
             except:
                 pass
-    return c 
+    return c
 
 
 # 随机ua
@@ -88,7 +88,7 @@ class Judge_env(object):
         else:
             cookie_list=os.environ["JD_COOKIE"].split('&')       # 获取cookie_list的合集
         if len(cookie_list)<1:
-            print('请填写环境变量JD_COOKIE\n')    
+            print('请填写环境变量JD_COOKIE\n')
         return cookie_list
 
     def v4_cookie(self):
@@ -102,7 +102,7 @@ class Judge_env(object):
                 except:
                     pass
         return a
-cookie_list=Judge_env().main_run()   
+cookie_list=Judge_env().main_run()
 
 
 def taskGetUrl(functionId, body, cookie):
@@ -124,10 +124,10 @@ def taskGetUrl(functionId, body, cookie):
             return res
         except:
             if n==2:
-                print('API请求失败，请检查网路重试❗\n')   
+                print('API请求失败，请检查网路重试❗\n')
 
 
-# 剩余血量
+            # 剩余血量
 def xueliang(cookie):
     body={"linkId":linkId,"round":1}
     res=taskGetUrl("happyDigHome", body, cookie)
@@ -137,7 +137,7 @@ def xueliang(cookie):
         if res['success']:
             curRound=res['data']['curRound']                        # 未知
             blood=res['data']['blood']                              # 剩余血量
-            return blood      
+            return blood
 
 def jinge(cookie,i):
     body={"linkId":linkId}
@@ -153,9 +153,9 @@ def jinge(cookie,i):
             redAmount=roundList_n['redAmount']                  # 当前池已得京东红包
             cashAmount=roundList_n['cashAmount']                # 当前池已得微信红包
 
-            return [blood,redAmount,cashAmount]   
+            return [blood,redAmount,cashAmount]
 
-# 页面数据
+        # 页面数据
 def happyDigHome(cookie):
     body={"linkId":linkId,"round":1}
     res=taskGetUrl("happyDigHome", body, cookie)
@@ -169,7 +169,7 @@ def happyDigHome(cookie):
             roundList=res['data']['roundList']                      # 3个总池子
             for e,roundList_n in enumerate(roundList):              # 迭代每个池子
                 roundid=roundList_n['round']                        # 池序号
-                state=roundList_n['state'] 
+                state=roundList_n['state']
                 rows=roundList_n['rows']                            # 池规模，rows*rows
                 redAmount=roundList_n['redAmount']                  # 当前池已得京东红包
                 cashAmount=roundList_n['cashAmount']                # 当前池已得微信红包
@@ -218,21 +218,21 @@ def happyDigHome(cookie):
         print(f'获取数据失败\n{res}\n')
 
 
- # 玩一玩
+# 玩一玩
 def apDoTask(cookie):
-     print('开始做玩一玩任务')
-     body={"linkId":linkId,"taskType":"BROWSE_CHANNEL","taskId":962,"channel":4,"itemId":"https%3A%2F%2Fwqs.jd.com%2Fsns%2F202210%2F20%2Fmake-money-shop%2Findex.html%3FactiveId%3D63526d8f5fe613a6adb48f03","checkVersion":False}
-     res=taskGetUrl('apDoTask', body, cookie)
-     if not res:
-         return
-     try:    
-         if res['success']:
-             print('玩好了')
-         else:
-             print(f"{res['errMsg']}")
-     except:
-         print(f"错误\n{res}")
-    
+    print('开始做玩一玩任务')
+    body={"linkId":linkId,"taskType":"BROWSE_CHANNEL","taskId":962,"channel":4,"itemId":"https%3A%2F%2Fwqs.jd.com%2Fsns%2F202210%2F20%2Fmake-money-shop%2Findex.html%3FactiveId%3D63526d8f5fe613a6adb48f03","checkVersion":False}
+    res=taskGetUrl('apDoTask', body, cookie)
+    if not res:
+        return
+    try:
+        if res['success']:
+            print('玩好了')
+        else:
+            print(f"{res['errMsg']}")
+    except:
+        print(f"错误\n{res}")
+
 
 # 挖宝
 def happyDigDo(cookie,roundid,rowIdx,colIdx):
@@ -318,10 +318,10 @@ def happyDigExchange(cookie):
 def spring_reward_list(cookie):
     happyDigExchange(cookie)
     xueliang(cookie)
-    
+
     body={"linkId":linkId,"pageNum":1,"pageSize":6}
     res=taskGetUrl("spring_reward_list", body, cookie)
-    
+
     if res['code']==0:
         if res['success']:
             items=res['data']['items']
@@ -348,7 +348,7 @@ def spring_reward_list(cookie):
 # 微信提现
 def wecat(cookie,amountid,poolBaseId,prizeGroupId,prizeBaseId):
     xueliang(cookie)
-    
+
     url='https://api.m.jd.com'
     headers={
         'Cookie': cookie,
@@ -368,7 +368,7 @@ def wecat(cookie,amountid,poolBaseId,prizeGroupId,prizeBaseId):
             break
         except:
             if n==2:
-                print('API请求失败，请检查网路重试❗\n') 
+                print('API请求失败，请检查网路重试❗\n')
     try:
         if res['code']==0:
             if res['success']:
@@ -376,7 +376,7 @@ def wecat(cookie,amountid,poolBaseId,prizeGroupId,prizeBaseId):
     except:
         print(res)
         print('')
-    
+
 
 def main():
     print('🔔发财挖宝，开始！\n')
