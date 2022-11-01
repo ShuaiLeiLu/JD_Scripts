@@ -2,7 +2,7 @@
  汪汪乐园-跑步
  只能翻倍0.01能成功！
  export JD_JOY_PARK_RUN_ASSETS="0.08"
- 32 * * * * jd_joy_joy_run.ts
+ 32 * * * * jd_joy_park_run.ts
  new Env('极速版汪汪赛跑')
  Modify By Dylan from HW
  **/
