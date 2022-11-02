@@ -37,7 +37,7 @@ except Exception as err:  # 异常捕捉
     logger.debug(str(err))  # 调试日志输出
     logger.info("无推送文件")  # 标准日志输出
 
-ver = 20524  # 版本号
+ver = 21031  # 版本号
 
 
 # def ql_2fa():
@@ -283,7 +283,7 @@ def check_ck(ck):  # 方法 检查 Cookie有效性 使用变量传递 单次调�
             'user-agent': ua
         }  # 设置 HTTP头
         try:  # 异常捕捉
-            res = requests.get(url=url, headers=headers, verify=False, timeout=10)  # 进行 HTTP请求[GET] 超时 10秒
+            res = requests.get(url=url, headers=headers, verify=False, timeout=10, allow_redirects=False)  # 进行 HTTP请求[GET] 超时 10秒
         except Exception as err:  # 异常捕捉
             logger.debug(str(err))  # 调试日志输出
             logger.info("JD接口错误 请重试或者更换IP")  # 标准日志输出
@@ -526,8 +526,7 @@ def cloud_info():  # 方法 云端信息
 
 
 def check_cloud():  # 方法 云端地址检查
-    url_list = ['aHR0cDovL2FwaS5tb21vZS5tbC8=', 'aHR0cHM6Ly9hcGkubW9tb2UubWwv',
-                'aHR0cHM6Ly9hcGkuaWxpeWEuY2Yv']  # URL list Encode
+    url_list = ['aHR0cHM6Ly9hcGkubW9tb2UubWwv', 'aHR0cHM6Ly9hcGkuaWxpeWEuY2Yv']  # URL list Encode
     for i in url_list:  # for循环 url_list
         url = str(base64.b64decode(i).decode())  # 设置 url地址 [str]
         try:  # 异常捕捉
@@ -536,7 +535,7 @@ def check_cloud():  # 方法 云端地址检查
             logger.debug(str(err))  # 调试日志输出
             continue  # 循环继续
         else:  # 分支判断
-            info = ['HTTP', 'HTTPS', 'CloudFlare']  # 输出信息[List]
+            info = ['HTTPS', 'CloudFlare']  # 输出信息[List]
             logger.info(str(info[url_list.index(i)]) + " Server Check OK\n--------------------\n")  # 标准日志输出
             return i  # 返回 ->i
     logger.info("\n云端地址全部失效, 请检查网络!")  # 标准日志输出
