@@ -2,9 +2,9 @@
  特务集卡
  脚本没有自动开卡，会尝试领取开卡奖励
  第一个CK黑号会退出
-cron:2 10,18,20 * * *
+cron:45 10,17,19 * * *
 
-2 10,18,20 * * * jd_superBrandJK.js
+45 10,17,19 * * * jd_superBrandJK_1.js
 */
 
 const $ = new Env('特务集卡');
@@ -23,7 +23,7 @@ if ($.isNode()) {
         $.getdata("CookieJD2"),
         ...$.toObj($.getdata("CookiesJD") || "[]").map((item) => item.cookie)].filter((item) => !!item);
 }
-console.log('\n活动地址：首页下拉，需要开卡才能100%集齐，没有开卡的手动开，集齐晚上8点后瓜分\n')
+console.log('\n活动地址：首页下拉，需要开卡才能100%集齐，没有开卡的手动开，集齐晚上8点前瓜分\n')
 let shareList=[];
 $.flag = false
 !(async()=>{
@@ -146,15 +146,17 @@ async function main(_0x14f2ac){
 		}if(_0x4a424c.completionFlag){
 			console.log('任务：'+_0x4a424c.assignmentName+',已完成');
 			continue;
-		}if(_0x4a424c.assignmentType===1){
-			console.log('任务：'+_0x4a424c.assignmentName+',去执行');
-			let _0x3c7f29=_0x4a424c.ext.shoppingActivity[0].itemId||'';
-			if(!_0x3c7f29){
-				console.log('任务：'+_0x4a424c.assignmentName+',信息异常');
-			}
-			let _0x2d2e7c=await takeRequest(_0x14f2ac,'superBrandDoTask','{"source":"card","activityId":'+_0x23add7+',"encryptProjectId":"'+_0x5add38+'","encryptAssignmentId":"'+_0x4a424c.encryptAssignmentId+'","assignmentType":'+_0x4a424c.assignmentType+',"itemId":"'+_0x3c7f29+'","actionType":0}');
-			console.log('执行结果：'+_0x2d2e7c.bizMsg);
-			await $.wait(3000);
+        } if (_0x4a424c.assignmentType === 1) {
+            for (let i = 0;i<(_0x4a424c.assignmentTimesLimit - _0x4a424c.completionCnt);i++) {
+                console.log('任务：' + _0x4a424c.assignmentName + ',去执行');
+                let _0x3c7f29 = _0x4a424c.ext.shoppingActivity[i].itemId || '';
+                if (!_0x3c7f29) {
+                    console.log('任务：' + _0x4a424c.assignmentName + ',信息异常');
+                }
+                let _0x2d2e7c = await takeRequest(_0x14f2ac, 'superBrandDoTask', '{"source":"card","activityId":' + _0x23add7 + ',"encryptProjectId":"' + _0x5add38 + '","encryptAssignmentId":"' + _0x4a424c.encryptAssignmentId + '","assignmentType":' + _0x4a424c.assignmentType + ',"itemId":"' + _0x3c7f29 + '","actionType":0}');
+                console.log('执行结果：' + _0x2d2e7c.bizMsg);
+                await $.wait(3000);
+            }
 		}if(_0x4a424c.assignmentType===3){
 			console.log('任务：'+_0x4a424c.assignmentName+',去执行');
 			let _0x440f46=_0x4a424c.ext.followShop[0].itemId||'';
