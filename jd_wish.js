@@ -136,6 +136,10 @@ async function jd_wish() {
     $.canLottery = true
     for (let j = 0; j < forNum && $.canLottery; j++) {
       await interact_template_getLotteryResult()
+			if (j == 9 && $.canLottery) {
+        console.log('抽太多次了，下次再继续吧！');
+        break
+      }
       await $.wait(2000)
     }
 
