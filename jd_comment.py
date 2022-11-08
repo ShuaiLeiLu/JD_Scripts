@@ -11,6 +11,8 @@ import logging  # 用于日志输出
 
 import os.path
 import platform
+import importlib.machinery
+print(importlib.machinery.all_suffixes())
 
 try:
     import requests
