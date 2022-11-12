@@ -6,13 +6,17 @@
 第一个账号助力作者 其他依次助力CK1
 注意：第一个CK黑号会全部助力所填写的助力码
 
+定时自行选择，不要跑太多账号，不要跑太多账号，不要跑太多账号
+
+会永久黑IP，如果运行就提示 此ip已被限制，请过10分钟后再执行脚本  只能更换IP
+
 变量：CAR_COOKIE_NUM 跑多少账号
 
-cron:30 4,16 * * *
+cron:1 1 1 1 *
 ============Quantumultx===============
 [task_local]
 #头文字J
-30 4,16 * * * jd_carplay.js, tag=头文字J, enabled=true
+1 1 1 1 * jd_car_play.js, tag=头文字J, enabled=true
 */
 const $ = new Env("头文字J");
 
