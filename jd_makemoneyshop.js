@@ -107,7 +107,7 @@ let helpinfo = {};
 			cookie = cookiesArr[i];
 			$.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
 			$.index = i + 1;
-            $.canUseCoinAmount = 0;
+			$.canUseCoinAmount = 0;
 			if (Object.keys(helpinfo).length == 0) helpinfo[$.UserName] = {};
 			try {
 				UA = helpinfo[$.UserName].ua;
@@ -116,8 +116,8 @@ let helpinfo = {};
 			}
 			console.log(`\n开始【账号${$.index}】${$.UserName}`);
 			//if (helpinfo[$.UserName].hot) continue;
-			await getinfo(1);	
-			await $.wait(200);			
+			await getinfo(1);
+			await $.wait(200);
 			await gettask();
 			await $.wait(500);
 			for (let item of $.tasklist) {
