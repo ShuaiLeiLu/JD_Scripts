@@ -150,10 +150,7 @@
 10 3 * * * node /scripts/jd_tyt.js >> /scripts/logs/jd_tyt.log 2>&1
 # 宠汪汪🐕喂食
 33 0-23/4 * * * node /scripts/jd_joy_feedPets.js >> /scripts/logs/jd_joy_feedPets.log 2>&1
-# 穿越寻宝组队奖励领取
-10 10 10 10 * node /scripts/jd_cxxb_award.js >> /scripts/logs/jd_cxxb_award.log 2>&1
-# 穿行寻宝 大富翁刷金币
-41 0,15 * * * node /scripts/jd_dfw.js >> /scripts/logs/jd_dfw.log 2>&1
-# 穿行寻宝 大富翁刷金币
-1 1 1 1 * node /scripts/jd_mfredrain.js >> /scripts/logs/jd_mfredrain.log 2>&1
+# cjhy 七日签到
+2 2 29 2 * node /scripts/jd_cjhy_sevenDay.js >> /scripts/logs/jd_cjhy_sevenDay.log 2>&1
+
 
