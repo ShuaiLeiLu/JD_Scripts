@@ -98,6 +98,11 @@ if ($.isNode()) {
                         }
                     }
                 }
+
+                if ($.isNode() && WP_APP_TOKEN_ONE) {
+                    console.log($.UserName)
+                    await notify.sendNotifybyWxPucher($.name, `${$.notifyMsgNow}`, `${$.UserName}`);
+                }
             } catch (e) {
             }
             await $.wait(50 * 1000);
@@ -105,7 +110,6 @@ if ($.isNode()) {
     }
     //console.log($.notifyMsg)
     if ($.isNode() && $.notifyMsg) {
-        console.log($.name, $.notifyMsg, 1111111111)
         await notify.sendNotify(`${$.name}`, `${$.notifyMsg}`);
     }
 
@@ -140,13 +144,6 @@ async function try_list() {
     })
 }
 
-
-async function sendMSG() {
-    if ($.isNode() && WP_APP_TOKEN_ONE) {
-        console.log(111111)
-        await notify.sendNotifybyWxPucher($.name, `${$.notifyMsgNow}`, `${$.UserName}`);
-    }
-}
 
 function taskurl_xh() {
     return {
