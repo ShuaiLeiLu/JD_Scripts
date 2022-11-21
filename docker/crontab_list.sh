@@ -153,6 +153,8 @@
 # cjhy 七日签到
 2 2 29 2 * node /scripts/jd_cjhy_sevenDay.js >> /scripts/logs/jd_cjhy_sevenDay.log 2>&1
 # 京彩足球预测任务
-11 11 11 11 * * node /scripts/jd_TheWorldcup.js.js >> /scripts/logs/jd_TheWorldcup.js.log 2>&1
+11 11 11 11 * * node /scripts/jd_TheWorldcup.js >> /scripts/logs/jd_TheWorldcup.log 2>&1
+# 赚钱大赢家提现
+58 59 23 * * * node /scripts/jd_makemoneyshop_reward.js >> /scripts/logs/jd_makemoneyshop_reward.log 2>&1
 
 
