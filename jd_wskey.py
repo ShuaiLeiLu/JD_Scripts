@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*
 '''
+定时自定义
+2 10 20 5 * jd_wskey.py
 new Env('wskey转换');
 '''
 import socket  # 用于端口检测
@@ -32,7 +34,7 @@ except Exception as e:  # 异常捕捉
 os.environ['no_proxy'] = '*'  # 禁用代理
 requests.packages.urllib3.disable_warnings()  # 抑制错误
 try:  # 异常捕捉
-    from notify import send  # 导入青龙消息通知模块
+    from sendNotify import send  # 导入青龙消息通知模块
 except Exception as err:  # 异常捕捉
     logger.debug(str(err))  # 调试日志输出
     logger.info("无推送文件")  # 标准日志输出

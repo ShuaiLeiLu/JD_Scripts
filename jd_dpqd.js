@@ -1,7 +1,9 @@
 /*
 店铺签到，各类店铺签到，有新的店铺直接添加token即可
+可设置变量DPSTOKEN='A&B&C'
+会和内置的token去重合并
 每日最多签到22家店铺，超出失败
-更新日期:2022-5-11
+更新日期:2022-11-6
 cron 3 0,23 * * * jd_dpsign.js, tag=店铺签到
 */
 const $ = new Env('店铺签到');
@@ -19,18 +21,27 @@ let vender=''
 let num=0
 let shopname=''
 
+let dptoken = [];
+if (process.env.DPSTOKEN) {
+    if (process.env.DPSTOKEN.indexOf('&')){
+        dptoken = process.env.DPSTOKEN.split('&');
+    } else {
+        dptoken.push(process.env.DPSTOKEN);
+    }
+}
+
 const token=[
 
-    "B96C035CBE1DEC7ADF9629402D29C937",//13
-    "210DEAF94D8AC3F504EADB6021B74B56",//7
-    "40EDDC854F931DE9C6F6F3525313BB9F",//27
-    "1FDB172863F1FDF384903B12E480D662",//45
-    "CF0E60148C5D318C6199F01F960264C1",//5
-    "E021AD736D4E49D9320D5E556217D5C0",//7
-    "B67276D929A8A43364993449B9CC7B11",//7
-    //"64C14CCE67522A9E5CB6ADAABEAC8366",//3
-    //"9A90DDCE9DD5CF40BB8E5E817E64ADBB",//3
-    //"032B7EC9D12D7113E3B1D4947CB66DFB",//3
+    "2119D7EC2E1A4518CFD243DC59D4CCE2",
+    "CF171257EAB689A9774BE8E5FC93F7CA",
+    "9BB51626FF59B288B12922568DD2A105",
+    "607CFD0DDFE5F08A776F0D3ADC120FBD",
+    "E58B22DDB20E8B4B960F1784150DBA37",
+    "EE34A90E1FA3F04C9B35473D69867FD6",
+    "BA895AD466EB9AA9DCDB3B92F96B35A4",//7
+    "CF474A5AC3B208E10ACD450841FD494F",//14
+    "F2124485783B9B20FD9D5094366EB27C",//7
+    "2119D7EC2E1A4518CFD243DC59D4CCE2",//3
     //"9D112935025746239099B25CB8B1EFEE",//3
     //"5DC67D3B65A4B7FC93799C0D2D860ACC",//3
     //"FB289748C2ABAA40489BC7303C22190F",//1-6
@@ -50,7 +61,6 @@ const token=[
 
 ]
 
-$.TokenList =[];
 
 if ($.isNode()) {
     Object.keys(jdCookieNode).forEach((item) => {
@@ -74,13 +84,9 @@ if ($.isNode()) {
     }
 
     $.TokenLists = []
-
-    //$.innerTokenList = await getStoreTokee('https://zy.kejiwanjia.com/jd_dpqiandao.php');
-    $.innerTokenList = token
-
-    $.TokenLists.push(...$.TokenList,...$.innerTokenList);
-
-
+    $.TokenLists.push(...dptoken,...token);
+    $.TokenLists = [...new Set($.TokenLists)]
+    if ($.TokenLists.length === 0) {console.log('无店铺签到token，退出！');return};
     for (let i = 0; i < cookiesArr.length; i++) {
         if (cookiesArr[i]) {
             cookie = cookiesArr[i];
@@ -116,7 +122,6 @@ if ($.isNode()) {
 async function babel_diy_zeus(){
 
     for (var j = 0; j < $.TokenLists.length; j++) {
-
         await $.wait(1000);
         num=j+1
         if ($.TokenLists[j]=='') {continue}
