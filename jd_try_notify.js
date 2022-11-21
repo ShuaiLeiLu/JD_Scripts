@@ -88,9 +88,7 @@ if ($.isNode()) {
                             console.log(`可免费领取-${title}`)
                             $.notifyMsg += `【账号】${$.index}.${$.UserName}  可免费领取-${title}\n入口:京东-我的-更多工具-新品试用\n`;
                             if ($.isNode() && WP_APP_TOKEN_ONE) {
-                                console.log(111111)
                                 await notify.sendNotifybyWxPucher($.name, `【京东账号】${$.nickName || $.UserName}\n【提醒⏰】可免费领取-${title}\n入口:京东-我的-更多工具-新品试用`, `${$.UserName}`);
-                                console.log(222222)
                             }
                         } else {
                             console.log("开始领取两天后不再推")
@@ -105,6 +103,9 @@ if ($.isNode()) {
     //console.log($.notifyMsg)
     if ($.isNode() && $.notifyMsg) {
         await notify.sendNotify(`${$.name}`, `${$.notifyMsg}`);
+    }
+    if ($.isNode() && WP_APP_TOKEN_ONE && $.notifyMsg) {
+        await notify.sendNotifybyWxPucher($.name, `【京东账号】${$.nickName || $.UserName}\n【提醒⏰】可免费领取-${title}\n入口:京东-我的-更多工具-新品试用`, `${$.UserName}`);
     }
 
 })().catch((e) => {
