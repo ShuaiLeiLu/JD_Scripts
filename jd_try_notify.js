@@ -105,6 +105,7 @@ if ($.isNode()) {
     }
     //console.log($.notifyMsg)
     if ($.isNode() && $.notifyMsg) {
+        console.log($.name, $.notifyMsg, 1111111111)
         await notify.sendNotify(`${$.name}`, `${$.notifyMsg}`);
     }
 
