@@ -152,5 +152,7 @@
 33 0-23/4 * * * node /scripts/jd_joy_feedPets.js >> /scripts/logs/jd_joy_feedPets.log 2>&1
 # cjhy 七日签到
 2 2 29 2 * node /scripts/jd_cjhy_sevenDay.js >> /scripts/logs/jd_cjhy_sevenDay.log 2>&1
+# 京彩足球预测任务
+11 11 11 11 * * node /scripts/jd_TheWorldcup.js.js >> /scripts/logs/jd_TheWorldcup.js.log 2>&1
 
 
