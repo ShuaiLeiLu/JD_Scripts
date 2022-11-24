@@ -5,7 +5,8 @@
 # export Proxy_Url="代理网址 例如：星空、熊猫 生成选择txt 一次一个"
 # export ZQDYJ_PINS="指定pin助力，多个用英文&分割"
 # export ZQDYJ_WX_DELAY="2" # 等待多少秒 默认0秒 可选参数,可以不填。
-# export ZQDYJ_WX_T="true" #自动提现一次最大可提现金额
+# export ZQDYJ_WX_T="true" #自动提现，默认最大可提现金额
+# export ZQDYJ_WX_T_NUM="100" #指定金额 不生效时默认采用最大可提现金额 仅支持设置0.3 1 3 8 20 100
 # 仅支持PIN方式
 pwd
 _ftype=""
