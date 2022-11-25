@@ -30,7 +30,7 @@ if (JSON.stringify(process.env).indexOf('GITHUB')>-1) {
   console.log(`\n当前公网IP: ${IP}`);
   console.log(`\n====================共${CookieJDs.length}个京东账号Cookie=================\n`);
   console.log(`============脚本执行时间：${new Date(new Date().getTime() + new Date().getTimezoneOffset()*60*1000 + 8*60*60*1000).toLocaleString('chinese',{hour12:false})}=============\n`)
-  console.log('>>>>>>>>>>>>>>6Dylan6 提示：任务正常运行中>>>>>>>>>>>>>>>\n')
+  console.log('>>>>>>>>>>>>>>提示：任务正常运行中>>>>>>>>>>>>>>>\n')
 })()
 CookieJDs = [...new Set(CookieJDs.filter(item => !!item))]
 if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => {};
