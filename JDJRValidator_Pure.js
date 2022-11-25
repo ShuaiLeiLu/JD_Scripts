@@ -226,7 +226,7 @@ class JDJRValidator {
 
   async run(scene) {
     try {
-      if (this.trynum > 3) return;
+      if (this.trynum > 5) return '';
       const tryRecognize = async () => {
         const x = await this.recognize(scene);
 
@@ -234,7 +234,7 @@ class JDJRValidator {
           return x;
         }
         // retry
-        return await tryRecognize();
+        return 124;
       };
       const puzzleX = await tryRecognize();
       // console.log(puzzleX);
@@ -545,6 +545,7 @@ function injectToRequest2(fn, scene = 'cww') {
 async function injectToRequest(scene = 'cww') {
   console.log('JDJR验证中......');
   const res = await new JDJRValidator().run(scene);
+  if (res == '') return;
   return res.validate;
 }
 

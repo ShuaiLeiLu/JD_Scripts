@@ -86,8 +86,6 @@
 10 0 * * * node /scripts/jd_kd.js >> /scripts/logs/jd_kd.log 2>&1
 # joy抽奖机通用
 0 0,10 * * * node /scripts/jd_lottery.js >> /scripts/logs/jd_lottery.log 2>&1
-# 京东小魔方
-45 8,19 * * * node /scripts/jd_mf_new.js >> /scripts/logs/jd_mf_new.log 2>&1
 # 京东新品-集魔方兑换-本地log版
 10 8 * * * node /scripts/jd_mofang.js >> /scripts/logs/jd_mofang.log 2>&1
 # 生鲜早起打卡
@@ -156,5 +154,10 @@
 11 11 11 11 * * node /scripts/jd_TheWorldcup.js >> /scripts/logs/jd_TheWorldcup.log 2>&1
 # 赚钱大赢家提现
 58 59 23 * * * node /scripts/jd_makemoneyshop_reward.js >> /scripts/logs/jd_makemoneyshop_reward.log 2>&1
-
+# 点点券
+45 14 * * * node /scripts/jd_necklace_6dy.js >> /scripts/logs/jd_necklace_6dy.log 2>&1
+# 秒秒币
+38 9 * * * node /scripts/jd_ms.js >> /scripts/logs/jd_ms.log 2>&1
+# 京东小魔方
+45 10 * * * node /scripts/jd_mf_new.js >> /scripts/logs/jd_mf_new.log 2>&1
 

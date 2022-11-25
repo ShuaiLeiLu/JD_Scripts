@@ -3,7 +3,7 @@ cron "35 11 * * *" jd_insight.js, tag:京洞察问卷通知
 
 by ccwav
  */
- 
+
 const $ = new Env('京洞察问卷通知');
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
@@ -15,10 +15,10 @@ let allnotify="";
 let WP_APP_TOKEN_ONE = "";
 
 if ($.isNode()) {
-	if (process.env.WP_APP_TOKEN_ONE) {		
+	if (process.env.WP_APP_TOKEN_ONE) {
 		WP_APP_TOKEN_ONE = process.env.WP_APP_TOKEN_ONE;
 	}
-	
+
 	Object.keys(jdCookieNode)
 		.forEach((item) => {
 			cookiesArr.push(jdCookieNode[item])
@@ -63,47 +63,47 @@ if ($.isNode()) {
 			await main()
 		}
 	}
-	
+
 	if ($.isNode() && allnotify) {
-        await notify.sendNotify(`${$.name}`, allnotify);
-    }
-		
+		await notify.sendNotify(`${$.name}`, allnotify);
+	}
+
 })()
-.catch((e) => {
-	$.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
-})
-.finally(() => {
-	$.done();
-})
+	.catch((e) => {
+		$.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
+	})
+	.finally(() => {
+		$.done();
+	})
 
 async function main() {
-    console.log(`开始获取京洞察调研列表...\n`)
-    let data= await GetSurveyList();
-    if(data.result){
-        let list=data.messages.list
-        if(list.length>0){
-            let AccTitle=`账号${$.index} ${$.nickName || $.UserName} `;
-            let msg = AccTitle+`共${list.length}个类型调查问卷\n`;
-            for (let index = 0; index < list.length; index++) {
-                const item = list[index].surveyList;
-                //msg += `类型:${list[index].type}\n`;
-                for (let index = 0; index < item.length; index++) {
-                    let surveyItem = item[index];
-                    let title = surveyItem.title
-                    let subTitle = surveyItem.subTitle
-                    let answerUrl = surveyItem.answerUrl
-                    msg += `${index+1}.【${title}】 ${subTitle}\n${answerUrl}\n`
-										console.log(msg)
-                }
-            }
+	console.log(`开始获取京洞察调研列表...\n`)
+	let data= await GetSurveyList();
+	if(data.result){
+		let list=data.messages.list
+		if(list.length>0){
+			let AccTitle=`账号${$.index} ${$.nickName || $.UserName} `;
+			let msg = AccTitle+`共${list.length}个类型调查问卷\n`;
+			for (let index = 0; index < list.length; index++) {
+				const item = list[index].surveyList;
+				//msg += `类型:${list[index].type}\n`;
+				for (let index = 0; index < item.length; index++) {
+					let surveyItem = item[index];
+					let title = surveyItem.title
+					let subTitle = surveyItem.subTitle
+					let answerUrl = surveyItem.answerUrl
+					msg += `${index+1}.【${title}】 ${subTitle}\n${answerUrl}\n`
+					console.log(msg)
+				}
+			}
 			if ($.isNode() && WP_APP_TOKEN_ONE) {
 				await notify.sendNotifybyWxPucher("京洞察问卷通知", msg, `${$.UserName}`);
 			}
 			allnotify+=msg
-        }
-    }else{
-        $.log('当前账户没有京调研问卷')
-    }
+		}
+	}else{
+		$.log('当前账户没有京调研问卷')
+	}
 }
 
 function random(min, max) {
@@ -124,7 +124,7 @@ function GetSurveyList() {
 		"url": 'https://answer.jd.com/community/survey/list',
 		"headers": {
 			"Cookie": cookie,
-            "User-Agent":"Mozilla/5.0 (iPhone; CPU iPhone OS 14_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1 Mobile/15E148 Safari/604.1"
+			"User-Agent":"Mozilla/5.0 (iPhone; CPU iPhone OS 14_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1 Mobile/15E148 Safari/604.1"
 		}
 	};
 	return new Promise(resolve => {
@@ -261,25 +261,25 @@ function Env(t, e) {
 		}
 		runScript(t, e) {
 			return new Promise(s => {
-					let i = this.getdata("@chavy_boxjs_userCfgs.httpapi");
-					i = i ? i.replace(/\n/g, "")
-						.trim() : i;
-					let r = this.getdata("@chavy_boxjs_userCfgs.httpapi_timeout");
-					r = r ? 1 * r : 20, r = e && e.timeout ? e.timeout : r;
-					const [o, h] = i.split("@"), n = {
-						url: `http://${h}/v1/scripting/evaluate`,
-						body: {
-							script_text: t,
-							mock_type: "cron",
-							timeout: r
-						},
-						headers: {
-							"X-Key": o,
-							Accept: "*/*"
-						}
-					};
-					this.post(n, (t, e, i) => s(i))
-				})
+				let i = this.getdata("@chavy_boxjs_userCfgs.httpapi");
+				i = i ? i.replace(/\n/g, "")
+					.trim() : i;
+				let r = this.getdata("@chavy_boxjs_userCfgs.httpapi_timeout");
+				r = r ? 1 * r : 20, r = e && e.timeout ? e.timeout : r;
+				const [o, h] = i.split("@"), n = {
+					url: `http://${h}/v1/scripting/evaluate`,
+					body: {
+						script_text: t,
+						mock_type: "cron",
+						timeout: r
+					},
+					headers: {
+						"X-Key": o,
+						Accept: "*/*"
+					}
+				};
+				this.post(n, (t, e, i) => s(i))
+			})
 				.catch(t => this.logErr(t))
 		}
 		loaddata() {
@@ -320,7 +320,7 @@ function Env(t, e) {
 		}
 		lodash_set(t, e, s) {
 			return Object(t) !== t ? t : (Array.isArray(e) || (e = e.toString()
-					.match(/[^.[\]]+/g) || []), e.slice(0, -1)
+				.match(/[^.[\]]+/g) || []), e.slice(0, -1)
 				.reduce((t, s, i) => Object(t[s]) === t[s] ? t[s] : t[s] = Math.abs(e[i + 1]) >> 0 == +e[i + 1] ? [] : {}, t)[e[e.length - 1]] = s, t)
 		}
 		getdata(t) {
@@ -365,8 +365,8 @@ function Env(t, e) {
 			})), $httpClient.get(t, (t, s, i) => {
 				!t && s && (s.body = i, s.statusCode = s.status), e(t, s, i)
 			})) : this.isQuanX() ? (this.isNeedRewrite && (t.opts = t.opts || {}, Object.assign(t.opts, {
-					hints: !1
-				})), $task.fetch(t)
+				hints: !1
+			})), $task.fetch(t)
 				.then(t => {
 					const {
 						statusCode: s,
@@ -420,8 +420,8 @@ function Env(t, e) {
 				!t && s && (s.body = i, s.statusCode = s.status), e(t, s, i)
 			});
 			else if (this.isQuanX()) t.method = "POST", this.isNeedRewrite && (t.opts = t.opts || {}, Object.assign(t.opts, {
-					hints: !1
-				})), $task.fetch(t)
+				hints: !1
+			})), $task.fetch(t)
 				.then(t => {
 					const {
 						statusCode: s,
@@ -480,8 +480,8 @@ function Env(t, e) {
 				.substr(4 - RegExp.$1.length)));
 			for (let e in i) new RegExp("(" + e + ")")
 				.test(t) && (t = t.replace(RegExp.$1, 1 == RegExp.$1.length ? i[e] : ("00" + i[e])
-					.substr(("" + i[e])
-						.length)));
+				.substr(("" + i[e])
+					.length)));
 			return t
 		}
 		msg(e = t, s = "", i = "", r) {
@@ -534,7 +534,7 @@ function Env(t, e) {
 		}
 		done(t = {}) {
 			const e = (new Date)
-				.getTime(),
+					.getTime(),
 				s = (e - this.startTime) / 1e3;
 			this.log("", `🔔${this.name}, 结束! 🕛 ${s} 秒`), this.log(), (this.isSurge() || this.isQuanX() || this.isLoon()) && $done(t)
 		}
