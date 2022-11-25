@@ -3,7 +3,7 @@
 探味奇遇记
 活动入口：美食馆-右侧悬浮
 
-31 0,15 * * * jd_tanwei.js
+31 15 * * * jd_tanwei.js
  */
 
 const $ = new Env('探味奇遇记');
