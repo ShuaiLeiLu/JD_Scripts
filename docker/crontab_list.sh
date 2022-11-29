@@ -127,7 +127,7 @@
 # 京东试用
 4 1-22/8 * * * node /scripts/jd_try.js >> /scripts/logs/jd_try.log 2>&1
 # 京东试用待领取通知
-22 15 * * * node /scripts/jd_try_notify.js >> /scripts/logs/jd_try_notify.log 2>&1
+22 15 * * * node /scripts/jd_try_notify.py >> /scripts/logs/jd_try_notify.log 2>&1
 # 取关所有主播
 55 22 * * * node /scripts/jd_unsubscriLive.js >> /scripts/logs/jd_unsubscriLive.log 2>&1
 # 批量取关京东店铺和商品
@@ -148,14 +148,6 @@
 10 3 * * * node /scripts/jd_tyt.js >> /scripts/logs/jd_tyt.log 2>&1
 # 宠汪汪🐕喂食
 33 0-23/4 * * * node /scripts/jd_joy_feedPets.js >> /scripts/logs/jd_joy_feedPets.log 2>&1
-# cjhy 七日签到
-2 2 29 2 * node /scripts/jd_cjhy_sevenDay.js >> /scripts/logs/jd_cjhy_sevenDay.log 2>&1
-# 京彩足球预测任务
-11 11 11 11 * * node /scripts/jd_TheWorldcup.js >> /scripts/logs/jd_TheWorldcup.log 2>&1
-# 赚钱大赢家提现
-58 59 23 * * * node /scripts/jd_makemoneyshop_reward.js >> /scripts/logs/jd_makemoneyshop_reward.log 2>&1
-# 点点券
-45 14 * * * node /scripts/jd_necklace_6dy.js >> /scripts/logs/jd_necklace_6dy.log 2>&1
 # 秒秒币
 38 9 * * * node /scripts/jd_ms.js >> /scripts/logs/jd_ms.log 2>&1
 # 京东小魔方
