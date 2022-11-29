@@ -64,7 +64,7 @@ def printf(text):
     sys.stdout.flush()
 
 def get_remarkinfo():
-    url='http://127.0.0.1:5600/api/envs'
+    url='http://127.0.0.1:5700/api/envs'
     try:
         with open('/ql/config/auth.json', 'r') as f:
             token=json.loads(f.read())['token']
