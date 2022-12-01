@@ -18,7 +18,7 @@
 # 美丽研究院
 20 7,12,19 * * * node /scripts/jd_beauty.js >> /scripts/logs/jd_beauty.log 2>&1
 # 头文字J
-30 4,16 * * * node /scripts/jd_carplay.js >> /scripts/logs/jd_carplay.log 2>&1
+30 4,16 * * * node /scripts/jd_car_play.js >> /scripts/logs/jd_car_play.log 2>&1
 # 签到领现金
 30 8,14 * * * node /scripts/jd_cash_nolan.js >> /scripts/logs/jd_cash_nolan.log 2>&1
 # 微信签到领现金
@@ -43,8 +43,6 @@
 5 6,18 * * * node /scripts/jd_dreamFactory_help.js >> /scripts/logs/jd_dreamFactory_help.log 2>&1
 # 京喜工厂开团
 40 0,8 * * * node /scripts/jd_dreamFactory_tuan.js >> /scripts/logs/jd_dreamFactory_tuan.log 2>&1
-# M京豆夺宝
-40,45 23 * * * node /scripts/jd_duobao.js >> /scripts/logs/jd_duobao.log 2>&1
 # 积分换话费
 33 7 * * * node /scripts/jd_dwapp.js >> /scripts/logs/jd_dwapp.log 2>&1
 # 东东农场好友删减奖励
