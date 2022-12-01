@@ -154,4 +154,5 @@
 38 9 * * * node /scripts/jd_ms.js >> /scripts/logs/jd_ms.log 2>&1
 # 京东小魔方
 45 10 * * * node /scripts/jd_mf_new.js >> /scripts/logs/jd_mf_new.log 2>&1
-
+# 农场自动种植兑换
+20 8 10 4 * node /scripts/jd_farm_automation.js >> /scripts/logs/jd_farm_automation.log 2>&1
