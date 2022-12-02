@@ -1,11 +1,11 @@
 /*
 12.1-12.20 竞猜世界杯
 
-cron:55 13,16 1-20 12 *
+cron:11 11 11 11 *
 ============Quantumultx===============
 [task_local]
 #12.1-12.20 竞猜世界杯
-55 13,16 1-20 12 * jd_szxyun_sjb.js, tag=12.1-12.20 竞猜世界杯, enabled=true
+11 11 11 11 * jd_szxyun_sjb.js, tag=12.1-12.20 竞猜世界杯, enabled=true
 */
 
 const $ = new Env("12.1-12.20 竞猜世界杯");
