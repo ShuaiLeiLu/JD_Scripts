@@ -1,11 +1,11 @@
 /*
 年终奖补贴助力
 
-cron:59 13,16 8-12 12 *
+cron:11 11 11 11 *
 ============Quantumultx===============
 [task_local]
 #年终奖补贴助力
-59 13,16 8-12 12 * jd_nzjbtzl.js, tag=年终奖补贴助力, enabled=true
+11 11 11 11 * jd_nzjbtzl.js, tag=年终奖补贴助力, enabled=true
 
 */
 const $ = new Env('年终奖补贴助力助力');
