@@ -398,7 +398,7 @@ function shareCodesFormat() {
     return new Promise(async resolve => {
         $.newShareCodes = [];
         if ($.index == 1) {
-            let authorCode = ['oeDzX64FbmxDYROrCpeJ99JYfH1h'];
+            let authorCode = ['-ryUXqUJYDUSYUPDH9PF8wpnuHiVtKuX'];
             $.newShareCodes = [...new Set(...[authorCode], ...$.inviteIdCodesArr)];
         }else {
             $.newShareCodes = $.inviteIdCodesArr;
