@@ -1,5 +1,6 @@
 /*
 城城领现金助力助力
+默认助力前3账号，第一账号助力作者
 [task_local]
 #城城领现金助力
 1 0,16 9-13 12 * jd_cityzl.js, tag=城城领现金助力, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
@@ -61,7 +62,7 @@ let inviteCodes = ['-ryUXKkMNDFCN0GSSNnHo95ETK2dCBm_','4e_-XaQLb2VAYF6ISpeJ5uS0'
 			}else {
 					break;
 			}
-      await $.wait(1000)
+      await $.wait(500)
     }
   }
   
