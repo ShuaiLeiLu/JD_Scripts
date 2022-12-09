@@ -26,7 +26,7 @@ if ($.isNode()) {
   cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
 }
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
-let inviteCodes = ['-ryUXKkMNDFCN0GSSNnHo95ETK2dCBm_','4e_-XaQLb2VAYF6ISpeJ5uS0','-ryUX6xYNWVHY0PBH9zC_zh6Vklc2Tca','-ryUXf5YM2dFZ0PNSdOWoX0yOa5Pm_-w','-ryUX6ReZmdLNhOXTonC_uKcEzo0GDs2']
+let inviteCodes = ['-ryUXqUJYDUSYUPDH9PF8wpnuHiVtKuX','peH8WaoIYmVFDE-IBtuJu66oXg','oe38XK0LYWVLYRKrCpeJ94G6nNUi']
 !(async () => {
   if (!cookiesArr[0]) {
     $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
