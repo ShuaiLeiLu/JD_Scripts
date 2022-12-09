@@ -1,11 +1,11 @@
 /*
-城城领现金
+城城领现金助力助力
 [task_local]
-#城城领现金
-31 0,16, 9-13 12 * jd_city.js, tag=城城领现金, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
+#城城领现金助力
+1 0,16 9-13 12 * jd_cityzl.js, tag=城城领现金助力, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
 
  */
-const $ = new Env('城城领现金');
+const $ = new Env('城城领现金助力');
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
@@ -56,7 +56,11 @@ let inviteCodes = ['-ryUXKkMNDFCN0GSSNnHo95ETK2dCBm_','4e_-XaQLb2VAYF6ISpeJ5uS0'
       }
       UA = `jdapp;iPhone;10.2.0;13.1.2;${randomString(40)};M/5.0;network/wifi;ADID/;model/iPhone8,1;addressid/2308460611;appBuild/167853;jdSupportDarkMode/0;Mozilla/5.0 (iPhone; CPU iPhone OS 13_1_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1;`
       uuid = UA.split(';')[4]
-      await getInfo('',true);
+			if ($.index <=3 ) {
+					await getInfo('',true);
+			}else {
+					break;
+			}
       await $.wait(1000)
     }
   }
@@ -145,20 +149,20 @@ function getInfo(inviteId, flag = false) {
                   if (data.data && data.data.result.userActBaseInfo.inviteId) {
                     $.shareCodes.push(data.data.result.userActBaseInfo.inviteId)
                   }
-                  console.log(`剩余金额：${data.data.result.userActBaseInfo.poolMoney}`)
-                  for (let pop of data.data.result.popWindows || []) {
-                    if (pop.data.cash && (pop.data.cash !== data.data.result.userActBaseInfo.poolMoney)) {
-                      await receiveCash("", "2");
-                    }
-                  }
+                  // console.log(`剩余金额：${data.data.result.userActBaseInfo.poolMoney}`)
+                  // for (let pop of data.data.result.popWindows || []) {
+                    // if (pop.data.cash && (pop.data.cash !== data.data.result.userActBaseInfo.poolMoney)) {
+                      // await receiveCash("", "2");
+                    // }
+                  // }
                 }
-                for (let vo of data.data.result && data.data.result.mainInfos || []) {
-                  if (vo && vo.remaingAssistNum === 0 && vo.status === "1") {
-                    console.log(vo.roundNum)
-                    await receiveCash(vo.roundNum)
-                    await $.wait(2 * 1000)
-                  }
-                }
+                // for (let vo of data.data.result && data.data.result.mainInfos || []) {
+                  // if (vo && vo.remaingAssistNum === 0 && vo.status === "1") {
+                    // console.log(vo.roundNum)
+                    // await receiveCash(vo.roundNum)
+                    // await $.wait(2 * 1000)
+                  // }
+                // }
               } else {
                 console.log(`\n\n${inviteId ? '助力好友' : '获取邀请码'}失败:${data.data.bizMsg}`)
                 if (flag) {
@@ -192,10 +196,17 @@ function receiveCash(roundNum, type = '') {
         } else {
           if (safeGet(data)) {
             data = JSON.parse(data);
-            if (data['data']['bizCode'] === 0) {
-              console.log(`获得 ${data.data.result.currentTimeCash} 元，共计 ${data.data.result.totalCash} 元`)
-            } else {
-							console.log(data.data)
+						// console.log(`抽奖结果：${JSON.stringify(data)}`);
+            if(data){
+							if(data['code'] === 410) {
+								console.log(data.msg)
+							} else if (data['data']['bizCode'] === 0) {
+								console.log(`获得 ${data.data.result.currentTimeCash} 元，共计 ${data.data.result.totalCash} 元`)
+							}  else if (data['data']['bizCode'] === -99) {
+								console.log(`${data.data.bizMsg}`)
+							} else {
+								console.log(JSON.stringify(data))
+							}
 						}
           }
         }
@@ -244,7 +255,7 @@ function city_lotteryAward() {
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           if (safeGet(data)) {
-            console.log(`抽奖结果：${data}`);
+            console.log(`抽奖结果：${JSON.stringify(data)}`);
             data = JSON.parse(data);
             if (data['data']['bizCode'] === 0) {
               const lotteryNum = data['data']['result']['lotteryNum'];
@@ -312,56 +323,22 @@ function randomString(e) {
 function shareCodesFormat() {
   return new Promise(async resolve => {
     $.newShareCodes = [];
-    $.newShareCodes = [...new Set([...$.shareCodes, ...inviteCodes])];
+		if ($.index == 1) {
+				$.krinviteCode = inviteCodes[random(0, inviteCodes.length)]
+				$.newShareCodes = [$.krinviteCode]
+		}else {
+				$.newShareCodes = $.shareCodes;
+		}
     
-    console.log(`\n第${$.index}个京东账号将要助力的好友${JSON.stringify($.newShareCodes)}`)
+    // console.log(`\n第${$.index}个京东账号将要助力的好友${JSON.stringify($.newShareCodes)}`)
     resolve();
   })
 }
 
-function TotalBean() {
-  return new Promise(async resolve => {
-    const options = {
-      "url": `https://wq.jd.com/user/info/QueryJDUserInfo?sceneval=2`,
-      "headers": {
-        "Accept": "application/json,text/plain, */*",
-        "Content-Type": "application/x-www-form-urlencoded",
-        "Accept-Encoding": "gzip, deflate, br",
-        "Accept-Language": "zh-cn",
-        "Connection": "keep-alive",
-        "Cookie": cookie,
-        "Referer": "https://wqs.jd.com/my/jingdou/my.shtml?sceneval=2",
-        "User-Agent": $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.4.4;14.3;network/4g;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1")
-      }
-    }
-    $.post(options, (err, resp, data) => {
-      try {
-        if (err) {
-          console.log(`${JSON.stringify(err)}`)
-          console.log(`${$.name} API请求失败，请检查网路重试`)
-        } else {
-          if (data) {
-            data = JSON.parse(data);
-            if (data["retcode"] === 13) {
-              $.isLogin = false; //cookie过期
-              return;
-            }
-            if (data["retcode"] === 0) {
-              $.nickName = (data["base"] && data["base"].nickname) || $.UserName;
-            } else {
-              $.nickName = $.UserName;
-            }
-          } else {
-            console.log(`京东服务器返回空数据`)
-          }
-        }
-      } catch (e) {
-        $.logErr(e, resp)
-      } finally {
-        resolve();
-      }
-    })
-  })
+function random(min, max) {
+
+    return Math.floor(Math.random() * (max - min)) + min;
+
 }
 function safeGet(data) {
   try {
