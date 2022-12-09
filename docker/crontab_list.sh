@@ -155,3 +155,5 @@
 20 1,8 * * * node /scripts/jx_sign.js >> /scripts/logs/jx_sign.log 2>&1
 # 竞猜世界杯
 31 14 1-20 12 * node /scripts/jd_szxyun_sjb.js >> /scripts/logs/jd_szxyun_sjb.log 2>&1
+# 城城领现金助力
+1 0,16 9-13 12 * node /scripts/jd_cityzl.js >> /scripts/logs/jd_cityzl.log 2>&1
