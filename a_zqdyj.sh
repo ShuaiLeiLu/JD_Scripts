@@ -2,7 +2,7 @@
 # new Env('BBK-赚钱大赢家助力');
 # export JD_LOG_XYZ_TOKEN="从机器人获取的token"
 # export Proxy_Url="代理网址 例如：星空、熊猫 生成选择txt 一次一个"
-# export ZQDYJ_SUSSCESS_COUNT="10" #助力次数限制，默认助力10次
+# export ZQDYJ_SUSSCESS_COUNT="10" #指定链接方式的助力次数限制，默认助力10次
 # export ZQDYJ_PINS="指定pin助力，多个用英文&分割"
 # export ZQDYJ_BAN_PINS="123&456" #助力时这里指定的pin将不助力(黑名单)
 # export ZQDYJ_WHITE_PINS="123&456" #白名单内的ck才会助力
