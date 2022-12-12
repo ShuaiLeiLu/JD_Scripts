@@ -4,7 +4,7 @@ ck1助力作者，其他助力ck1
 export NZJCODE='xxx1&xxx2'
 默认为前6个车头助力码助力,可变量调整
 export NZJNUM='20'
-10 6,19 8-12 12 * jd_nzjbtzlyqm.js
+10 6,19 8-12 12 * jd_splitHongbao_help.js
 fix
  */
 
