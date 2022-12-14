@@ -153,11 +153,4 @@
 15,30,45 0 * * * node /scripts/jd_zjd.ts >> /scripts/logs/jd_zjd.log 2>&1
 # 京喜签到
 20 1,8 * * * node /scripts/jx_sign.js >> /scripts/logs/jx_sign.log 2>&1
-# 竞猜世界杯
-31 14 1-20 12 * node /scripts/jd_szxyun_sjb.js >> /scripts/logs/jd_szxyun_sjb.log 2>&1
-# 城城领现金助力
-1 0,16 9-13 12 * node /scripts/jd_cityzl.js >> /scripts/logs/jd_cityzl.log 2>&1
-# 年终奖补贴
-16 5,16 * * * node /scripts/jd_nzjcj.js >> /scripts/logs/jd_nzjcj.log 2>&1
-# 年终奖补贴助力
-10 6,19 8-12 12 * node /scripts/jd_nzjbtzlyqm.js >> /scripts/logs/jd_nzjbtzlyqm.log 2>&1
+
