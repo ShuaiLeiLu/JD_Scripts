@@ -7,7 +7,9 @@
 # export ZQDYJ_WX_T_PINS="指定pin，多个用英文&分割"
 # export ZQDYJ_WX_T="true" #自动提现，默认最大可提现金额
 # export ZQDYJ_WX_T_NUM="100" #指定金额 不生效时默认采用最大可提现金额 仅支持设置0.3 1 3 8 20 100
+# export ZQDYJ_WX_T_TOP_CKS="10" #提现前10个号 可选参数,可以不填。
 # 仅支持PIN方式
+# "pin提现" 和 "提现前几个" 两者都存在时优先执行pin方式提现
 pwd
 _ftype=""
 use_get_arch=${BBK_ARCH}
