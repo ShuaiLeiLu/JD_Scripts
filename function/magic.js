@@ -249,7 +249,7 @@ class Env {
                 let cookie = cookies[i]
                 let pt_pin = decodeURIComponent(
                     cookie.match(/pt_pin=(.+?);/) && cookie.match(
-                        /pt_pin=(.+?);/)[1]);
+                    /pt_pin=(.+?);/)[1]);
                 if (wxBlackCookiePin.includes(pt_pin)) {
                     this.log("剔除黑号CK:" + pt_pin);
                     continue;
@@ -345,11 +345,11 @@ class Env {
             o => m += String.fromCharCode(o))
         this.appId = fn ? this.name.slice(0, 1)
             === String.fromCharCode(77)
-                ? (fn.includes(av(y)) ? '10032' :
-                    fn.includes(av(z)) ? '10028' :
-                        fn.includes(av(j)) ? '10001' :
-                            fn.includes(av(k)) ? '10038' :
-                                fn.includes(av(m)) ? 'wx' : '') : ''
+            ? (fn.includes(av(y)) ? '10032' :
+                fn.includes(av(z)) ? '10028' :
+                    fn.includes(av(j)) ? '10001' :
+                        fn.includes(av(k)) ? '10038' :
+                            fn.includes(av(m)) ? 'wx' : '') : ''
             : '';
         this.appId ? this.algo = await this._algo() : '';
     }
@@ -451,7 +451,7 @@ class Env {
                         CryptoJS.enc.Hex))].join(';'));
             if (url.match(/[?|&]h5st=(.*?)&/)) {
                 url = url.replace(url.match(/[?|&]h5st=(.*?)&/)[1], 'H5ST')
-                    .replace(/H5ST/, ens)
+                .replace(/H5ST/, ens)
             }
             let matchArr = [/[?|&]_time=(\d+)/, /[?|&]__t=(\d+)/,
                 /[?|&]_ts=(\d+)/,
@@ -637,7 +637,7 @@ class Env {
         return new Promise((resolve, reject) => {
             $.get(url, {headers: headers}).then(
                 data => resolve(this.handler(data) || data))
-                .catch(e => reject(e))
+            .catch(e => reject(e))
         })
     }
 
@@ -645,8 +645,8 @@ class Env {
         url = this.appId ? this.build(url) : url
         return new Promise((resolve, reject) => {
             $.post(url, body, {headers: headers})
-                .then(data => resolve(this.handler(data) || data))
-                .catch(e => reject(e));
+            .then(data => resolve(this.handler(data) || data))
+            .catch(e => reject(e));
         })
     }
 
@@ -654,11 +654,11 @@ class Env {
         return new Promise((resolve, reject) => {
             let __config = headers?.headers ? headers : {headers: headers};
             (body ? $.post(url, body, __config) : $.get(url, __config))
-                .then(data => {
-                    this.__lt(data);
-                    resolve(data)
-                })
-                .catch(e => reject(e));
+            .then(data => {
+                this.__lt(data);
+                resolve(data)
+            })
+            .catch(e => reject(e));
         })
     }
 
@@ -716,14 +716,14 @@ class Env {
             data = data.replace(/[\n\r| ]/g, '');
             if (data.includes("try{jsonpCB")) {
                 data = data.replace(/try{jsonpCB.*\({/, '{')
-                    .replace(/}\)([;])?}catch\(e\){}/, '}')
+                .replace(/}\)([;])?}catch\(e\){}/, '}')
             } else if (data.includes('jsonpCB')) {
                 let st = data.replace(/[\n\r]/g, '').replace(/jsonpCB.*\({/,
                     '{');
                 data = st.substring(0, st.length - 1)
             } else if (data.match(/try{.*\({/)) {
                 data = data.replace(/try{.*\({/, '{')
-                    .replace(/}\)([;])?}catch\(e\){}/, '}')
+                .replace(/}\)([;])?}catch\(e\){}/, '}')
             } else {
                 testMode ? console.log('例外', data) : ''
                 data = /.*?({.*}).*/g.exec(data)[1]
@@ -820,7 +820,7 @@ class Env {
     formatDate(date, fmt) {
         // noinspection JSCheckFunctionSignatures
         return format(typeof date === 'object' ? date : new Date(
-                typeof date === 'string' ? date * 1 : date),
+            typeof date === 'string' ? date * 1 : date),
             fmt || 'yyyy-MM-dd')
     }
 
