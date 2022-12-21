@@ -35,8 +35,6 @@
 30 7 * * * node /scripts/jd_ddnc_farmpark.js >> /scripts/logs/jd_ddnc_farmpark.log 2>&1
 # 店铺签到
 15 2,14 * * * node /scripts/jd_dpqd.js >> /scripts/logs/jd_dpqd.log 2>&1
-# 京喜工厂
-10 0,6-23 * * * node /scripts/jd_dreamFactory.js >> /scripts/logs/jd_dreamFactory.log 2>&1
 # 京喜工厂招工互助
 5 6,18 * * * node /scripts/jd_dreamFactory_help.js >> /scripts/logs/jd_dreamFactory_help.log 2>&1
 # 京喜工厂开团
@@ -117,8 +115,6 @@
 20 0,22 * * * node /scripts/jd_speed_redpocke.js >> /scripts/logs/jd_speed_redpocke.log 2>&1
 # 京东极速版
 21 3,8 * * * node /scripts/jd_speed_sign.js >> /scripts/logs/jd_speed_sign.log 2>&1
-# 京东极速版签到免单
-18 8,20 * * * node /scripts/jd_speed_signfree.js >> /scripts/logs/jd_speed_signfree.log 2>&1
 # 特务Z-II
 35 10,18,20 * * * node /scripts/jd_superBrand.js >> /scripts/logs/jd_superBrand.log 2>&1
 # 特务集卡
@@ -153,4 +149,10 @@
 15,30,45 0 * * * node /scripts/jd_zjd.ts >> /scripts/logs/jd_zjd.log 2>&1
 # 京喜签到
 20 1,8 * * * node /scripts/jx_sign.js >> /scripts/logs/jx_sign.log 2>&1
+# 吃喝玩乐抽豆
+45 2 * * * node /scripts/jd_lottery_chwl.js >> /scripts/logs/jd_lottery_chwl.log 2>&1
+# 医药馆抽豆
+32 1 * * * node /scripts/jd_lottery_yyg.js >> /scripts/logs/jd_lottery_yyg.log 2>&1
+# 卷民空间站分红包
+15 8,12,21 * * * node /scripts/jd_couponspace.js >> /scripts/logs/jd_couponspace.log 2>&1
 
