@@ -1,11 +1,8 @@
 /*
- * 详细版京东京豆统计
- 
- * 默认不发送通知。
-[task_local]
-#京豆详情统计
-20 22 * * * jd_bean_info.js, tag=京豆详情统计,  enabled=true
- * */
+定时自定义
+2 20 14 12 * jd_bean_info.js
+ */
+
 const $ = new Env('京豆详情统计');
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
@@ -28,7 +25,6 @@ if ($.isNode()) {
     $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
     return;
   }
-  console.log(`\n正在查询今天所有账号的京豆收入......`);
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
@@ -44,6 +40,7 @@ if ($.isNode()) {
       $.message = '';
       $.balance = 0;
       $.expiredBalance = 0;
+      $.UA=require('./USER_AGENTS').UARAM();
       //await TotalBean();
       //console.log(`\n********开始【京东账号${$.index}】${$.nickName || $.UserName}******\n`);
       if (!$.isLogin) {
@@ -56,13 +53,13 @@ if ($.isNode()) {
       }
       await bean();
       await showMsg();
-			await $.wait(10*2000);
+      await $.wait(2000);
     }
   }
   allMessage += `\n今日全部账号收入：${allBean}个京豆 🐶\n`
   console.log(`${allMessage}`)
   if ($.isNode() && allMessage) {
-    //await notify.sendNotify(`${$.name}`, `${allMessage}`, { url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean` })
+    await notify.sendNotify(`${$.name}`, `${allMessage}`, { url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean` })
   }
 })()
     .catch((e) => {
@@ -77,7 +74,7 @@ async function showMsg() {
   allMessage += `今日收入总计：${$.todayIncomeBean}京豆 🐶\n`
   allBean = allBean + parseInt($.todayIncomeBean)
   for (let key of myMap.keys()) {
-    allMessage += key + ' ---> ' +myMap.get(key)+'京豆 🐶\n'
+    allMessage += "【" +myMap.get(key)+"豆"+"】 "+key+'\n'
   }
   myMap = new Map()
   // if ($.isNode()) {
@@ -98,7 +95,7 @@ async function bean() {
   do {
     let response = await getJingBeanBalanceDetail(page);
     // console.log(`第${page}页: ${JSON.stringify(response)}`);
-		await $.wait(1000);
+    await $.wait(1000);
     if (response && response.code === "0") {
       page++;
       let detailList = response.detailList;
@@ -125,8 +122,8 @@ async function bean() {
       // console.log(`cookie已过期，或者填写不规范，跳出`)
       t = 1;
     } else {
-      // console.log(`未知情况：${JSON.stringify(response)}`);
-      // console.log(`未知情况，跳出`)
+      console.log(`未知情况：${JSON.stringify(response)}`);
+      console.log(`未知情况，跳出`)
       t = 1;
     }
   } while (t === 0);
@@ -204,7 +201,7 @@ function getJingBeanBalanceDetail(page) {
       "url": `https://api.m.jd.com/client.action?functionId=getJingBeanBalanceDetail`,
       "body": `body=${escape(JSON.stringify({"pageSize": "20", "page": page.toString()}))}&appid=ld`,
       "headers": {
-        'User-Agent': $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.4.4;14.3;network/4g;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1"),
+        'User-Agent': $.UA,
         'Host': 'api.m.jd.com',
         'Content-Type': 'application/x-www-form-urlencoded',
         'Cookie': cookie,
@@ -213,8 +210,8 @@ function getJingBeanBalanceDetail(page) {
     $.post(options, (err, resp, data) => {
       try {
         if (err) {
-          // console.log(`${JSON.stringify(err)}`)
-          // console.log(`${$.name} API请求失败，请检查网路重试`)
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           if (data) {
             data = JSON.parse(data);
