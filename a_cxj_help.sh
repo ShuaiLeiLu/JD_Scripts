@@ -3,10 +3,12 @@
 # export JD_LOG_XYZ_TOKEN="从机器人获取的token"
 # export Proxy_Url="代理网址 例如：星空、熊猫 生成选择txt 一次一个"
 # export CXJ_HELP_PINS="jd_xxx&jd_xxx" # 指定pin助力，多个用英文&分割
-# export CXJ_HELP_DEALY="2" #助力等待2秒,可选参数,可以不填,默认0秒
-# export CXJ_HELP_STARTCK="10" #指定前10个ck助力
+# export CXJ_HELP_DEALY="2" #助力等待2秒,可选参数,可以不填,默认2秒
+# export CXJ_HELP_STARTCK="10" #指定前10个ck为车头
 # export CXJ_BAN_PINS="jd_xx&jd_xx" #助力跳过的pin
 # export CXJ_MCK="true" #启用MCK，默认禁用MCK
+# export CXJ_HELP_USE_PROXY="true" #强制使用代理 默认不用代理 可选参数,可以不填。
+# export CXJ_HELP_CK_START_INDEX="10" #从第11个ck开始助力
 # 支持CXJ_HELP_PINS 或者 链接方式(`cxj_list.txt`存放需要助力的URL,一行一个)
 pwd
 _ftype=""

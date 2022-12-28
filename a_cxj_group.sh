@@ -6,7 +6,8 @@
 # export CXJ_GROUP_COUNT="30" # 每队多少人, 默认30人或者满员 可不填
 # exprot CXJ_GROUP_BAN_PINS="jd_xxx&jd_xxx" #跳过黑号pin
 # export CXJ_MCK="true" #启用MCK，默认禁用MCK
-# export CXJ_GROUP_DEALY="2" #等待2秒,可选参数,可以不填,默认0秒
+# export CXJ_GROUP_DEALY="2" #等待2秒,可选参数,可以不填,默认2秒
+# export CXJ_GROUP_USE_PROXY="true" #强制使用代理 默认不用代理 可选参数,可以不填。
 # 支持CXJ_GROUP_PINS 或者 链接方式(`cxj_group_list.txt`存放需要组队的URL,一行一个)
 pwd
 _ftype=""

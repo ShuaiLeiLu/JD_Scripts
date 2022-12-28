@@ -8,6 +8,7 @@
 # export CXJ_BINGFA_COUNT="5" # 5个并发数量，限制最多20个，默认4个
 # export CXJ_MCK="true" #启用MCK，默认禁用MCK
 # export CXJ_TASK_BAN_PINS="jd_xxx&jd_xxx" #跳过黑号pin
+# export CXJ_TASK_USE_PROXY="true" #强制使用代理 默认不用代理 可选参数,可以不填。
 pwd
 _ftype=""
 get_arch=`arch`

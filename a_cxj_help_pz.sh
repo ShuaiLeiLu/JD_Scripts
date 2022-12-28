@@ -3,11 +3,12 @@
 # export JD_LOG_XYZ_TOKEN="从机器人获取的token"
 # export Proxy_Url="代理网址 例如：星空、熊猫 生成选择txt 一次一个"
 # export CXJ_HELP_PZ_PINS="jd_xxx&jd_xxx" # 指定pin助力，多个用英文&分割
-# export CXJ_HELP_PZ_DEALY="2" #助力等待2秒,可选参数,可以不填,默认0秒
+# export CXJ_HELP_PZ_DEALY="2" #助力等待2秒,可选参数,可以不填,默认2秒
 # export CXJ_PZ_CK_START_INDEX="10" #从第11个ck开始助力
 # export CXJ_PZ_INVITE_CODES="xxx&xxx" #膨胀助力码 & 分隔，如填写会优先执行
 # export CXJ_PZ_BAN_PINS="jd_xxx&jd_xxx" #跳过黑号pin
 # export CXJ_MCK="true" #启用MCK，默认禁用MCK
+# export CXJ_PZ_USE_PROXY="true" #强制使用代理 默认不用代理 可选参数,可以不填。
 # 支持 膨胀助力码(CXJ_PZ_INVITE_CODES) 或 pin(CXJ_HELP_PZ_PINS) 或者 链接方式(`cxj_pz_list.txt`存放需要助力的URL,一行一个)
 pwd
 _ftype=""
