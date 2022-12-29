@@ -5,11 +5,11 @@
 第一个账号助力作者 其他依次助力CK1
 注意：第一个CK黑号会全部助力所填写的助力码
 
-cron:59 3,12 26-31,1-15 12,1
+cron:59 3,12 26-31,1-15 12,1 * 
 ============Quantumultx===============
 [task_local]
 #12.26-1.15 金龙鱼大牌风暴
-59 3,12 26-31,1-15 12,1 jd_opencardL284.js, tag=12.26-1.15 金龙鱼大牌风暴, enabled=true
+59 3,12 26-31,1-15 12,1 * jd_opencardL284.js, tag=12.26-1.15 金龙鱼大牌风暴, enabled=true
 */
 let opencard_toShop = "false"
 const $ = new Env("12.26-1.15 金龙鱼大牌风暴");
