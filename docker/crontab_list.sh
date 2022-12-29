@@ -155,4 +155,6 @@
 32 1 * * * node /scripts/jd_lottery_yyg.js >> /scripts/logs/jd_lottery_yyg.log 2>&1
 # 卷民空间站分红包
 15 8,12,21 * * * node /scripts/jd_couponspace.js >> /scripts/logs/jd_couponspace.log 2>&1
+# 年货节分红包
+0 0,10,20 * * * node /scripts/jd_redhelp.js >> /scripts/logs/jd_redhelp.log 2>&1
 
