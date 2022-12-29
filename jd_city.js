@@ -51,9 +51,9 @@ let inviteCodes = []
     console.log("3次助力机会,默认开前面3个账号")
     if (helpAuthor === true) {
         console.log("多余助力顺便帮助作者, 如果不帮助 helpAuthor 设置 false")
-        inviteCodes = await getAuthorCodeList('https://gitee.com/fatelight/code/raw/master/ct.json')
+        inviteCodes = await getAuthorCodeList('https://raw.githubusercontent.com/ShuaiLeiLu/JD_Scripts/main/docker/ct.json')
         if($.getAuthorCodeListerr === false){
-            inviteCodes = await getAuthorCodeList('https://raw.githubusercontent.com/okyyds/yyds/master/docker/ct.json')
+            inviteCodes = await getAuthorCodeList('https://raw.githubusercontent.com/ShuaiLeiLu/JD_Scripts/main/docker/ct.json')
             if ($.getAuthorCodeListerr === false) {
                 inviteCodes = [
                 ]
