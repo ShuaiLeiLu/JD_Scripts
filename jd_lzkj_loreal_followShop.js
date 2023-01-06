@@ -1,7 +1,7 @@
 /*
 活动名称：关注店铺有礼（超级无线欧莱雅）
 活动链接：https://lzkj-isv.isvjcloud.com/prod/cc/interactsaas/index?activityType=10069&templateId=<模板id>&activityId=<活动id>&nodeId=<nodeid>&prd=cjwx
-					https://lorealjdcampaign-rc.isvjcloud.com/interact/index?activityType=10069&templateId=<模板id>&activityId=<活动id>&nodeId=<nodeid>&prd=cjwx
+					https://lorealjdcampaign-rc.isvjcloud.com/interactsaas/index?activityType=10069&templateId=<模板id>&activityId=<活动id>&nodeId=<nodeid>&prd=cjwx
 环境变量：jd_lzkj_loreal_followShop_url // 活动链接
 
 cron:1 1 1 1 *

@@ -1,6 +1,7 @@
 /**
 活动名称：店铺抽奖（超级无线欧莱雅）
 活动链接：https://lzkj-isv.isvjcloud.com/prod/cc/interactsaas/index?activityType=<10020/10021/10026/10080>&templateId=<模板id>&activityId=<活动id>&nodeId=<nodeid>&prd=cjwx
+					https://lorealjdcampaign-rc.isvjcloud.com/interactsaas/index?activityType=<10020/10021/10026/10080>&templateId=<模板id>&activityId=<活动id>&nodeId=<nodeid>&prd=cjwx
 环境变量：jd_lzkj_loreal_draw_url // 活动链接
 
 cron:1 1 1 1 *
