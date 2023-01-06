@@ -282,7 +282,7 @@ if(DisableIndex!=-1){
 	EnableJxMC=false;	
 }
 //京喜工厂
-let EnableJxGC=true;
+let EnableJxGC=false;
 DisableIndex=strDisableList.findIndex((item) => item === "京喜工厂");
 if(DisableIndex!=-1){
 	console.log("检测到设定关闭京喜工厂查询");
