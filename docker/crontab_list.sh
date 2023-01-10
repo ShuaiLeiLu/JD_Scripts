@@ -91,10 +91,6 @@
 3 0-23/11 * * * node /scripts/jd_moneyTree.js >> /scripts/logs/jd_moneyTree.log 2>&1
 # 生鲜早起打卡
 15 6,7 * * * node /scripts/jd_morningSc.js >> /scripts/logs/jd_morningSc.log 2>&1
-# 东东萌宠
-15 6-18/6 * * * node /scripts/jd_pet.js >> /scripts/logs/jd_pet.log 2>&1
-# 东东萌宠内部互助
-30 5,20 * * * node /scripts/jd_pet_help.js >> /scripts/logs/jd_pet_help.log 2>&1
 # 种豆得豆
 1 7-21/2 * * * node /scripts/jd_plantBean.js >> /scripts/logs/jd_plantBean.log 2>&1
 # 种豆得豆内部互助
@@ -149,6 +145,8 @@
 15,30,45 0 * * * node /scripts/jd_zjd.ts >> /scripts/logs/jd_zjd.log 2>&1
 # 京喜签到
 20 1,8 * * * node /scripts/jx_sign.js >> /scripts/logs/jx_sign.log 2>&1
+# 京喜签到助力
+0 10 * * * node /scripts/jx_sign_help.js >> /scripts/logs/jx_sign_help.log 2>&1
 # 吃喝玩乐抽豆
 45 2 * * * node /scripts/jd_lottery_chwl.js >> /scripts/logs/jd_lottery_chwl.log 2>&1
 # 医药馆抽豆
@@ -157,4 +155,6 @@
 15 8,12,21 * * * node /scripts/jd_couponspace.js >> /scripts/logs/jd_couponspace.log 2>&1
 # 年货节分红包
 0 0,10,20 * * * node /scripts/jd_redhelp.js >> /scripts/logs/jd_redhelp.log 2>&1
+# 购物抵现金
+10 1 * * * node /scripts/jd_lotty2.js >> /scripts/logs/jd_lotty2.log 2>&1
 
