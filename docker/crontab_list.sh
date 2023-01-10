@@ -114,11 +114,17 @@
 # 特务Z-II
 35 10,18,20 * * * node /scripts/jd_superBrand.js >> /scripts/logs/jd_superBrand.log 2>&1
 # 特务集卡
-2 10,18,20 * * * node /scripts/jd_superBrandJK.js >> /scripts/logs/jd_superBrandJK.log 2>&1
+2 10,18,20 * * * node /scripts/jd_superBrandJK_1.js >> /scripts/logs/jd_superBrandJK_1.log 2>&1
 # 特务集勋章
 8 10,18,20 * * * node /scripts/jd_superBrandJXZ.js >> /scripts/logs/jd_superBrandJXZ.log 2>&1
+# 频道关注
+6 8 * * * node /scripts/jd_supergz.js >> /scripts/logs/jd_supergz.log 2>&1
 # 特务之明星送好礼
 36 2,19 * * * node /scripts/jd_superBrandStar.js >> /scripts/logs/jd_superBrandStar.log 2>&1
+# 京东超市任务
+59 59 9 * * * node /scripts/jd_supermarket.js >> /scripts/logs/jd_supermarket.log 2>&1
+# 京东超市兑换
+59 59 9 * * * node /scripts/jd_supermarket_exchange.js >> /scripts/logs/jd_supermarket_exchange.log 2>&1
 # 京东试用
 44 1-22/5 * * * node /scripts/jd_try.js >> /scripts/logs/jd_try.log 2>&1
 # 京东试用待领取通知
@@ -157,4 +163,10 @@
 0 0,10,20 * * * node /scripts/jd_redhelp.js >> /scripts/logs/jd_redhelp.log 2>&1
 # 购物抵现金
 10 1 * * * node /scripts/jd_lotty2.js >> /scripts/logs/jd_lotty2.log 2>&1
+# 京东魔方
+45 10 * * * node /scripts/jd_mf_new.js >> /scripts/logs/jd_mf_new.log 2>&1
+# 秒秒币
+38 9 * * * node /scripts/jd_ms.js >> /scripts/logs/jd_ms.log 2>&1
+# 点点券
+35 16 * * * node /scripts/jd_necklace_6dy.js >> /scripts/logs/jd_necklace_6dy.log 2>&1
 
