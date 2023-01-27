@@ -153,16 +153,14 @@
 20 1,8 * * * node /scripts/jx_sign.js >> /scripts/logs/jx_sign.log 2>&1
 # 京喜签到助力
 0 10 * * * node /scripts/jx_sign_help.js >> /scripts/logs/jx_sign_help.log 2>&1
+# 超级品牌殿堂
+18 10,18 * * * node /scripts/jd_ppdt.js >> /scripts/logs/jd_ppdt.log 2>&1
 # 吃喝玩乐抽豆
 45 2 * * * node /scripts/jd_lottery_chwl.js >> /scripts/logs/jd_lottery_chwl.log 2>&1
 # 医药馆抽豆
 32 1 * * * node /scripts/jd_lottery_yyg.js >> /scripts/logs/jd_lottery_yyg.log 2>&1
 # 卷民空间站分红包
 15 8,12,21 * * * node /scripts/jd_couponspace.js >> /scripts/logs/jd_couponspace.log 2>&1
-# 年货节分红包
-0 0,10,20 * * * node /scripts/jd_redhelp.js >> /scripts/logs/jd_redhelp.log 2>&1
-# 购物抵现金
-10 1 * * * node /scripts/jd_lotty2.js >> /scripts/logs/jd_lotty2.log 2>&1
 # 京东魔方
 45 10 * * * node /scripts/jd_mf_new.js >> /scripts/logs/jd_mf_new.log 2>&1
 # 秒秒币
