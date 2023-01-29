@@ -2,13 +2,24 @@
 领京豆额外奖励&抢京豆
 脚本自带助力码，介意者可将 29行 helpAuthor 变量设置为 false
 活动入口：京东APP首页-领京豆
+更新地址：https://raw.githubusercontent.com/shufflewzc/faker2/main/jd_bean_home.js
 已支持IOS双京东账号, Node.js支持N个京东账号
+脚本兼容: QuantumultX, Surge, Loon, 小火箭，JSBox, Node.js
+============Quantumultx===============
 [task_local]
 #领京豆额外奖励
-23 1,18 * * * jd_bean_home, tag=领京豆额外奖励, enabled=true
+23 1,18 * * * https://raw.githubusercontent.com/shufflewzc/faker2/main/jd_bean_home.js, tag=领京豆额外奖励, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jd_bean_home.png, enabled=true
 
+================Loon==============
+[Script]
+cron "23 1,18 * * *" script-path=https://raw.githubusercontent.com/shufflewzc/faker2/main/jd_bean_home.js, tag=领京豆额外奖励
+
+===============Surge=================
+领京豆额外奖励 = type=cron,cronexp="23 1,18 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/shufflewzc/faker2/main/jd_bean_home.js
+
+============小火箭=========
+领京豆额外奖励 = type=cron,script-path=https://raw.githubusercontent.com/shufflewzc/faker2/main/jd_bean_home.js, cronexpr="23 1,18 * * *", timeout=3600, enable=true
  */
-
 const $ = new Env('领京豆额外奖励');
 
 const notify = $.isNode() ? require('./sendNotify') : '';
@@ -44,7 +55,7 @@ const JD_API_HOST = 'https://api.m.jd.com/';
       $.nickName = '';
       message = '';
       uuid = randomString()
-      //await TotalBean();
+      await TotalBean();
       console.log(`\n******开始【京东账号${$.index}】${$.nickName || $.UserName}*********\n`);
       if (!$.isLogin) {
         $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
@@ -55,7 +66,7 @@ const JD_API_HOST = 'https://api.m.jd.com/';
         continue
       }
       await jdBeanHome();
-			await $.wait(parseInt(Math.random() * 5000 + 8000, 10))
+      await $.wait(parseInt(Math.random() * 5000 + 8000, 10))
     }
   }
   // for (let i = 0; i < cookiesArr.length; i++) {
@@ -102,12 +113,12 @@ const JD_API_HOST = 'https://api.m.jd.com/';
   //   }
   // }
 })()
-  .catch((e) => {
-    $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
-  })
-  .finally(() => {
-    $.done();
-  })
+    .catch((e) => {
+      $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
+    })
+    .finally(() => {
+      $.done();
+    })
 
 async function jdBeanHome() {
   try {
@@ -117,10 +128,10 @@ async function jdBeanHome() {
     //   await $.wait(1000)
     //   if ($.doneState) break
     // }
-		$.outFlag = false
-		do {
+    $.outFlag = false
+    do {
       await doTask2()
-			if ($.outFlag) break
+      if ($.outFlag) break
       await $.wait(5000)
     } while (!$.doneState)
     await $.wait(1000)
@@ -128,7 +139,7 @@ async function jdBeanHome() {
     await $.wait(1000)
     await getUserInfo()
     await $.wait(1000)
-    // await getTaskList();
+    await getTaskList();
     await receiveJd2();
 
     //await morningGetBean()
@@ -276,7 +287,7 @@ function beanDoTask(body, taskType) {
               } else {
                 console.log(`完成任务失败：${data}`)
               }
-            } 
+            }
           }
         }
       } catch (e) {
@@ -368,10 +379,10 @@ function sceneGetCoupon() {
 }
 function randomString() {
   return Math.random().toString(16).slice(2, 10) +
-    Math.random().toString(16).slice(2, 10) +
-    Math.random().toString(16).slice(2, 10) +
-    Math.random().toString(16).slice(2, 10) +
-    Math.random().toString(16).slice(2, 10)
+      Math.random().toString(16).slice(2, 10) +
+      Math.random().toString(16).slice(2, 10) +
+      Math.random().toString(16).slice(2, 10) +
+      Math.random().toString(16).slice(2, 10)
 }
 
 function getRandomInt(min, max) {
@@ -380,37 +391,37 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 function doTask2() {
-    return new Promise(resolve => {
-      const body = {"awardFlag": false, "skuId": `${getRandomInt(10000000,20000000)}`, "source": "feeds", "type": '1'};
-      $.post(taskUrl('beanHomeTask', body), (err, resp, data) => {
-        try {
-          if (err) {
-            $.outFlag = true
-						console.log(`${JSON.stringify(err)}`)
-            console.log(`doTask2 API请求失败，请检查网路重试`)
-          } else {
-            if (safeGet(data)) {
-              data = JSON.parse(data);
-              if (data.code === '0' && data.data){
-                console.log(`任务完成进度：${data.data.taskProgress}/${data.data.taskThreshold}`)
-                if(data.data.taskProgress === data.data.taskThreshold)
-                  $.doneState = true
-              } else if (data.code === '0' && data.errorCode === 'HT201') {
+  return new Promise(resolve => {
+    const body = {"awardFlag": false, "skuId": `${getRandomInt(10000000,20000000)}`, "source": "feeds", "type": '1'};
+    $.post(taskUrl('beanHomeTask', body), (err, resp, data) => {
+      try {
+        if (err) {
+          $.outFlag = true
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`doTask2 API请求失败，请检查网路重试`)
+        } else {
+          if (safeGet(data)) {
+            data = JSON.parse(data);
+            if (data.code === '0' && data.data){
+              console.log(`任务完成进度：${data.data.taskProgress}/${data.data.taskThreshold}`)
+              if(data.data.taskProgress === data.data.taskThreshold)
                 $.doneState = true
-              } else {
-                //HT304风控用户
-                $.doneState = true
-                console.log(`做任务异常：${JSON.stringify(data)}`)
-              }
+            } else if (data.code === '0' && data.errorCode === 'HT201') {
+              $.doneState = true
+            } else {
+              //HT304风控用户
+              $.doneState = true
+              console.log(`做任务异常：${JSON.stringify(data)}`)
             }
           }
-        } catch (e) {
-          $.logErr(e, resp)
-        } finally {
-          resolve();
         }
-      })
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve();
+      }
     })
+  })
 }
 
 function getAuthorShareCode(url) {
@@ -637,7 +648,7 @@ function award(source="home") {
         if (err) {
           console.log(`${JSON.stringify(err)}`)
           console.log(`award API请求失败，请检查网路重试`)
-					$.outFlag = true
+          $.outFlag = true
         } else {
           if (safeGet(data)) {
             data = JSON.parse(data);
@@ -679,7 +690,7 @@ function receiveJd2() {
         if (err) {
           console.log(`${JSON.stringify(err)}`)
           console.log(`receiveJd2 API请求失败，请检查网路重试`)
-					$.outFlag = true
+          $.outFlag = true
         } else {
           if (safeGet(data)) {
             data = JSON.parse(data);
