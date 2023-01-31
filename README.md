@@ -12,8 +12,12 @@
 ## 交流群
 ### TG
 <a href="https://t.me/+hHXs_RBjJkYxOGNl">点击加入TG群</a>
+
 ### QQ
-<img src="./utils/QQ.png" width="200" alt="二维码"/>
+<img src="./backUp/image/qq.png" width="100" alt="二维码"/>
+
+### 微信
+<img src="./backUp/image/wx.png" width="100" alt="二维码"/>
 
 
 ### 注意：代挂的请关闭小额免密登录,以免产生经济纠纷
