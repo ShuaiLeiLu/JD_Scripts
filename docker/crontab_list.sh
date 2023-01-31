@@ -125,8 +125,10 @@
 6 8 * * * node /scripts/jd_supergz.js >> /scripts/logs/jd_supergz.log 2>&1
 # 特务之明星送好礼
 36 2,19 * * * node /scripts/jd_superBrandStar.js >> /scripts/logs/jd_superBrandStar.log 2>&1
+# 特物Z_超级品牌殿堂
+18 10,18 * * * node /scripts/jd_superBrandz.js >> /scripts/logs/jd_superBrandz.log 2>&1
 # 京东超市任务
-59 59 9 * * * node /scripts/jd_supermarket.js >> /scripts/logs/jd_supermarket.log 2>&1
+59 59 9 * * * node /scripts/jd_superMarket.js >> /scripts/logs/jd_superMarket.log 2>&1
 # 京东超市兑换
 59 59 9 * * * node /scripts/jd_supermarket_exchange.js >> /scripts/logs/jd_supermarket_exchange.log 2>&1
 # 京东试用
