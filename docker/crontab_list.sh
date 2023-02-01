@@ -169,8 +169,9 @@
 15 8,12,21 * * * node /scripts/jd_couponspace.js >> /scripts/logs/jd_couponspace.log 2>&1
 # 京东魔方
 45 10 * * * node /scripts/jd_mf_new.js >> /scripts/logs/jd_mf_new.log 2>&1
-# 秒秒币
-38 9 * * * node /scripts/jd_ms.js >> /scripts/logs/jd_ms.log 2>&1
 # 点点券
 35 16 * * * node /scripts/jd_necklace_6dy.js >> /scripts/logs/jd_necklace_6dy.log 2>&1
+# 1.30-2.25 一加 Ace2 新品预约
+31 0 31,1-25 1,2 * node /scripts/jd_yjAce2.js >> /scripts/logs/jd_yjAce2.log 2>&1
+
 
