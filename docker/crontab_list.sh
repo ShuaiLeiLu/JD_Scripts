@@ -175,6 +175,8 @@
 10 0 * * * node /scripts/jd_washbeans.js >> /scripts/logs/jd_washbeans.log 2>&1
 # 物流积分换豆
 30 0 * * * node /scripts/jd_fen2bean.js >> /scripts/logs/jd_fen2bean.log 2>&1
+# 2.6-2.28 小米浏览商品赢大奖
+0 0,12 6-28 2 * node /scripts/jd_xm.js >> /scripts/logs/jd_xm.log 2>&1
 
 
 
