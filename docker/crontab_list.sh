@@ -171,5 +171,10 @@
 35 16 * * * node /scripts/jd_necklace_6dy.js >> /scripts/logs/jd_necklace_6dy.log 2>&1
 # 1.30-2.25 一加 Ace2 新品预约
 31 0 31,1-25 1,2 * node /scripts/jd_yjAce2.js >> /scripts/logs/jd_yjAce2.log 2>&1
+# 临期京豆换积分
+10 0 * * * node /scripts/jd_washbeans.js >> /scripts/logs/jd_washbeans.log 2>&1
+# 物流积分换豆
+30 0 * * * node /scripts/jd_fen2bean.js >> /scripts/logs/jd_fen2bean.log 2>&1
+
 
 
