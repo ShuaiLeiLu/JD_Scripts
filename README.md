@@ -4,20 +4,28 @@
 <a href="https://supermanito.github.io/Helloworld/">搭建教程</a>
 
 ## 代挂
-### <a href="http://43.139.83.72:2081">微信扫一扫登录</a>
-### <a href="http://89.208.245.205:6789">手机验证码登录</a>
-### 备用登录
-登录失败<a href="http://43.139.83.72:8081/index.html#/login">**自助提交WsKey**</a>
+
+### 机器人
+微信机器人<br/>
+
+<img src="./backUp/image/wx_bot.png" width="130" alt="二维码"/>
+
+QQ机器人<br/>
+
+<img src="./backUp/image/qq_bot.png" width="130" alt="二维码"/>
+
+
+使用方法：机器人发送 扫码登录 即可上车
 
 ## 交流群
 ### TG
 <a href="https://t.me/+hHXs_RBjJkYxOGNl">点击加入TG群</a>
 
 ### QQ
-<img src="./backUp/image/qq.png" width="100" alt="二维码"/>
+<img src="./backUp/image/qq.png" width="130" alt="二维码"/>
 
 ### 微信
-<img src="./backUp/image/wx.png" width="100" alt="二维码"/>
+<img src="./backUp/image/wx.png" width="130" alt="二维码"/>
 
 
 ### 注意：代挂的请关闭小额免密登录,以免产生经济纠纷
