@@ -72,7 +72,7 @@
 # 汪汪乐园每日任务
 0 1,7,20 * * * node /scripts/jd_joy_park_task.js >> /scripts/logs/jd_joy_park_task.log 2>&1
 # 汪汪提现
-0 1,7,20 * * * node /scripts/jd_joyrunred.js >> /scripts/logs/jd_joyrunred.log 2>&1
+0 0 * * * node /scripts/jd_joyrunred.js >> /scripts/logs/jd_joyrunred.log 2>&1
 # JOY庄园每日任务
 11 1,15 * * * node /scripts/jd_joymanor_task.js >> /scripts/logs/jd_joymanor_task.log 2>&1
 # 金融双签-加密

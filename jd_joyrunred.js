@@ -1,7 +1,7 @@
 
 /*
 赛跑兑10红包
-1 1 1 1 * jd_joyrunred.js
+0 0 * * * jd_joyrunred.js
  */
 
 const $ = new Env('赛跑兑10红包');
