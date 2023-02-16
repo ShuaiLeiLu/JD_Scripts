@@ -71,6 +71,8 @@
 30 0 * * * node /scripts/jd_joy_park_run.ts >> /scripts/logs/jd_joy_park_run.log 2>&1
 # 汪汪乐园每日任务
 0 1,7,20 * * * node /scripts/jd_joy_park_task.js >> /scripts/logs/jd_joy_park_task.log 2>&1
+# 汪汪提现
+0 1,7,20 * * * node /scripts/jd_joyrunred.js >> /scripts/logs/jd_joyrunred.log 2>&1
 # JOY庄园每日任务
 11 1,15 * * * node /scripts/jd_joymanor_task.js >> /scripts/logs/jd_joymanor_task.log 2>&1
 # 金融双签-加密
@@ -87,6 +89,10 @@
 0 0 * * * node /scripts/jd_kanjia.js >> /scripts/logs/jd_kanjia.log 2>&1
 # 京东快递签到
 10 0 * * * node /scripts/jd_kd.js >> /scripts/logs/jd_kd.log 2>&1
+# 京东快递签到
+10 0 * * * node /scripts/jd_kuaidi.js >> /scripts/logs/jd_kuaidi.log 2>&1
+# 京东快递签到
+10 0 * * * node /scripts/jd_kuaidi_leaf.js >> /scripts/logs/jd_kuaidi_leaf.log 2>&1
 # 京东摇钱树
 3 0-23/11 * * * node /scripts/jd_moneyTree.js >> /scripts/logs/jd_moneyTree.log 2>&1
 # 生鲜早起打卡
