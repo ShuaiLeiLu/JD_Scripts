@@ -3,7 +3,7 @@
 ## HelloWord 面板
 <a href="https://supermanito.github.io/Helloworld/">搭建教程</a>
 
-## 代挂
+# 代挂
 
 ### 机器人
 微信机器人<br/>
@@ -17,10 +17,7 @@ QQ机器人<br/>
 
 使用方法：机器人发送 扫码登录 即可上车
 
-## 交流群
-### TG
-<a href="https://t.me/+hHXs_RBjJkYxOGNl">点击加入TG群</a>
-
+# 交流群
 ### QQ
 <img src="./backUp/image/qq.png" width="130" alt="二维码"/>
 
