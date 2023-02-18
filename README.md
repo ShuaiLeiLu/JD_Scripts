@@ -4,8 +4,7 @@
 <a href="https://supermanito.github.io/Helloworld/">搭建教程</a>
 
 # 代挂
-
-### 机器人
+##机器人
 微信机器人<br/>
 
 <img src="./backUp/image/wx_bot.png" width="130" alt="二维码"/>
@@ -18,12 +17,14 @@ QQ机器人<br/>
 使用方法：机器人发送 扫码登录 即可上车
 
 # 交流群
-### QQ
+## QQ
 <img src="./backUp/image/qq.png" width="130" alt="二维码"/>
 
-### 微信
-<img src="./backUp/image/wx.png" width="130" alt="二维码"/>
+## JD微信优惠
+<img src="backUp/image/jd.png" width="130" alt="二维码"/>
 
+## TB微信优惠
+<img src="./backUp/image/tb.png" width="130" alt="二维码"/>
 
 ### 注意：代挂的请关闭小额免密登录,以免产生经济纠纷
 ⭕活动攻略:⭕<br/>
