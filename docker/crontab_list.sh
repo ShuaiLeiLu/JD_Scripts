@@ -159,8 +159,6 @@
 20 0 * * * node /scripts/jd_zjb.js >> /scripts/logs/jd_zjb.log 2>&1
 # 赚喜豆-TS版
 15,30,45 0 * * * node /scripts/jd_zjd.ts >> /scripts/logs/jd_zjd.log 2>&1
-# 京喜签到
-20 1,8 * * * node /scripts/jx_sign.js >> /scripts/logs/jx_sign.log 2>&1
 # 京喜签到助力
 0 10 * * * node /scripts/jx_sign_help.js >> /scripts/logs/jx_sign_help.log 2>&1
 # 超级品牌殿堂
