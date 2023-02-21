@@ -11,7 +11,7 @@
 
 QQ机器人<br/>
 
-<img src="./backUp/image/qq_bot.png" width="130" alt="二维码"/>
+<img src="./backUp/image/qq_bot.png" width="130px" alt="二维码"/>
 
 
 使用方法：机器人发送 扫码登录 即可上车
