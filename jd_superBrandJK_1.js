@@ -12,16 +12,16 @@ const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
 let cookiesArr = [];
 if ($.isNode()) {
-    Object.keys(jdCookieNode).forEach((item) => {
-        cookiesArr.push(jdCookieNode[item])
-    })
-    if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => {
-    };
+	Object.keys(jdCookieNode).forEach((item) => {
+		cookiesArr.push(jdCookieNode[item])
+	})
+	if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => {
+	};
 } else {
-    cookiesArr = [
-        $.getdata("CookieJD"),
-        $.getdata("CookieJD2"),
-        ...$.toObj($.getdata("CookiesJD") || "[]").map((item) => item.cookie)].filter((item) => !!item);
+	cookiesArr = [
+		$.getdata("CookieJD"),
+		$.getdata("CookieJD2"),
+		...$.toObj($.getdata("CookiesJD") || "[]").map((item) => item.cookie)].filter((item) => !!item);
 }
 console.log('\n活动地址：首页下拉，需要开卡才能100%集齐，没有开卡的手动开，集齐晚上8点前瓜分\n')
 let shareList=[];
@@ -46,9 +46,9 @@ $.flag = false
 				}
 				continue;
 			}try{
-                
+
 				await main($.cookie);
-                if (_0x44559b == 0 && $.flag) return;
+				if (_0x44559b == 0 && $.flag) return;
 			}catch(_0x282ca){
 				console.log(_0x282ca);
 			}
@@ -88,10 +88,10 @@ $.flag = false
 			}else if(_0x224f8e.bizCode==='108'){
 				//console.log('助力次数已用完');
 				_0x4ce29d=false;
-      } else if (_0x224f8e.bizMsg.indexOf('风控') > -1) {
-                console.log('黑号跳过！');
-                break;
-            }
+			} else if (_0x224f8e.bizMsg.indexOf('风控') > -1) {
+				console.log('黑号跳过！');
+				break;
+			}
 			console.log('助力结果：'+_0x224f8e.bizMsg);
 			await $.wait(2000);
 		}
@@ -106,10 +106,10 @@ async function main(_0x14f2ac){
 	let _0x43a9de=await takeRequest(_0x14f2ac,'showSecondFloorCardInfo','{"source":"card"}');
 	if(_0x43a9de.bizCode == 'MP001'){
 		console.log('本期活动结束，等待下期。。。');
-        $.flag = true
-        return;
-    } else if (_0x43a9de.bizCode == '2001') {
-        console.log('黑号了！');
+		$.flag = true
+		return;
+	} else if (_0x43a9de.bizCode == '2001') {
+		console.log('黑号了！');
 		return;
 	}
 	let _0x215414=_0x43a9de.result.activityBaseInfo;
@@ -152,27 +152,27 @@ async function main(_0x14f2ac){
 		}if(_0x4a424c.completionFlag){
 			console.log('任务：'+_0x4a424c.assignmentName+',已完成');
 			continue;
-        } if (_0x4a424c.assignmentType === 1) {
-            for (let i = 0;i<(_0x4a424c.assignmentTimesLimit - _0x4a424c.completionCnt);i++) {
-                console.log('任务：' + _0x4a424c.assignmentName + ',去执行');
-                let _0x3c7f29 = _0x4a424c.ext.shoppingActivity && _0x4a424c.ext.shoppingActivity[i].itemId || _0x4a424c.ext.productsInfo[i].itemId ||'';
-                if (!_0x3c7f29) {
-                    console.log('任务：' + _0x4a424c.assignmentName + ',信息异常');
-                }
-                let _0x2d2e7c = await takeRequest(_0x14f2ac, 'superBrandDoTask', '{"source":"card","activityId":' + _0x23add7 + ',"encryptProjectId":"' + _0x5add38 + '","encryptAssignmentId":"' + _0x4a424c.encryptAssignmentId + '","assignmentType":' + _0x4a424c.assignmentType + ',"itemId":"' + _0x3c7f29 + '","actionType":0}');
-                console.log('执行结果：' + _0x2d2e7c.bizMsg);
-                await $.wait(3000);
-            }
+		} if (_0x4a424c.assignmentType === 1) {
+			for (let i = 0;i<(_0x4a424c.assignmentTimesLimit - _0x4a424c.completionCnt);i++) {
+				console.log('任务：' + _0x4a424c.assignmentName + ',去执行');
+				let _0x3c7f29 = _0x4a424c.ext.shoppingActivity && _0x4a424c.ext.shoppingActivity[i].itemId || _0x4a424c.ext.productsInfo[i].itemId ||'';
+				if (!_0x3c7f29) {
+					console.log('任务：' + _0x4a424c.assignmentName + ',信息异常');
+				}
+				let _0x2d2e7c = await takeRequest(_0x14f2ac, 'superBrandDoTask', '{"source":"card","activityId":' + _0x23add7 + ',"encryptProjectId":"' + _0x5add38 + '","encryptAssignmentId":"' + _0x4a424c.encryptAssignmentId + '","assignmentType":' + _0x4a424c.assignmentType + ',"itemId":"' + _0x3c7f29 + '","actionType":0}');
+				console.log('执行结果：' + _0x2d2e7c.bizMsg);
+				await $.wait(3000);
+			}
 		}if(_0x4a424c.assignmentType===3){
 			for (let i = 0; i < (_0x4a424c.assignmentTimesLimit - _0x4a424c.completionCnt); i++) {
-            console.log('任务：' + _0x4a424c.assignmentName + ',去执行');
-            let _0x440f46 = _0x4a424c.ext.followShop[i].itemId || '';
-            if (!_0x440f46) {
-                console.log('任务：' + _0x4a424c.assignmentName + ',信息异常');
-            }
-            let _0x2d2e7c = await takeRequest(_0x14f2ac, 'superBrandDoTask', '{"source":"card","activityId":' + _0x23add7 + ',"encryptProjectId":"' + _0x5add38 + '","encryptAssignmentId":"' + _0x4a424c.encryptAssignmentId + '","assignmentType":' + _0x4a424c.assignmentType + ',"itemId":"' + _0x440f46 + '","actionType":0}');
-            console.log('执行结果：' + _0x2d2e7c.bizMsg);
-            await $.wait(3000);
+				console.log('任务：' + _0x4a424c.assignmentName + ',去执行');
+				let _0x440f46 = _0x4a424c.ext.followShop[i].itemId || '';
+				if (!_0x440f46) {
+					console.log('任务：' + _0x4a424c.assignmentName + ',信息异常');
+				}
+				let _0x2d2e7c = await takeRequest(_0x14f2ac, 'superBrandDoTask', '{"source":"card","activityId":' + _0x23add7 + ',"encryptProjectId":"' + _0x5add38 + '","encryptAssignmentId":"' + _0x4a424c.encryptAssignmentId + '","assignmentType":' + _0x4a424c.assignmentType + ',"itemId":"' + _0x440f46 + '","actionType":0}');
+				console.log('执行结果：' + _0x2d2e7c.bizMsg);
+				await $.wait(3000);
 			}
 		}if(_0x4a424c.assignmentType===7){
 			console.log('任务：'+_0x4a424c.assignmentName+',去执行');
@@ -187,7 +187,7 @@ async function main(_0x14f2ac){
 			let _0x1e4481=_0x4a424c.ext.sign2||[];
 			if(_0x1e4481.length===0){
 				console.log('任务：'+_0x4a424c.assignmentName+',信息异常');
-			}if(_0x4a424c.assignmentName==='首页限时下拉'){
+			}if(_0x4a424c.assignmentName.includes("首页限时")){
 				for(let _0x5d0f56=0;_0x5d0f56<_0x1e4481.length;_0x5d0f56++){
 					if(_0x1e4481[_0x5d0f56].status===1){
 						console.log('任务：'+_0x4a424c.assignmentName+',去执行');

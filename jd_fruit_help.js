@@ -54,7 +54,7 @@ let NowHour = new Date().getHours();
 let llhelp = true;
 const fs = require('fs');
 let boolneedUpdate = false;
-let strShare = './Fruit_ShareCache.json';
+let strShare = './ ';
 let Fileexists = fs.existsSync(strShare);
 let TempShareCache = [];
 if (Fileexists) {
