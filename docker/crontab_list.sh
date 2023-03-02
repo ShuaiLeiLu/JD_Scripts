@@ -177,6 +177,8 @@
 30 0 0 * * * node /scripts/jd_washbeans.js >> /scripts/logs/jd_washbeans.log 2>&1
 # 物流积分换豆
 30 0 0 * * * node /scripts/jd_fen2bean.js >> /scripts/logs/jd_fen2bean.log 2>&1
+# 金融签到
+0 4 * * * node /scripts/jd_jrsign.js >> /scripts/logs/jd_jrsign.log 2>&1
 
 
 
