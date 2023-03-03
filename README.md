@@ -21,10 +21,10 @@ QQ机器人<br/>
 <img src="./backUp/image/qq.png" width="130" alt="二维码"/>
 
 ## JD微信优惠
-<img src="backUp/image/jd.png" width="130" alt="二维码"/>
+<img src="backUp/image/JD.jpg" width="130" alt="二维码"/>
 
 ## TB微信优惠
-<img src="./backUp/image/tb.png" width="130" alt="二维码"/>
+<img src="./backUp/image/TB.jpg" width="130" alt="二维码"/>
 
 ### 注意：代挂的请关闭小额免密登录,以免产生经济纠纷
 ⭕活动攻略:⭕<br/>
