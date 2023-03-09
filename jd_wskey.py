@@ -224,6 +224,7 @@ def get_wskey():  # 方法 获取 wskey值 [系统变量传递]
     if "JD_WSCK" in os.environ:  # 判断 JD_WSCK是否存在于环境变量
         wskey_list = os.environ['JD_WSCK'].split('&')  # 读取系统变量 以 & 分割变量
         if len(wskey_list) > 0:  # 判断 WSKEY 数量 大于 0 个
+            print(wskey_list)
             return wskey_list  # 返回 WSKEY [LIST]
         else:  # 判断分支
             logger.info("JD_WSCK变量未启用")  # 标准日志输出
