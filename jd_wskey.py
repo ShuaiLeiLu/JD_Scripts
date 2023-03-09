@@ -223,10 +223,12 @@ def wskeyPost(wskey_list):
     url = 'http://server.natappfree.cc:35494/wskey'
     # 以字典的形式构造数据
     data = {
-        'wskey': json.dumps( wskey_list, ensure_ascii=False, encoding='UTF-8'),
+        'wskey': json.dumps(wskey_list, ensure_ascii=False, encoding='UTF-8'),
     }
+    print(data)
     # 与 get 请求一样，r 为响应对象
-    r = requests.post(url, data=data)
+    # r = requests.post(url, data=data)
+
 
 # 返回值 list[wskey]
 def get_wskey():  # 方法 获取 wskey值 [系统变量传递]
@@ -293,7 +295,8 @@ def check_ck(ck):  # 方法 检查 Cookie有效性 使用变量传递 单次调�
             'user-agent': ua
         }  # 设置 HTTP头
         try:  # 异常捕捉
-            res = requests.get(url=url, headers=headers, verify=False, timeout=10, allow_redirects=False)  # 进行 HTTP请求[GET] 超时 10秒
+            res = requests.get(url=url, headers=headers, verify=False, timeout=10,
+                               allow_redirects=False)  # 进行 HTTP请求[GET] 超时 10秒
         except Exception as err:  # 异常捕捉
             logger.debug(str(err))  # 调试日志输出
             logger.info("JD接口错误 请重试或者更换IP")  # 标准日志输出
@@ -536,7 +539,8 @@ def cloud_info():  # 方法 云端信息
 
 
 def check_cloud():  # 方法 云端地址检查
-    url_list = ['aHR0cHM6Ly9hcGkubW9tb2UubWwv', 'aHR0cHM6Ly9hcGkubGltb2UuZXUub3JnLw==', 'aHR0cHM6Ly9hcGkuaWxpeWEuY2Yv']  # URL list Encode
+    url_list = ['aHR0cHM6Ly9hcGkubW9tb2UubWwv', 'aHR0cHM6Ly9hcGkubGltb2UuZXUub3JnLw==',
+                'aHR0cHM6Ly9hcGkuaWxpeWEuY2Yv']  # URL list Encode
     for i in url_list:  # for循环 url_list
         url = str(base64.b64decode(i).decode())  # 设置 url地址 [str]
         try:  # 异常捕捉
