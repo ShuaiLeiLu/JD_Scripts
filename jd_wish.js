@@ -1,7 +1,21 @@
 /*
 众筹许愿池
 活动入口：京东-京东众筹-众筹许愿池
-15 12,19 * * * jd_wish.js
+脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
+===============Quantumultx===============
+[task_local]
+#众筹许愿池
+40 0,2 * * * https://raw.githubusercontent.com/KingRan/JDJB/main/jd_wish.js, tag=众筹许愿池, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
+
+================Loon==============
+[Script]
+cron "40 0,2 * * *" script-path=https://raw.githubusercontent.com/KingRan/JDJB/main/jd_wish.js,tag=众筹许愿池
+
+===============Surge=================
+众筹许愿池 = type=cron,cronexp="40 0,2 * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/KingRan/JDJB/main/jd_wish.js
+
+============小火箭=========
+众筹许愿池 = type=cron,script-path=https://raw.githubusercontent.com/KingRan/JDJB/main/jd_wish.js, cronexpr="40 0,2 * * *", timeout=3600, enable=true
  */
 const $ = new Env('众筹许愿池');
 const notify = $.isNode() ? require('./sendNotify') : '';
@@ -11,8 +25,8 @@ let message = '', allMessage = '';
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '';
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
-let appIdArr = [];
-let appNameArr = [];
+let appIdArr = ["1FFVWyqyD"];
+let appNameArr = ["踏海寻村"];
 let appId, appName;
 $.shareCode = [];
 if ($.isNode()) {
@@ -40,7 +54,7 @@ if ($.isNode()) {
       $.isLogin = true;
       $.nickName = '';
       message = '';
-      await TotalBean();
+      //await TotalBean();
       console.log(`\n*******开始【京东账号${$.index}】${$.nickName || $.UserName}*********\n`);
       if (!$.isLogin) {
         $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
@@ -50,6 +64,7 @@ if ($.isNode()) {
         }
         continue
       }
+
       for (let j = 0; j < appIdArr.length; j++) {
         appId = appIdArr[j]
         appName = appNameArr[j]
@@ -63,13 +78,8 @@ if ($.isNode()) {
     if ($.isNode()) await notify.sendNotify($.name, allMessage);
     $.msg($.name, '', allMessage)
   }
-  // let res = await getAuthorShareCode('https://cdn.jsdelivr.net/gh/6dylan6/updateTeam@main/shareCodes/wish.json')
-  // if (!res) {
-  //   $.http.get({url: 'https://cdn.jsdelivr.net/gh/6dylan6/updateTeam@main/shareCodes/wish.json'}).then((resp) => {}).catch((e) => console.log('刷新CDN异常', e));
-  //   await $.wait(1000)
-  //   res = await getAuthorShareCode('https://cdn.jsdelivr.net/gh/6dylan6/updateTeam@main/shareCodes/wish.json')
-  // }
-  // $.shareCode = [...$.shareCode, ...(res || [])]
+  let res = await getAuthorShareCode('https://gitee.com/KingRan521/JD-Scripts/raw/master/shareCodes/wish.json')
+  $.shareCode = [...$.shareCode, ...(res || [])]
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
@@ -131,9 +141,8 @@ async function jd_wish() {
         console.log('抽太多次了，下次再继续吧！');
         break
       }
-      await $.wait(2000)
+      await $.wait(3000)
     }
-    if (message) allMessage += `京东账号${$.index} ${$.nickName || $.UserName}\n${appName}\n${message}${$.index !== cookiesArr.length ? '\n\n' : ''}`
 
   } catch (e) {
     $.logErr(e)
@@ -142,6 +151,7 @@ async function jd_wish() {
 
 async function healthyDay_getHomeData(type = true) {
   return new Promise(async resolve => {
+    // console.log(taskUrl('healthyDay_getHomeData', { "appId": appId, "taskToken": "", "channelId": 1 }));
     $.post(taskUrl('healthyDay_getHomeData', { "appId": appId, "taskToken": "", "channelId": 1 }), async (err, resp, data) => {
       try {
         if (err) {
@@ -159,7 +169,7 @@ async function healthyDay_getHomeData(type = true) {
                     if (vo.taskType === 13 || vo.taskType === 12) {
                       console.log(`点击热区`)
                       await harmony_collectScore({ "appId": appId, "taskToken": vo.simpleRecordInfoVo.taskToken, "taskId": vo.taskId, "actionType": "0" }, vo.taskType)
-                      await $.wait(1000)
+                      await $.wait(1500)
                     } else {
                       console.log(`【${vo.taskName}】已完成\n`)
                     }
@@ -171,14 +181,14 @@ async function healthyDay_getHomeData(type = true) {
                     if (vo.taskType === 13 || vo.taskType === 12) {
                       console.log(`签到`)
                       await harmony_collectScore({ "appId": appId, "taskToken": vo.simpleRecordInfoVo.taskToken, "taskId": vo.taskId, "actionType": "0" }, vo.taskType)
-                      await $.wait(1000)
+                      await $.wait(1500)
                     } else if (vo.taskType === 1) {
                       for (let key of Object.keys(vo.followShopVo)) {
                         let followShopVo = vo.followShopVo[key]
                         if (followShopVo.status !== 2) {
                           console.log(`【${followShopVo.shopName}】${vo.subTitleName}`)
                           await harmony_collectScore({ "appId": appId, "taskToken": followShopVo.taskToken, "taskId": vo.taskId, "actionType": "0" })
-                          await $.wait(1000)
+                          await $.wait(1500)
                         }
                       }
                     } else if (vo.taskType === 5) {
@@ -187,7 +197,7 @@ async function healthyDay_getHomeData(type = true) {
                         if (browseShopVo.status !== 2) {
                           console.log(`【${browseShopVo.skuName}】${vo.subTitleName}`)
                           await harmony_collectScore({ "appId": appId, "taskToken": browseShopVo.taskToken, "taskId": vo.taskId, "actionType": "0" })
-                          await $.wait(1000)
+                          await $.wait(1500)
                         }
                       }
                     } else if (vo.taskType === 15) {
@@ -196,7 +206,7 @@ async function healthyDay_getHomeData(type = true) {
                         if (productInfoVos.status !== 2) {
                           console.log(`【${productInfoVos.skuName}】${vo.subTitleName}`)
                           await harmony_collectScore({ "appId": appId, "taskToken": productInfoVos.taskToken, "taskId": vo.taskId, "actionType": "0" })
-                          await $.wait(1000)
+                          await $.wait(1500)
                         }
                       }
                     } else if (vo.taskType === 3) {
@@ -205,7 +215,7 @@ async function healthyDay_getHomeData(type = true) {
                         if (shoppingActivityVos.status !== 2) {
                           console.log(`【${vo.subTitleName}】`)
                           await harmony_collectScore({ "appId": appId, "taskToken": shoppingActivityVos.taskToken, "taskId": vo.taskId, "actionType": "0" })
-                          await $.wait(1000)
+                          await $.wait(1500)
                         }
                       }
                     } else if (vo.taskType === 8) {
@@ -216,7 +226,7 @@ async function healthyDay_getHomeData(type = true) {
                           await harmony_collectScore({ "appId": appId, "taskToken": productInfoVos.taskToken, "taskId": vo.taskId, "actionType": "1" })
                           await $.wait(vo.waitDuration * 1000)
                           await harmony_collectScore({ "appId": appId, "taskToken": productInfoVos.taskToken, "taskId": vo.taskId, "actionType": "0" })
-                          await $.wait(1000)
+                          await $.wait(1500)
                         }
                       }
                     } else if (vo.taskType === 27 && vo.taskId === 18) {
@@ -232,7 +242,7 @@ async function healthyDay_getHomeData(type = true) {
                             await $.wait(vo.waitDuration * 1000)
                           }
                           await harmony_collectScore({ "appId": appId, "taskToken": shoppingActivityVos.taskToken, "taskId": vo.taskId, "actionType": "0" })
-                          await $.wait(1000)
+                          await $.wait(1500)
                         }
                       }
                     } else if (vo.taskType === 14) {
