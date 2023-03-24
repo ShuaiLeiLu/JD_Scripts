@@ -21,7 +21,7 @@ const querystring = require('querystring');
 const exec = require('child_process').exec;
 const $ = new Env();
 const timeout = 15000; //超时时间(单位毫秒)
-console.log("加载sendNotify，当前版本: 20221118");
+console.log("加载sendNotify，当前版本: 20230314");
 // =======================================go-cqhttp通知设置区域===========================================
 //gobot_url 填写请求地址http://127.0.0.1/send_private_msg
 //gobot_token 填写在go-cqhttp文件设置的访问密钥
@@ -102,8 +102,6 @@ let IGOT_PUSH_KEY = '';
 //PUSH_PLUS_USER： 一对多推送的“群组编码”（一对多推送下面->您的群组(如无则新建)->群组编码，如果您是创建群组人。也需点击“查看二维码”扫描绑定，否则不能接受群组消息推送）
 let PUSH_PLUS_TOKEN = '';
 let PUSH_PLUS_USER = '';
-let PUSH_PLUS_TOKEN_hxtrip = '';
-let PUSH_PLUS_USER_hxtrip = '';
 
 // ======================================= WxPusher 通知设置区域 ===========================================
 // 此处填你申请的 appToken. 官方文档：https://wxpusher.zjiecode.com/docs
@@ -135,11 +133,11 @@ let ShowRemarkType = "1";
 let Notify_NoCKFalse = "false";
 let Notify_NoLoginSuccess = "false";
 let UseGroupNotify = 1;
-const {
-    getEnvs,
-    DisableCk,
-    getEnvByPtPin
-} = require('./ql');
+//const {
+//    getEnvs,
+//    DisableCk,
+//    getEnvByPtPin
+//} = require('./function/ql');
 const fs = require('fs');
 let isnewql = fs.existsSync('/ql/data/config/auth.json');
 let strCKFile="";
@@ -151,7 +149,7 @@ if(isnewql){
 	strCKFile = '/ql/scripts/CKName_cache.json';
 	strUidFile = '/ql/scripts/CK_WxPusherUid.json';
 }
-	
+
 
 let Fileexists = fs.existsSync(strCKFile);
 let TempCK = [];
@@ -187,8 +185,8 @@ if (process.env.NOTIFY_SHOWNAMETYPE) {
     ShowRemarkType = process.env.NOTIFY_SHOWNAMETYPE;
 }
 async function sendNotify(text, desp, params = {}, author = "\n================================\n好物推荐：https://u.jd.com/WLEVYTM",strsummary="") {
-    console.log(`开始发送通知...`); 
-	
+    console.log(`开始发送通知...`);
+
 	//NOTIFY_FILTERBYFILE代码来自Ca11back.
     if (process.env.NOTIFY_FILTERBYFILE) {
         var no_notify = process.env.NOTIFY_FILTERBYFILE.split('&');
@@ -205,7 +203,7 @@ async function sendNotify(text, desp, params = {}, author = "\n=================
             }
         }
     }
-	
+
     try {
         //Reset 变量
         UseGroupNotify = 1;
@@ -232,8 +230,6 @@ async function sendNotify(text, desp, params = {}, author = "\n=================
         IGOT_PUSH_KEY = '';
         PUSH_PLUS_TOKEN = '';
         PUSH_PLUS_USER = '';
-        PUSH_PLUS_TOKEN_hxtrip = '';
-        PUSH_PLUS_USER_hxtrip = '';
         Notify_CKTask = "";
         Notify_SkipText = [];
 
@@ -249,7 +245,6 @@ async function sendNotify(text, desp, params = {}, author = "\n=================
         var Use_fsBotNotify = true;
         var Use_iGotNotify = true;
         var Use_gobotNotify = true;
-        var Use_pushPlushxtripNotify = true;
         var Use_WxPusher = true;
         var strtext = text;
         var strdesp = desp;
@@ -418,14 +413,14 @@ async function sendNotify(text, desp, params = {}, author = "\n=================
                     return;
             }
         }
-		
+
         if (strtext.indexOf("cookie已失效") != -1 || strdesp.indexOf("重新登录获取") != -1 || strtext == "Ninja 运行通知") {
             if (Notify_NoCKFalse == "true" && text != "Ninja 运行通知") {
                 console.log(`检测到NOTIFY_NOCKFALSE变量为true,不发送ck失效通知...`);
                 return;
             }
         }
-		
+
         if (text.indexOf("已可领取") != -1) {
             if (text.indexOf("农场") != -1) {
                 strTitle = "东东农场领取";
@@ -446,7 +441,7 @@ async function sendNotify(text, desp, params = {}, author = "\n=================
         if (text.indexOf("任务") != -1 && (text.indexOf("新增") != -1 || text.indexOf("删除") != -1)) {
             strTitle = "脚本任务更新";
         }
-		
+
         if (strTitle) {
             const notifyRemindList = process.env.NOTIFY_NOREMIND ? process.env.NOTIFY_NOREMIND.split('&') : [];
             titleIndex = notifyRemindList.findIndex((item) => item === strTitle);
@@ -476,7 +471,7 @@ async function sendNotify(text, desp, params = {}, author = "\n=================
         }
 
         console.log("通知标题: " + strTitle);
-		
+
 		//检查黑名单屏蔽通知
         const notifySkipList = process.env.NOTIFY_SKIP_LIST ? process.env.NOTIFY_SKIP_LIST.split('&') : [];
         titleIndex = notifySkipList.findIndex((item) => item === strTitle);
@@ -485,7 +480,7 @@ async function sendNotify(text, desp, params = {}, author = "\n=================
             console.log(`${strTitle} 在推送黑名单中，已跳过推送`);
             return;
         }
-		
+
         //检查脚本名称是否需要通知到Group2,Group2读取原环境配置的变量名后加2的值.例如: QYWX_AM2
 		for (lncount = 2; lncount < 20; lncount++) {
 		    if (process.env["NOTIFY_GROUP" + lncount + "_LIST"]) {
@@ -519,7 +514,6 @@ async function sendNotify(text, desp, params = {}, author = "\n=================
 		                    Use_serverNotify = false;
 							Use_pushdeerNotify = false;
 		                    Use_pushPlusNotify = false;
-		                    Use_pushPlushxtripNotify = false;
 		                    Use_BarkNotify = false;
 		                    Use_tgBotNotify = false;
 		                    Use_ddBotNotify = false;
@@ -543,10 +537,6 @@ async function sendNotify(text, desp, params = {}, author = "\n=================
 		                        case "pushplus":
 		                            Use_pushPlusNotify = true;
 		                            console.log("自定义设定启用pushplus(推送加)进行通知...");
-		                            break;
-		                        case "pushplushxtrip":
-		                            Use_pushPlushxtripNotify = true;
-		                            console.log("自定义设定启用pushplus_hxtrip(推送加)进行通知...");
 		                            break;
 		                        case "Bark":
 		                            Use_BarkNotify = true;
@@ -656,7 +646,7 @@ async function sendNotify(text, desp, params = {}, author = "\n=================
 		    if (process.env["BARK_GROUP" + UseGroupNotify]) {
 		        BARK_GROUP = process.env;
 		    }
-		} 
+		}
 		if (process.env["TG_BOT_TOKEN" + UseGroupNotify] && Use_tgBotNotify) {
 		    TG_BOT_TOKEN = process.env["TG_BOT_TOKEN" + UseGroupNotify];
 		}
@@ -682,7 +672,7 @@ async function sendNotify(text, desp, params = {}, author = "\n=================
 		if (process.env["QYWX_KEY" + UseGroupNotify] && Use_qywxBotNotify) {
 		    QYWX_KEY = process.env["QYWX_KEY" + UseGroupNotify];
 		}
-        
+
 		if (process.env["QYWX_AM" + UseGroupNotify] && Use_qywxamNotify) {
 		    QYWX_AM = process.env["QYWX_AM" + UseGroupNotify];
 		}
@@ -690,7 +680,7 @@ async function sendNotify(text, desp, params = {}, author = "\n=================
         if (process.env["FS_KEY" + UseGroupNotify] && Use_fsBotNotify) {
 		    FS_KEY = process.env["FS_KEY" + UseGroupNotify];
 		}
-        
+
 		if (process.env["IGOT_PUSH_KEY" + UseGroupNotify] && Use_iGotNotify) {
 		    IGOT_PUSH_KEY = process.env["IGOT_PUSH_KEY" + UseGroupNotify];
 		}
@@ -700,13 +690,6 @@ async function sendNotify(text, desp, params = {}, author = "\n=================
 		}
 		if (process.env["PUSH_PLUS_USER" + UseGroupNotify] && Use_pushPlusNotify) {
 		    PUSH_PLUS_USER = process.env["PUSH_PLUS_USER" + UseGroupNotify];
-		}
-
-		if (process.env["PUSH_PLUS_TOKEN_hxtrip" + UseGroupNotify] && Use_pushPlushxtripNotify) {
-		    PUSH_PLUS_TOKEN_hxtrip = process.env["PUSH_PLUS_TOKEN_hxtrip" + UseGroupNotify];
-		}
-		if (process.env["PUSH_PLUS_USER_hxtrip" + UseGroupNotify] && Use_pushPlushxtripNotify) {
-		    PUSH_PLUS_USER_hxtrip = process.env["PUSH_PLUS_USER_hxtrip" + UseGroupNotify];
 		}
 		if (process.env["GOTIFY_URL" + UseGroupNotify]) {
 		    GOTIFY_URL = process.env["GOTIFY_URL" + UseGroupNotify];
@@ -720,24 +703,6 @@ async function sendNotify(text, desp, params = {}, author = "\n=================
         //检查是否在不使用Remark进行名称替换的名单
         const notifySkipRemarkList = process.env.NOTIFY_SKIP_NAMETYPELIST ? process.env.NOTIFY_SKIP_NAMETYPELIST.split('&') : [];
         const titleIndex3 = notifySkipRemarkList.findIndex((item) => item === strTitle);
-
-        if (text == "京东到家果园互助码:") {
-            ShowRemarkType = "1";
-            if (desp) {
-                var arrTemp = desp.split(",");
-                var allCode = "";
-                for (let k = 0; k < arrTemp.length; k++) {
-                    if (arrTemp[k]) {
-                        if (arrTemp[k].substring(0, 1) != "@")
-                            allCode += arrTemp[k] + ",";
-                    }
-                }
-
-                if (allCode) {
-                    desp += '\n' + '\n' + "ccwav格式化后的互助码:" + '\n' + allCode;
-                }
-            }
-        }
 
         if (ShowRemarkType != "1" && titleIndex3 == -1) {
             console.log("sendNotify正在处理账号Remark.....");
@@ -873,23 +838,8 @@ async function sendNotify(text, desp, params = {}, author = "\n=================
     }
 
     //提供6种通知
-    desp = buildLastDesp(desp, author)
-
-        await serverNotify(text, desp); //微信server酱
-
-    if (PUSH_PLUS_TOKEN_hxtrip) {
-        console.log("hxtrip TOKEN :" + PUSH_PLUS_TOKEN_hxtrip);
-    }
-    if (PUSH_PLUS_USER_hxtrip) {
-        console.log("hxtrip USER :" + PUSH_PLUS_USER_hxtrip);
-    }
-    PushErrorTime = 0;
-    await pushPlusNotifyhxtrip(text, desp); //pushplushxtrip(推送加)
-    if (PushErrorTime > 0) {
-        console.log("等待1分钟后重试.....");
-        await $.wait(60000);
-        await pushPlusNotifyhxtrip(text, desp);
-    }
+    desp = buildLastDesp(desp, author);
+	await serverNotify(text, desp); //微信server酱
 
     if (PUSH_PLUS_TOKEN) {
         console.log("PUSH_PLUS TOKEN :" + PUSH_PLUS_TOKEN);
@@ -979,22 +929,23 @@ function getQLinfo(strCK, intcreated, strTimestamp, strRemark) {
                     if (TempRemarkList[j]) {
                         if (TempRemarkList[j].length == 13) {
                             DateTimestamp = new Date(parseInt(TempRemarkList[j]));
-                            //console.log(strPtPin + ": 获取登录时间成功:" + GetDateTime(DateTimestamp));                            
+                            //console.log(strPtPin + ": 获取登录时间成功:" + GetDateTime(DateTimestamp));
                             break;
                         }
                     }
                 }
             }
         }
-		
+
 		//过期时间
         var UseDay = Math.ceil((DateToday.getTime() - DateCreated.getTime()) / 86400000);
         var LogoutDay = 30 - Math.ceil((DateToday.getTime() - DateTimestamp.getTime()) / 86400000);
-        if (LogoutDay < 1) {
-            strReturn = "\n【登录信息】已服务" + UseDay + "天(账号即将到期，请重登续期)"
-        } else {
-            strReturn = "\n【登录信息】已服务" + UseDay + "天(有效期约剩" + LogoutDay + "天)"
-        }
+		let Loginday = Math.ceil((DateToday.getTime() - DateTimestamp.getTime()) / 86400000)
+        //if (LogoutDay < 1) {
+            strReturn = "\n【登录信息】已服务" + UseDay + "天(已登录" + Loginday + "天)"
+        //} else {
+        //    strReturn = "\n【登录信息】已服务" + UseDay + "天(有效期约剩" + LogoutDay + "天)"
+        //}
 
     }
     return strReturn
@@ -1083,7 +1034,7 @@ async function sendNotifybyWxPucher(text, desp, PtPin, author = '\n=============
 									Tempinfo=getQLinfo(cookie, tempEnv.createdAt, tempEnv.updatedAt, tempEnv.remarks);
 								else
 									Tempinfo=getQLinfo(cookie, tempEnv.createdAt, tempEnv.timestamp, tempEnv.remarks);
-							
+
                             if (Tempinfo) {
                                 Tempinfo = $.nickName + Tempinfo;
                                 desp = desp.replace(new RegExp(`${$.UserName}|${$.nickName}`, 'gm'), Tempinfo);
@@ -1321,41 +1272,45 @@ function serverNotify(text, desp, time = 2100) {
 }
 
 function BarkNotify(text, desp, params = {}) {
-    return new Promise((resolve) => {
-        if (BARK_PUSH) {
-            const options = {
-                url: `${BARK_PUSH}/${encodeURIComponent(text)}/${encodeURIComponent(
-          desp
-        )}?sound=${BARK_SOUND}&group=${BARK_GROUP}&${querystring.stringify(params)}`,
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                timeout,
-            };
-            $.get(options, (err, resp, data) => {
-                try {
-                    if (err) {
-                        console.log('Bark APP发送通知调用API失败！！\n');
-                        console.log(err);
-                    } else {
-                        data = JSON.parse(data);
-                        if (data.code === 200) {
-                            console.log('Bark APP发送通知消息成功🎉\n');
-                        } else {
-                            console.log(`${data.message}\n`);
-                        }
-                    }
-                } catch (e) {
-                    $.logErr(e, resp);
-                }
-                finally {
-                    resolve();
-                }
-            });
-        } else {
-            resolve();
+  return new Promise((resolve) => {
+    if (BARK_PUSH) {
+      const options = {
+        url: `${BARK_PUSH}`,
+        json: {
+            title: text,
+            body: desp,
+            group: `${BARK_GROUP}`,
+            //icon: `${BARK_ICON}`,
+            sound: `${BARK_SOUND}`,
+        },
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+        },
+        timeout,
+      };
+      $.post(options, (err, resp, data) => {
+        try {
+          if (err) {
+            console.log('Bark APP发送通知调用API失败！！\n');
+            console.log(err);
+          } else {
+            data = JSON.parse(data);
+            if (data.code === 200) {
+              console.log('Bark APP发送通知消息成功🎉\n');
+            } else {
+              console.log(`${data.message}\n`);
+            }
+          }
+        } catch (e) {
+          $.logErr(e, resp);
+        } finally {
+          resolve();
         }
-    });
+      });
+    } else {
+      resolve();
+    }
+  });
 }
 
 function tgBotNotify(text, desp) {
@@ -1366,7 +1321,7 @@ function tgBotNotify(text, desp) {
         json: {
             chat_id: `${TG_USER_ID}`,
             text: `${text}\n\n${desp}`,
-            disable_web_page_preview:true,
+            disable_web_page_preview:true
           },
         headers: {
           'Content-Type': 'application/json',
@@ -1407,7 +1362,7 @@ function tgBotNotify(text, desp) {
           resolve(data);
         }
       })
-    } else {     
+    } else {
       resolve()
     }
   })
@@ -1739,53 +1694,6 @@ function iGotNotify(text, desp, params = {}) {
                             console.log('iGot发送通知消息成功🎉\n');
                         } else {
                             console.log(`iGot发送通知消息失败：${data.errMsg}\n`);
-                        }
-                    }
-                } catch (e) {
-                    $.logErr(e, resp);
-                }
-                finally {
-                    resolve(data);
-                }
-            });
-        } else {
-            resolve();
-        }
-    });
-}
-function pushPlusNotifyhxtrip(text, desp) {
-    return new Promise((resolve) => {
-        if (PUSH_PLUS_TOKEN_hxtrip) {
-            //desp = `<font size="3">${desp}</font>`;
-
-            desp = desp.replace(/[\n\r]/g, '<br>'); // 默认为html, 不支持plaintext
-            const body = {
-                token: `${PUSH_PLUS_TOKEN_hxtrip}`,
-                title: `${text}`,
-                content: `${desp}`,
-                topic: `${PUSH_PLUS_USER_hxtrip}`,
-            };
-            const options = {
-                url: `http://pushplus.hxtrip.com/send`,
-                body: JSON.stringify(body),
-                headers: {
-                    'Content-Type': ' application/json',
-                },
-                timeout,
-            };
-            $.post(options, (err, resp, data) => {
-                try {
-                    if (err) {
-                        console.log(`hxtrip push+发送${PUSH_PLUS_USER_hxtrip ? '一对多' : '一对一'}通知消息失败！！\n`);
-                        PushErrorTime += 1;
-                        console.log(err);
-                    } else {
-                        if (data.indexOf("200") > -1) {
-                            console.log(`hxtrip push+发送${PUSH_PLUS_USER_hxtrip ? '一对多' : '一对一'}通知消息完成。\n`);
-                            PushErrorTime = 0;
-                        } else {
-                            console.log(`hxtrip push+发送${PUSH_PLUS_USER_hxtrip ? '一对多' : '一对一'}通知消息失败：${data}\n`);
-                            PushErrorTime += 1;
                         }
                     }
                 } catch (e) {
@@ -2146,7 +2054,7 @@ function GetnickName2() {
 						if (data['retcode'] === 13) {
                             $.isLogin = false; //cookie过期
                             return
-                        }                        
+                        }
 						if (data['retcode'] === 0) {
                             $.nickName = (data['base'] && data['base'].nickname) || "";
                         }
@@ -2163,7 +2071,202 @@ function GetnickName2() {
         });
     });
 }
+const got = require('got');
+require('dotenv').config();
+let exists = fs.existsSync('/ql/data/config/auth.json');
+let authFile="";
+if (exists)
+	authFile="/ql/data/config/auth.json"
+else
+	authFile="/ql/config/auth.json"
 
+const api = got.extend({
+  prefixUrl: 'http://127.0.0.1:5600',
+  retry: { limit: 0 },
+});
+
+async function getToken() {
+  const authConfig = JSON.parse(fs.readFileSync(authFile));
+  return authConfig.token;
+}
+
+async function getEnvs(){
+  const token = await getToken();
+  const body = await api({
+    url: 'api/envs',
+    searchParams: {
+      searchValue: 'JD_COOKIE',
+      t: Date.now(),
+    },
+    headers: {
+      Accept: 'application/json',
+      authorization: `Bearer ${token}`,
+    },
+  }).json();
+  return body.data;
+};
+
+async function getEnvsCount(){
+  const data = await getEnvs();
+  return data.length;
+};
+
+async function addEnv(cookie, remarks){
+  const token = await getToken();
+  const body = await api({
+    method: 'post',
+    url: 'api/envs',
+    params: { t: Date.now() },
+    json: [{
+      name: 'JD_COOKIE',
+      value: cookie,
+      remarks,
+    }],
+    headers: {
+      Accept: 'application/json',
+      authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json;charset=UTF-8',
+    },
+  }).json();
+  return body;
+}
+
+async function updateEnv(cookie, eid, remarks){
+  const token = await getToken();
+  const body = await api({
+    method: 'put',
+    url: 'api/envs',
+    params: { t: Date.now() },
+    json: {
+      name: 'JD_COOKIE',
+      value: cookie,
+      _id: eid,
+      remarks,
+    },
+    headers: {
+      Accept: 'application/json',
+      authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json;charset=UTF-8',
+    },
+  }).json();
+  return body;
+};
+
+async function updateEnv11(cookie, eid, remarks){
+  const token = await getToken();
+  const body = await api({
+    method: 'put',
+    url: 'api/envs',
+    params: { t: Date.now() },
+    json: {
+      name: 'JD_COOKIE',
+      value: cookie,
+      id: eid,
+      remarks,
+    },
+    headers: {
+      Accept: 'application/json',
+      authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json;charset=UTF-8',
+    },
+  }).json();
+  return body;
+};
+
+async function DisableCk(eid){
+  const token = await getToken();
+  const body = await api({
+    method: 'put',
+    url: 'api/envs/disable',
+    params: { t: Date.now() },
+    body: JSON.stringify([eid]),
+    headers: {
+      Accept: 'application/json',
+      authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json;charset=UTF-8',
+    },
+  }).json();
+  return body;
+};
+
+async function EnableCk(eid){
+  const token = await getToken();
+  const body = await api({
+    method: 'put',
+    url: 'api/envs/enable',
+    params: { t: Date.now() },
+    body: JSON.stringify([eid]),
+    headers: {
+      Accept: 'application/json',
+      authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json;charset=UTF-8',
+    },
+  }).json();
+  return body;
+};
+
+async function getstatus(eid){
+    const envs = await getEnvs();
+    var tempid = 0;
+    for (let i = 0; i < envs.length; i++) {
+		tempid = 0;
+        if (envs[i]._id) {
+            tempid = envs[i]._id;
+        }
+        if (envs[i].id) {
+            tempid = envs[i].id;
+        }
+        if (tempid == eid) {
+            return envs[i].status;
+        }
+    }
+    return 99;
+};
+
+async function getEnvById(eid){
+    const envs = await getEnvs();
+    var tempid = 0;
+    for (let i = 0; i < envs.length; i++) {
+        tempid = 0;
+        if (envs[i]._id) {
+            tempid = envs[i]._id;
+        }
+        if (envs[i].id) {
+            tempid = envs[i].id;
+        }
+        if (tempid == eid) {
+            return envs[i].value;
+        }
+    }
+    return "";
+};
+
+async function getEnvByPtPin(Ptpin){
+  const envs = await getEnvs();
+  for (let i = 0; i < envs.length; i++) {
+	var tempptpin = decodeURIComponent(envs[i].value.match(/pt_pin=([^; ]+)(?=;?)/) && envs[i].value.match(/pt_pin=([^; ]+)(?=;?)/)[1]);
+	if(tempptpin==Ptpin){
+		 return envs[i];
+	  }
+  }
+  return "";
+};
+
+async function delEnv(eid){
+  const token = await getToken();
+  const body = await api({
+    method: 'delete',
+    url: 'api/envs',
+    params: { t: Date.now() },
+    body: JSON.stringify([eid]),
+    headers: {
+      Accept: 'application/json',
+      authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json;charset=UTF-8',
+    },
+  }).json();
+  return body;
+};
 module.exports = {
     sendNotify,
     sendNotifybyWxPucher,
