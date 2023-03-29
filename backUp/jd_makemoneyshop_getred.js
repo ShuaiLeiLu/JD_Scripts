@@ -14,9 +14,9 @@
 */
 let redid="8609ec76a8a70db9a5443376d34fa26a";//兑换50元
 const $ = new Env("大赢家兑50红包");
-const notify = $.isNode() ? require('./sendNotify') : '';
+const notify = $.isNode() ? require('../sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
-const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
+const jdCookieNode = $.isNode() ? require('../jdCookie.js') : '';
 let cookiesArr = [], cookie = '';
 let cashout = []
 let isCashOut = process.env.isCashOut ?? false;
