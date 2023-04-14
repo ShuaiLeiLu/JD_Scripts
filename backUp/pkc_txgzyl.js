@@ -148,7 +148,7 @@ async function activity(timeout = 500) {
                     'Connection' : `keep-alive`,
                     'Accept' : `text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8`,
                     'Host' : `lzkj-isv.isvjcloud.com`,
-                    'User-Agent' : $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "Mozilla/5.0 (iPhone; CPU iPhone OS 15_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.18(0x18001236) NetType/WIFI Language/zh_CN"),
+                    'User-Agent' : $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('../USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "Mozilla/5.0 (iPhone; CPU iPhone OS 15_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.18(0x18001236) NetType/WIFI Language/zh_CN"),
                     'Accept-Language' : `zh-CN,zh-Hans;q=0.9`
                     },
 
@@ -191,7 +191,7 @@ async function getSimpleActInfoVo(timeout = 500) {
                         'Accept-Encoding' : `gzip, deflate, br`,
                         'Content-Type' : `application/x-www-form-urlencoded`,
                         'Origin' : `https://lzkj-isv.isvjcloud.com`,
-                        'User-Agent' : $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "Mozilla/5.0 (iPhone; CPU iPhone OS 15_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.18(0x18001236) NetType/WIFI Language/zh_CN"),
+                        'User-Agent' : $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('../USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "Mozilla/5.0 (iPhone; CPU iPhone OS 15_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.18(0x18001236) NetType/WIFI Language/zh_CN"),
                         'Cookie' :`IsvToken=${token};`+ cookie + r_cookie ,
                         'Host' : `lzkj-isv.isvjcloud.com`,
                         'Referer' : `https://lzkj-isv.isvjcloud.com/wxShopGift/activity?activityId=${activityId}&sid=${randomString(32,'xx')}w&un_area=${randomString(2,'int')}_${randomString(4,'int')}_${randomString(4,'int')}_${randomString(5,'int')}`,
@@ -247,7 +247,7 @@ async function activityContent(timeout = 500) {
                         'Accept-Encoding' : `gzip, deflate, br`,
                         'Content-Type' : `application/x-www-form-urlencoded`,
                         'Origin' : `https://lzkj-isv.isvjcloud.com`,
-                        'User-Agent' : $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "Mozilla/5.0 (iPhone; CPU iPhone OS 15_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.18(0x18001236) NetType/WIFI Language/zh_CN"),
+                        'User-Agent' : $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('../USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "Mozilla/5.0 (iPhone; CPU iPhone OS 15_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.18(0x18001236) NetType/WIFI Language/zh_CN"),
                         'Cookie' : cookie,
                         'Host' : `lzkj-isv.isvjcloud.com`,
                         'Referer' : ``,
@@ -353,7 +353,7 @@ async function getMyPing(timeout = 500) {
                         'Accept-Encoding' : `gzip, deflate, br`,
                         'Content-Type' : `application/x-www-form-urlencoded`,
                         'Origin' : `https://lzkj-isv.isvjcloud.com`,
-                        'User-Agent' : $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "Mozilla/5.0 (iPhone; CPU iPhone OS 15_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.18(0x18001236) NetType/WIFI Language/zh_CN"),
+                        'User-Agent' : $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('../USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "Mozilla/5.0 (iPhone; CPU iPhone OS 15_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.18(0x18001236) NetType/WIFI Language/zh_CN"),
                         'Cookie' :`IsvToken=${token};`+ cookie + r_cookie ,
                         'Host' : `lzkj-isv.isvjcloud.com`,
                         'Referer' : `https://lzkj-isv.isvjcloud.com/wxShopGift/activity?activityId=${activityId}&sid=${randomString(32,'xx')}w&un_area=${randomString(2,'int')}_${randomString(4,'int')}_${randomString(4,'int')}_${randomString(5,'int')}`,
@@ -405,7 +405,7 @@ async function draw(timeout = 500) {
                         'Accept-Encoding' : `gzip, deflate, br`,
                         'Content-Type' : `application/x-www-form-urlencoded`,
                         'Origin' : `https://lzkj-isv.isvjcloud.com`,
-                        'User-Agent' : $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "Mozilla/5.0 (iPhone; CPU iPhone OS 15_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.18(0x18001236) NetType/WIFI Language/zh_CN"),
+                        'User-Agent' : $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('../USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "Mozilla/5.0 (iPhone; CPU iPhone OS 15_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.18(0x18001236) NetType/WIFI Language/zh_CN"),
                         'Cookie' :`IsvToken=${token};`+ cookie + r_cookie ,
                         'Host' : `lzkj-isv.isvjcloud.com`,
                         'Referer' : `https://lzkj-isv.isvjcloud.com/wxShopGift/activity?activityId=${activityId}&sid=${randomString(32,'xx')}w&un_area=${randomString(2,'int')}_${randomString(4,'int')}_${randomString(4,'int')}_${randomString(5,'int')}`,
@@ -551,9 +551,9 @@ async function sendNotify(text, desp) {
 
 function requireConfig() {
   return new Promise(resolve => {
-    notify = $.isNode() ? require('./sendNotify') : '';
+    notify = $.isNode() ? require('../sendNotify') : '';
     //Node.js用户请在jdCookie.js处填写京东ck;
-    const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
+    const jdCookieNode = $.isNode() ? require('../jdCookie.js') : '';
     const activityIdArrNode = $.isNode() ? process.env.PKC_TXGZYL.split('@') : [];
 
     // IOS等用户直接用NobyDa的jd cookie
@@ -597,7 +597,7 @@ function TotalBean() {
         "Connection": "keep-alive",
         "Cookie": cookie,
         "Referer": "https://wqs.jd.com/my/jingdou/my.shtml?sceneval=2",
-        "User-Agent": $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.4.4;14.3;network/4g;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1")
+        "User-Agent": $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('../USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.4.4;14.3;network/4g;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1")
       }
     }
     $.post(options, (err, resp, data) => {

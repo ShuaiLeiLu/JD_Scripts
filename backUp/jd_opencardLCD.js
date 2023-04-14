@@ -46,8 +46,8 @@ let blacklist = '' // 黑名单 用&隔开 pin值(填中文
 const $ = new Env('3.1~3.8 京东超店会员福利社')
 
 let assistNum = 5 // 助力上限次数
-const jdCookieNode = $.isNode() ? require('./jdCookie.js') : ''
-const notify = $.isNode() ? require('./sendNotify') : ''
+const jdCookieNode = $.isNode() ? require('../jdCookie.js') : ''
+const notify = $.isNode() ? require('../sendNotify') : ''
 let cleanCart = ''
 CryptoScripts()
 $.CryptoJS = $.isNode() ? require('crypto-js') : CryptoJS
