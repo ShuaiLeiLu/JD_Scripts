@@ -31,14 +31,8 @@
 11 0,18 * * * node /scripts/jd_club_lottery.js >> /scripts/logs/jd_club_lottery.log 2>&1
 # 京东快递-每日抽奖
 30 9 * 7 * node /scripts/jd_daily_lottery.js >> /scripts/logs/jd_daily_lottery.log 2>&1
-# 东东乐园
-30 7 * * * node /scripts/jd_ddnc_farmpark.js >> /scripts/logs/jd_ddnc_farmpark.log 2>&1
 # 店铺签到
 15 2,14 * * * node /scripts/jd_dpqd.js >> /scripts/logs/jd_dpqd.log 2>&1
-# 京喜工厂招工互助
-5 6,18 * * * node /scripts/jd_dreamFactory_help.js >> /scripts/logs/jd_dreamFactory_help.log 2>&1
-# 京喜工厂开团
-40 0,8 * * * node /scripts/jd_dreamFactory_tuan.js >> /scripts/logs/jd_dreamFactory_tuan.log 2>&1
 # 积分换话费
 33 7 * * * node /scripts/jd_dwapp.js >> /scripts/logs/jd_dwapp.log 2>&1
 # 东东农场好友删减奖励
@@ -57,22 +51,10 @@
 5 4,14 * * * node /scripts/jd_health_help.js >> /scripts/logs/jd_health_help.log 2>&1
 # 京洞察问卷通知
 35 11 * * * node /scripts/jd_insight.js >> /scripts/logs/jd_insight.log 2>&1
-# 京东到家果园任务
-10 0,3,8,11,17 * * * node /scripts/jd_jddj_fruit.js >> /scripts/logs/jd_jddj_fruit.log 2>&1
-# 东东工厂
-10 0,6-23 * * * node /scripts/jd_jdfactory.js >> /scripts/logs/jd_jdfactory.log 2>&1
-# 东东工厂内部互助
-50 4,17 * * * node /scripts/jd_jdfactory_help.js >> /scripts/logs/jd_jdfactory_help.log 2>&1
 # 京东赚赚修复版
 10 1,19 * * * node /scripts/jd_jdzz.js >> /scripts/logs/jd_jdzz.log 2>&1
 # 领金贴
 26 0,19 * * * node /scripts/jd_jin_tie.js >> /scripts/logs/jd_jin_tie.log 2>&1
-# 汪汪乐园-跑步+组队
-30 0 * * * node /scripts/jd_joy_park_run.ts >> /scripts/logs/jd_joy_park_run.log 2>&1
-# 汪汪乐园每日任务
-0 1,7,20 * * * node /scripts/jd_joy_park_task.js >> /scripts/logs/jd_joy_park_task.log 2>&1
-# 汪汪提现
-0 0 * * * node /scripts/jd_joyrunred.js >> /scripts/logs/jd_joyrunred.log 2>&1
 # JOY庄园每日任务
 11 1,15 * * * node /scripts/jd_joymanor_task.js >> /scripts/logs/jd_joymanor_task.log 2>&1
 # 金融双签-加密
@@ -81,30 +63,18 @@
 30 0,15 * * * node /scripts/jd_js_sign.js >> /scripts/logs/jd_js_sign.log 2>&1
 # 京喜双签-加密
 23 11,20 * * * node /scripts/jd_jx_sign.js >> /scripts/logs/jd_jx_sign.log 2>&1
-# 京喜牧场
-20 0-23/2 * * * node /scripts/jd_jxmc.js >> /scripts/logs/jd_jxmc.log 2>&1
-# 惊喜牧场内部互助
-23 0-23/3 * * * node /scripts/jd_jxmc_hb.js >> /scripts/logs/jd_jxmc_hb.log 2>&1
-# 砍价免费拿
-0 0 * * * node /scripts/jd_kanjia.js >> /scripts/logs/jd_kanjia.log 2>&1
-# 京东快递签到
-10 0 * * * node /scripts/jd_kd.js >> /scripts/logs/jd_kd.log 2>&1
 # 京东快递签到
 10 0 * * * node /scripts/jd_kuaidi.js >> /scripts/logs/jd_kuaidi.log 2>&1
 # 京东快递签到
 10 0 * * * node /scripts/jd_kuaidi_leaf.js >> /scripts/logs/jd_kuaidi_leaf.log 2>&1
 # 京东摇钱树
 3 0-23/11 * * * node /scripts/jd_moneyTree.js >> /scripts/logs/jd_moneyTree.log 2>&1
-# 生鲜早起打卡
-15 6,7 * * * node /scripts/jd_morningSc.js >> /scripts/logs/jd_morningSc.log 2>&1
 # 种豆得豆
 1 7-21/2 * * * node /scripts/jd_plantBean.js >> /scripts/logs/jd_plantBean.log 2>&1
 # 种豆得豆内部互助
 40 4,17 * * * node /scripts/jd_plantBean_help.js >> /scripts/logs/jd_plantBean_help.log 2>&1
 # 京东保价
 39 20 * * * node /scripts/jd_price.js >> /scripts/logs/jd_price.log 2>&1
-# QQ星系牧场
-22 4-22/3 * * * node /scripts/jd_qqxing.js >> /scripts/logs/jd_qqxing.log 2>&1
 # 闪购盲盒
 20 8 * * * node /scripts/jd_sgmh.js >> /scripts/logs/jd_sgmh.log 2>&1
 # 闪购签到有礼
@@ -135,28 +105,18 @@
 59 59 9 * * * node /scripts/jd_superMarket.js >> /scripts/logs/jd_superMarket.log 2>&1
 # 京东超市兑换
 59 59 9 * * * node /scripts/jd_supermarket_exchange.js >> /scripts/logs/jd_supermarket_exchange.log 2>&1
-# 京东试用
-44 1-22/5 * * * node /scripts/jd_try.js >> /scripts/logs/jd_try.log 2>&1
-# 京东试用待领取通知
-22 15 * * * node /scripts/jd_try_notify.js >> /scripts/logs/jd_try_notify.log 2>&1
 # 取关所有主播
 55 22 * * * node /scripts/jd_unsubscriLive.js >> /scripts/logs/jd_unsubscriLive.log 2>&1
 # 批量取关店铺和商品
 22 22 * * * node /scripts/jd_unsubscribe.js >> /scripts/logs/jd_unsubscribe.log 2>&1
 # 众筹许愿池
 40 0,2 * * * node /scripts/jd_wish.js >> /scripts/logs/jd_wish.log 2>&1
-# 极速版我是大老板农场
-5 0-23/6 * * * node /scripts/jd_wsdlb.js >> /scripts/logs/jd_wsdlb.log 2>&1
-# 京享周周乐
-2 6 * * 5 node /scripts/jd_xs_zzl.js >> /scripts/logs/jd_xs_zzl.log 2>&1
 # 邀请有礼
 45 0 * * * node /scripts/jd_yqyl.js >> /scripts/logs/jd_yqyl.log 2>&1
 # 极速版赚金币邀请
 20 0 * * * node /scripts/jd_zjb.js >> /scripts/logs/jd_zjb.log 2>&1
 # 赚喜豆-TS版
 15,30,45 0 * * * node /scripts/jd_zjd.ts >> /scripts/logs/jd_zjd.log 2>&1
-# 京喜签到助力
-0 10 * * * node /scripts/jx_sign_help.js >> /scripts/logs/jx_sign_help.log 2>&1
 # 超级品牌殿堂
 18 10,18 * * * node /scripts/jd_ppdt.js >> /scripts/logs/jd_ppdt.log 2>&1
 # 吃喝玩乐抽豆
