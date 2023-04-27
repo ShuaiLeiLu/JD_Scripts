@@ -4,8 +4,6 @@
 <a href="https://supermanito.github.io/Helloworld/">搭建教程</a>
 
 # 代挂
-### 网页登录
-<a href="http://43.139.83.72:4081">链接</a>
 
 ## 机器人
 微信机器人<br/>
