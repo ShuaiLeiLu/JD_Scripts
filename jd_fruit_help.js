@@ -415,7 +415,7 @@ async function GetCollect() {
 function writeShareCode(Code) {
     return new Promise(async resolve => {
         const options = {
-            "url": `http://127.0.0.1:8000/farm?shareCode=${Code}`,
+            "url": `http://192.168.0.43:8000/farm?shareCode=${Code}`,
         }
         $.post(options, (err, resp, data) => {
             try {
