@@ -69,7 +69,7 @@ def v4_env(env,paths):
 
 # 随机ua
 def ua():
-    sys.path.append(os.path.abspath('.'))
+    sys.path.append(os.path.abspath('..'))
     try:
         from jdEnv import USER_AGENTS as a
     except:
