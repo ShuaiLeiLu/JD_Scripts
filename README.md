@@ -1,8 +1,3 @@
-# HelloWord 面板 适配库
-
-## HelloWord 面板
-<a href="https://supermanito.github.io/Helloworld/">搭建教程</a>
-
 # 代挂
 
 ## 机器人
