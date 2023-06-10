@@ -8,14 +8,14 @@
 ## 机器人
 微信机器人<br/>
 
-<img src="./backUp/image/wx_bot.png" width="130" alt="二维码"/>
+<img src="./image/wx_bot.png" width="130" alt="二维码"/>
 
 
 使用方法：机器人发送 登录 即可上车
 
 # 交流群
 ## QQ
-<img src="./backUp/image/qq.png" width="130" alt="二维码"/>
+<img src="./image/qq.png" width="130" alt="二维码"/>
 
 
 ### 注意：代挂的请关闭小额免密登录,以免产生经济纠纷
