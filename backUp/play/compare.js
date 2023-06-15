@@ -12,7 +12,7 @@ list_ck.map((val) => {
         } else {
             ck_list.push(userName)
         }
-    } else if (val.name === 'JD_WSCK') {
+    } else if (val.name === 'BBK_WSCK') {
         let userName = val.value.match(/pin=([^; ]+)(?=;?)/) && val.value.match(/pin=([^; ]+)(?=;?)/)[1]
         if (ws_list.indexOf(userName) > -1) {
             console.log(userName, 'wskey')
