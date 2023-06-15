@@ -18,6 +18,7 @@ if ($.isNode() && process.env.BEANCHANGE_BEANDETAILMODE){
 }
 
 const fs = require('fs');
+const CR = require('crypto-js');
 let matchtitle="昨日";
 let yesterday="";
 let TodayDate="";
@@ -118,12 +119,12 @@ let strSubNotify="";
 let llPetError=false;
 let strGuoqi="";
 let RemainMessage = '\n';
-RemainMessage += "⭕活动攻略:⭕" + '\n';
-RemainMessage += '【特价金币】京东特价版->我的->金币(特价版使用)\n';
-RemainMessage += '【领现金】京东->搜索领现金(微信提现+京东红包)\n';
-RemainMessage += '【东东农场】京东->我的->东东农场,完成是京东红包,可以用于京东app的任意商品\n';
-RemainMessage += '【京东金融】京东金融app->我的->养猪猪,完成是白条支付券,支付方式选白条支付时立减.\n';
-RemainMessage += '【其他】京喜红包只能在京喜使用,其他同理';
+RemainMessage += "⭕提醒:⭕" + '\n';
+RemainMessage += '【京喜特价金币】京东特价版->我的->金币(可兑换无门槛红包)\n';
+RemainMessage += '【领现金】京东->搜领现金(可微信提现或兑换红包)\n';
+RemainMessage += '【话费积分】京东->充值中心-赚积分兑话费（180天效期）\n';
+RemainMessage += '【东东农场】京东->我的->东东农场,完成可兑换无门槛红包,可用于任意商品\n';
+RemainMessage += '【其他】不同类别红包不能叠加使用，自测';
 
 let WP_APP_TOKEN_ONE = "";
 
@@ -135,10 +136,10 @@ if ($.isNode()) {
 		WP_APP_TOKEN_ONE = process.env.WP_APP_TOKEN_ONE;
 	}
 }
-if(WP_APP_TOKEN_ONE)
-	console.log(`检测到已配置Wxpusher的Token，启用一对一推送...`);
-else
-	console.log(`检测到未配置Wxpusher的Token，禁用一对一推送...`);
+//if(WP_APP_TOKEN_ONE)
+	//console.log(`检测到已配置Wxpusher的Token，启用一对一推送...`);
+//else
+	//console.log(`检测到未配置Wxpusher的Token，禁用一对一推送...`);
 
 let jdSignUrl = 'https://api.nolanstore.cc/sign'
 if (process.env.SIGNURL)
@@ -185,9 +186,9 @@ if ($.isNode() && process.env.BEANCHANGE_SUBNOTIFY) {
 if ($.isNode() && process.env.BEANCHANGE_ALLNOTIFY) {
 	strAllNotify=process.env.BEANCHANGE_ALLNOTIFY;
 	console.log(`检测到设定了公告,将在推送信息中置顶显示...`);
-	strAllNotify = `【✨✨✨✨公告✨✨✨✨】\n`+strAllNotify;
+	strAllNotify = "✨✨✨✨✨✨✨公告✨✨✨✨✨✨✨\n"+strAllNotify;
 	console.log(strAllNotify+"\n");
-	strAllNotify +=`\n🎏🎏🎏🎏🎏🎏🎏🎏🎏🎏🎏🎏🎏`
+	strAllNotify +="\n🎏🎏🎏🎏🎏🎏🎏🎏🎏🎏🎏🎏🎏🎏🎏\n"
 }
 
 
@@ -263,7 +264,7 @@ if(DisableIndex!=-1){
 }
 
 //汪汪赛跑
-let EnableJoyRun=true;
+let EnableJoyRun=false;
 DisableIndex=strDisableList.findIndex((item) => item === "汪汪赛跑");
 if(DisableIndex!=-1){
 	console.log("检测到设定关闭汪汪赛跑查询");
@@ -336,6 +337,7 @@ if(DisableIndex!=-1){
 			strGuoqi="";
 
 			console.log(`******开始查询【京东账号${$.index}】${$.nickName || $.UserName}*********`);
+		    $.UA = require('./USER_AGENTS').UARAM();
 			await TotalBean();
 		    //await TotalBean2();
 			if ($.beanCount == 0) {
@@ -433,7 +435,7 @@ if(DisableIndex!=-1){
 
 						await notify.sendNotify(`${$.name}`, `${allMessage}`, {
 							url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean`
-						}, '\n\n本通知 By ccwav Mod',TempMessage)
+						}, '\n\n本通知 By https://github.com/KingRan/KR',TempMessage)
 					}
 					if ($.isNode() && allMessageMonth) {
 						await notify.sendNotify(`京东月资产变动`, `${allMessageMonth}`, {
@@ -460,7 +462,7 @@ if(DisableIndex!=-1){
 
 	//组1通知
 	if (ReceiveMessageGp4) {
-		allMessage2Gp4 = `【⏰商品白嫖活动领取提醒⏰】\n` + ReceiveMessageGp4;
+		allMessage2Gp4 = `【⏰商品白嫖清单⏰】\n` + ReceiveMessageGp4;
 	}
 	if (WarnMessageGp4) {
 		if (allMessage2Gp4) {
@@ -471,7 +473,7 @@ if(DisableIndex!=-1){
 
 	//组2通知
 	if (ReceiveMessageGp2) {
-		allMessage2Gp2 = `【⏰商品白嫖活动领取提醒⏰】\n` + ReceiveMessageGp2;
+		allMessage2Gp2 = `【⏰商品白嫖清单⏰】\n` + ReceiveMessageGp2;
 	}
 	if (WarnMessageGp2) {
 		if (allMessage2Gp2) {
@@ -482,7 +484,7 @@ if(DisableIndex!=-1){
 
 	//组3通知
 	if (ReceiveMessageGp3) {
-		allMessage2Gp3 = `【⏰商品白嫖活动领取提醒⏰】\n` + ReceiveMessageGp3;
+		allMessage2Gp3 = `【⏰商品白嫖清单⏰】\n` + ReceiveMessageGp3;
 	}
 	if (WarnMessageGp3) {
 		if (allMessage2Gp3) {
@@ -493,7 +495,7 @@ if(DisableIndex!=-1){
 
 	//其他通知
 	if (allReceiveMessage) {
-		allMessage2 = `【⏰商品白嫖活动领取提醒⏰】\n` + allReceiveMessage;
+		allMessage2 = `【⏰商品白嫖清单⏰】\n` + allReceiveMessage;
 	}
 	if (allWarnMessage) {
 		if (allMessage2) {
@@ -513,7 +515,7 @@ if(DisableIndex!=-1){
 
 				await notify.sendNotify(`${$.name}`, `${allMessage}`, {
 					url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean`
-				}, '\n\n本通知 By ccwav Mod',TempMessage)
+				}, '\n\n本通知 By https://github.com/KingRan/KR',TempMessage)
 			}
 			if ($.isNode() && allMessageMonth) {
 				await notify.sendNotify(`京东月资产变动`, `${allMessageMonth}`, {
@@ -529,7 +531,7 @@ if(DisableIndex!=-1){
 				allMessageGp2=strAllNotify+`\n`+allMessageGp2;
 			await notify.sendNotify(`${$.name}#2`, `${allMessageGp2}`, {
 				url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean`
-			}, '\n\n本通知 By ccwav Mod',TempMessage)
+			}, '\n\n本通知 By https://github.com/KingRan/KR',TempMessage)
 			await $.wait(10 * 1000);
 		}
 		if ($.isNode() && allMessageGp3) {
@@ -538,7 +540,7 @@ if(DisableIndex!=-1){
 				allMessageGp3=strAllNotify+`\n`+allMessageGp3;
 			await notify.sendNotify(`${$.name}#3`, `${allMessageGp3}`, {
 				url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean`
-			}, '\n\n本通知 By ccwav Mod',TempMessage)
+			}, '\n\n本通知 By https://github.com/KingRan/KR',TempMessage)
 			await $.wait(10 * 1000);
 		}
 		if ($.isNode() && allMessageGp4) {
@@ -547,7 +549,7 @@ if(DisableIndex!=-1){
 				allMessageGp4=strAllNotify+`\n`+allMessageGp4;
 			await notify.sendNotify(`${$.name}#4`, `${allMessageGp4}`, {
 				url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean`
-			}, '\n\n本通知 By ccwav Mod',TempMessage)
+			}, '\n\n本通知 By https://github.com/KingRan/KR',TempMessage)
 			await $.wait(10 * 1000);
 		}
 		if ($.isNode() && allMessage) {
@@ -557,7 +559,7 @@ if(DisableIndex!=-1){
 
 			await notify.sendNotify(`${$.name}`, `${allMessage}`, {
 				url: `https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean`
-			}, '\n\n本通知 By ccwav Mod',TempMessage)
+			}, '\n\n本通知 By https://github.com/KingRan/KR',TempMessage)
 			await $.wait(10 * 1000);
 		}
 
@@ -676,6 +678,8 @@ async function showMsg() {
 	            ReturnMessage += `(${$.PlustotalScore}分)`
 	    } else {
 	        ReturnMessage += `普通会员`;
+	        if ($.PlustotalScore)
+	            ReturnMessage += `(${$.PlustotalScore}分)`
 	    }
 	    ReturnMessage += `,京享值${$.JingXiang}\n`;
 	}else{
@@ -814,7 +818,15 @@ async function showMsg() {
 			}
 		}
 	}
-
+    let dwscore = await dwappinfo();
+    if (dwscore){
+      let dwappex = await dwappexpire();
+      ReturnMessage += `【话费积分】${dwscore}`;
+      if (dwappex){
+        ReturnMessage += `(最近已过期:${dwappex})`;
+      }
+      ReturnMessage += `\n`;
+    }
 	if ($.jdCash) {
 		ReturnMessage += `【其他信息】`;
 
@@ -858,7 +870,7 @@ async function showMsg() {
 		allMessageGp4 += ReturnMessageTitle+ReturnMessage + `\n`;
 	}
 	if (userIndex2 == -1 && userIndex3 == -1 && userIndex4 == -1) {
-		allMessage += ReturnMessageTitle+ReturnMessage + `\n`;
+		allMessage += ReturnMessageTitle+ReturnMessage + `\n------\n`;
 	}
 
 	console.log(`${ReturnMessageTitle+ReturnMessage}`);
@@ -890,7 +902,7 @@ async function showMsg() {
 		if(strAllNotify)
 			ReturnMessage=strAllNotify+`\n`+ReturnMessage;
 
-		await notify.sendNotifybyWxPucher(strTitle, `${ReturnMessage}`, `${$.UserName}`,'\n\n本通知 By ccwav Mod',strsummary);
+		await notify.sendNotifybyWxPucher(strTitle, `${ReturnMessage}`, `${$.UserName}`,'\n\n本通知 By https://github.com/KingRan/KR',strsummary);
 	}
 
 	//$.msg($.name, '', ReturnMessage , {"open-url": "https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean"});
@@ -1102,7 +1114,7 @@ function TotalBean() {
                 "Connection": "keep-alive",
                 "Cookie": cookie,
                 "Referer": "https://wqs.jd.com/my/jingdou/my.shtml?sceneval=2",
-                "User-Agent": $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.4.4;14.3;network/4g;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1")
+                "User-Agent": $.UA
             }
         }
         $.post(options, (err, resp, data) => {
@@ -1232,7 +1244,7 @@ function getJingBeanBalanceDetail(page) {
       "url": `https://bean.m.jd.com/beanDetail/detail.json?page=${page}`,
       "body": `body=${escape(JSON.stringify({"pageSize": "20", "page": page.toString()}))}&appid=ld`,
       "headers": {
-        'User-Agent': "Mozilla/5.0 (Linux; Android 12; SM-G9880) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Mobile Safari/537.36 EdgA/106.0.1370.47",
+				'User-Agent': $.UA,
         'Content-Type': 'application/x-www-form-urlencoded',
         'Cookie': cookie,
       }
@@ -1261,55 +1273,52 @@ function getJingBeanBalanceDetail(page) {
 
 function jingBeanDetail() {
 	return new Promise(async resolve => {
-		setTimeout(async () => {
-			var strsign = "";
-			if (epsignurl) {
-				strsign = await getepsign('jingBeanDetail', { "pageSize": "20", "page": "1" });
-				strsign = strsign.body;
-			}
-			else
-				strsign = await getSignfromNolan('jingBeanDetail', { "pageSize": "20", "page": "1" });
+	  setTimeout(async () => {
+		var strsign ="";
+		if (epsignurl){
+			strsign = await getepsign('jingBeanDetail', { "pageSize": "20", "page": "1" });
+			strsign=strsign.body;
+		}
+		else
+			strsign = await getSignfromNolan('jingBeanDetail', { "pageSize": "20", "page": "1" });
 
-			const options = {
-				"url": `https://api.m.jd.com/client.action?functionId=jingBeanDetail`,
-				"body": strsign,
-				"headers": {
-					'User-Agent': $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.4.4;14.3;network/4g;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1"),
-					'Host': 'api.m.jd.com',
-					'Content-Type': 'application/x-www-form-urlencoded',
-					'Cookie': cookie,
+		const options = {
+		  "url": `https://api.m.jd.com/client.action?functionId=jingBeanDetail`,
+		  "body": strsign,
+		  "headers": {
+			'User-Agent': $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.4.4;14.3;network/4g;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1"),
+			'Host': 'api.m.jd.com',
+			'Content-Type': 'application/x-www-form-urlencoded',
+			'Cookie': cookie,
+		  }
+		}
+		$.post(options, (err, resp, data) => {
+		  try {
+			if (err) {
+			  console.log(`${JSON.stringify(err)}`)
+			  console.log(`${$.name} jingBeanDetail API请求失败，请检查网路重试`)
+			} else {
+			  if (data) {
+				data = JSON.parse(data);
+				if (data?.others?.jingBeanExpiringInfo?.detailList) {
+				  const { detailList = [] } = data?.others?.jingBeanExpiringInfo;
+				  detailList.map(item => {
+					strGuoqi+=`【${(item['eventMassage']).replace("即将过期京豆","").replace("年","-").replace("月","-").replace("日","")}】过期${item['amount']}豆\n`;
+				  })
 				}
+			  } else {
+				console.log(`jingBeanDetail 京东服务器返回空数据`)
+			  }
 			}
-			$.post(options, (err, resp, data) => {
-				try {
-					if (err) {
-						console.log(`${JSON.stringify(err)}`)
-						console.log(`${$.name} jingBeanDetail API请求失败，请检查网路重试`)
-					} else {
-						if (data) {
-							data = JSON.parse(data);
-							if (data?.others?.jingBeanExpiringInfo?.detailList) {
-								const { detailList = [] } = data?.others?.jingBeanExpiringInfo;
-								detailList.map(item => {
-									strGuoqi += `【${(item['eventMassage']).replace("即将过期京豆", "").replace("年", "-").replace("月", "-").replace("日", "")}】过期${item['amount']}豆\n`;
-								})
-							}
-						} else {
-							console.log(`jingBeanDetail 京东服务器返回空数据`)
-						}
-					}
-				} catch (e) {
-					if (epsignurl)
-						$.logErr(e, resp)
-					else
-						console.log("因为没有指定带ep的Sign,获取过期豆子信息次数多了就会失败.")
-				} finally {
-					resolve(data);
-				}
-			})
-		}, 0 * 1000);
+		  } catch (e) {
+			$.logErr(e, resp)
+		  } finally {
+			resolve(data);
+		  }
+		})
+	  }, 0 * 1000);
 	})
-}
+  }
 
 function getepsign(n, o, t = "sign") {
   let e = {
@@ -1530,7 +1539,7 @@ function getCoupon() {
             url: `https://wq.jd.com/activeapi/queryjdcouponlistwithfinance?state=1&wxadd=1&filterswitch=1&_=${Date.now()}&sceneval=2&g_login_type=1&callback=jsonpCBKB&g_ty=ls`,
             headers: {
                 'authority': 'wq.jd.com',
-                "User-Agent": "jdapp;iPhone;10.1.2;15.0;network/wifi;Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1",
+                "User-Agent": $.UA,
                 'accept': '*/*',
                 'referer': 'https://wqs.jd.com/',
                 'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8',
@@ -1674,7 +1683,7 @@ function jdfruitRequest(function_id, body = {}, timeout = 1000) {
 								llgeterror = true;
 							}
 							else
-								$.JDwaterEveryDayT = data.totalWaterTaskInit.totalWaterTaskTimes;
+								$.JDwaterEveryDayT = data.firstWaterInit.totalWaterTimes;
 						}
 					}
 				} catch (e) {
@@ -1755,7 +1764,7 @@ async function getjdfruit() {
 								$.JdtreeTotalEnergy = $.farmInfo.farmUserPro.treeTotalEnergy;
 								$.treeState = $.farmInfo.treeState;
 								let waterEveryDayT = $.JDwaterEveryDayT;
-								let waterTotalT = ($.farmInfo.farmUserPro.treeTotalEnergy - $.farmInfo.farmUserPro.treeEnergy - $.farmInfo.farmUserPro.totalEnergy) / 10; //一共还需浇多少次水
+								let waterTotalT = ($.farmInfo.farmUserPro.treeTotalEnergy - $.farmInfo.farmUserPro.treeEnergy) / 10; //一共还需浇多少次水
 								let waterD = Math.ceil(waterTotalT / waterEveryDayT);
 
 								$.JdwaterTotalT = waterTotalT;
@@ -2005,8 +2014,8 @@ function GetDateTime(date) {
 }
 
 async function queryScores() {
-	if (!$.isPlusVip)
-		return
+	//if (!$.isPlusVip)
+	//	return
     let res = ''
     let url = {
       url: `https://rsp.jd.com/windControl/queryScore/v1?lt=m&an=plus.mobile&stamp=${Date.now()}`,
@@ -2088,6 +2097,73 @@ async function getuserinfo() {
             }
             finally {
                 resolve(data || '');
+            }
+        })
+    })
+}
+function dwappinfo() {
+    let ts = Date.now();
+    let opt = {
+        url: `https://dwapp.jd.com/user/dwSignInfo`,
+        body: JSON.stringify({ "t": ts, "channelSource": "txzs", "encStr": CR.MD5(ts + 'e9c398ffcb2d4824b4d0a703e38yffdd').toString() }),
+        headers: {
+            'Origin': 'https://txsm-m.jd.com',
+            'Content-Type': 'application/json',
+            'User-Agent': $.UA,
+            'Cookie': cookie
+        }
+    }
+    return new Promise(async (resolve) => {
+        $.post(opt, async (err, resp, data) => {
+            let ccc = '';
+            try {
+                if (err) {
+                    console.log(`${JSON.stringify(err)}`)
+                    console.log(`dwappinfo 请求失败，请检查网路重试`)
+                } else {
+                    data = JSON.parse(data);
+                    if (data.code == 200) {
+                        ccc = data.data.balanceNum;
+                    } else {
+                        console.log(data.msg);
+                    }
+                }
+            } catch (e) {
+                $.logErr(e, resp);
+            } finally {
+                resolve(ccc);
+            }
+        })
+    })
+}
+function dwappexpire() {
+    let opt = {
+        url: `https://dwapp.jd.com/user/scoreDetail?pageNo=1&pageSize=10&scoreType=16&t=1637`,
+        headers: {
+
+            'User-Agent': $.UA,
+            'Cookie': cookie
+        }
+    }
+    return new Promise(async (resolve) => {
+        $.get(opt, async (err, resp, data) => {
+            try {
+                if (err) {
+                    console.log(`${JSON.stringify(err)}`)
+                    console.log(` API请求失败，请检查网路重试`)
+                } else {
+                    data = JSON.parse(data)
+                    if (data.code == 200) {
+                        data = data.data.userOperateList.length !== 0 ? new Date(data.data.userOperateList[0].time).toLocaleDateString() : '';
+                    } else {
+                        console.log(data.msg);
+						data = '';
+                    }
+                }
+            } catch (e) {
+                $.logErr(e, resp);
+            } finally {
+                resolve(data);
             }
         })
     })
