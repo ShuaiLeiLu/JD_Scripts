@@ -1,8 +1,8 @@
 /*
-cron "30 0-23/6 * * *" jd_CheckCK.js, tag:京东CK检测by-ccwav
+cron "6 6 6 6 *" jd_CheckCK.js, tag:京东CK检测by-ccwav
  */
 //详细说明参考 https://github.com/ccwav/QLScript2.
-const $ = new Env('京东CK检测');
+const $ = new Env('CK检测');
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
@@ -13,7 +13,7 @@ const {
     DisableCk,
     EnableCk,
     getstatus
-} = require('./ql');
+} = require('./function/ql');
 const api = got.extend({
         retry: {
             limit: 0
@@ -194,7 +194,7 @@ if ($.isNode() && process.env.CHECKCK_ALLNOTIFY) {
                 ReturnMessageTitle = `【账号${IndexAll}🆔】${$.UserName2}`;
             }
 
-            // await TotalBean();
+            await TotalBean();
             if ($.NoReturn) {
                 console.log(`接口1检测失败，尝试使用接口2....\n`);
                 await isLoginByX1a0He();

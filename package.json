@@ -1,5 +1,5 @@
 {
-  "name": "ShuaiLeiLu",
+  "name": "LXK9301",
   "version": "1.0.0",
   "description": "{**When you're done, you can delete the content in this README and update the file with details for others getting started with your repository**}",
   "main": "AlipayManor.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ShuaiLeiLu/JD.git"
+    "url": "https://github.com/LXK9301/jd_scripts.git"
   },
   "keywords": [
     "京东薅羊毛工具, 京东水果、宠物、种豆等等"
@@ -26,7 +26,6 @@
     "tunnel": "0.0.6",
     "ws": "^7.4.3",
     "png-js": "^1.0.0",
-    "jsdom": "^17.0.0",
-    "dotenv": "^10.0.0"
+    "jsdom": "^17.0.0"
   }
 }

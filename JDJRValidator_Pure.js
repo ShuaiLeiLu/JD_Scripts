@@ -243,6 +243,7 @@ class JDJRValidator {
 
       // console.log(pos[pos.length-1][2] -Date.now());
       // await sleep(4500);
+	  //console.log(pos[pos.length - 1][2] - Date.now());
       await sleep(pos[pos.length - 1][2] - Date.now());
       const result = await JDJRValidator.jsonp('/slide/s.html', {d, ...this.data}, scene);
 
@@ -266,6 +267,7 @@ class JDJRValidator {
     try {
       const data = await JDJRValidator.jsonp('/slide/g.html', {e: ''}, scene);
       const {bg, patch, y} = data;
+	  if (bg.length < 10000) return;
       // const uri = 'data:image/png;base64,';
       // const re = new PuzzleRecognizer(uri+bg, uri+patch, y);
       const re = new PuzzleRecognizer(bg, patch, y);
@@ -325,10 +327,10 @@ class JDJRValidator {
         if (res.headers['content-encoding'] === 'gzip') {
           const unzipStream = new stream.PassThrough();
           stream.pipeline(
-              response,
-              zlib.createGunzip(),
-              unzipStream,
-              reject,
+            response,
+            zlib.createGunzip(),
+            unzipStream,
+            reject,
           );
           res = unzipStream;
         }
@@ -365,9 +367,9 @@ class JDJRValidator {
 function getCoordinate(c) {
   function string10to64(d) {
     var c = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-~".split("")
-        , b = c.length
-        , e = +d
-        , a = [];
+      , b = c.length
+      , e = +d
+      , a = [];
     do {
       mod = e % b;
       e = (e - mod) / b;
@@ -525,11 +527,11 @@ function injectToRequest2(fn, scene = 'cww') {
           console.error('验证请求失败.');
           return;
         }
-        if (data.search('验证') > -1) {
+         if (data.search('验证') > -1) {
           console.log('JDJR验证中......');
           const res = await new JDJRValidator().run(scene);
           if (res) {
-            opts.url += `&validate=${res.validate}`;
+             opts.url += `&validate=${res.validate}`;
           }
           fn(opts, cb);
         } else {

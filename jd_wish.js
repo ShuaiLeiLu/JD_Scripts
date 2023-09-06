@@ -163,8 +163,8 @@ async function healthyDay_getHomeData(type = true) {
                   } else {
                   console.log(`【${vo.taskName}】已完成\n`)
                 }
-							}
-							}
+							}	
+							}						
               for (let key of Object.keys(data.data.result.taskVos).reverse()) {
                 let vo = data.data.result.taskVos[key]
                 if (vo.status !== 2) {

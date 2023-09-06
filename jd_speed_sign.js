@@ -1,5 +1,5 @@
 /*
-cron "0 6,13,19 * * *" jd_speed_sign_Mod.js, tag:京东特价版任务
+cron "5 3,15 * * *" jd_speed_sign.js, tag:京东特价版任务
 */
 //详细说明参考 https://github.com/ccwav/QLScript2.
 
@@ -43,27 +43,27 @@ if (new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate() == date.getDa
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
       var cookie = cookiesArr[i];
-	  var url_uuid = randomString(16);
+	    var url_uuid = randomString(16);
 
       message = '';
       TaskList.push(jdGlobal(cookie,url_uuid));
       if (i == (cookiesArr.length - 1) || TaskList.length == maxThread) {
         await Promise.all(TaskList);
 		if (!llAPIError){
-			if (i != (cookiesArr.length - 1)){
+			if (TaskList.length == maxThread){
 				console.log(`当前批量完成，等待30秒`);
 				await $.wait(30 * 1000);
-			}
+			}			
 		}else{
 			console.log(`检测到403，暂停2分钟后重试`);
 			await $.wait(2*60 * 1000);
 			llAPIError=false;
 			await Promise.all(TaskList);
 		}
-
+		
         TaskList = [];
       }
-
+      
       if (llAPIError) {
         console.log(`黑IP了，赶紧重新拨号换个IP吧`);
         break;
@@ -83,16 +83,16 @@ async function jdGlobal(cookie,url_uuid) {
 	var isLogin= await isLoginByX1a0He(cookie);
 	if (!isLogin)
 		return;
-
-    await wheelsHome(cookie)
+	
+    //await wheelsHome(cookie)
     await apTaskList(cookie)
-    await wheelsHome(cookie)
+    //await wheelsHome(cookie)
     await taskList(cookie,url_uuid)
-    if (llAPIError) {
+    if (llAPIError) {      
       return;
     }
     await queryJoy(cookie,url_uuid)
-    if (llAPIError) {
+    if (llAPIError) {      
       return;
     }
     if (runorderReward) {
@@ -329,7 +329,7 @@ async function queryItem(cookie,url_uuid, activeType = 1) {
               $.canStartNewItem = false
             }
           }
-        }
+        } 
       } catch (e) {
         $.logErr(e, resp)
       } finally {
@@ -681,10 +681,10 @@ function isLoginByX1a0He(cookie) {
             },
         }
         $.get(options, (err, resp, data) => {
-			var isLogin=false;
+			var isLogin=false;			
             try {
                 if (data) {
-                    data = JSON.parse(data);
+                    data = JSON.parse(data);                    
                     if (data.islogin === "1") {
                         isLogin= true;
                     } else if (data.islogin === "0") {

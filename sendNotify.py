@@ -69,11 +69,11 @@ if "PUSH_PLUS_TOKEN" in os.environ:
 if "QYWX_AM" in os.environ:
     if len(os.environ["QYWX_AM"]) > 1:
         QYWX_AM = os.environ["QYWX_AM"]
-
+        
 
 if "QYWX_KEY" in os.environ:
     if len(os.environ["QYWX_KEY"]) > 1:
-        QYWX_KEY = os.environ["QYWX_KEY"]
+        QYWX_KEY = os.environ["QYWX_KEY"]        
         # print("已获取并使用Env环境 QYWX_AM")
 
 #接入飞书webhook推送
@@ -127,7 +127,7 @@ def bark(title, content):
     if BARK:
         try:
             response = requests.get(
-                f"""https://api.day.app/{BARK}/{title}/{urllib.parse.quote_plus(content)}""").json()
+            f"""https://api.day.app/{BARK}/{title}/{urllib.parse.quote_plus(content)}""").json()
             if response['code'] == 200:
                 print('推送成功！')
             else:
@@ -137,7 +137,7 @@ def bark(title, content):
     if BARK_PUSH:
         try:
             response = requests.get(
-                f"""{BARK_PUSH}/{title}/{urllib.parse.quote_plus(content)}""").json()
+            f"""{BARK_PUSH}/{title}/{urllib.parse.quote_plus(content)}""").json()
             if response['code'] == 200:
                 print('推送成功！')
             else:
@@ -268,13 +268,13 @@ def wecom_key(title, content):
     print("QYWX_KEY服务启动")
     print("content"+content)
     headers = {'Content-Type': 'application/json'}
-    data = {
+    data = { 
         "msgtype":"text",
         "text":{
             "content":title+"\n"+content.replace("\n", "\n\n")
-        }
+         }
     }
-
+    
     print(f"https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key={QYWX_KEY}")
     response = requests.post(f"https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key={QYWX_KEY}", json=data,headers=headers).json()
     print(response)
@@ -288,13 +288,13 @@ def fs_key(title, content):
     print("FS_KEY服务启动")
     print("content"+content)
     headers = {'Content-Type': 'application/json'}
-    data = {
+    data = { 
         "msg_type":"text",
         "content":{
             "text":title+"\n"+content.replace("\n", "\n\n")
-        }
+         }
     }
-
+    
     print(f"https://open.feishu.cn/open-apis/bot/v2/hook/{FS_KEY}")
     response = requests.post(f"https://open.feishu.cn/open-apis/bot/v2/hook/{FS_KEY}", json=data,headers=headers).json()
     print(response)
@@ -440,9 +440,9 @@ def send(title, content):
             continue
         elif i == 'wecom_key':
             if QYWX_KEY:
-
+                
                 for i in range(int(len(content)/2000)+1):
-                    wecom_key(title=title, content=content[i*2000:(i+1)*2000])
+                    wecom_key(title=title, content=content[i*2000:(i+1)*2000])     
             else:
                 print('未启用企业微信应用消息推送')
             continue

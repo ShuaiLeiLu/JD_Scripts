@@ -5,10 +5,10 @@
  * 多个账户需要跳过检查可多次添加 JD_PAY_CONTRACT_IGNORE
 [task_local]
 #检查并停用免密支付
-35 21 * * * jd_pay_contract.js, tag=检查并停用免密支付, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
+35 20 * * 5 jd_pay_contract.js, tag=检查并停用免密支付, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
  */
 
-const $ = new Env("检查并停用免密支付")
+const $ = new Env("关闭免密支付")
 const LOGS = []
 const USER_AGENT = 'jdapp;iPhone;10.3.6;M/5.0;JDEbook/openapp.jdreader;appBuild/167963;jdSupportDarkMode/0;Mozilla/5.0 (iPhone; CPU iPhone OS 15_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1;'
 const NOTIFY = require('./sendNotify')
